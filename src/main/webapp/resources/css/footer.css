@@ -1,0 +1,20 @@
+.footer {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 30px 50px 0;
+}
+
+.footer_bot {
+    border-top: 1px solid #333;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.footer_ul {
+    list-style: none;
+    cursor: pointer;
+}
+
+.logo {
+    margin-bottom: 10px;
+}

@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <link rel="stylesheet" href="<c:url value='/resources/css/home.css' />">
-    <link rel="stylesheet" href="<c:url value='/resources/css/productDetail.css' />">
+    <link rel="stylesheet" href="<c:url value='/resources/css/productDetail.css' />"> 
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -36,40 +36,12 @@
 	
 	 <div class="container--fluid">
 
-        <div class="header">
-            <div class="header__logo">
-                <img src="https://blueskytechco.com/rubix/wp-content/uploads/2021/05/logo_x2.png" alt="" />
-            </div>
-            <div class="header__navigation">
-                <ul class="nav__level1">
-
-                    <li class="item_level1"><a href="">Home</a></li>
-                    <li class="item_level1"><a href="">Shop</a></li>
-                    <li class="item_level1"><a href="">Page</a></li>
-                    <li class="item_level1"><a href="">Blog</a></li>
-                    <li class="item_level1"><a href="">Contact</a></li>
-                </ul>
-            </div>
-            <div class="header__action">
-                <div class="header__action_left">
-                    <div class="login">
-                        <a href="">
-                            <i class="fa fa-user" aria-hidden="true"></i>Login</a>
-                    </div>
-                    <span></span>
-                    <div class="register">
-                        <a href="">Register</a>
-                    </div>
-                </div>
-                <span>|</span>
-                <div class="header__action_right">
-                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </div>
-            </div>
+		 <div id='header'>
+        	<jsp:include page="components/header.jsp"></jsp:include> 
         </div>
-
+        
+        <!-- Body -->
+        
         <div class="content ">
             <div class="breadcrumb-contain">
                 <nav aria-label="breadcrumb">
@@ -340,11 +312,12 @@
                 </div>
             </div>
         </div>
+        
+          <div id='footer'>
+        	  <jsp:include page="components/footer.jsp"></jsp:include>
+   			</div>
     </div>
-	
-	
-	
-	
+    
      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
