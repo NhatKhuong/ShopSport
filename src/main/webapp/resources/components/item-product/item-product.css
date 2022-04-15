@@ -1,0 +1,134 @@
+.card_item {
+    width: 250px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    height: 320px;
+    box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
+    position: relative;
+}
+
+.item_img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.item_img > img {
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.btn_add-to-card {
+    width: 80%;
+    text-align: center;
+    height: 35px;
+    line-height: 30px;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #000;
+    visibility: hidden;
+    position: absolute;
+    bottom: -15px;
+    transition: 0.3s all;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.btn_add-to-card:hover {
+    background-color: #ba933e;
+}
+.card_item:hover .btn_add-to-card {
+    visibility: visible;
+    bottom: -8px;
+    opacity: 1;
+}
+
+.card_item_action {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card_item_action > a {
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    opacity: 0;
+    /* border: 1px solid #ccc; */
+    margin-bottom: 3px;
+    width: 30px;
+    height: 30px;
+}
+
+.card_item_action > a:hover {
+    background-color: #ba933e;
+}
+
+.card_icon {
+    color: rgb(75, 72, 72);
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+.card_item_action > a:hover .card_icon {
+    color: #fff;
+}
+
+.card_item:hover {
+    opacity: 0.9;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: 0.3s;
+}
+
+.card_item:hover .card_item_action > a {
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.item_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.item_title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding: 0 30px;
+    text-align: center;
+}
+
+.item_price {
+    font-weight: bold;
+    color: #ee4d2d;
+    margin-right: 10px;
+}
+
+.item_price_discount {
+    text-decoration: line-through;
+    color: #666;
+}
+
+.sale {
+    color: #000;
+    background-color: #ba933e;
+    width: 50px;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-weight: 500;
+}
+
+.item_info_price {
+    display: flex;
+}
