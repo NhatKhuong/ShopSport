@@ -28,6 +28,8 @@ public class ProductController {
 		SanPham sanPham = sanPhamService.getById(maSanPham);
 		model.addAttribute("sanPham", sanPham);
 		System.out.println(sanPham);
+		List<SanPham> list = sanPhamService.getByFilter("", "", "", 50000, 100000, 1, 9);
+		model.addAttribute("listSanPham", list);
 		return "productDetail";
 	}
 }

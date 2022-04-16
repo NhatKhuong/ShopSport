@@ -135,14 +135,18 @@ p{
 /* breadcrumb */
 .breadcrumb-contain {
   font-size: 16px;
+  padding-left: 0;
+  padding-right: 0;
+   background-color: #f5f5f5;
+	z-index: 0;
 }
 .breadcrumb-contain a {
   color: #444;
 }
 .breadcrumb-contain .breadcrumb {
   background-color: #f5f5f5;
-  margin-bottom: 0;
-  padding-left: 0;
+  margin-top:15px;
+  padding: 0;
   
 }
 /* /breadcrumb */

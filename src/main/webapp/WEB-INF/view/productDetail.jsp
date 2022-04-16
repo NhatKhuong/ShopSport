@@ -54,7 +54,6 @@
                             <div class="images-detail col-lg-6 pr-3 mb-5">
                                 <div class="img-main">
                                     <div class="img-contain">
-
                                         <img src="<c:url value='/resources/images/${sanPham.danhSachHinhAnhSanPham[0].hinhAnh}' />"
                                             alt="">
                                     </div>
@@ -89,10 +88,10 @@
                                     <span class="info-rating"> (2 customer reviews)</span>
                                 </div>
                                 <div class="price-line">
-                                    <span class="price-old">₫${sanPham.giaTien}</span>
+                                    <span class="price-old price">${sanPham.giaTien} </span>
                                     <span
-                                        class="price-current">₫${sanPham.giaTien-item.giaTien*sanPham.chietKhau/100}</span>
-                                    <span class="price-saving-percent">${sanPham.chietKhau} % Giảm</span>
+                                        class="price-current price">${sanPham.giaTien-item.giaTien*sanPham.chietKhau/100}</span>
+                                    <div class="price-saving-percent percent"> ${sanPham.chietKhau} </div>
                                 </div>
 
                                 <div class="pt-4">
@@ -334,7 +333,23 @@
                             </div>
                         </div>
                     </div>
-                    <div class="components container">
+                    <div class="components container list-product-suggest">
+                        <div class="components-title">
+                            <div class='title'>
+                                <span>Sản phẩm tương tự</span>
+                            </div>
+                        </div>
+    
+                        <div class="items-product-suggest  owl-carousel" >
+                              <c:forEach var="item" items="${listSanPham }" varStatus="status">
+                                <c:set var="item" value="${item}" scope="request" />
+                                <jsp:include page="components/item-product.jsp">
+                                    <jsp:param value="${item }" name="item" />
+                                </jsp:include>
+                            </c:forEach>
+
+                        </div>
+
                     </div>
                     <div id='footer'>
                         <jsp:include page="components/footer.jsp"></jsp:include>

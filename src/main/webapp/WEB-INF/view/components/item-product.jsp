@@ -35,7 +35,7 @@
                         </div>
                     </div> --%>
 
-<div class="col-sm-6 col-lg-3 product-item men" onclick='window.location.href="san-pham/chi-tiet-san-pham?maSanPham=${item["maSanPham"]}"'>
+<div class="col-sm-6 col-lg-3 product-item men item" onclick='window.location.href="san-pham/chi-tiet-san-pham?maSanPham=${item["maSanPham"]}"'>
 	<div class="product discount product_filter">
 		<div class="product_image">
 			<img src="<a:url value='/resources/images/${item["danhSachHinhAnhSanPham"][0]["hinhAnh"]}' />">
