@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<link rel="stylesheet" href="<c:url value='/resources/components/item-product/item-product.css' />">
-<%@ taglib prefix = "a" uri = "http://java.sun.com/jsp/jstl/core" %>
-<div class="col-3" onclick='window.location.href="san-pham/chi-tiet-san-pham?maSanPham=${item["maSanPham"]}"'  >
+	pageEncoding="utf-8"%>
+<%@ taglib prefix="a" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/item-product.css">
+
+<%-- <div class="col-sm-6 col-lg-3" onclick='window.location.href="san-pham/chi-tiet-san-pham?maSanPham=${item["maSanPham"]}"'  >
                         <div class="card_item">
                              <div class="item_img">
                        
@@ -31,4 +33,28 @@
                                 Sale
                             </div>
                         </div>
-                    </div>
+                    </div> --%>
+
+<div class="col-sm-6 col-lg-3 product-item men" onclick='window.location.href="san-pham/chi-tiet-san-pham?maSanPham=${item["maSanPham"]}"'>
+	<div class="product discount product_filter">
+		<div class="product_image">
+			<img src="<a:url value='/resources/images/${item["danhSachHinhAnhSanPham"][0]["hinhAnh"]}' />">
+		</div>
+		<div class="favorite favorite_left"></div>
+		<div
+			class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
+			<span>-$20</span>
+		</div>
+		<div class="product_info">
+			<h6 class="item_title">
+				${item["tenSanPham"] }
+			</h6>
+			<div class="product_price">
+				${item["giaTien"]-item["giaTien"]*item["chietKhau"]/100 }<span>${item["giaTien"] }</span>
+			</div>
+		</div>
+	</div>
+	<div class="red_button add_to_cart_button">
+		<a href="#">add to cart</a>
+	</div>
+</div>

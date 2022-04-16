@@ -11,3 +11,5 @@ $('#max-price').on("change mousemove", function () {
     showItemsFiltered();
 });
 
+
+
