@@ -35,7 +35,7 @@
                         </div>
                     </div> --%>
 
-<div class="col-sm-6 col-lg-3 product-item men" onclick='window.location.href="san-pham/chi-tiet-san-pham?maSanPham=${item["maSanPham"]}"'>
+<div class="col-sm-6 col-lg-3 product-item men item" onclick='window.location.href="san-pham/chi-tiet-san-pham?maSanPham=${item["maSanPham"]}"'>
 	<div class="product discount product_filter">
 		<div class="product_image">
 			<img src="<a:url value='/resources/images/${item["danhSachHinhAnhSanPham"][0]["hinhAnh"]}' />">
@@ -43,14 +43,14 @@
 		<div class="favorite favorite_left"></div>
 		<div
 			class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
-			<span>- ${item["chietKhau"]} %</span>
+			<span class='percent'>${item["chietKhau"]}</span>
 		</div>
 		<div class="product_info">
 			<h6 class="product_title">
-				<a>${item["tenSanPham"] }</a>				
+				<a>${item["tenSanPham"]}</a>				
 			</h6>
 			<div class="product_price">
-				${item["giaTien"]-item["giaTien"]*item["chietKhau"]/100 }<span>${item["giaTien"] }</span>
+				<div class="price"> ${item["giaTien"]-item["giaTien"]*item["chietKhau"]/100 }</div> <span class="price">${item["giaTien"] }</span>
 			</div>
 		</div>
 	</div>

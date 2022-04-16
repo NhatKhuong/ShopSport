@@ -79,3 +79,28 @@ $(document).ready(function () {
     },
   });
 });
+
+
+// owl-carousel-product-suggest
+$(document).ready(function () {
+  $(".owl-carousel-product-suggest").owlCarousel({
+    items: 5,
+    animateOut: "fadeOut",
+    nav: true,
+    responsiveClass: true,
+    responsive: {
+      300: {
+        items: 3,
+        nav: false,
+      },
+
+      600: {
+        items: 5,
+        nav: true,
+        loop: false,
+      },
+    },
+  });
+});
+
+
