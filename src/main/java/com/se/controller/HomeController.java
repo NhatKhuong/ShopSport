@@ -40,6 +40,9 @@ public class HomeController {
 		model.addAttribute("listSanPham", list);
 		return "home";
 	}
-	
+	@GetMapping("")
+	public String layOut() {
+		return "layout";
+	}
 
 }

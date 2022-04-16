@@ -3,6 +3,16 @@
     Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji,
     Segoe UI Symbol;
 }
+body {
+  background-color: #f5f5f5 !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.components {
+  background-color: #ffffff !important;
+  padding: 35px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+}
 /* Image product*/
 .product-detail .images-detail {
   display: flex;
@@ -22,7 +32,7 @@
   height: 100px;
   width: 100px;
   border: 2px solid #ba933e00;
-  background-color: #f5f5f5;
+  background-color: #ffffff !important;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,7 +49,7 @@
   border: 2px solid #ba933e;
 }
 .product-detail .img-main {
-  background-color: #f5f5f5;
+  background-color: #ffff;
   position: relative;
   display: flex;
   justify-content: center;
@@ -53,7 +63,7 @@
   text-align: center;
   border-radius: 100%;
   position: absolute;
-  background-color: #f5f5f5;
+
   right: 10px;
   top: 10px;
   font-size: 20px;
@@ -73,12 +83,11 @@
 .ratings i {
   color: #ba933e;
 }
-
-.product-detail .price-line {
+.ratings .number-start {
   color: #ba933e;
-  font-weight: 600;
-  font-size: 20px;
+  margin-right: 5px;
 }
+
 .product-detail .price-old {
   color: #cccccc;
   font-weight: 400;
@@ -211,7 +220,38 @@
   border: none;
   z-index: 3;
 }
-
+.price-line {
+  background-color: #fafafa;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  color: #ba933e;
+  font-weight: 600;
+  font-size: 20px;
+}
+.price-line .price-current {
+  color: #ba933e;
+  font-size: 1.875rem;
+  font-weight: 500;
+}
+.price-line .price-old {
+  font-size: 1rem;
+  text-decoration: line-through;
+  color: #929292;
+  margin-right: 15px;
+  margin-left: 10px;
+}
+.price-line .price-saving-percent {
+  /* background-color: #ff3300; */
+  border: 1px solid red;
+  color: rgb(255, 0, 0);
+  margin-left: 10px;
+  font-size: 13px;
+  padding: 1px 10px;
+  border-radius: 5px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
+    rgba(180, 113, 51, 0.1) 0px 8px 24px, rgba(121, 77, 64, 0.1) 0px 16px 48px;
+}
 #tabs .nav-tabs .nav-link {
   font-size: 16px;
   color: rgba(128, 128, 128, 0.74);
@@ -219,14 +259,16 @@
   z-index: 3;
 }
 
-.description-detail p{
-	white-space: pre-wrap;
-    color: rgba(0,0,0,.8);
-    font-size: .875rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.7;
-    font-family: Helvetica Neue,Helvetica,Arial,文泉驛正黑,WenQuanYi Zen Hei,Hiragino Sans GB,儷黑 Pro,LiHei Pro,Heiti TC,微軟正黑體,Microsoft JhengHei UI,Microsoft JhengHei,sans-serif;
+.description-detail p {
+  white-space: pre-wrap;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 0.875rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.7;
+  font-family: Helvetica Neue, Helvetica, Arial, 文泉驛正黑, WenQuanYi Zen Hei,
+    Hiragino Sans GB, 儷黑 Pro, LiHei Pro, Heiti TC, 微軟正黑體,
+    Microsoft JhengHei UI, Microsoft JhengHei, sans-serif;
 }
 
 .comments .title h4 {
@@ -270,6 +312,7 @@
 .create-comment .your-rating .ratings {
   font-size: 30px;
 }
+
 .create-comment .your-rating .ratings i {
   padding: 5px;
 }

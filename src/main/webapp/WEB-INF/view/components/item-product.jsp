@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <link rel="stylesheet" href="<c:url value='/resources/components/item-product/item-product.css' />">
 <%@ taglib prefix = "a" uri = "http://java.sun.com/jsp/jstl/core" %>
 <div class="col-3" onclick='window.location.href="san-pham/chi-tiet-san-pham?maSanPham=${item["maSanPham"]}"'  >
