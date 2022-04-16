@@ -43,11 +43,11 @@
 		<div class="favorite favorite_left"></div>
 		<div
 			class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
-			<span>-$20</span>
+			<span>- ${item["chietKhau"]} %</span>
 		</div>
 		<div class="product_info">
-			<h6 class="item_title">
-				${item["tenSanPham"] }
+			<h6 class="product_title">
+				<a>${item["tenSanPham"] }</a>				
 			</h6>
 			<div class="product_price">
 				${item["giaTien"]-item["giaTien"]*item["chietKhau"]/100 }<span>${item["giaTien"] }</span>

@@ -183,16 +183,44 @@
         </div>
         <div class="display__item__itemList col-9">
             <div class="display__item__itemList__header">
-                <div class="display__item__itemList__header__title">Showing all 2 results</div>
-                <div class="type__sorting_block">
-                    <select name="" id="" class="type__sorting">
-                        <option value="">Default Sorting</option>
-                        <option value="">Sorting by Popularity</option>
-                        <option value="">Sorting by last</option>
-                        <option value="">Sorting by price: Low to Height</option>
-                        <option value="">Sorting by price: Hieght to Low</option>
-                    </select>
-                </div>
+                <div class="product_sorting_container product_sorting_container_top">
+									<ul class="product_sorting">
+										<li>
+											<span class="type_sorting_text">Default Sorting</span>
+											<i class="fa fa-angle-down"></i>
+											<ul class="sorting_type">
+												<li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Default Sorting</span></li>
+												<li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Price</span></li>
+												<li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Product Name</span></li>
+											</ul>
+										</li>
+										<li>
+											<span>Show</span>
+											<span class="num_sorting_text">6</span>
+											<i class="fa fa-angle-down"></i>
+											<ul class="sorting_num">
+												<li class="num_sorting_btn"><span>6</span></li>
+												<li class="num_sorting_btn"><span>12</span></li>
+												<li class="num_sorting_btn"><span>24</span></li>
+											</ul>
+										</li>
+									</ul>
+									<div class="pages d-flex flex-row align-items-center pagination">
+										<div id="next_page" class="page_next page_next_left"><a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
+										<div class="page_current">
+											<span>1</span>
+											<ul class="page_selection">
+												<li><a href="#">1</a></li>
+												<li><a href="#">2</a></li>
+												<li><a href="#">3</a></li>
+											</ul>
+										</div>
+	
+										<div class="page_total"><span>of</span> 3</div>
+										<div id="next_page" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
+									</div>
+
+								</div>
             </div>
 
             <div class="display__item__itemList__item_result">
@@ -202,39 +230,7 @@
 	                <jsp:include page="components/item-product.jsp">
 	               		<jsp:param value="${item }" name="item"/>
                 	</jsp:include>
-                </c:forEach>
-                	
-                	<%-- <c:forEach var="item" items="${listSanPham }">
-                		<div class="col-3" onclick="window.location.href='san-pham/chi-tiet-san-pham?maSanPham=${item.maSanPham}'">
-                        <div class="card_item">
-                            <div class="item_img">
-                                <img src="<c:url value='/resources/images/${item.danhSachHinhAnhSanPham[0].hinhAnh}' />"
-                                    alt="">
-                                <div class="btn_add-to-card">
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to card
-                                </div>
-                            </div>
-                            <div class="item_info">
-                                <div class="item_title">${item.tenSanPham }</div>
-                                <div class="item_info_price">
-
-                                    <div class="item_price">${item.giaTien-item.giaTien*item.chietKhau/100 }</div>
-                                    <div class="item_price_discount">${item.giaTien }</div>
-                                </div>
-                            </div>
-
-                            <div class="card_item_action">
-                                <a href=""><i class="card_icon fa fa-heart-o" aria-hidden="true"></i></a>
-                                <a href=""><i class="card_icon fa fa-sliders" aria-hidden="true"></i></a>
-                                <a href=""><i class="card_icon fa fa-eye" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="sale">
-                                Sale
-                            </div>
-                        </div>
-                    </div>
-                	</c:forEach> --%>
-                    
+                </c:forEach>                    
                 </div>
             </div>
             <nav class="pagination_block" aria-label="...">
