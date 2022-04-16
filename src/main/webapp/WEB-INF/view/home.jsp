@@ -12,12 +12,14 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 <link rel="stylesheet" href="<c:url value='/resources/css/home.css' />">
+<link rel="stylesheet" href="<c:url value='/resources/css/filter.css' />">
+
 </head>
 <body>
-	<div class="container--fluid">
+	<div class="">
         <jsp:include page="components/header.jsp"></jsp:include>
         <section>
-            <div class="slider">
+           <%--  <div class="slider">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -43,11 +45,37 @@
                     </div>
                 </div>
 
-            </div>
+            </div> --%>
 
     </div>
-    <div class="display__item row">
-        <div class="display__item__filter col-2">
+    <div class= "display__item row">
+        <div class="pl-5 display__item__filter col-3">
+        
+          <div class="">
+                  <div class="">
+                    <div class="">
+                        <hr>
+                      <h4>Giá:</h4>
+                      <div class="card-body">
+                        <form id="price-range-form">
+                          <label for="min-price" class="form-label">Min price: </label>
+                          <span id="min-price-txt">$0</span>
+                          <input type="range" class="form-range" min="0" max="99" id="min-price" step="1" value="0"><br>
+                          <label for="max-price" class="form-label">Max price: </label>
+                          <span id="max-price-txt">$1</span>
+                          <input type="range" class="form-range " min="1" max="100" id="max-price" step="1" value="1">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="btn__filter">
+                      <button>Lọc <i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+					
+        
+        <hr>
+        
             <div class="display__item__filter__title">Danh mục</div>
             <ul class="categories__nav__level1">
                 <li class="categories__nav__item__level1" id="football">Loại sản phẩm <i class="fa fa-angle-down"
@@ -87,8 +115,8 @@
                 
             </ul>
 
-            <div class="container">
-                <div class="">
+            <div class="">
+                <%-- <div class="">
                   <div class="">
                     <div class="">
                         <hr>
@@ -108,7 +136,7 @@
                   <div class="btn__filter">
                       <button>Lọc <i class="fa fa-angle-right" aria-hidden="true"></i></button>
                   </div>
-                </div>
+                </div> --%>
               </div>
             
             <hr>
@@ -153,7 +181,7 @@
             </div>
 
         </div>
-        <div class="display__item__itemList col-10">
+        <div class="display__item__itemList col-9">
             <div class="display__item__itemList__header">
                 <div class="display__item__itemList__header__title">Showing all 2 results</div>
                 <div class="type__sorting_block">
