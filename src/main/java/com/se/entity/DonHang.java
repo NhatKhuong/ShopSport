@@ -39,9 +39,14 @@ public class DonHang {
 	private Date ngayTao;
 	private Date ngayGiao;
 	private double phiVanChuyen;
-	public DonHang(String maDonHang, NguoiDung nguoiDung, DiaChi diaChi, TrangThaiDonHang trangThaiDonHang,
-			List<ChiTietDonHang> danhSachChiTietDonHang, String diaChiCuThe, Date ngayTao, Date ngayGiao,
-			double phiVanChuyen) {
+	@Column(columnDefinition = "varchar(11)")
+	@NotNull
+	private String  soDienThoai;
+
+	
+	public DonHang(String maDonHang, @NotNull NguoiDung nguoiDung, @NotNull DiaChi diaChi,
+			@NotNull TrangThaiDonHang trangThaiDonHang, List<ChiTietDonHang> danhSachChiTietDonHang,
+			@NotNull String diaChiCuThe, Date ngayTao, Date ngayGiao, double phiVanChuyen, String soDienThoai) {
 		super();
 		this.maDonHang = maDonHang;
 		this.nguoiDung = nguoiDung;
@@ -52,11 +57,22 @@ public class DonHang {
 		this.ngayTao = ngayTao;
 		this.ngayGiao = ngayGiao;
 		this.phiVanChuyen = phiVanChuyen;
+		this.soDienThoai = soDienThoai;
 	}
+
 	public DonHang() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public String getSoDienThoai() {
+		return soDienThoai;
+	}
+
+	public void setSoDienThoai(String soDienThoai) {
+		this.soDienThoai = soDienThoai;
+	}
+
 	public String getMaDonHang() {
 		return maDonHang;
 	}

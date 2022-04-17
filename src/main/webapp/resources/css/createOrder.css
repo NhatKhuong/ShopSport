@@ -1,0 +1,74 @@
+.component {
+  background-color: #ffffff !important;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 0px 0 5px 5px;
+}
+.box .header-title {
+  background-color: #fafafa;
+  padding: 10px 20px;
+  color: black;
+  font-weight: 500;
+  border-radius: 5px 5px 0 0;
+}
+.component .form-group label {
+  font-size: 12px;
+}
+.title-component {
+  font-size: 17px;
+  color: #212121;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.card-select {
+  border: 1px solid #0b99b9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.card-select .top {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+  padding: 15px 15px 10px 15px;
+  background-color:#F9FEFF ;
+}
+.card-select .title {
+  margin-left: 10px;
+}
+.card-select .bot {
+  padding: 5px 20px;
+  color: gray;
+}
+.card-select .icon i {
+  font-family: Roboto-Regular;
+  font-size: 12px;
+  color: #757575;
+}
+.card-select left {
+  padding: 0 20px;
+}
+.card-select right {
+  width: 20px;
+}
+.general-line {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	
+}
+.general-line .left {
+    color: #999;
+    font-size: 14px;
+}
+
+.btn-xac-nhan input{
+	margin-top:10px;
+	font-weight: 500;
+	font-size: 18px;
+}
+.color-blue{
+	background-color: #F9FEFF;
+}
+.price{
+   font-weight: 500;
+}

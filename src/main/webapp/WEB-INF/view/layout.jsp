@@ -27,20 +27,21 @@
 
                     <div class="components">
                         <!-- Body -->
-                        <!-- breadcrumb -->
+                        <div class="container">
+                            <!-- breadcrumb -->
 
-                        <div class="breadcrumb-components">
-                            <jsp:include page="components/breadcrumb.jsp"></jsp:include>
+                            <div class="breadcrumb-components">
+                                <jsp:include page="components/breadcrumb.jsp"></jsp:include>
+                            </div>
+                            <!-- /breadcrumb -->
+
+
+
+
+
+                            <!-- /Body -->
                         </div>
-                        <!-- /breadcrumb -->
-
-
-
-
-
-                        <!-- /Body -->
                     </div>
-
                     <div id='footer'>
                         <jsp:include page="components/footer.jsp"></jsp:include>
                     </div>
