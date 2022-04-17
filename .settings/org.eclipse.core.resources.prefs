@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/se/controller/HomeController.java=UTF-8
+encoding//src/main/java/com/se/controller/OrderController.java=UTF-8
 encoding//src/main/java/com/se/controller/ProductController.java=UTF-8
 encoding//src/main/webapp/WEB-INF/view/components/header.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/view/productDetail2.jsp=UTF-8

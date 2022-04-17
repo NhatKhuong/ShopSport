@@ -60,7 +60,7 @@
 
 // owl-carousel
 $(document).ready(function () {
-  $(".owl-carousel").owlCarousel({
+  $(".imgs-sub.owl-carousel").owlCarousel({
     items: 5,
     animateOut: "fadeOut",
     nav: true,
@@ -80,14 +80,18 @@ $(document).ready(function () {
   });
 });
 
-
-// owl-carousel-product-suggest
+// 
 $(document).ready(function () {
-  $(".owl-carousel-product-suggest").owlCarousel({
+  $(".items-product-suggest.owl-carousel").owlCarousel({
     items: 5,
     animateOut: "fadeOut",
     nav: true,
     responsiveClass: true,
+      loop:true,
+    margin:10,
+    autoplay:true,
+    autoplayTimeout:3000,
+    autoplayHoverPause:true,
     responsive: {
       300: {
         items: 3,
@@ -95,12 +99,9 @@ $(document).ready(function () {
       },
 
       600: {
-        items: 5,
+        items: 4,
         nav: true,
-        loop: false,
       },
     },
   });
 });
-
-

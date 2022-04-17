@@ -1,8 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%@ taglib prefix="a" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/item-product.css">
 
 <%-- <div class="col-sm-6 col-lg-3" onclick='window.location.href="san-pham/chi-tiet-san-pham?maSanPham=${item["maSanPham"]}"'  >
                         <div class="card_item">
@@ -35,10 +30,10 @@
                         </div>
                     </div> --%>
 
-<div class="col-sm-6 col-lg-3 product-item men item" onclick='window.location.href="${pageContext.request.contextPath}/san-pham/chi-tiet-san-pham?maSanPham=${item["maSanPham"]}"'>
+<div class="product-item men item " onclick='window.location.href="${pageContext.request.contextPath}/san-pham/chi-tiet-san-pham?maSanPham=${item["maSanPham"]}"'>
 	<div class="product discount product_filter">
 		<div class="product_image">
-			<img src="<a:url value='/resources/images/${item["danhSachHinhAnhSanPham"][0]["hinhAnh"]}' />">
+			<img src='${pageContext.request.contextPath}/resources/images/${item["danhSachHinhAnhSanPham"][0]["hinhAnh"]}'>
 		</div>
 		<div class="favorite favorite_left"></div>
 		<div

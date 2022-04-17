@@ -14,6 +14,8 @@
                     crossorigin="anonymous" />
 
                 <link rel="stylesheet" href="<c:url value='/resources/css/home.css' />">
+                
+                <link rel="stylesheet" href="<c:url value='/resources/css/layout.css' />">
             </head>
 
 
@@ -23,8 +25,6 @@
                     <div id='header'>
                         <jsp:include page="components/header.jsp"></jsp:include>
                     </div>
-
-
                     <div class="components">
                         <!-- Body -->
                         <!-- breadcrumb -->
@@ -35,6 +35,7 @@
                         <!-- /breadcrumb -->
 
 
+	
 
 
 
