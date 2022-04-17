@@ -29,17 +29,18 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String showHome(Model model) {
-//		System.out.println(customerService.getCustomerById(1));
-//		LoaiSanPham loaiSanPham = new LoaiSanPham("loaisp1", "tenloaisp1");
-//		MonTheThao monTheThao = new MonTheThao("mamontt1", "tenmontt1");
-//		SanPham sanPham = new SanPham("SPAA00005",new LoaiSanPham("LSP00001", "Quần áo"),new MonTheThao("MTT00001", "Đá banh"), "Ao da bong cao cap", "Ao da bong cao cap mo ta",new NhanHieu("NH00002", "Adidas"));
-//		sanPhamService.them(sanPham);
-//		System.out.println(nguoiDungService.getAll());
-//		System.out.println(sanPhamService.getAll());
-		List<SanPham> list = sanPhamService.getByFilter("", "", "", 50000, 100000, 1, 9);
+		List<SanPham> list = sanPhamService.getByFilter("", "", "", 50000, 100000, 1, 4);
 		model.addAttribute("listSanPham", list);
 		return "home";
 	}
+	
+	@GetMapping("/shop")
+	public String showShop(Model model) {
+		List<SanPham> list = sanPhamService.getByFilter("", "", "", 50000, 100000, 1, 9);
+		model.addAttribute("listSanPham", list);
+		return "shop";
+	}
+	
 	@GetMapping("")
 	public String layOut() {
 		return "layout";
