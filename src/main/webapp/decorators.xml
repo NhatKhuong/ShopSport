@@ -1,0 +1,8 @@
+<decorators defaultdir = "/WEB-INF/view">
+	<decorator name = "shop" page = "shop.jsp">
+		<pattern>/</pattern>
+	</decorator>
+	<decorator name = "admin" page="admin.jsp">
+		<pattern>/quan-tri/*</pattern>
+	</decorator>
+</decorators>
