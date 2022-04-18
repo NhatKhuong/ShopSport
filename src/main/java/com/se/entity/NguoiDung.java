@@ -38,13 +38,14 @@ public class NguoiDung {
 	private String matKhau;
 	private boolean gioiTinh;
 	private boolean trangThai;
+	private String soDienThoai;
 	public NguoiDung() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public NguoiDung(String maNguoiDung, DiaChi diaChi, String hoTen, String diaChiChiTiet, String email,
-			String matKhau, boolean gioiTinh, boolean trangThai) {
+	public NguoiDung(String maNguoiDung, @NotNull DiaChi diaChi, @NotNull String hoTen, String diaChiChiTiet,
+			@NotNull String email, @NotNull String matKhau, boolean gioiTinh, boolean trangThai, String soDienThoai) {
 		super();
 		this.maNguoiDung = maNguoiDung;
 		this.diaChi = diaChi;
@@ -54,6 +55,15 @@ public class NguoiDung {
 		this.matKhau = matKhau;
 		this.gioiTinh = gioiTinh;
 		this.trangThai = trangThai;
+		this.soDienThoai = soDienThoai;
+	}
+
+	public String getSoDienThoai() {
+		return soDienThoai;
+	}
+
+	public void setSoDienThoai(String soDienThoai) {
+		this.soDienThoai = soDienThoai;
 	}
 
 	public String getMaNguoiDung() {
