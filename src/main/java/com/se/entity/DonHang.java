@@ -40,7 +40,6 @@ public class DonHang {
 	private Date ngayGiao;
 	private double phiVanChuyen;
 	@Column(columnDefinition = "varchar(11)")
-	@NotNull
 	private String  soDienThoai;
 
 	
