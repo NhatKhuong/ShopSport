@@ -13,6 +13,8 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 <link rel="stylesheet" href="<c:url value='/resources/css/shop.css' />">
 <link rel="stylesheet" href="<c:url value='/resources/css/filter.css' />">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/item-product.css">
 
 </head>
 <body>

@@ -23,6 +23,45 @@ function formatCurrency(number) {
 //  part int number in all elemeny have class = percent
 (() => {
   document.querySelectorAll(".percent").forEach((e) => {
-    e.innerText = parseInt(e.innerText) +'%';
+    e.innerText = parseInt(e.innerText) + "%";
   });
 })();
+
+$(document).ready(function () {
+  $(".items-product-suggest.owl-carousel").owlCarousel({
+    items: 5,
+    animateOut: "fadeOut",
+    nav: true,
+    responsiveClass: true,
+    loop: true,
+    margin: 10,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
+    responsive: {
+      300: {
+        items: 3,
+        nav: false,
+      },
+
+      600: {
+        items: 4,
+        nav: true,
+      },
+    },
+  });
+});
+
+$(document).ready(function () {
+  $(".slider.owl-carousel").owlCarousel({
+    items: 1,
+    animateOut: "fadeOut",
+    nav: true,
+    responsiveClass: true,
+    loop: true,
+    margin: 10,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
+  });
+});

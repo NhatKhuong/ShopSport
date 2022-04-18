@@ -23,12 +23,14 @@
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/qunit/2.18.1/qunit.css"
                     integrity="sha512-ZCCKiB7dW1caC4UXu/J3xiZVV+nf4KEBFhp1AAc2q9S30+Di9o9hnXHdGuJaMc1pD/Fv2tc8e3PneXR1M/mJ4w=="
                     crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
-
+                    
                 <link rel="stylesheet" href="<c:url value='/resources/css/lib/owl.theme.default.min.css' />">
                 <link rel="stylesheet" href="<c:url value='/resources/css/lib/owl.carousel.min.css' />">
+
+
+
                 
+                <!-- Custom css -->
                  <link rel="stylesheet" href="<c:url value='/resources/css/home.css' />">
                 <link rel="stylesheet" href="<c:url value='/resources/css/productDetail.css' />">
                  <link rel="stylesheet" href="<c:url value='/resources/css/layout.css' />">
@@ -354,12 +356,14 @@
                             </div>
 
                             <div class="items-product-suggest owl-carousel ">
-                                <c:forEach var="item" items="${listSanPham }" varStatus="status">
-                                    <c:set var="item" value="${item}" scope="request" />
-                                    <jsp:include page="components/item-product_Uncol.jsp">
-                                        <jsp:param value="${item }" name="item" />
-                                    </jsp:include>
-                                </c:forEach>
+                             <c:forEach var="item" items="${listSanPham }"  varStatus="status">
+			                	 <c:set var="item" value="${item}" scope="request" />
+			                	  <c:set var="col" value="${false}" scope="request" />
+				                <jsp:include page="components/item-product.jsp">
+				                		<jsp:param value="${col}" name="col"/>
+				               		<jsp:param value="${item }" name="item"/>
+			                	</jsp:include>
+			                </c:forEach> 
 
                             </div>
 
@@ -390,8 +394,7 @@
                 <script src="<c:url value='/resources/js/lib/owl.support.js'/>" data-cover></script>
                 <script src="<c:url value='/resources/js/lib/owl.autoplay.js'/>" data-cover></script>
 
-                <script src="unit/core.js" defer></script>
-                <script src="unit/autoplay.js" defer></script>
+
 
             </body>
 

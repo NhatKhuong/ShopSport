@@ -123,16 +123,104 @@
                                             </div>
                                         </div>
                                         <div class='items-order'>
-                                        	<div class='item'>
-                                        	
-                                        	</div>
+                                            <div class='item '>
+                                                <div class="item-avatar">
+                                                    <img alt="" width="80"
+                                                        src="${pageContext.request.contextPath}/resources/images/fc80a93f4d77c67eef8192c0e616bfab.png">
+                                                </div>
+                                                <div class='item-name'>
+                                                    <div class='name'>
+                                                        <p>Nắp Phím Chủ Đề Sushi Phím 121 Nắp Phím Kê Bàn
+                                                            Phím
+                                                            Tiếng Nhật Cho XDA Bản Bố Anh Cơ ...</p>
+                                                    </div>
+                                                    <div class='sub'>OEM, Nhóm Màu:Bagged</div>
+                                                </div>
+                                                <div class='item-price'>
+                                                    <span class="current-price price">243.000 </span>
+                                                    <span class="origin-price price">405.000 </span>
+                                                    <span class="promotion-ratio percent">40</span>
+                                                    <div class="operations"></div>
+                                                </div>
+                                                <div class='item-quantiry'>
+                                                    <b>X </b>  <span>10</span>
+                                                </div>
+                                            </div>
+                                              <div class='item '>
+                                                <div class="item-avatar">
+                                                    <img alt="" width="80"
+                                                        src="${pageContext.request.contextPath}/resources/images/fc80a93f4d77c67eef8192c0e616bfab.png">
+                                                </div>
+                                                <div class='item-name'>
+                                                    <div class='name'>
+                                                        <p>Nắp Phím Chủ Đề Sushi Phím 121 Nắp Phím Kê Bàn
+                                                            Phím
+                                                            Tiếng Nhật Cho XDA Bản Bố Anh Cơ ...</p>
+                                                    </div>
+                                                    <div class='sub'>OEM, Nhóm Màu:Bagged</div>
+                                                </div>
+                                                <div class='item-price'>
+                                                    <span class="current-price price">243.000 </span>
+                                                    <span class="origin-price price">405.000 </span>
+                                                    <span class="promotion-ratio percent">40</span>
+                                                    <div class="operations"></div>
+                                                </div>
+                                                <div class='item-quantiry'>
+                                                    <b>X </b>  <span>10</span>
+                                                </div>
+                                            </div>
+                                              <div class='item '>
+                                                <div class="item-avatar">
+                                                    <img alt="" width="80"
+                                                        src="${pageContext.request.contextPath}/resources/images/fc80a93f4d77c67eef8192c0e616bfab.png">
+                                                </div>
+                                                <div class='item-name'>
+                                                    <div class='name'>
+                                                        <p>Nắp Phím Chủ Đề Sushi Phím 121 Nắp Phím Kê Bàn
+                                                            Phím
+                                                            Tiếng Nhật Cho XDA Bản Bố Anh Cơ ...</p>
+                                                    </div>
+                                                    <div class='sub'>OEM, Nhóm Màu:Bagged</div>
+                                                </div>
+                                                <div class='item-price'>
+                                                    <span class="current-price price">243.000 </span>
+                                                    <span class="origin-price price">405.000 </span>
+                                                    <span class="promotion-ratio percent">40</span>
+                                                    <div class="operations"></div>
+                                                </div>
+                                                <div class='item-quantiry'>
+                                                    <b>X </b>  <span>10</span>
+                                                </div>
+                                            </div>
+                                              <div class='item '>
+                                                <div class="item-avatar">
+                                                    <img alt="" width="80"
+                                                        src="${pageContext.request.contextPath}/resources/images/fc80a93f4d77c67eef8192c0e616bfab.png">
+                                                </div>
+                                                <div class='item-name'>
+                                                    <div class='name'>
+                                                        <p>Nắp Phím Chủ Đề Sushi Phím 121 Nắp Phím Kê Bàn
+                                                            Phím
+                                                            Tiếng Nhật Cho XDA Bản Bố Anh Cơ ...</p>
+                                                    </div>
+                                                    <div class='sub'>OEM, Nhóm Màu:Bagged</div>
+                                                </div>
+                                                <div class='item-price'>
+                                                    <span class="current-price price">243.000 </span>
+                                                    <span class="origin-price price">405.000 </span>
+                                                    <span class="promotion-ratio percent">40</span>
+                                                    <div class="operations"></div>
+                                                </div>
+                                                <div class='item-quantiry'>
+                                                    <b>X </b>  <span>10</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="box col-4 pl-2">
                                     <div class="header-title">
                                         <span> Thanh toán</span>
-
                                     </div>
                                     <div class="component ">
                                         <div>

@@ -379,3 +379,13 @@
   margin-bottom: 0px;
   color: #51545f;
 }
+
+/* Slider */
+.slider .item {
+  height:85vh;
+}
+.slider .item > img {
+  object-fit: cover;
+}
+
+/* Slider */
