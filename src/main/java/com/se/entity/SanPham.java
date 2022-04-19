@@ -10,11 +10,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.se.dao.KichThuocDao;
+import com.se.service.KichThuocService;
 /*
  * createdAt: 04/10/2022
  * */
 @Entity
 public class SanPham {
+	
 	@Id
 	private String maSanPham;
 	@ManyToOne
@@ -162,6 +168,6 @@ public class SanPham {
 		return "SanPham [maSanPham=" + maSanPham + ", loaiSanPham=" + loaiSanPham + ", monTheThao=" + monTheThao
 				+ ", nhanHieu=" + nhanHieu + ", tenSanPham=" + tenSanPham + ", giaTien="
 				+ giaTien + ", chietKhau=" + chietKhau + "]";
-	}	
+	}
 	
 }

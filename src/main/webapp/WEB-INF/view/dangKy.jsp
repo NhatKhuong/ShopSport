@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-md-4 login-sec">
                 <h2 class="text-center">Login Now</h2>
-                 <form:form cssClass="login-form" action="${pageContext.request.contextPath}/authenticateTheUser" method="POST">
+                 <form:form cssClass="login-form" action="${pageContext.request.contextPath}/authenticateTheUser?emailLogin=${username}" method="POST">
     			<c:if test="${param.error != null}">
     				<i class="failed">Sorry!You entered invalid username/password</i>
     			</c:if>

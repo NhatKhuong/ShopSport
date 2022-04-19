@@ -109,7 +109,7 @@
                                                 <b> Loại: </b>
                                             </div>
                                             <div class="title rioght mr-2">
-                                                <span>Quần áo</span>
+                                                <span>${sanPham.loaiSanPham.tenLoaiSanPham}</span>
                                             </div>
                                         </div>
                                         <div class="option">
@@ -117,10 +117,16 @@
                                                 <b> Kích thước: </b>
                                             </div>
                                             <div class="sizes">
-                                                <button class="btn mr-2 size "> S </button>
-                                                <button class="btn mr-2 size "> M </button>
+                                            	<c:forEach var="item" items="${dsKichThuoc}">
+                                            		<a href="${pageContext.request.contextPath}/san-pham/so-luong-ton?maSanPham=${sanPham.maSanPham}&kichThuoc=${item}">
+                                            			<button class="btn mr-2 size ">${item}</button>
+                                            		</a>
+                                            		
+                                            	</c:forEach>
+                                                
+                                                <!-- <button class="btn mr-2 size "> M </button>
                                                 <button class="btn mr-2 size "> L </button>
-                                                <button class="btn mr-2 size false " disabled> M </button>
+                                                <button class="btn mr-2 size false " disabled> M </button> -->
                                             </div>
                                         </div>
                                         <div class="option mb-3">
@@ -128,7 +134,7 @@
                                                 <b>Hàng tồn </b>
                                             </div>
                                             <div class="title rioght mr-2">
-                                                <span>200 sản phẩm có sẵn</span>
+                                                <span>${chiTietSanPham.soLuongTon} sản phẩm có sẵn</span>
                                             </div>
                                         </div>
                                         <div class="option ">
@@ -152,7 +158,7 @@
                                                     ngay</button>
                                             </div>
                                             <div class="btn-option" id="add-to-cart">
-                                                <button class="btn "><i class="fa fa-money" aria-hidden="true"></i> Thêm
+                                                <button onclick="sanpham/them-vao-gio-hang?maSanPham=${sanPham.maSanPham}" class="btn"><i class="fa fa-money" aria-hidden="true"></i> Thêm
                                                     vào
                                                     giỏ</button>
                                             </div>
@@ -161,8 +167,6 @@
 
                                 </div>
                             </div>
-
-
                         </div>
                         <div class="component container pt-0">
                             <div class="tab p-4">
