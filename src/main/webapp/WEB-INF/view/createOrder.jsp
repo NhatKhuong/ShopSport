@@ -14,7 +14,6 @@
                     crossorigin="anonymous" />
 
                 <link rel="stylesheet" href="<c:url value='/resources/css/home.css' />">
-
                 <link rel="stylesheet" href="<c:url value='/resources/css/layout.css' />">
                 <link rel="stylesheet" href="<c:url value='/resources/css/createOrder.css' />">
             </head>
@@ -107,7 +106,7 @@
                                             <div class=choise-delivery>
                                                 <small>Choose your delivery option</small>
                                             </div>
-                                            <div class='card-select color-blue' style="width: 250px">
+                                            <div class='card-select color-blue' style="width: 250px; margin-bottom: 20px">
                                                 <div class=" top">
                                                     <div class="info">
                                                         <img alt="" width="15"
@@ -123,28 +122,26 @@
                                             </div>
                                         </div>
                                         <div class='items-order'>
-                                           <c:forEach items="${danhSachChiTietSanPham }" var="item"> 
-                                            <div class='item '>
+                                           <c:forEach items="${donHang.danhSachChiTietDonHang }" var="item"> 
+                                            <div class='item'>
                                                 <div class="item-avatar">
                                                     <img alt="" width="80"
-                                                        src="${pageContext.request.contextPath}/resources/images/fc80a93f4d77c67eef8192c0e616bfab.png">
+                                                        src="${pageContext.request.contextPath}/resources/images/${item.chiTietSanPham.sanPham.danhSachHinhAnhSanPham[0].hinhAnh}">
                                                 </div>
                                                 <div class='item-name'>
                                                     <div class='name'>
-                                                        <p>Nắp Phím Chủ Đề Sushi Phím 121 Nắp Phím Kê Bàn
-                                                            Phím
-                                                            Tiếng Nhật Cho XDA Bản Bố Anh Cơ ...</p>
+                                                        <p>${item.chiTietSanPham.sanPham.tenSanPham}</p>
                                                     </div>
-                                                    <div class='sub'>OEM, Nhóm Màu:Bagged</div>
+                                                    <div class='sub'>Size: ${item.chiTietSanPham.kichThuoc.tenKichThuoc } </div>
                                                 </div>
                                                 <div class='item-price'>
-                                                    <span class="current-price price">243.000 </span>
-                                                    <span class="origin-price price">405.000 </span>
-                                                    <span class="promotion-ratio percent">40</span>
+                                                    <span class="current-price price">${item.chiTietSanPham.sanPham.giaTien - item.chiTietSanPham.sanPham.giaTien * item.chiTietSanPham.sanPham.chietKhau/100} </span>
+                                                    <span class="origin-price price">${item.chiTietSanPham.sanPham.giaTien } </span>
+                                                    <span class="promotion-ratio percent">${item.chiTietSanPham.sanPham.chietKhau } </span>
                                                     <div class="operations"></div>
                                                 </div>
                                                 <div class='item-quantiry'>
-                                                    <b>X </b>  <span>10</span>
+                                                    <b>X </b>  <span>${item.soLuongMua } </span>
                                                 </div>
                                             </div>
                                                </c:forEach>
@@ -234,7 +231,10 @@
                     </div>
 
                 </div>
+                
                 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+                       <!--  Custome js-->
+                <script src="<c:url value='/resources/js/home.js'/>"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
                     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
                     crossorigin="anonymous"></script>

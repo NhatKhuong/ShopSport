@@ -3,13 +3,23 @@ package com.se.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.se.entity.ChiTietSanPham;
 import com.se.entity.KichThuoc;
 import com.se.entity.SanPham;
@@ -53,10 +63,35 @@ public class ProductController {
 		return "productDetail";
 	}
 	
-	@GetMapping("/san-pham/so-luong-ton")
-	public void showSoLuongTon(Model model, @RequestParam("maSanPham") String maSanPham, @RequestParam("kichThuoc") String kichThuoc) {
-		KichThuoc kichThuoc2 = kichThuocService.getKichThuocTheoTenKichThuoc(kichThuoc);
-		ChiTietSanPham chiTietSanPham = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc(maSanPham, kichThuoc2.getMaKichThuoc());
-		model.addAttribute("chiTietSanPham",chiTietSanPham);
+//	@GetMapping("/san-pham/so-luong-ton")
+//	public void showSoLuongTon(Model model, @RequestParam("maSanPham") String maSanPham, @RequestParam("kichThuoc") String kichThuoc) {
+//		KichThuoc kichThuoc2 = kichThuocService.getKichThuocTheoTenKichThuoc(kichThuoc);
+//		ChiTietSanPham chiTietSanPham = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc(maSanPham, kichThuoc2.getMaKichThuoc());
+//		model.addAttribute("chiTietSanPham",chiTietSanPham);
+//	}
+
+	@JsonIgnore
+	@JsonManagedReference
+	@JsonBackReference
+	@RequestMapping(value = "/san-pham/so-luong-ton", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public @ResponseBody String addNew(HttpServletRequest request) {
+		String maSanPham = request.getParameter("maSanPham");
+		String tenKichThuoc = request.getParameter("tenKichThuoc");
+//		JSONObject obj = new JSONObject();
+	
+		ChiTietSanPham chiTietSanPham = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc(maSanPham, kichThuocService.getKichThuocTheoTenKichThuoc(tenKichThuoc).getMaKichThuoc());
+//		ObjectMapper mapper = new ObjectMapper();
+//		String ajaxResponse = "";
+//		try {
+//			ajaxResponse = mapper.writeValueAsString(chiTietSanPham);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		obj.put("soLuong", chiTietSanPham.getSoLuongTon());
+//		System.out.println(maSanPham+"--"+tenKichThuoc);
+//		System.err.println(chiTietSanPham);
+//
+//		
+		return chiTietSanPham.getSoLuongTon()+"";
 	}
 }

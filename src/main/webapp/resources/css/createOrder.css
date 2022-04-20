@@ -91,6 +91,7 @@
 }
 .items-order .item-name {
   padding: 0 20px;
+  flex: 1;
 }
 .items-order .item-price {
   display: flex;

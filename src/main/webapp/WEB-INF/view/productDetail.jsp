@@ -39,7 +39,7 @@
             </head>
 
             <body>
-                <div class="container--fluid " s>
+                <div class="container--fluid ">
 
                     <div id='header'>
                         <jsp:include page="components/header.jsp"></jsp:include>
@@ -57,7 +57,7 @@
                     </div>
                     <!-- /breadcrumb -->
                     
-                    
+                    	
                         <div class="component container">
                             <div class="product-detail row">
                                 <div class="images-detail col-lg-6 pr-3 mb-5">
@@ -118,8 +118,8 @@
                                             </div>
                                             <div class="sizes">
                                             	<c:forEach var="item" items="${dsKichThuoc}">
-                                            		<a href="${pageContext.request.contextPath}/san-pham/so-luong-ton?maSanPham=${sanPham.maSanPham}&kichThuoc=${item}">
-                                            			<button class="btn mr-2 size ">${item}</button>
+                                            		<a >
+                                            			<button class="btn mr-2 size "  onclick='getQuantityProductBySizeName("${item}")'>${item}</button>
                                             		</a>
                                             		
                                             	</c:forEach>
@@ -133,7 +133,7 @@
                                             <div class="title left mr-2">
                                                 <b>Hàng tồn </b>
                                             </div>
-                                            <div class="title rioght mr-2">
+                                            <div class="title rioght mr-2 " id="soLuongTon">
                                                 <span>${chiTietSanPham.soLuongTon} sản phẩm có sẵn</span>
                                             </div>
                                         </div>
@@ -373,6 +373,7 @@
 
                         </div>
                     </div>
+                    
                     <div id='footer'>
                         <jsp:include page="components/footer.jsp"></jsp:include>
                     </div>

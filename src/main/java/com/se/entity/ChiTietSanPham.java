@@ -1,5 +1,6 @@
 package com.se.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * createdAt: 04/10/2022
  * */
 @Entity
-public class ChiTietSanPham {
+public class ChiTietSanPham implements Serializable {
 	@Id
 	private String maChiTietSanPham;
 	@ManyToOne

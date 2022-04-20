@@ -1,11 +1,10 @@
-package com.se.entity;
+ package com.se.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
 /*
  * createdAt: 04/10/2022
  * version 1.0
@@ -25,14 +24,17 @@ public class ChiTietDonHang {
 	private int soLuongMua;
 	private double giaMua;
 	private float chietKhau;
+	
 	public ChiTietDonHang(ChiTietSanPham chiTietSanPham, DonHang donHang, int soLuongMua) {
 		super();
+
 		this.chiTietSanPham = chiTietSanPham;
 		this.donHang = donHang;
 		this.soLuongMua = soLuongMua;
-		this.giaMua = chiTietSanPham.getSanPham().getGiaTien() -  chiTietSanPham.getSanPham().getChietKhau()* chiTietSanPham.getSanPham().getGiaTien();
-		this.chietKhau = chiTietSanPham.getSanPham().getChietKhau();
-		
+		if(	this.chiTietSanPham  == null) {
+			this.giaMua = chiTietSanPham.getSanPham().getGiaTien() -  chiTietSanPham.getSanPham().getGiaTien()* chiTietSanPham.getSanPham().getChietKhau()/100;
+			this.chietKhau = chiTietSanPham.getSanPham().getChietKhau();
+		}
 	}
 	public ChiTietDonHang() {
 		super();

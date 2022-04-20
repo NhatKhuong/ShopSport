@@ -11,11 +11,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 /*
  * createdAt: 04/10/2022
  * */
 @Entity
+//@PropertySource({"classpath:value-mssql.properties"})
 public class DonHang {
+	
 	@Id
 	private String maDonHang;
 	@ManyToOne
@@ -56,6 +62,21 @@ public class DonHang {
 		this.ngayGiao = ngayGiao;
 		this.phiVanChuyen = phiVanChuyen;
 		this.soDienThoai = soDienThoai;
+	}
+	public DonHang( @NotNull NguoiDung nguoiDung, List<ChiTietDonHang> danhSachChiTietDonHang,TrangThaiDonHang trangThaiDonHang,
+		  Date ngayGiao, double phiVanChuyen) {
+		this.nguoiDung = nguoiDung;
+		this.danhSachChiTietDonHang = danhSachChiTietDonHang;
+		this.ngayGiao = ngayGiao;
+		this.phiVanChuyen = phiVanChuyen;
+//		value default
+		this.ngayTao = new Date();
+		this.trangThaiDonHang = trangThaiDonHang;
+		if(nguoiDung != null) {
+			this.diaChi = nguoiDung.getDiaChi();
+			this.diaChiCuThe = nguoiDung.getDiaChiChiTiet();
+			this.soDienThoai = nguoiDung.getSoDienThoai();
+		}
 	}
 
 	public DonHang() {

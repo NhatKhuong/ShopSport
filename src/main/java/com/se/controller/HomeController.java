@@ -31,14 +31,15 @@ public class HomeController {
 	@GetMapping("/")
 	public String showHome(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String username;
+		String email;
 		if (principal instanceof UserDetails) {
-		  username = ((UserDetails)principal).getUsername();
+			email = ((UserDetails)principal).getUsername();
 		} else {
-		  username = principal.toString();
+			email = principal.toString();
 		}
-		NguoiDung nguoiDung = nguoiDungService.getByEmail(username);
-		List<SanPham> list = sanPhamService.getByFilter("", "", "", 5, 1000000000, 125, 10);
+		
+		NguoiDung nguoiDung = nguoiDungService.getByEmail(email);
+		List<SanPham> list = sanPhamService.getByFilter("", "", "", 50, 1000000000, 100, 10);
 		model.addAttribute("listSanPham", list);
 		model.addAttribute("UserLogin",nguoiDung);
 		return "home";

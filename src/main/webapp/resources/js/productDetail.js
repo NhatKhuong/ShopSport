@@ -58,7 +58,7 @@
   );
 })();
 
-// owl-carousel
+// owl-carousel // slider
 $(document).ready(function () {
   $(".imgs-sub.owl-carousel").owlCarousel({
     items: 5,
@@ -80,18 +80,18 @@ $(document).ready(function () {
   });
 });
 
-// 
+// slider
 $(document).ready(function () {
   $(".items-product-suggest.owl-carousel").owlCarousel({
     items: 5,
     animateOut: "fadeOut",
     nav: true,
     responsiveClass: true,
-      loop:true,
-    margin:10,
-    autoplay:true,
-    autoplayTimeout:3000,
-    autoplayHoverPause:true,
+    loop: true,
+    margin: 10,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
     responsive: {
       300: {
         items: 3,
@@ -105,3 +105,39 @@ $(document).ready(function () {
     },
   });
 });
+
+(() => {})();
+
+function getQuantityProductBySizeName(tenKichThuoc) {
+  var url = new URL(window.location.href);
+  var maSanPham = url.searchParams.get("maSanPham");
+
+  $.ajax({
+    type: "GET",
+    contentType: "application/json",
+    url: "http://localhost:8080/spring-security-demo-basic-security/san-pham/so-luong-ton",
+    data: {
+      maSanPham,
+      tenKichThuoc,
+    },
+    dataType: "json",
+    timeout: 100000,
+    success: function (data) {
+      console.log("SUCCESS: ", data);
+      // var result =
+      //   "<h3> You just add new Person </h3>" +
+      //   "<strong>Name:</strong> " +
+      //   data.name +
+      //   "<br>" +
+      //   "<strong>Age:</strong> " +
+      //   data.age;
+      // $("#ajax-response").html(result);
+
+      document.getElementById("soLuongTon").innerText =
+        data + " sản phẩm có sẵn";
+    },
+    error: function (e) {
+      console.log("ERROR: ", e);
+    },
+  });
+}
