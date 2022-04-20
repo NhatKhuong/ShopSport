@@ -67,7 +67,7 @@ public class ProductController {
 	@GetMapping("/san-pham/so-luong-ton")
 	public String showSoLuongTon(Model model, @RequestParam("maSanPham") String maSanPham, @RequestParam("kichThuoc") String kichThuoc) {
 		KichThuoc kichThuoc2 = kichThuocService.getKichThuocTheoTenKichThuoc(kichThuoc);
-		ChiTietSanPham chiTietSanPham = chiTietSanPhamService.getChiTietSanPhamByMaSanPham_maKichThuoc(maSanPham, kichThuoc2.getMaKichThuoc());
+		ChiTietSanPham chiTietSanPham = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc(maSanPham, kichThuoc2.getMaKichThuoc());
 		model.addAttribute("chiTietSanPham",chiTietSanPham);
 		System.out.println("----------"+chiTietSanPham);
 		model.addAttribute("maSanPham",maSanPham);

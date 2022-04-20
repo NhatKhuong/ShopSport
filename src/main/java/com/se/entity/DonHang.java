@@ -43,11 +43,10 @@ public class DonHang {
 	private String  soDienThoai;
 
 	
-	public DonHang(String maDonHang, @NotNull NguoiDung nguoiDung, @NotNull DiaChi diaChi,
+	public DonHang( @NotNull NguoiDung nguoiDung, @NotNull DiaChi diaChi,
 			@NotNull TrangThaiDonHang trangThaiDonHang, List<ChiTietDonHang> danhSachChiTietDonHang,
 			@NotNull String diaChiCuThe, Date ngayTao, Date ngayGiao, double phiVanChuyen, String soDienThoai) {
 		super();
-		this.maDonHang = maDonHang;
 		this.nguoiDung = nguoiDung;
 		this.diaChi = diaChi;
 		this.trangThaiDonHang = trangThaiDonHang;

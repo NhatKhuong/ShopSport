@@ -23,8 +23,7 @@
         <section>
     </div>
     <div class= "display__item row">
-        <div class="pl-5 display__item__filter col-3">
-        
+        <div class="pl-5 display__item__filter col-3">  
           <div class="">
                   <div class="">
                     <div class="">
