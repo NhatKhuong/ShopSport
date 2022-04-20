@@ -49,14 +49,12 @@ public class OrderController {
 		ChiTietSanPham ct1 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00093", "KT00000");
 		ChiTietSanPham ct2 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00080", "KT00000");
 		ChiTietSanPham ct3 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00083", "KT00000");
-		ChiTietSanPham ct4 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00058", "KT00000");
+//		ChiTietSanPham ct4 = chiTietSanPhamService.getChiTiZetSanPhamByMaSanPhamMaKichThuoc("SPAA00058", "KT00000");
 		ChiTietSanPham ct5 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00062", "KT00000");
 		ChiTietSanPham ct6 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00055", "KT00000");
 //		DonHang donHang = new 
 //		List<ChiTietDonHang> danhSachChiTietDonHang = new ArrayList<ChiTietDonHang>();
 //		danhSachChiTietDonHang.add(new ChiTietDonHang());
-		
-	
 		model.addAttribute("danhSachChiTietSanPham",danhSachChiTietSanPham);
 		
 		return "createOrder";
