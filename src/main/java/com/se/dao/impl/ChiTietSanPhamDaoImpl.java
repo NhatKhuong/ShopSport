@@ -15,7 +15,7 @@ public class ChiTietSanPhamDaoImpl implements ChiTietSanPhamDao{
 	private SessionFactory sessionFactory;
 
 	@Override
-	public ChiTietSanPham getChiTietSanPhamByMaSanPham_tenKichThuoc(String maSanPham, String maKichThuoc) {
+	public ChiTietSanPham getChiTietSanPhamByMaSanPham_maKichThuoc(String maSanPham, String maKichThuoc) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			String sql = "select * from ChiTietSanPham join SanPham on ChiTietSanPham.maSanPham = SanPham.maSanPham where maKichThuoc = '"+maKichThuoc+"' and SanPham.maSanPham = '"+maSanPham+"'";

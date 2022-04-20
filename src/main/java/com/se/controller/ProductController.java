@@ -35,10 +35,20 @@ public class ProductController {
 	
 	@GetMapping("/san-pham/chi-tiet-san-pham")
 	public String showProductDetail(@RequestParam("maSanPham") String maSanPham, Model model) {
+//		if(tenKichThuoc.equals(null)) {
+//			tenKichThuoc = null;
+//		}
+//		
+//		if(soLuongTon.equals(null)) {
+//			soLuongTon = null;
+//		}
 		SanPham sanPham = sanPhamService.getById(maSanPham);
 		model.addAttribute("sanPham", sanPham);
 		List<String> listKichThuoc = kichThuocService.getDsKichThuocTheoMaSanPham(sanPham.getMaSanPham());
+		
 		model.addAttribute("dsKichThuoc",listKichThuoc);
+//		model.addAttribute("tenKichThuoc",tenKichThuoc);
+//		model.addAttribute("soLuongTon",soLuongTon);
 		
 		List<SanPham> list = sanPhamService.getByFilter("", "", "", 50000, 100000, 1, 9);
 		model.addAttribute("listSanPham", list);
@@ -47,6 +57,7 @@ public class ProductController {
 		listPreadcrumb.add(new String[] {"Home", ""});
 		listPreadcrumb.add(new String[] {"Sản phẩm", "/san-pham"});
 		listPreadcrumb.add(new String[] {"Chi tiết sản phẩm", ""});
+		System.err.println(model.getAttribute("chiTietSanPham"));
 		
 		model.addAttribute("listPreadcrumb", listPreadcrumb);
 		
@@ -54,9 +65,15 @@ public class ProductController {
 	}
 	
 	@GetMapping("/san-pham/so-luong-ton")
-	public void showSoLuongTon(Model model, @RequestParam("maSanPham") String maSanPham, @RequestParam("kichThuoc") String kichThuoc) {
+	public String showSoLuongTon(Model model, @RequestParam("maSanPham") String maSanPham, @RequestParam("kichThuoc") String kichThuoc) {
 		KichThuoc kichThuoc2 = kichThuocService.getKichThuocTheoTenKichThuoc(kichThuoc);
-		ChiTietSanPham chiTietSanPham = chiTietSanPhamService.getChiTietSanPhamByMaSanPham_tenKichThuoc(maSanPham, kichThuoc2.getMaKichThuoc());
+		ChiTietSanPham chiTietSanPham = chiTietSanPhamService.getChiTietSanPhamByMaSanPham_maKichThuoc(maSanPham, kichThuoc2.getMaKichThuoc());
 		model.addAttribute("chiTietSanPham",chiTietSanPham);
+		System.out.println("----------"+chiTietSanPham);
+		model.addAttribute("maSanPham",maSanPham);
+		String tenKichThuoc = kichThuoc2.getTenKichThuoc();
+		String soLuongTon = String.valueOf(chiTietSanPham.getSoLuongTon());
+		return "redirect:/san-pham/chi-tiet-san-pham?tenKichThuoc='"+tenKichThuoc+"'&soLuongTon='"+soLuongTon+"'";
+		
 	}
 }

@@ -39,9 +39,12 @@ public class HomeController {
 		}
 		NguoiDung nguoiDung = nguoiDungService.getByEmail(username);
 		List<SanPham> list = sanPhamService.getByFilter("", "", "", 5, 1000000000, 125, 10);
+//		List<SanPham> list = sanPhamService.getByFilter("", "", "", 5, 1000000000, 1, 6);
 		model.addAttribute("listSanPham", list);
 		model.addAttribute("UserLogin",nguoiDung);
 		return "home";
+		
+		
 	}
 	
 	@GetMapping("/shop")

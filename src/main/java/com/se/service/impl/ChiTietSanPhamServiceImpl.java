@@ -15,9 +15,9 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService{
 
 	@Override
 	@Transactional
-	public ChiTietSanPham getChiTietSanPhamByMaSanPham_tenKichThuoc(String maSanPham, String maKichThuoc) {
+	public ChiTietSanPham getChiTietSanPhamByMaSanPham_maKichThuoc(String maSanPham, String maKichThuoc) {
 		// TODO Auto-generated method stub
-		return chiTietSanPhamDao.getChiTietSanPhamByMaSanPham_tenKichThuoc(maSanPham, maKichThuoc);
+		return chiTietSanPhamDao.getChiTietSanPhamByMaSanPham_maKichThuoc(maSanPham, maKichThuoc);
 	}
 
 }

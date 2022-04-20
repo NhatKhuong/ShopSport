@@ -119,7 +119,7 @@
                                             <div class="sizes">
                                             	<c:forEach var="item" items="${dsKichThuoc}">
                                             		<a href="${pageContext.request.contextPath}/san-pham/so-luong-ton?maSanPham=${sanPham.maSanPham}&kichThuoc=${item}">
-                                            			<button class="btn mr-2 size ">${item}</button>
+                                            			<button class="btn mr-2 size ${item.equals(tenKichThuoc) ? active : disabled }">${item}</button>
                                             		</a>
                                             		
                                             	</c:forEach>
@@ -134,7 +134,7 @@
                                                 <b>Hàng tồn </b>
                                             </div>
                                             <div class="title rioght mr-2">
-                                                <span>${chiTietSanPham.soLuongTon} sản phẩm có sẵn</span>
+                                                <span>${soLuongTon} sản phẩm có sẵn</span>
                                             </div>
                                         </div>
                                         <div class="option ">
