@@ -11,7 +11,7 @@
                 <link rel="stylesheet"
                     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-               
+
 
                 <!-- Bootstrap CSS -->
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -23,17 +23,17 @@
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/qunit/2.18.1/qunit.css"
                     integrity="sha512-ZCCKiB7dW1caC4UXu/J3xiZVV+nf4KEBFhp1AAc2q9S30+Di9o9hnXHdGuJaMc1pD/Fv2tc8e3PneXR1M/mJ4w=="
                     crossorigin="anonymous" referrerpolicy="no-referrer" />
-                    
+
                 <link rel="stylesheet" href="<c:url value='/resources/css/lib/owl.theme.default.min.css' />">
                 <link rel="stylesheet" href="<c:url value='/resources/css/lib/owl.carousel.min.css' />">
 
 
 
-                
+
                 <!-- Custom css -->
-                 <link rel="stylesheet" href="<c:url value='/resources/css/home.css' />">
+                <link rel="stylesheet" href="<c:url value='/resources/css/home.css' />">
                 <link rel="stylesheet" href="<c:url value='/resources/css/productDetail.css' />">
-                 <link rel="stylesheet" href="<c:url value='/resources/css/layout.css' />">
+                <link rel="stylesheet" href="<c:url value='/resources/css/layout.css' />">
 
 
             </head>
@@ -45,19 +45,19 @@
                         <jsp:include page="components/header.jsp"></jsp:include>
                     </div>
 
-                 
+
 
                     <!-- Body -->
                     <div class="components">
-                    
-                       <!-- breadcrumb -->
 
-                    <div class="breadcrumb-components">
-                        <jsp:include page="components/breadcrumb.jsp"></jsp:include>
-                    </div>
-                    <!-- /breadcrumb -->
-                    
-                    	
+                        <!-- breadcrumb -->
+
+                        <div class="breadcrumb-components">
+                            <jsp:include page="components/breadcrumb.jsp"></jsp:include>
+                        </div>
+                        <!-- /breadcrumb -->
+
+
                         <div class="component container">
                             <div class="product-detail row">
                                 <div class="images-detail col-lg-6 pr-3 mb-5">
@@ -117,14 +117,15 @@
                                                 <b> Kích thước: </b>
                                             </div>
                                             <div class="sizes">
-                                            	<c:forEach var="item" items="${dsKichThuoc}">
-                                            		<a >
-                                            			<button class="btn mr-2 size "  onclick='getQuantityProductBySizeName("${item}")'>${item}</button>
-                                            		</a>
-                                            		
-                                            	</c:forEach>
-                                                
-                                                <!-- <button class="btn mr-2 size "> M </button>
+                                                <c:forEach var="item" items="${dsKichThuoc}">
+                                             
+                                                        <button class="btn mr-2 size "
+                                                            onclick='getQuantityProductBySizeName("${item}")'>${item}</button>
+                                                        </a>
+
+                                                    </c:forEach>
+
+                                                    <!-- <button class="btn mr-2 size "> M </button>
                                                 <button class="btn mr-2 size "> L </button>
                                                 <button class="btn mr-2 size false " disabled> M </button> -->
                                             </div>
@@ -158,7 +159,9 @@
                                                     ngay</button>
                                             </div>
                                             <div class="btn-option" id="add-to-cart">
-                                                <button onclick="sanpham/them-vao-gio-hang?maSanPham=${sanPham.maSanPham}" class="btn"><i class="fa fa-money" aria-hidden="true"></i> Thêm
+                                                <button
+                                                    onclick="sanpham/them-vao-gio-hang?maSanPham=${sanPham.maSanPham}"
+                                                    class="btn"><i class="fa fa-money" aria-hidden="true"></i> Thêm
                                                     vào
                                                     giỏ</button>
                                             </div>
@@ -360,20 +363,20 @@
                             </div>
 
                             <div class="items-product-suggest owl-carousel ">
-                             <c:forEach var="item" items="${listSanPham }"  varStatus="status">
-			                	 <c:set var="item" value="${item}" scope="request" />
-			                	  <c:set var="col" value="${false}" scope="request" />
-				                <jsp:include page="components/item-product.jsp">
-				                		<jsp:param value="${col}" name="col"/>
-				               		<jsp:param value="${item }" name="item"/>
-			                	</jsp:include>
-			                </c:forEach> 
+                                <c:forEach var="item" items="${listSanPham }" varStatus="status">
+                                    <c:set var="item" value="${item}" scope="request" />
+                                    <c:set var="col" value="${false}" scope="request" />
+                                    <jsp:include page="components/item-product.jsp">
+                                        <jsp:param value="${col}" name="col" />
+                                        <jsp:param value="${item }" name="item" />
+                                    </jsp:include>
+                                </c:forEach>
 
                             </div>
 
                         </div>
                     </div>
-                    
+
                     <div id='footer'>
                         <jsp:include page="components/footer.jsp"></jsp:include>
                     </div>

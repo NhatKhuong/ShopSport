@@ -20,48 +20,46 @@ import com.se.service.SanPhamService;
 @Controller
 public class HomeController {
 
-	
 	@Autowired
 	private SanPhamService sanPhamService;
-	
+
 	@Autowired
 	private NguoiDungService nguoiDungService;
-	
-	
+
 	@GetMapping("/")
 	public String showHome(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String email;
 		if (principal instanceof UserDetails) {
-			email = ((UserDetails)principal).getUsername();
+			email = ((UserDetails) principal).getUsername();
 		} else {
 			email = principal.toString();
 		}
-		
+
 		NguoiDung nguoiDung = nguoiDungService.getByEmail(email);
 		List<SanPham> list = sanPhamService.getByFilter("", "", "", 50, 1000000000, 100, 10);
 		model.addAttribute("listSanPham", list);
-		model.addAttribute("UserLogin",nguoiDung);
+		model.addAttribute("UserLogin", nguoiDung);
 		return "home";
+
 	}
-	
+
 	@GetMapping("/shop")
 	public String showShop(Model model) {
 		List<SanPham> list = sanPhamService.getByFilter("", "", "", 50000, 100000, 1, 9);
 		model.addAttribute("listSanPham", list);
 		return "shop";
 	}
-	
+
 	@GetMapping("")
 	public String layOut() {
 		return "layout";
 	}
-	
+
 	@GetMapping("/trang-thai-don-hang")
 	public String showOrderStatus(Model model) {
-		
+
 		return "trangthaidonhang";
 	}
-	
 
 }
