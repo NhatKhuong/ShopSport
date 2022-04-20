@@ -3,22 +3,23 @@ package com.se.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.se.entity.LoaiSanPham;
 import com.se.entity.MonTheThao;
+import com.se.entity.NguoiDung;
 import com.se.entity.NhanHieu;
 import com.se.entity.SanPham;
-import com.se.service.CustomerService;
 import com.se.service.NguoiDungService;
 import com.se.service.SanPhamService;
 
 @Controller
 public class HomeController {
-	@Autowired
-	private CustomerService customerService;
+
 	
 	@Autowired
 	private SanPhamService sanPhamService;
@@ -29,8 +30,17 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String showHome(Model model) {
-		List<SanPham> list = sanPhamService.getByFilter("", "", "", 50000, 100000, 1, 4);
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+		if (principal instanceof UserDetails) {
+		  username = ((UserDetails)principal).getUsername();
+		} else {
+		  username = principal.toString();
+		}
+		NguoiDung nguoiDung = nguoiDungService.getByEmail(username);
+		List<SanPham> list = sanPhamService.getByFilter("", "", "", 5, 1000000000, 125, 10);
 		model.addAttribute("listSanPham", list);
+		model.addAttribute("UserLogin",nguoiDung);
 		return "home";
 	}
 	
