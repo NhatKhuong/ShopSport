@@ -10,8 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.se.entity.ChiTietDonHang;
 import com.se.entity.ChiTietSanPham;
+import com.se.entity.DonHang;
 import com.se.entity.SanPham;
+import com.se.service.ChiTietSanPhamService;
 import com.se.service.SanPhamService;
 
 @Controller
@@ -19,6 +22,9 @@ public class OrderController {
 		
 	@Autowired
 	private SanPhamService sanPhamService;
+	
+	@Autowired
+	private ChiTietSanPhamService chiTietSanPhamService;
 	
 	@GetMapping("/don-hang/tao-don-hang")
 	public String taoDonHang(Model model) {
@@ -32,18 +38,26 @@ public class OrderController {
 		model.addAttribute("listPreadcrumb", listPreadcrumb);
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		  String username;
+		  String username =  null;
 		if (principal instanceof UserDetails) {
 		   username = ((UserDetails)principal).getUsername();
 		} else {
 		   username = principal.toString();
 		}
 		
-		List<SanPham> listSanPham = sanPhamService.getByFilter("", "", "", 50000, 100000, 1, 9);
-		
 		List<ChiTietSanPham> danhSachChiTietSanPham =  new ArrayList<ChiTietSanPham>();
+		ChiTietSanPham ct1 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00093", "KT00000");
+		ChiTietSanPham ct2 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00080", "KT00000");
+		ChiTietSanPham ct3 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00083", "KT00000");
+		ChiTietSanPham ct4 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00058", "KT00000");
+		ChiTietSanPham ct5 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00062", "KT00000");
+		ChiTietSanPham ct6 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00055", "KT00000");
+//		DonHang donHang = new 
+//		List<ChiTietDonHang> danhSachChiTietDonHang = new ArrayList<ChiTietDonHang>();
+//		danhSachChiTietDonHang.add(new ChiTietDonHang());
 		
-		danhSachChiTietSanPham.add(new ChiTietSanPham(null, null, null, 0, 0));
+	
+		model.addAttribute("danhSachChiTietSanPham",danhSachChiTietSanPham);
 		
 		return "createOrder";
 	}

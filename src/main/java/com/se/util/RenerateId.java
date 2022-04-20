@@ -23,8 +23,6 @@ public class RenerateId {
 					return String.join("", array);
 				}
 			}
-			
-			
 		}
 		
 		if (i == -1) {
