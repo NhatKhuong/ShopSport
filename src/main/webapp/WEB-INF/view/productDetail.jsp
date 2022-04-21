@@ -118,14 +118,14 @@
                                             </div>
                                             <div class="sizes">
                                                 <c:forEach var="item" items="${dsKichThuoc}">
-                                             
-                                                        <button class="btn mr-2 size "
-                                                            onclick='getQuantityProductBySizeName("${item}")'>${item}</button>
-                                                        </a>
 
-                                                    </c:forEach>
+                                                    <button class="btn mr-2 size "
+                                                        onclick='getQuantityProductBySizeName("${item}")'>${item}</button>
+                                                    </a>
 
-                                                    <!-- <button class="btn mr-2 size "> M </button>
+                                                </c:forEach>
+
+                                                <!-- <button class="btn mr-2 size "> M </button>
                                                 <button class="btn mr-2 size "> L </button>
                                                 <button class="btn mr-2 size false " disabled> M </button> -->
                                             </div>
@@ -149,7 +149,7 @@
                                                 <span class="btn quantity-number" id="quantity">1</span>
                                                 <button class="btn mr-2" id="btnQuantityPluss" onclick="quantityPluss(this)"> <i class="fa fa-plus"
                                                         aria-hidden="true"></i></button>
-                                                
+
                                             </div>
                                         </div>
 

@@ -65,18 +65,17 @@ public class OrderController {
 		ChiTietSanPham ct4 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00058", "KT00000");
 		ChiTietSanPham ct5 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00062", "KT00000");
 		ChiTietSanPham ct6 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00055", "KT00000");
-
-		DonHang donHang = new DonHang(nguoiDung, new ArrayList<ChiTietDonHang>(), new TrangThaiDonHang( env.getProperty("hibernate.dialect")) , new Date(), 0);
-		
-		System.out.println(ct1.getSanPham());
-		donHang.getDanhSachChiTietDonHang().add(new ChiTietDonHang(ct1,donHang, 10));
-		donHang.getDanhSachChiTietDonHang().add(new ChiTietDonHang(ct2,donHang, 3));
-		donHang.getDanhSachChiTietDonHang().add(new ChiTietDonHang(ct3,donHang, 7));
-		donHang.getDanhSachChiTietDonHang().add(new ChiTietDonHang(ct4,donHang, 1));
-		donHang.getDanhSachChiTietDonHang().add(new ChiTietDonHang(ct5,donHang, 2));
-		donHang.getDanhSachChiTietDonHang().add(new ChiTietDonHang(ct6,donHang, 6));
+		List<ChiTietDonHang> list =  new ArrayList<ChiTietDonHang>();
+		DonHang donHang = new DonHang(nguoiDung,list, new TrangThaiDonHang( env.getProperty("hibernate.dialect")) , new Date(), 0);
+		list.add(new ChiTietDonHang(ct1, 10,ct1.getSanPham().getGiaTien() - ct1.getSanPham().getGiaTien() * ct1.getSanPham().getChietKhau()/100,ct1.getSanPham().getChietKhau()));
+		list.add(new ChiTietDonHang(ct2, 3,ct2.getSanPham().getGiaTien() - ct2.getSanPham().getGiaTien() * ct2.getSanPham().getChietKhau()/100,ct2.getSanPham().getChietKhau()));
+		list.add(new ChiTietDonHang(ct3, 7,ct3.getSanPham().getGiaTien() - ct3.getSanPham().getGiaTien() * ct3.getSanPham().getChietKhau()/100,ct3.getSanPham().getChietKhau()));
+		list.add(new ChiTietDonHang(ct4, 1,ct4.getSanPham().getGiaTien() - ct4.getSanPham().getGiaTien() * ct4.getSanPham().getChietKhau()/100,ct4.getSanPham().getChietKhau()));
+		list.add(new ChiTietDonHang(ct5, 2,ct5.getSanPham().getGiaTien() - ct5.getSanPham().getGiaTien() * ct5.getSanPham().getChietKhau()/100,ct5.getSanPham().getChietKhau()));
+		list.add(new ChiTietDonHang(ct6, 6,ct6.getSanPham().getGiaTien() - ct6.getSanPham().getGiaTien() * ct6.getSanPham().getChietKhau()/100,ct6.getSanPham().getChietKhau()));
 		model.addAttribute("donHang",donHang);
 		
+		System.err.println(donHang.getDanhSachChiTietDonHang());
 		return "createOrder";
 	}
 }

@@ -25,17 +25,25 @@ public class ChiTietDonHang {
 	private double giaMua;
 	private float chietKhau;
 	
-	public ChiTietDonHang(ChiTietSanPham chiTietSanPham, DonHang donHang, int soLuongMua) {
+	
+	public ChiTietDonHang(ChiTietSanPham chiTietSanPham, DonHang donHang, int soLuongMua, double giaMua,
+			float chietKhau) {
 		super();
-
 		this.chiTietSanPham = chiTietSanPham;
 		this.donHang = donHang;
 		this.soLuongMua = soLuongMua;
-		if(	this.chiTietSanPham  == null) {
-			this.giaMua = chiTietSanPham.getSanPham().getGiaTien() -  chiTietSanPham.getSanPham().getGiaTien()* chiTietSanPham.getSanPham().getChietKhau()/100;
-			this.chietKhau = chiTietSanPham.getSanPham().getChietKhau();
-		}
+		this.giaMua = giaMua;
+		this.chietKhau = chietKhau;
 	}
+	
+	public ChiTietDonHang(ChiTietSanPham chiTietSanPham, int soLuongMua, double giaMua, float chietKhau) {
+		super();
+		this.chiTietSanPham = chiTietSanPham;
+		this.soLuongMua = soLuongMua;
+		this.giaMua = giaMua;
+		this.chietKhau = chietKhau;
+	}
+
 	public ChiTietDonHang() {
 		super();
 	}
