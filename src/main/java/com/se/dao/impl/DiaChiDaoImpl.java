@@ -2,15 +2,19 @@ package com.se.dao.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.se.dao.DiaChiDao;
 import com.se.entity.ChiTietSanPham;
 import com.se.entity.DiaChi;
 
+@Repository
 public class DiaChiDaoImpl implements DiaChiDao{
 
 	@Autowired
@@ -36,8 +40,8 @@ public class DiaChiDaoImpl implements DiaChiDao{
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			String sql = "select distinct tinhThanhPho from DiaChi";
-			 List<String>  danhSachTinh= session.createNativeQuery(sql, String.class).getResultList();
-			return danhSachTinh;
+			 Query query = session.createQuery(sql);
+			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

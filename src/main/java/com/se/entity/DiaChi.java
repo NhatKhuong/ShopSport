@@ -24,10 +24,10 @@ public class DiaChi {
 	@Column(columnDefinition = "nvarchar(255)")
 	@NotNull
 	private String phuongXa;
-	@OneToMany(mappedBy = "diaChi")
-	private List<NguoiDung> danhSachNguoiDung;
-	@OneToMany(mappedBy = "diaChi")
-	private List<DonHang> danhSachDonHang ;
+//	@OneToMany(mappedBy = "diaChi")
+//	private List<NguoiDung> danhSachNguoiDung;
+//	@OneToMany(mappedBy = "diaChi")
+//	private List<DonHang> danhSachDonHang ;
 	
 	public DiaChi(String maDiaChi, String tinhThanhPho, String quanHuyen, String phuongXa) {
 		super();
@@ -65,18 +65,7 @@ public class DiaChi {
 		this.phuongXa = phuongXa;
 	}
 	
-	public List<NguoiDung> getDanhSachNguoiDung() {
-		return danhSachNguoiDung;
-	}
-	public void setDanhSachNguoiDung(List<NguoiDung> danhSachNguoiDung) {
-		this.danhSachNguoiDung = danhSachNguoiDung;
-	}
-	public List<DonHang> getDanhSachDonHang() {
-		return danhSachDonHang;
-	}
-	public void setDanhSachDonHang(List<DonHang> danhSachDonHang) {
-		this.danhSachDonHang = danhSachDonHang;
-	}
+	
 	@Override
 	public String toString() {
 		return "DiaChi [maDiaChi=" + maDiaChi + ", tinhThanhPho=" + tinhThanhPho + ", quanHuyen=" + quanHuyen
