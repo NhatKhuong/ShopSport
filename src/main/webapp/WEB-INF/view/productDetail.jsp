@@ -118,14 +118,14 @@
                                             </div>
                                             <div class="sizes">
                                                 <c:forEach var="item" items="${dsKichThuoc}">
-                                             
-                                                        <button class="btn mr-2 size "
-                                                            onclick='getQuantityProductBySizeName("${item}")'>${item}</button>
-                                                        </a>
 
-                                                    </c:forEach>
+                                                    <button class="btn mr-2 size "
+                                                        onclick='getQuantityProductBySizeName("${item}")'>${item}</button>
+                                                    </a>
 
-                                                    <!-- <button class="btn mr-2 size "> M </button>
+                                                </c:forEach>
+
+                                                <!-- <button class="btn mr-2 size "> M </button>
                                                 <button class="btn mr-2 size "> L </button>
                                                 <button class="btn mr-2 size false " disabled> M </button> -->
                                             </div>
@@ -135,7 +135,7 @@
                                                 <b>Hàng tồn </b>
                                             </div>
                                             <div class="title rioght mr-2 " id="soLuongTon">
-                                                <span>${chiTietSanPham.soLuongTon} sản phẩm có sẵn</span>
+                                                <span>sản phẩm có sẵn</span>
                                             </div>
                                         </div>
                                         <div class="option ">
@@ -143,11 +143,15 @@
                                                 <b> số lượng: </b>
                                             </div>
                                             <div class="quantity ">
-                                                <button class="btn mr-2"> <i class="fa fa-plus"
+                                                <button class="btn ml-2" id="btnQuantityPrvate"
+                                                    onclick='quantityPrivate()'> <i class="fa fa-minus"
                                                         aria-hidden="true"></i></button>
+
                                                 <span class="btn " id="quantity">1</span>
-                                                <button class="btn ml-2"> <i class="fa fa-minus"
+                                                <button class="btn mr-2" id="btnQuantityPluss"
+                                                    onclick='quantityPluss()'> <i class="fa fa-plus"
                                                         aria-hidden="true"></i></button>
+
                                             </div>
                                         </div>
 

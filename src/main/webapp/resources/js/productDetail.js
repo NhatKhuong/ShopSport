@@ -134,8 +134,7 @@ function getQuantityProductBySizeName(tenKichThuoc) {
       //   data.age;
       // $("#ajax-response").html(result);
 
-      document.getElementById("soLuongTon").innerText =
-        data + " sản phẩm có sẵn";
+      document.getElementById("soLuongTon").innerText = data;
     },
     error: function (e) {
       console.log("ERROR: ", e);

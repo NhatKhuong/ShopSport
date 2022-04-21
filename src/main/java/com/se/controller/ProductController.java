@@ -110,4 +110,39 @@ public class ProductController {
 		//
 		return chiTietSanPham.getSoLuongTon() + "";
 	}
+	
+	@JsonIgnore
+	@JsonManagedReference
+	@JsonBackReference
+	@RequestMapping(value = "/san-pham/so-luong-ton/tang", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public @ResponseBody String quantityPluss(HttpServletRequest request) {
+		int quantityTotal = Integer.parseInt(request.getParameter("quantityTotal"));
+		int quantityCurrent = Integer.parseInt(request.getParameter("quantityCurrent"));
+		
+		
+		// JSONObject obj = new JSONObject();
+
+		if(quantityCurrent<quantityTotal) {
+			quantityCurrent ++;
+		}
+		return String.valueOf(quantityCurrent);
+	}
+	
+	@JsonIgnore
+	@JsonManagedReference
+	@JsonBackReference
+	@RequestMapping(value = "/san-pham/so-luong-ton/giam", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public @ResponseBody String quantityPrivate(HttpServletRequest request) {
+		int quantityTotal = Integer.parseInt(request.getParameter("quantityTotal"));
+		int quantityCurrent = Integer.parseInt(request.getParameter("quantityCurrent"));
+		
+		
+		// JSONObject obj = new JSONObject();
+
+		if(quantityCurrent>0) {
+			quantityCurrent --;
+		}
+		System.out.println(quantityCurrent);
+		return String.valueOf(quantityCurrent);
+	}
 }

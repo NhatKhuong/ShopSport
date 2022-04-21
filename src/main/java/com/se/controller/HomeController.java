@@ -14,8 +14,10 @@ import com.se.entity.MonTheThao;
 import com.se.entity.NguoiDung;
 import com.se.entity.NhanHieu;
 import com.se.entity.SanPham;
+import com.se.entity.SanPhamTrongGioHang;
 import com.se.service.NguoiDungService;
 import com.se.service.SanPhamService;
+import com.se.service.SanPhamTrongGioHangService;
 
 @Controller
 public class HomeController {
@@ -25,21 +27,29 @@ public class HomeController {
 
 	@Autowired
 	private NguoiDungService nguoiDungService;
+	
+	@Autowired 
+	private SanPhamTrongGioHangService sanPhamTrongGioHangService;
 
 	@GetMapping("/")
 	public String showHome(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String email;
+		
 		if (principal instanceof UserDetails) {
 			email = ((UserDetails) principal).getUsername();
 		} else {
 			email = principal.toString();
 		}
-
 		NguoiDung nguoiDung = nguoiDungService.getByEmail(email);
-		List<SanPham> list = sanPhamService.getByFilter("", "", "", 50, 1000000000, 100, 10);
+		
+		List<SanPham> list = sanPhamService.getByFilter("", "", "", 5, 1000000000, 125, 10);
+		List<SanPhamTrongGioHang> dsSanPhamTrongGioHang = sanPhamTrongGioHangService.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
+		
+		model.addAttribute("dsSanPhamTrongGioHang",dsSanPhamTrongGioHang);
 		model.addAttribute("listSanPham", list);
 		model.addAttribute("UserLogin", nguoiDung);
+		
 		return "home";
 
 	}
