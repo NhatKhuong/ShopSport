@@ -112,7 +112,7 @@
                                                         <img alt="" width="15"
                                                             src="${pageContext.request.contextPath}/resources/images/icon/checkIcon.png">
 
-                                                        <span class="price pl-2">₫ 30,000</span>
+                                                        <span class="price pl-2">  ${donHang.phiVanChuyen }</span>
                                                     </div>
                                                 </div>
                                                 <div class="bot">
@@ -199,16 +199,16 @@
                                             </div>
                                             <div class='general-line'>
                                                 <span class='left title'> Tổng đơn hàng</span>
-                                                <span class='right price'>₫ 243,000</span>
+                                                <span class='right price'>${donHang.tongTienDonHang() }</span>
                                             </div>
                                             <div class='general-line'>
                                                 <span class='left '>Phí vận chuyển</span>
-                                                <span class='right price'> ₫ 30,000</span>
+                                                <span class='right price'> ${donHang.phiVanChuyen } </span>
                                             </div>
                                             <hr>
                                             <div class='general-line'>
                                                 <span class='left text-dark'>Tổng</span>
-                                                <span class='right price text-danger'> ₫ 30,000</span>
+                                                <span class='right price text-danger'> ${donHang.tongTien()}</span>
                                             </div>
                                         </div>
                                         <div class='btn-xac-nhan'>

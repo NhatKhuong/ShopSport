@@ -115,7 +115,8 @@ function getQuantityProductBySizeName(tenKichThuoc) {
   $.ajax({
     type: "GET",
     contentType: "application/json",
-    url: "http://localhost:8080/spring-security-demo-basic-security/san-pham/so-luong-ton",
+    // contextPath declared in header
+    url: contextPath + `/san-pham/so-luong-ton`,
     data: {
       maSanPham,
       tenKichThuoc,

@@ -2,6 +2,8 @@
     pageEncoding="utf-8"%>
 
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
+ <!-- this is so important. ajax will call it -->
+ <script>var contextPath = "${pageContext.request.contextPath}"</script>
 <header class="header trans_300">
 
 		<!-- Top Navigation -->
