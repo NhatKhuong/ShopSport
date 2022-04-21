@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="modal-body modal_body_card">
                                 	<c:forEach var="item" items="${dsSanPhamTrongGioHang}">
-                                		<span type="hidden" id="soLuongTon">${item.chiTietSanPham.soLuongTon}</span>
+                                		
                                 		<div class="card_product">
                                         <div class="check_item">
                                             <input type="checkbox">
@@ -123,9 +123,10 @@
                                             <!-- <div class="card_item_info_quatity">1</div> -->
                                             <div class="quantity">
         
-                                                <button class="btn mr-2" onclick='quantityPluss()'> <i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                <span class="item_quantity" id="quantity">${item.soLuong }</span>
-                                                <button class="btn ml-2" onclick='quantityPrivate()'> <i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                <button class="btn ml-2 " onclick='quantityPrivate(this)'> <i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                <span class="item_quantity quantity-number" >${item.soLuong }</span>
+                                                <button class="btn mr-2 " onclick='quantityPluss(this,${item.chiTietSanPham.soLuongTon})'> <i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                
                                             </div>
                                             <div class="card_item_info_price_item">
                                                 <div class="card_item_info_price price">${item.chiTietSanPham.sanPham.giaTien-item.chiTietSanPham.sanPham.giaTien*item.chiTietSanPham.sanPham.chietKhau/100}</div>
@@ -137,7 +138,7 @@
                                         </button>
                                     </div>
                                 	
-                                	</c:forEach>
+                                	</c:forEach>        
                                     
   
                                 </div>

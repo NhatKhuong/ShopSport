@@ -69,6 +69,7 @@ public class ProductController {
 		listPreadcrumb.add(new String[] { "Chi tiết sản phẩm", "" });
 		System.err.println(model.getAttribute("chiTietSanPham"));
 
+		
 		model.addAttribute("listPreadcrumb", listPreadcrumb);
 
 		return "productDetail";
