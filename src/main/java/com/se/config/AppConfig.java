@@ -60,7 +60,6 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @PropertySource({"classpath:persistence-mssql.properties"})
 public class AppConfig extends WebMvcConfigurerAdapter implements WebMvcConfigurer{
 	@Autowired
-	
 	private Environment env;	
 	private Logger logger = Logger.getLogger(getClass().getName());
 	

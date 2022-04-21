@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
+ <script  src="<c:url value='/resources/js/layout.js'/>" defer="defer"></script>
 <header class="header trans_300">
 
 		<!-- Top Navigation -->
@@ -108,24 +109,26 @@
                                 </button>
                                 </div>
                                 <div class="modal-body modal_body_card">
-                                    <div class="card_product">
+                                	<c:forEach var="item" items="${dsSanPhamTrongGioHang}">
+                                		<span type="hidden" id="soLuongTon">${item.chiTietSanPham.soLuongTon}</span>
+                                		<div class="card_product">
                                         <div class="check_item">
                                             <input type="checkbox">
                                         </div>
                                         <div class="card_item_img">
-                                            <img src="https://blueskytechco.com/rubix/wp-content/uploads/2020/12/23-600x745.jpg" alt="">
+                                            <img src='${pageContext.request.contextPath}/resources/images/${item.chiTietSanPham.sanPham.danhSachHinhAnhSanPham[0].hinhAnh}'>
                                         </div>
                                         <div class="card_item_info">
-                                            <div class="card_item_info_name">Áo thể thao</div>
+                                            <div class="card_item_info_name break_text">${item.chiTietSanPham.sanPham.tenSanPham}</div>
                                             <!-- <div class="card_item_info_quatity">1</div> -->
                                             <div class="quantity">
         
-                                                <button class="btn mr-2"> <i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                <span class="item_quantity">1</span>
-                                                <button class="btn ml-2"> <i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                <button class="btn mr-2" onclick='quantityPluss()'> <i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                <span class="item_quantity" id="quantity">${item.soLuong }</span>
+                                                <button class="btn ml-2" onclick='quantityPrivate()'> <i class="fa fa-minus" aria-hidden="true"></i></button>
                                             </div>
                                             <div class="card_item_info_price_item">
-                                                <div class="card_item_info_price">$39.00</div>
+                                                <div class="card_item_info_price price">${item.chiTietSanPham.sanPham.giaTien-item.chiTietSanPham.sanPham.giaTien*item.chiTietSanPham.sanPham.chietKhau/100}</div>
                                                 <div class="card_item_info_total-price">$39.00</div>
                                             </div>
                                         </div>
@@ -133,84 +136,10 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-        
-                                    <div class="card_product">
-                                        <div class="check_item">
-                                            <input type="checkbox">
-                                        </div>
-                                        <div class="card_item_img">
-                                            <img src="https://blueskytechco.com/rubix/wp-content/uploads/2020/12/23-600x745.jpg" alt="">
-                                        </div>
-                                        <div class="card_item_info">
-                                            <div class="card_item_info_name">Áo thể thao</div>
-                                            <!-- <div class="card_item_info_quatity">1</div> -->
-                                            <div class="quantity">
-        
-                                                <button class="btn mr-2"> <i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                <span class="item_quantity">1</span>
-                                                <button class="btn ml-2"> <i class="fa fa-minus" aria-hidden="true"></i></button>
-                                            </div>
-                                            <div class="card_item_info_price_item">
-                                                <div class="card_item_info_price">$39.00</div>
-                                                <div class="card_item_info_total-price">$39.00</div>
-                                            </div>
-                                        </div>
-                                        <button type="button" class="close delete_item" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-        
-                                    <div class="card_product">
-                                        <div class="check_item">
-                                            <input type="checkbox">
-                                        </div>
-                                        <div class="card_item_img">
-                                            <img src="https://blueskytechco.com/rubix/wp-content/uploads/2020/12/23-600x745.jpg" alt="">
-                                        </div>
-                                        <div class="card_item_info">
-                                            <div class="card_item_info_name">Áo thể thao</div>
-                                            <!-- <div class="card_item_info_quatity">1</div> -->
-                                            <div class="quantity">
-        
-                                                <button class="btn mr-2"> <i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                <span class="item_quantity">1</span>
-                                                <button class="btn ml-2"> <i class="fa fa-minus" aria-hidden="true"></i></button>
-                                            </div>
-                                            <div class="card_item_info_price_item">
-                                                <div class="card_item_info_price">$39.00</div>
-                                                <div class="card_item_info_total-price">$39.00</div>
-                                            </div>
-                                        </div>
-                                        <button type="button" class="close delete_item" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-        
-                                    <div class="card_product">
-                                        <div class="check_item">
-                                            <input type="checkbox">
-                                        </div>
-                                        <div class="card_item_img">
-                                            <img src="https://blueskytechco.com/rubix/wp-content/uploads/2020/12/23-600x745.jpg" alt="">
-                                        </div>
-                                        <div class="card_item_info">
-                                            <div class="card_item_info_name">Áo thể thao</div>
-                                            <!-- <div class="card_item_info_quatity">1</div> -->
-                                            <div class="quantity">
-        
-                                                <button class="btn mr-2"> <i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                <span class="item_quantity">1</span>
-                                                <button class="btn ml-2"> <i class="fa fa-minus" aria-hidden="true"></i></button>
-                                            </div>
-                                            <div class="card_item_info_price_item">
-                                                <div class="card_item_info_price">$39.00</div>
-                                                <div class="card_item_info_total-price">$39.00</div>
-                                            </div>
-                                        </div>
-                                        <button type="button" class="close delete_item" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
+                                	
+                                	</c:forEach>
+                                    
+  
                                 </div>
                                 <div class="modal-footer">
                                 <div class="Subtotal">
@@ -293,3 +222,4 @@
                         <!-- end -->
 
 	</header>
+	

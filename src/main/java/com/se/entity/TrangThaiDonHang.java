@@ -26,6 +26,11 @@ public class TrangThaiDonHang {
 		this.maTrangThaiDonHang = maTrangThaiDonHang;
 		this.tenTrangThaiDonHang = tenTrangThaiDonHang;
 	}
+	public TrangThaiDonHang(String maTrangThaiDonHang) {
+		super();
+		this.maTrangThaiDonHang = maTrangThaiDonHang;
+	}
+
 	public TrangThaiDonHang() {
 		super();
 		// TODO Auto-generated constructor stub

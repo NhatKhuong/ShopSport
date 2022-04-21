@@ -14,56 +14,62 @@ import com.se.entity.MonTheThao;
 import com.se.entity.NguoiDung;
 import com.se.entity.NhanHieu;
 import com.se.entity.SanPham;
+import com.se.entity.SanPhamTrongGioHang;
 import com.se.service.NguoiDungService;
 import com.se.service.SanPhamService;
+import com.se.service.SanPhamTrongGioHangService;
 
 @Controller
 public class HomeController {
 
-	
 	@Autowired
 	private SanPhamService sanPhamService;
-	
+
 	@Autowired
 	private NguoiDungService nguoiDungService;
 	
-	
+	@Autowired 
+	private SanPhamTrongGioHangService sanPhamTrongGioHangService;
+
 	@GetMapping("/")
 	public String showHome(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String username;
+		String email;
+		
 		if (principal instanceof UserDetails) {
-		  username = ((UserDetails)principal).getUsername();
+			email = ((UserDetails) principal).getUsername();
 		} else {
-		  username = principal.toString();
+			email = principal.toString();
 		}
-		NguoiDung nguoiDung = nguoiDungService.getByEmail(username);
+		NguoiDung nguoiDung = nguoiDungService.getByEmail(email);
+		
 		List<SanPham> list = sanPhamService.getByFilter("", "", "", 5, 1000000000, 125, 10);
-//		List<SanPham> list = sanPhamService.getByFilter("", "", "", 5, 1000000000, 1, 6);
+		List<SanPhamTrongGioHang> dsSanPhamTrongGioHang = sanPhamTrongGioHangService.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
+		
+		model.addAttribute("dsSanPhamTrongGioHang",dsSanPhamTrongGioHang);
 		model.addAttribute("listSanPham", list);
-		model.addAttribute("UserLogin",nguoiDung);
+		model.addAttribute("UserLogin", nguoiDung);
+		
 		return "home";
-		
-		
+
 	}
-	
+
 	@GetMapping("/shop")
 	public String showShop(Model model) {
 		List<SanPham> list = sanPhamService.getByFilter("", "", "", 50000, 100000, 1, 9);
 		model.addAttribute("listSanPham", list);
 		return "shop";
 	}
-	
+
 	@GetMapping("")
 	public String layOut() {
 		return "layout";
 	}
-	
+
 	@GetMapping("/trang-thai-don-hang")
 	public String showOrderStatus(Model model) {
-		
+
 		return "trangthaidonhang";
 	}
-	
 
 }
