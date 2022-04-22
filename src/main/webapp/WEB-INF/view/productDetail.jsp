@@ -134,8 +134,8 @@
                                             <div class="title left mr-2">
                                                 <b>Hàng tồn </b>
                                             </div>
-                                            <div class="title rioght mr-2 " id="soLuongTon">
-                                                <span>sản phẩm có sẵn</span>
+                                            <div class="title rioght mr-2 ">
+                                                <span> <div  id="soLuongTon"> 5</div> sản phẩm có sẵn</span>
                                             </div>
                                         </div>
                                         <div class="option ">
@@ -143,13 +143,11 @@
                                                 <b> số lượng: </b>
                                             </div>
                                             <div class="quantity ">
-                                                <button class="btn ml-2" id="btnQuantityPrvate"
-                                                    onclick='quantityPrivate()'> <i class="fa fa-minus"
+                                            	<button class="btn ml-2" id="btnQuantityPrvate" onclick='quantityPrivate(this)'> <i class="fa fa-minus"
                                                         aria-hidden="true"></i></button>
-
-                                                <span class="btn " id="quantity">1</span>
-                                                <button class="btn mr-2" id="btnQuantityPluss"
-                                                    onclick='quantityPluss()'> <i class="fa fa-plus"
+                                                
+                                                <span class="btn quantity-number" id="quantity">1</span>
+                                                <button class="btn mr-2" id="btnQuantityPluss" onclick="quantityPluss(this)"> <i class="fa fa-plus"
                                                         aria-hidden="true"></i></button>
 
                                             </div>

@@ -10,3 +10,4 @@ public interface DiaChiDao {
 	public List<String> getDanhSachQuanHuyenTheoTinh(String thanhPho);
 	public List<String> getDanhSachPhuongXaTheoQuanHuyenVaTinh(String quanHuyen , String tinhThanhPho);
 }
+                                                                           

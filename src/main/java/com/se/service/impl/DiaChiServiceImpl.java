@@ -2,22 +2,20 @@ package com.se.service.impl;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.se.dao.DiaChiDao;
 import com.se.entity.DiaChi;
 import com.se.service.DiaChiService;
 
-
-
 @Service
-public class DiaChiServiceImpl implements DiaChiService  {
+public class DiaChiServiceImpl implements DiaChiService{
+
 	@Autowired
 	private DiaChiDao diaChiDao;
-
+	
 	@Override
 	@Transactional
 	public List<DiaChi> getDanhSachDiaChi() {
@@ -45,4 +43,5 @@ public class DiaChiServiceImpl implements DiaChiService  {
 		// TODO Auto-generated method stub
 		return diaChiDao.getDanhSachPhuongXaTheoQuanHuyenVaTinh(quanHuyen, tinhThanhPho);
 	}
+
 }

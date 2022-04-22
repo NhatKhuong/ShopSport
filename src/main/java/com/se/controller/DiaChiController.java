@@ -9,37 +9,41 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.se.entity.DiaChi;
-import com.se.service.impl.DiaChiServiceImpl;
+import com.se.entity.KichThuoc;
+import com.se.service.DiaChiService;
+import com.se.service.KichThuocService;
 
 @Controller
 public class DiaChiController {
+	
 	@Autowired
-	private DiaChiServiceImpl diaChiServiceImpl; 
-	 
+	private DiaChiService diaChiService;
+	
+	@Autowired
+	private KichThuocService kichThuoc;
+ 
 	@ResponseBody
-	@RequestMapping(value = "/dia-chi/danh-sach-dia-chi", method = RequestMethod.GET )
+	@RequestMapping(value = "/dia-chi/danh-sach-dia-chi", method = RequestMethod.GET , produces = "application/vnd.baeldung.api.v1+json")
 	public  List<DiaChi>   danhSachDiaChiAjax() {
-		return   diaChiServiceImpl.getDanhSachDiaChi();
+		return diaChiService.getDanhSachDiaChi();
 	}
-	
-	
 	@ResponseBody
-	@RequestMapping(value = "/dia-chi/danh-sach-tinh-thanh-pho", method = RequestMethod.GET )
+	@RequestMapping(value = "/dia-chi/danh-sach-tinh-thanh-pho", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json" )
 	public  List<String>   danhSachTinhThanhPhoAjax() {
-		return   diaChiServiceImpl.getDanhSachTinhThanhPho();
+		return diaChiService.getDanhSachTinhThanhPho();
 	}
 	 @ResponseBody
 	@RequestMapping(value =  "/dia-chi/danh-sach-quan-huyen-theo-thanh-pho", method = RequestMethod.GET)
 	public List<String> danhSachQuanHuyenTheoTinh(HttpServletRequest request) {
 		String thanhPho = request.getParameter("tinhThanhPho");
-		return diaChiServiceImpl.getDanhSachQuanHuyenTheoTinh(thanhPho);
+		return diaChiService.getDanhSachQuanHuyenTheoTinh(thanhPho);
 	}
 	 @ResponseBody
 	@RequestMapping(value =  "/dia-chi/danh-sach-phuong-xa-theo-quan-huyen", method = RequestMethod.GET)
 	public  List<String> danhSachPhuongXaTheoQuanHuyen(HttpServletRequest request) {
 		String thanhPho = request.getParameter("thanhPho");
 		String quanHuyen = request.getParameter("quanHuyen");
-		return diaChiServiceImpl.getDanhSachPhuongXaTheoQuanHuyenVaTinh(quanHuyen, thanhPho);
+		return diaChiService.getDanhSachPhuongXaTheoQuanHuyenVaTinh(quanHuyen, thanhPho);
 	}
 }
 

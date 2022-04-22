@@ -100,8 +100,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Modal card -->
             <div class="modal fade model_card" id="CardModal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -113,12 +111,13 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+
                         <div class="modal-body modal_body_card">
                             <c:forEach var="item" items="${dsSanPhamTrongGioHang}">
-                                <span type="hidden" id="soLuongTon">${item.chiTietSanPham.soLuongTon}</span>
+
                                 <div class="card_product">
                                     <div class="check_item">
-                                        <input type="checkbox">
+                                        <input type="checkbox" class="check_item_input">
                                     </div>
                                     <div class="card_item_img">
                                         <img
@@ -130,17 +129,21 @@
                                         <!-- <div class="card_item_info_quatity">1</div> -->
                                         <div class="quantity">
 
-                                            <button class="btn mr-2" onclick='quantityPluss()'> <i class="fa fa-plus"
-                                                    aria-hidden="true"></i></button>
-                                            <span class="item_quantity" id="quantity">${item.soLuong }</span>
-                                            <button class="btn ml-2" onclick='quantityPrivate()'> <i class="fa fa-minus"
-                                                    aria-hidden="true"></i></button>
+                                            <button class="btn ml-2 " onclick='quantityPrivate(this)'> <i
+                                                    class="fa fa-minus" aria-hidden="true"></i></button>
+                                            <span class="item_quantity quantity-number">${item.soLuong }</span>
+                                            <button class="btn mr-2 "
+                                                onclick='quantityPluss(this,${item.chiTietSanPham.soLuongTon})'> <i
+                                                    class="fa fa-plus" aria-hidden="true"></i></button>
+
                                         </div>
                                         <div class="card_item_info_price_item">
                                             <div class="card_item_info_price price">
                                                 ${item.chiTietSanPham.sanPham.giaTien-item.chiTietSanPham.sanPham.giaTien*item.chiTietSanPham.sanPham.chietKhau/100}
                                             </div>
-                                            <div class="card_item_info_total-price">$39.00</div>
+                                            <div class="card_item_info_total price">
+                                                ${item.soLuong*(item.chiTietSanPham.sanPham.giaTien-item.chiTietSanPham.sanPham.giaTien*item.chiTietSanPham.sanPham.chietKhau/100)
+                                                }</div>
                                         </div>
                                     </div>
                                     <button type="button" class="close delete_item" data-dismiss="modal"
@@ -156,7 +159,7 @@
                         <div class="modal-footer">
                             <div class="Subtotal">
                                 <div class="Subtotal_title">Tổng tiền</div>
-                                <div class="Subtotal_price">$71.00</div>
+                                <div class="Subtotal_price price">0</div>
                             </div>
                             <div class="block_checkout">
 
@@ -166,6 +169,10 @@
                     </div>
                 </div>
             </div>
+
+
+            <!-- Modal card -->
+
 
             <!-- Modal Register -->
 
@@ -222,7 +229,8 @@
                                 </div>
 
                                 <p class="text-center text-muted mt-5 mb-0 register_login_here">Have already an account?
-                                    <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p>
+                                    <a href="#!" class="fw-bold text-body"><u>Login here</u></a>
+                                </p>
 
                             </form>
 
