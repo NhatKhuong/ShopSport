@@ -1,5 +1,6 @@
 package com.se.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,10 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.se.entity.LoaiSanPham;
 import com.se.entity.MonTheThao;
 import com.se.entity.NguoiDung;
@@ -47,8 +44,6 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String showHome(Model model) {
-		
-		System.out.println(diaChiService.getDanhSachTinhThanhPho());
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String email;
 		
@@ -93,16 +88,19 @@ public class HomeController {
 		return "trangthaidonhang";
 	}
 	
-	@ResponseBody
-	@JsonIgnoreProperties
+
 	@RequestMapping(value = "/gio-hang/san-pham", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
-	public List<SanPhamTrongGioHang> sanPhamTrongGioHang(HttpServletRequest request)  {
+	public @ResponseBody List<SanPhamTrongGioHang> sanPhamTrongGioHang(HttpServletRequest request)  {
 		
 		NguoiDung nguoiDung = nguoiDungService.getByEmail(User.getEmailNguoiDung());
 		List<SanPhamTrongGioHang> list = sanPhamTrongGioHangService.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
-		System.out.println(list);
-		return list;
-		
+		System.err.println(list.get(0));
+		return Arrays.asList(list.get(0));
 	}
-
+	@RequestMapping(value = "/gio-hang/san-pham2", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public @ResponseBody SanPhamTrongGioHang sanPhamTrongGioHang2(HttpServletRequest request)  {
+		NguoiDung nguoiDung = nguoiDungService.getByEmail(User.getEmailNguoiDung());
+		List<SanPhamTrongGioHang> list = sanPhamTrongGioHangService.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
+		return list.get(0);
+	}
 }

@@ -12,6 +12,9 @@ import javax.persistence.OneToMany;
  * */
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class LoaiKichThuoc {
 	@Id
@@ -45,10 +48,11 @@ public class LoaiKichThuoc {
 	public void setTenLoaiKichThuoc(String tenLoaiKichThuoc) {
 		this.tenLoaiKichThuoc = tenLoaiKichThuoc;
 	}
-	
+	@JsonIgnore
 	public List<KichThuoc> getDanhSachKichThuoc() {
 		return danhSachKichThuoc;
 	}
+	@JsonProperty
 	public void setDanhSachKichThuoc(List<KichThuoc> danhSachKichThuoc) {
 		this.danhSachKichThuoc = danhSachKichThuoc;
 	}

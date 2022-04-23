@@ -2,8 +2,64 @@ package com.se.service;
 
 import java.util.List;
 
-public interface DiaChiService {
-	public List<String> getDanhSachTinhThanhPho();
-	
+import com.se.entity.DiaChi;
 
+public interface DiaChiService {
+	public List<DiaChi> getDanhSachDiaChi();
+	public List<String> getDanhSachTinhThanhPho();
+	public List<String> getDanhSachQuanHuyenTheoTinh(String thanhPho);
+	public List<String> getDanhSachPhuongXaTheoQuanHuyenVaTinh(String quanHuyen , String tinhThanhPho);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		  
+
+
+
+
+
+
+
+

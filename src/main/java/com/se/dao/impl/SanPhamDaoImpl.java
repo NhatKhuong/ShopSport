@@ -92,11 +92,11 @@ public class SanPhamDaoImpl implements SanPhamDao{
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			
-			String sql = "select SanPham.maSanPham, SanPham.chietKhau, SanPham.giaTien , SanPham.mieuTa, SanPham.tenSanPham,  SanPham.maLoaiSanPham, SanPham.maMonTheThao, SanPham.maNhanHieu  from SanPham join LoaiSanPham on SanPham.maLoaiSanPham = LoaiSanPham.maLoaiSanPham\r\n"
+			String sql = "select SanPham.maSanPham, SanPham.chietKhau, sanPham.trangThai,SanPham.giaTien , SanPham.mieuTa, SanPham.tenSanPham,  SanPham.maLoaiSanPham, SanPham.maMonTheThao, SanPham.maNhanHieu  from SanPham join LoaiSanPham on SanPham.maLoaiSanPham = LoaiSanPham.maLoaiSanPham\r\n"
 					+ "						join MonTheThao on SanPham.maMonTheThao = MonTheThao.maMonTheThao \r\n"
 					+ "						join NhanHieu on SanPham.maNhanHieu = NhanHieu.maNhanHieu\r\n"
 					+ "						join ChiTietSanPham on SanPham.maSanPham = ChiTietSanPham.maSanPham\r\n"
-					+ "						where LoaiSanPham.tenLoaiSanPham like N'%"+tenLoai+"%' and NhanHieu.tenNhanHieu like N'%"+tenThuongHieu+"%' and MonTheThao.tenMonTheThao like N'%"+tenMon+"%' and (SanPham.giaTien >="+fromPrice+" and SanPham.giaTien<="+toPrice+") 	group by SanPham.maSanPham, SanPham.chietKhau, SanPham.giaTien , SanPham.mieuTa, SanPham.tenSanPham,  SanPham.maLoaiSanPham, SanPham.maMonTheThao, SanPham.maNhanHieu  order by SanPham.maSanPham offset "+numPage+" rows  fetch next "+limit+" rows only";
+					+ "						where LoaiSanPham.tenLoaiSanPham like N'%"+tenLoai+"%' and NhanHieu.tenNhanHieu like N'%"+tenThuongHieu+"%' and MonTheThao.tenMonTheThao like N'%"+tenMon+"%' and (SanPham.giaTien >="+fromPrice+" and SanPham.giaTien<="+toPrice+") 	group by SanPham.maSanPham,sanPham.trangThai ,SanPham.chietKhau, SanPham.giaTien , SanPham.mieuTa, SanPham.tenSanPham,  SanPham.maLoaiSanPham, SanPham.maMonTheThao, SanPham.maNhanHieu  order by SanPham.maSanPham offset "+numPage+" rows  fetch next "+limit+" rows only";
 			List<SanPham> list = session.createNativeQuery(sql, SanPham.class).getResultList();
 			return list;
 			

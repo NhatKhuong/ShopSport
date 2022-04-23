@@ -2,7 +2,12 @@ package com.se.dao;
 
 import java.util.List;
 
-public interface DiaChiDao {
-	public List<String> getDanhSachTinhThanhPho();
+import com.se.entity.DiaChi;
 
+public interface DiaChiDao {
+	public List<DiaChi> getDanhSachDiaChi();
+	public List<String> getDanhSachTinhThanhPho();
+	public List<String> getDanhSachQuanHuyenTheoTinh(String thanhPho);
+	public List<String> getDanhSachPhuongXaTheoQuanHuyenVaTinh(String quanHuyen , String tinhThanhPho);
 }
+                                                                           

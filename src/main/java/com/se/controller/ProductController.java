@@ -16,10 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.se.entity.ChiTietSanPham;
 import com.se.entity.KichThuoc;
 import com.se.entity.SanPham;
@@ -85,9 +81,6 @@ public class ProductController {
 	// model.addAttribute("chiTietSanPham",chiTietSanPham);
 	// }
 
-	@JsonIgnore
-	@JsonManagedReference
-	@JsonBackReference
 	@RequestMapping(value = "/san-pham/so-luong-ton", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
 	public @ResponseBody String addNew(HttpServletRequest request) {
 		String maSanPham = request.getParameter("maSanPham");
@@ -111,9 +104,6 @@ public class ProductController {
 		return chiTietSanPham.getSoLuongTon() + "";
 	}
 	
-	@JsonIgnore
-	@JsonManagedReference
-	@JsonBackReference
 	@RequestMapping(value = "/san-pham/so-luong-ton/tang", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
 	public @ResponseBody String quantityPluss(HttpServletRequest request) {
 		int quantityTotal = Integer.parseInt(request.getParameter("quantityTotal"));
@@ -128,9 +118,6 @@ public class ProductController {
 		return String.valueOf(quantityCurrent);
 	}
 	
-	@JsonIgnore
-	@JsonManagedReference
-	@JsonBackReference
 	@RequestMapping(value = "/san-pham/so-luong-ton/giam", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
 	public @ResponseBody String quantityPrivate(HttpServletRequest request) {
 		int quantityTotal = Integer.parseInt(request.getParameter("quantityTotal"));

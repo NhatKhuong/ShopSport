@@ -86,7 +86,7 @@
                                     <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                                     <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                     <li class="checkout">
-                                        <a href="" data-toggle="modal" onclick="loadDuLieuGioHang()" data-target="#CardModal" aria-hidden="true">
+                                        <a href="" data-toggle="modal" data-target="#CardModal" aria-hidden="true">
                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                             <span id="checkout_items" class="checkout_items">2</span>
                                         </a>
@@ -113,56 +113,66 @@
                         </div>
 
                         <div class="modal-body modal_body_card">
-                                	<c:forEach var="item" items="${dsSanPhamTrongGioHang}">
-                                		
-                                		<div class="card_product">
-                                        <div class="check_item">
-                                            <input type="checkbox" class="check_item_input">
-                                        </div>
-                                        <div class="card_item_img">
-                                            <img src='${pageContext.request.contextPath}/resources/images/${item.chiTietSanPham.sanPham.danhSachHinhAnhSanPham[0].hinhAnh}'>
-                                        </div>
-                                        <div class="card_item_info">
-                                            <div class="card_item_info_name break_text">${item.chiTietSanPham.sanPham.tenSanPham}</div>
-                                            <!-- <div class="card_item_info_quatity">1</div> -->
-                                            <div class="quantity">
-        
-                                                <button class="btn ml-2 " onclick='quantityPrivate(this)'> <i class="fa fa-minus" aria-hidden="true"></i></button>
-                                                <span class="item_quantity quantity-number" >${item.soLuong }</span>
-                                                <button class="btn mr-2 " onclick='quantityPluss(this,${item.chiTietSanPham.soLuongTon})'> <i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                
-                                            </div>
-                                            <div class="card_item_info_price_item">
-                                                <div class="card_item_info_price price">${item.chiTietSanPham.sanPham.giaTien-item.chiTietSanPham.sanPham.giaTien*item.chiTietSanPham.sanPham.chietKhau/100}</div>
-                                                <div class="card_item_info_total price">${item.soLuong*(item.chiTietSanPham.sanPham.giaTien-item.chiTietSanPham.sanPham.giaTien*item.chiTietSanPham.sanPham.chietKhau/100) }</div>
-                                            </div>
-                                        </div>
-                                        <button type="button" class="close delete_item" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                            <c:forEach var="item" items="${dsSanPhamTrongGioHang}">
+
+                                <div class="card_product">
+                                    <div class="check_item">
+                                        <input type="checkbox" class="check_item_input">
                                     </div>
-                                	
-                                	</c:forEach>        
-                                    
-  
+                                    <div class="card_item_img">
+                                        <img
+                                            src='${pageContext.request.contextPath}/resources/images/${item.chiTietSanPham.sanPham.danhSachHinhAnhSanPham[0].hinhAnh}'>
+                                    </div>
+                                    <div class="card_item_info">
+                                        <div class="card_item_info_name break_text">
+                                            ${item.chiTietSanPham.sanPham.tenSanPham}</div>
+                                        <!-- <div class="card_item_info_quatity">1</div> -->
+                                        <div class="quantity">
+
+                                            <button class="btn ml-2 " onclick='quantityPrivate(this)'> <i
+                                                    class="fa fa-minus" aria-hidden="true"></i></button>
+                                            <span class="item_quantity quantity-number">${item.soLuong }</span>
+                                            <button class="btn mr-2 "
+                                                onclick='quantityPluss(this,${item.chiTietSanPham.soLuongTon})'> <i
+                                                    class="fa fa-plus" aria-hidden="true"></i></button>
+
+                                        </div>
+                                        <div class="card_item_info_price_item">
+                                            <div class="card_item_info_price price">
+                                                ${item.chiTietSanPham.sanPham.giaTien-item.chiTietSanPham.sanPham.giaTien*item.chiTietSanPham.sanPham.chietKhau/100}
+                                            </div>
+                                            <div class="card_item_info_total price">
+                                                ${item.soLuong*(item.chiTietSanPham.sanPham.giaTien-item.chiTietSanPham.sanPham.giaTien*item.chiTietSanPham.sanPham.chietKhau/100)
+                                                }</div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="close delete_item" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                                <div class="modal-footer">
-                                    <div class="Subtotal">
-                                        <div class="Subtotal_title">Tổng tiền</div>
-                                        <div class="Subtotal_price price">0</div>
-                                    </div>
-                                    <div class="block_checkout">
-            
-                                        <button type="button" class="btn_checkout" data-dismiss="modal">Thanh Toán</button>
-                                    </div>
+
+                            </c:forEach>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <div class="Subtotal">
+                                <div class="Subtotal_title">Tổng tiền</div>
+                                <div class="Subtotal_price price">0</div>
                             </div>
+                            <div class="block_checkout">
+
+                                <button type="button" class="btn_checkout" data-dismiss="modal">Thanh Toán</button>
+                            </div>
+                        </div>
                     </div>
-                </div>        
+                </div>
             </div>
-        
+
 
             <!-- Modal card -->
-            
+
 
             <!-- Modal Register -->
 
@@ -219,7 +229,8 @@
                                 </div>
 
                                 <p class="text-center text-muted mt-5 mb-0 register_login_here">Have already an account?
-                                    <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p>
+                                    <a href="#!" class="fw-bold text-body"><u>Login here</u></a>
+                                </p>
 
                             </form>
 

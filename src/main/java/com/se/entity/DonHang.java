@@ -6,15 +6,13 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 /*
  * createdAt: 04/10/2022
  * */
@@ -37,7 +35,7 @@ public class DonHang {
 	@JoinColumn(name="maTrangThaiDonHang")
 	private TrangThaiDonHang trangThaiDonHang;
 	
-	@OneToMany(mappedBy = "donHang")
+	@OneToMany(mappedBy = "donHang", fetch = FetchType.EAGER)
 	private List<ChiTietDonHang> danhSachChiTietDonHang;
 	@Column(columnDefinition = "nvarchar(255)")
 	@NotNull
@@ -153,8 +151,19 @@ public class DonHang {
 				+ ", diaChiCuThe=" + diaChiCuThe + ", ngayTao=" + ngayTao + ", ngayGiao=" + ngayGiao + ", phiVanChuyen="
 				+ phiVanChuyen + "]";
 	}
-	
-	
+	public double tongTienDonHang() {
+		double sum = 0;
+		
+		if(danhSachChiTietDonHang != null) {
+			for (ChiTietDonHang chiTietDonHang : danhSachChiTietDonHang) {
 
-	
+				sum += chiTietDonHang.getGiaMua();
+			}
+		}
+		return sum;
+		
+	}
+	public double tongTien() {
+		return tongTienDonHang() + phiVanChuyen;
+	}	
 }

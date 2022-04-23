@@ -70,7 +70,8 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="quanHuyen">Quận/Huyện</label>
-                                                    <select class="form-control" name="quanHuyen" id="quanHuyen">
+                                                    <select class="form-control" name="quanHuyen" id="quanHuyen"
+                                                        disabled="disabled">
                                                         <option selected disabled>Chọn quận / huyện</option>
                                                         <option>Quận 1</option>
                                                         <option>Quận 2</option>
@@ -79,7 +80,8 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="phuongXa">Phường xã</label>
-                                                    <select class="form-control" name="phuongXa" id="phuongXa">
+                                                    <select class="form-control" name="phuongXa" id="phuongXa"
+                                                        disabled="disabled">
                                                         <option selected disabled>Chọn phường xã</option>
                                                         <option>Hồ chí minh</option>
                                                         <option>Hà nội</option>
@@ -106,13 +108,14 @@
                                             <div class=choise-delivery>
                                                 <small>Choose your delivery option</small>
                                             </div>
-                                            <div class='card-select color-blue' style="width: 250px; margin-bottom: 20px">
+                                            <div class='card-select color-blue'
+                                                style="width: 250px; margin-bottom: 20px">
                                                 <div class=" top">
                                                     <div class="info">
                                                         <img alt="" width="15"
                                                             src="${pageContext.request.contextPath}/resources/images/icon/checkIcon.png">
 
-                                                        <span class="price pl-2">₫ 30,000</span>
+                                                        <span class="price pl-2"> ${donHang.phiVanChuyen }</span>
                                                     </div>
                                                 </div>
                                                 <div class="bot">
@@ -122,32 +125,37 @@
                                             </div>
                                         </div>
                                         <div class='items-order'>
-                                           <c:forEach items="${donHang.danhSachChiTietDonHang }" var="item"> 
-                                            <div class='item'>
-                                                <div class="item-avatar">
-                                                    <img alt="" width="80"
-                                                        src="${pageContext.request.contextPath}/resources/images/${item.chiTietSanPham.sanPham.danhSachHinhAnhSanPham[0].hinhAnh}">
-                                                </div>
-                                                <div class='item-name'>
-                                                    <div class='name'>
-                                                        <p>${item.chiTietSanPham.sanPham.tenSanPham}</p>
+                                            <c:forEach items="${donHang.danhSachChiTietDonHang }" var="item">
+                                                <div class='item'>
+                                                    <div class="item-avatar">
+                                                        <img alt="" width="80"
+                                                            src="${pageContext.request.contextPath}/resources/images/${item.chiTietSanPham.sanPham.danhSachHinhAnhSanPham[0].hinhAnh}">
                                                     </div>
-                                                    <div class='sub'>Size: ${item.chiTietSanPham.kichThuoc.tenKichThuoc } </div>
+                                                    <div class='item-name'>
+                                                        <div class='name'>
+                                                            <p>${item.chiTietSanPham.sanPham.tenSanPham}</p>
+                                                        </div>
+                                                        <div class='sub'>Size:
+                                                            ${item.chiTietSanPham.kichThuoc.tenKichThuoc } </div>
+                                                    </div>
+                                                    <div class='item-price'>
+                                                        <span
+                                                            class="current-price price">${item.chiTietSanPham.sanPham.giaTien
+                                                            - item.chiTietSanPham.sanPham.giaTien *
+                                                            item.chiTietSanPham.sanPham.chietKhau/100} </span>
+                                                        <span
+                                                            class="origin-price price">${item.chiTietSanPham.sanPham.giaTien
+                                                            } </span>
+                                                        <span
+                                                            class="promotion-ratio percent">${item.chiTietSanPham.sanPham.chietKhau
+                                                            } </span>
+                                                        <div class="operations"></div>
+                                                    </div>
+                                                    <div class='item-quantiry'>
+                                                        <b>X </b> <span>${item.soLuongMua } </span>
+                                                    </div>
                                                 </div>
-                                                <div class='item-price'>
-                                                    <span class="current-price price">${item.chiTietSanPham.sanPham.giaTien - item.chiTietSanPham.sanPham.giaTien * item.chiTietSanPham.sanPham.chietKhau/100} </span>
-                                                    <span class="origin-price price">${item.chiTietSanPham.sanPham.giaTien } </span>
-                                                    <span class="promotion-ratio percent">${item.chiTietSanPham.sanPham.chietKhau } </span>
-                                                    <div class="operations"></div>
-                                                </div>
-                                                <div class='item-quantiry'>
-                                                    <b>X </b>  <span>${item.soLuongMua } </span>
-                                                </div>
-                                            </div>
-                                               </c:forEach>
-                                              
-                                              
-                                              
+                                            </c:forEach>
                                         </div>
                                     </div>
                                 </div>
@@ -199,16 +207,16 @@
                                             </div>
                                             <div class='general-line'>
                                                 <span class='left title'> Tổng đơn hàng</span>
-                                                <span class='right price'>₫ 243,000</span>
+                                                <span class='right price'>${donHang.tongTienDonHang() }</span>
                                             </div>
                                             <div class='general-line'>
                                                 <span class='left '>Phí vận chuyển</span>
-                                                <span class='right price'> ₫ 30,000</span>
+                                                <span class='right price'> ${donHang.phiVanChuyen } </span>
                                             </div>
                                             <hr>
                                             <div class='general-line'>
                                                 <span class='left text-dark'>Tổng</span>
-                                                <span class='right price text-danger'> ₫ 30,000</span>
+                                                <span class='right price text-danger'> ${donHang.tongTien()}</span>
                                             </div>
                                         </div>
                                         <div class='btn-xac-nhan'>
@@ -231,10 +239,11 @@
                     </div>
 
                 </div>
-                
+
                 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-                       <!--  Custome js-->
+                <!--  Custome js-->
                 <script src="<c:url value='/resources/js/home.js'/>"></script>
+                <script src="<c:url value='/resources/js/createOrder.js'/>"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
                     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
                     crossorigin="anonymous"></script>

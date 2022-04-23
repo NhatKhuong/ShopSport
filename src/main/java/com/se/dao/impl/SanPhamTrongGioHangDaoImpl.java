@@ -49,6 +49,10 @@ public class SanPhamTrongGioHangDaoImpl implements SanPhamTrongGioHangDao{
 		try {
 			String sql = "select * from SanPhamTrongGioHang where maNguoiDung = '"+maNguoiDung+"'";
 			List<SanPhamTrongGioHang> list = session.createNativeQuery(sql, SanPhamTrongGioHang.class).getResultList();
+<<<<<<< HEAD
+=======
+			
+>>>>>>> caa114bf29b125c851ba918f8a7d61ee8db20a0a
 			return list;
 			
 		} catch (Exception e) {

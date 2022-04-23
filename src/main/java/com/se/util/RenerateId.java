@@ -1,8 +1,6 @@
 package com.se.util;
 
 public class RenerateId {
-
-	
 	public static String fomatAANumber(String s) {
 		int maxLenth = s.length();
 		String[] array = s.split("");
