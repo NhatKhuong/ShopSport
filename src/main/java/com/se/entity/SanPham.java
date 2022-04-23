@@ -61,20 +61,25 @@ public class SanPham {
 	
 	}
 	
+	
 	public SanPham(String maSanPham, @NotNull LoaiSanPham loaiSanPham, @NotNull MonTheThao monTheThao,
-			@NotNull NhanHieu nhanHieu, @NotNull String tenSanPham, String mieuTa, Double giaTien, float chietKhau) {
+			@NotNull NhanHieu nhanHieu, List<HinhAnhSanPham> danhSachHinhAnhSanPham,
+			List<ChiTietSanPham> danhSachChiTietSanPham, @NotNull String tenSanPham, String mieuTa, Double giaTien,
+			float chietKhau, boolean trangThai) {
 		super();
 		this.maSanPham = maSanPham;
 		this.loaiSanPham = loaiSanPham;
 		this.monTheThao = monTheThao;
 		this.nhanHieu = nhanHieu;
+		this.danhSachHinhAnhSanPham = danhSachHinhAnhSanPham;
+		this.danhSachChiTietSanPham = danhSachChiTietSanPham;
 		this.tenSanPham = tenSanPham;
 		this.mieuTa = mieuTa;
 		this.giaTien = giaTien;
 		this.chietKhau = chietKhau;
+		this.trangThai = trangThai;
 	}
 
-	
 
 	public Double getGiaTien() {
 		return giaTien;

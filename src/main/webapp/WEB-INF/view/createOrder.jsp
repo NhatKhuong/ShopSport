@@ -70,7 +70,8 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="quanHuyen">Quận/Huyện</label>
-                                                    <select class="form-control" name="quanHuyen" id="quanHuyen">
+                                                    <select class="form-control" name="quanHuyen" id="quanHuyen"
+                                                        disabled="disabled">
                                                         <option selected disabled>Chọn quận / huyện</option>
                                                         <option>Quận 1</option>
                                                         <option>Quận 2</option>
@@ -79,7 +80,8 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="phuongXa">Phường xã</label>
-                                                    <select class="form-control" name="phuongXa" id="phuongXa">
+                                                    <select class="form-control" name="phuongXa" id="phuongXa"
+                                                        disabled="disabled">
                                                         <option selected disabled>Chọn phường xã</option>
                                                         <option>Hồ chí minh</option>
                                                         <option>Hà nội</option>
@@ -154,9 +156,6 @@
                                                     </div>
                                                 </div>
                                             </c:forEach>
-
-
-
                                         </div>
                                     </div>
                                 </div>

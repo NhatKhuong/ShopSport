@@ -71,7 +71,8 @@ public class DiaChi {
 	@JsonIgnore
 	public List<NguoiDung> getDanhSachNguoiDung() {
 		return danhSachNguoiDung;
-	}@JsonIgnore
+	}
+	@JsonIgnore
 	public List<DonHang> getDanhSachDonHang() {
 		return danhSachDonHang;
 	}

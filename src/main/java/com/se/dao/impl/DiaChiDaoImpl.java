@@ -53,8 +53,9 @@ public class DiaChiDaoImpl implements DiaChiDao {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			String sql = "select distinct tinhThanhPho from DiaChi";
-			 Query query = session.createQuery(sql);
+			String sql = "select distinct quanHuyen from  Diachi where tinhThanhPho = :tinhThanhPho";
+			 Query query = session.createNativeQuery(sql);
+			 query.setParameter("tinhThanhPho",thanhPho);
 			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,7 +66,17 @@ public class DiaChiDaoImpl implements DiaChiDao {
 	@Override
 	public List<String> getDanhSachPhuongXaTheoQuanHuyenVaTinh(String quanHuyen, String tinhThanhPho) {
 		// TODO Auto-generated method stub
-		return null;
+				Session session = sessionFactory.getCurrentSession();
+				try {
+					String sql = "select phuongXa from  Diachi where tinhThanhPho = :tinhThanhPho and quanHuyen = :quanHuyen";
+					 Query query = session.createNativeQuery(sql);
+					 query.setParameter("tinhThanhPho",tinhThanhPho);
+					 query.setParameter("quanHuyen",quanHuyen);
+					return query.getResultList();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return null;
 	}
 	
 }
