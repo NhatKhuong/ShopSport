@@ -1,0 +1,59 @@
+<div class="modal fade model_card" id="CardModal" tabindex="-1" role="dialog"
+aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <input type="checkbox" class="check_all">
+            <h5 class="modal-title" id="exampleModalLabel">Giỏ hàng</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body modal_body_card">
+                    <c:forEach var="item" items="${dsSanPhamTrongGioHang}">
+                        
+                        <div class="card_product">
+                        <div class="check_item">
+                            <input type="checkbox">
+                        </div>
+                        <div class="card_item_img">
+                            <img src='${pageContext.request.contextPath}/resources/images/${item.chiTietSanPham.sanPham.danhSachHinhAnhSanPham[0].hinhAnh}'>
+                        </div>
+                        <div class="card_item_info">
+                            <div class="card_item_info_name break_text">${item.chiTietSanPham.sanPham.tenSanPham}</div>
+                            <!-- <div class="card_item_info_quatity">1</div> -->
+                            <div class="quantity">
+
+                                <button class="btn ml-2 " onclick='quantityPrivate(this)'> <i class="fa fa-minus" aria-hidden="true"></i></button>
+                                <span class="item_quantity quantity-number" >${item.soLuong }</span>
+                                <button class="btn mr-2 " onclick='quantityPluss(this,${item.chiTietSanPham.soLuongTon})'> <i class="fa fa-plus" aria-hidden="true"></i></button>
+                                
+                            </div>
+                            <div class="card_item_info_price_item">
+                                <div class="card_item_info_price price">${item.chiTietSanPham.sanPham.giaTien-item.chiTietSanPham.sanPham.giaTien*item.chiTietSanPham.sanPham.chietKhau/100}</div>
+                                <div class="card_item_info_total-price">$39.00</div>
+                            </div>
+                        </div>
+                        <button type="button" class="close delete_item" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    
+                    </c:forEach>        
+                    
+
+        </div>
+                <div class="modal-footer">
+                    <div class="Subtotal">
+                        <div class="Subtotal_title">Tổng tiền</div>
+                        <div class="Subtotal_price">$71.00</div>
+                    </div>
+                    <div class="block_checkout">
+
+                        <button type="button" class="btn_checkout" data-dismiss="modal">Thanh Toán</button>
+                    </div>
+            </div>
+    </div>
+</div>        
+</div>
