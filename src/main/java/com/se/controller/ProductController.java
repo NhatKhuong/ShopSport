@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,8 +63,8 @@ public class ProductController {
 		listPreadcrumb.add(new String[] { "Home", "" });
 		listPreadcrumb.add(new String[] { "Sản phẩm", "/san-pham" });
 		listPreadcrumb.add(new String[] { "Chi tiết sản phẩm", "" });
+		System.err.println(model.getAttribute("chiTietSanPham"));
 
-		
 		model.addAttribute("listPreadcrumb", listPreadcrumb);
 
 		return "productDetail";
@@ -104,7 +105,7 @@ public class ProductController {
 		return chiTietSanPham.getSoLuongTon() + "";
 	}
 	
-	
+
 	@RequestMapping(value = "/san-pham/so-luong-ton/tang", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
 	public @ResponseBody String quantityPluss(HttpServletRequest request) {
 		int quantityTotal = Integer.parseInt(request.getParameter("quantityTotal"));

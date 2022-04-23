@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 /*
  * createdAt: 04/10/2022
  * */
@@ -24,10 +27,10 @@ public class DiaChi {
 	@Column(columnDefinition = "nvarchar(255)")
 	@NotNull
 	private String phuongXa;
-//	@OneToMany(mappedBy = "diaChi")
-//	private List<NguoiDung> danhSachNguoiDung;
-//	@OneToMany(mappedBy = "diaChi")
-//	private List<DonHang> danhSachDonHang ;
+	@OneToMany(mappedBy = "diaChi")
+	private List<NguoiDung> danhSachNguoiDung;
+	@OneToMany(mappedBy = "diaChi")
+	private List<DonHang> danhSachDonHang ;
 	
 	public DiaChi(String maDiaChi, String tinhThanhPho, String quanHuyen, String phuongXa) {
 		super();
@@ -65,7 +68,21 @@ public class DiaChi {
 		this.phuongXa = phuongXa;
 	}
 	
-	
+	@JsonIgnore
+	public List<NguoiDung> getDanhSachNguoiDung() {
+		return danhSachNguoiDung;
+	}@JsonIgnore
+	public List<DonHang> getDanhSachDonHang() {
+		return danhSachDonHang;
+	}
+	@JsonProperty
+	public void setDanhSachNguoiDung(List<NguoiDung> danhSachNguoiDung) {
+		this.danhSachNguoiDung = danhSachNguoiDung;
+	}
+	@JsonProperty
+	public void setDanhSachDonHang(List<DonHang> danhSachDonHang) {
+		this.danhSachDonHang = danhSachDonHang;
+	}
 	@Override
 	public String toString() {
 		return "DiaChi [maDiaChi=" + maDiaChi + ", tinhThanhPho=" + tinhThanhPho + ", quanHuyen=" + quanHuyen

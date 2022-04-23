@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.se.dao.KichThuocDao;
 import com.se.service.KichThuocService;
 /*
@@ -53,6 +55,7 @@ public class SanPham {
 
 	private Double giaTien ;
 	private float chietKhau;
+	private boolean trangThai;
 	
 	public SanPham() {
 	
@@ -98,7 +101,7 @@ public class SanPham {
 		this.danhSachHinhAnhSanPham = danhSachHinhAnhSanPham;
 	}
 
-
+	@JsonIgnore
 	public List<ChiTietSanPham> getDanhSachChiTietSanPham() {
 		return danhSachChiTietSanPham;
 	}
@@ -108,12 +111,12 @@ public class SanPham {
 		this.danhSachChiTietSanPham = danhSachChiTietSanPham;
 	}
 
-
+	@JsonIgnore
 	public List<DanhGia> getDanhSachDanhGia() {
 		return danhSachDanhGia;
 	}
 
-
+	@JsonProperty
 	public void setDanhSachDanhGia(List<DanhGia> danhSachDanhGia) {
 		this.danhSachDanhGia = danhSachDanhGia;
 	}
@@ -162,6 +165,14 @@ public class SanPham {
 	}
 	
 	
+
+	public boolean isTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(boolean trangThai) {
+		this.trangThai = trangThai;
+	}
 
 	@Override
 	public String toString() {

@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 /*
  * createdAt: 04/10/2022
  * */
@@ -54,9 +57,7 @@ public class ChiTietSanPham implements Serializable {
 	public String getMaChiTietSanPham() {
 		return maChiTietSanPham;
 	}
-//	public void setMaChiTietSanPham(String maChiTietSanPham) {
-//		this.maChiTietSanPham = maChiTietSanPham;
-//	}
+	 @JsonIgnore
 	public SanPham getSanPham() {
 		return sanPham;
 	}
@@ -65,6 +66,7 @@ public class ChiTietSanPham implements Serializable {
 			this.maChiTietSanPham =sanPham.getMaSanPham()+kichThuoc.getMaKichThuoc();
 		this.sanPham = sanPham;
 	}
+
 	public KichThuoc getKichThuoc() {
 		
 		return kichThuoc;
@@ -74,15 +76,19 @@ public class ChiTietSanPham implements Serializable {
 			this.maChiTietSanPham =sanPham.getMaSanPham()+kichThuoc.getMaKichThuoc();
 		this.kichThuoc = kichThuoc;
 	}
+	 @JsonIgnore
 	public List<ChiTietDonHang> getDanhSachChiTietDonHang() {
 		return danhSachChiTietDonHang;
 	}
+	 @JsonProperty
 	public void setDanhSachChiTietDonHang(List<ChiTietDonHang> danhSachChiTietDonHang) {
 		this.danhSachChiTietDonHang = danhSachChiTietDonHang;
 	}
+	 @JsonIgnore
 	public List<SanPhamTrongGioHang> getDanhSachSanPhamTrongGioHang() {
 		return danhSachSanPhamTrongGioHang;
 	}
+	 @JsonProperty
 	public void setDanhSachSanPhamTrongGioHang(List<SanPhamTrongGioHang> danhSachSanPhamTrongGioHang) {
 		this.danhSachSanPhamTrongGioHang = danhSachSanPhamTrongGioHang;
 	}

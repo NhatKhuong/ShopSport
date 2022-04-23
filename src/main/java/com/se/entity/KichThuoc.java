@@ -25,8 +25,7 @@ public class KichThuoc {
 	@NotNull
 	private String tenKichThuoc;
 	
-	@OneToMany(mappedBy = "kichThuoc")
-	private List<ChiTietSanPham> danhSachChiTietSanPham;
+
 	public KichThuoc(String maKichThuoc, LoaiKichThuoc loaiKichThuoc, String tenKichThuoc) {
 		super();
 		this.maKichThuoc = maKichThuoc;
@@ -57,6 +56,8 @@ public class KichThuoc {
 	public void setTenKichThuoc(String tenKichThuoc) {
 		this.tenKichThuoc = tenKichThuoc;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "KichThuoc [maKichThuoc=" + maKichThuoc + ", loaiKichThuoc=" + loaiKichThuoc + ", tenKichThuoc="

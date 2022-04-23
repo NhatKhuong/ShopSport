@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 /*
  * createdAt: 04/10/2022
  * */
@@ -58,79 +61,101 @@ public class NguoiDung {
 		this.soDienThoai = soDienThoai;
 	}
 
+	
+	public String getMaNguoiDung() {
+		return maNguoiDung;
+	}
+
+	public DiaChi getDiaChi() {
+		return diaChi;
+	}
+	 @JsonIgnore
+	public List<DonHang> getDanhSachDonHang() {
+		return danhSachDonHang;
+	}
+	 @JsonIgnore
+	public List<SanPhamTrongGioHang> getDanhSachSanPhamTrongGioHang() {
+		return danhSachSanPhamTrongGioHang;
+	}
+	 @JsonIgnore
+	public List<DanhGia> getDanhSachDanhGia() {
+		return danhSachDanhGia;
+	}
+
+	public String getHoTen() {
+		return hoTen;
+	}
+
+	public String getDiaChiChiTiet() {
+		return diaChiChiTiet;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getMatKhau() {
+		return matKhau;
+	}
+
+	public boolean isGioiTinh() {
+		return gioiTinh;
+	}
+
+	public boolean isTrangThai() {
+		return trangThai;
+	}
+
 	public String getSoDienThoai() {
 		return soDienThoai;
 	}
 
-	public void setSoDienThoai(String soDienThoai) {
-		this.soDienThoai = soDienThoai;
-	}
-
-	public String getMaNguoiDung() {
-		return maNguoiDung;
-	}
 	public void setMaNguoiDung(String maNguoiDung) {
 		this.maNguoiDung = maNguoiDung;
 	}
-	public DiaChi getDiaChi() {
-		return diaChi;
-	}
+
 	public void setDiaChi(DiaChi diaChi) {
 		this.diaChi = diaChi;
 	}
-	public List<DonHang> getDanhSachDonHang() {
-		return danhSachDonHang;
-	}
+	 @JsonProperty
 	public void setDanhSachDonHang(List<DonHang> danhSachDonHang) {
 		this.danhSachDonHang = danhSachDonHang;
 	}
-	public List<SanPhamTrongGioHang> getDanhSachSanPhamTrongGioHang() {
-		return danhSachSanPhamTrongGioHang;
-	}
+	 @JsonProperty
 	public void setDanhSachSanPhamTrongGioHang(List<SanPhamTrongGioHang> danhSachSanPhamTrongGioHang) {
 		this.danhSachSanPhamTrongGioHang = danhSachSanPhamTrongGioHang;
 	}
-	public List<DanhGia> getDanhSachDanhGia() {
-		return danhSachDanhGia;
-	}
+	 @JsonProperty
 	public void setDanhSachDanhGia(List<DanhGia> danhSachDanhGia) {
 		this.danhSachDanhGia = danhSachDanhGia;
 	}
-	public String getHoTen() {
-		return hoTen;
-	}
+
 	public void setHoTen(String hoTen) {
 		this.hoTen = hoTen;
 	}
-	public String getDiaChiChiTiet() {
-		return diaChiChiTiet;
-	}
+
 	public void setDiaChiChiTiet(String diaChiChiTiet) {
 		this.diaChiChiTiet = diaChiChiTiet;
 	}
-	public String getEmail() {
-		return email;
-	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getMatKhau() {
-		return matKhau;
-	}
+
 	public void setMatKhau(String matKhau) {
 		this.matKhau = matKhau;
 	}
-	public boolean isGioiTinh() {
-		return gioiTinh;
-	}
+
 	public void setGioiTinh(boolean gioiTinh) {
 		this.gioiTinh = gioiTinh;
 	}
-	public boolean isTrangThai() {
-		return trangThai;
-	}
+
 	public void setTrangThai(boolean trangThai) {
 		this.trangThai = trangThai;
+	}
+
+	public void setSoDienThoai(String soDienThoai) {
+		this.soDienThoai = soDienThoai;
 	}
 
 	@Override

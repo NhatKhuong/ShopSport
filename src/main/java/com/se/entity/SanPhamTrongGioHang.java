@@ -5,6 +5,9 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 /*
  * createdAt: 04/10/2022
  * */
@@ -15,6 +18,7 @@ public class SanPhamTrongGioHang {
 	@ManyToOne
 	@JoinColumn(name="maChiTietSanPham")
 	private ChiTietSanPham chiTietSanPham;
+	
 	@Id 
 	@ManyToOne
 	@JoinColumn(name="maNguoiDung")
@@ -22,34 +26,40 @@ public class SanPhamTrongGioHang {
 	
 	private int soLuong;
 	
+	public SanPhamTrongGioHang() {
+		super();
+	}
 	public SanPhamTrongGioHang(ChiTietSanPham chiTietSanPham, NguoiDung nguoiDung, int soLuong) {
 		super();
 		this.chiTietSanPham = chiTietSanPham;
 		this.nguoiDung = nguoiDung;
 		this.soLuong = soLuong;
 	}
-	public SanPhamTrongGioHang() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 	public ChiTietSanPham getChiTietSanPham() {
 		return chiTietSanPham;
 	}
-	public void setChiTietSanPham(ChiTietSanPham chiTietSanPham) {
-		this.chiTietSanPham = chiTietSanPham;
-	}
+
 	public NguoiDung getNguoiDung() {
 		return nguoiDung;
 	}
-	public void setNguoiDung(NguoiDung nguoiDung) {
-		this.nguoiDung = nguoiDung;
-	}
+
 	public int getSoLuong() {
 		return soLuong;
 	}
+	 @JsonProperty
+	public void setChiTietSanPham(ChiTietSanPham chiTietSanPham) {
+		this.chiTietSanPham = chiTietSanPham;
+	}
+	 @JsonProperty
+	public void setNguoiDung(NguoiDung nguoiDung) {
+		this.nguoiDung = nguoiDung;
+	}
+
 	public void setSoLuong(int soLuong) {
 		this.soLuong = soLuong;
 	}
+
 	@Override
 	public String toString() {
 		return "SanPhamTrongGioHang [chiTietSanPham=" + chiTietSanPham + ", nguoiDung=" + nguoiDung + ", soLuong="

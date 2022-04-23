@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 /*
  * createdAt: 04/10/2022
  * */
@@ -47,6 +50,15 @@ public class TrangThaiDonHang {
 	}
 	public void setTenTrangThaiDonHang(String tenTrangThaiDonHang) {
 		this.tenTrangThaiDonHang = tenTrangThaiDonHang;
+	}
+	
+	@JsonIgnore
+	public List<DonHang> getDanhSachDonHang() {
+		return danhSachDonHang;
+	}
+	@JsonProperty
+	public void setDanhSachDonHang(List<DonHang> danhSachDonHang) {
+		this.danhSachDonHang = danhSachDonHang;
 	}
 	@Override
 	public String toString() {

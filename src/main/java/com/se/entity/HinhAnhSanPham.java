@@ -5,6 +5,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 /*
  * createdAt: 04/10/2022
  * */
@@ -15,7 +18,7 @@ public class HinhAnhSanPham {
 	@ManyToOne
 	@NotNull
 	@JoinColumn(name="maSanPham")
-	private SanPham sanPham ;
+	private SanPham sanPham;
 	@Column(columnDefinition = "nvarchar(255)")
 	private String hinhAnh ;
 	
@@ -36,9 +39,11 @@ public class HinhAnhSanPham {
 	public void setMaHinhAnh(String maHinhAnh) {
 		this.maHinhAnh = maHinhAnh;
 	}
+	@JsonIgnore
 	public SanPham getSanPham() {
 		return sanPham;
 	}
+	@JsonProperty
 	public void setSanPham(SanPham sanPham) {
 		this.sanPham = sanPham;
 	}

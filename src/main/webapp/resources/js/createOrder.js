@@ -4,11 +4,11 @@ function deleteUser() {
 
   $.ajax({
     type: "GET",
-    url: contextPath + "/dia-chi/danh-sach-dia-chi",
+    url: contextPath + "/gio-hang/san-pham",
     dataType: "json",
     contentType: "application/json",
     success: function (data) {
-      console.log(data[0]);
+      console.log(data);
     },
     error: function (e) {
       console.log(e);
