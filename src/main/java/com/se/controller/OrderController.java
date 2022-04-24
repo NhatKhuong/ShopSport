@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.se.entity.ChiTietDonHang;
 //import com.se.entity.ChiTietDonHang;
@@ -74,8 +76,18 @@ public class OrderController {
 		list.add(new ChiTietDonHang(ct5, 2,ct5.getSanPham().getGiaTien() - ct5.getSanPham().getGiaTien() * ct5.getSanPham().getChietKhau()/100,ct5.getSanPham().getChietKhau()));
 		list.add(new ChiTietDonHang(ct6, 6,ct6.getSanPham().getGiaTien() - ct6.getSanPham().getGiaTien() * ct6.getSanPham().getChietKhau()/100,ct6.getSanPham().getChietKhau()));
 		model.addAttribute("donHang",donHang);
-		
 		System.err.println(donHang.getDanhSachChiTietDonHang());
 		return "createOrder";
+	}
+	
+	@PostMapping("/don-hang/tao-don-hang")
+	public String saveUsers(@ModelAttribute("donHang") DonHang donHang) throws Exception{
+		System.out.println("-----------------");
+	System.err.println(donHang);
+//	  List<ChiTietDonHang> dsChiTietDonHang = donHang.getDanhSachChiTietDonHang();
+//	  for(ChiTietDonHang  chiTietDonHang: dsChiTietDonHang) {
+//	    System.out.println(chiTietDonHang.getSoLuongMua()+" : "+ chiTietDonHang.getChiTietSanPham());
+//	  }
+	return "redirect:/don-hang/tao-don-hang";
 	}
 }

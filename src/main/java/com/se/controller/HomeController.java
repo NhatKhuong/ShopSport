@@ -94,7 +94,7 @@ public class HomeController {
 		
 		NguoiDung nguoiDung = nguoiDungService.getByEmail(User.getEmailNguoiDung());
 		List<SanPhamTrongGioHang> list = sanPhamTrongGioHangService.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
-		System.err.println(list.get(0));
+
 		return Arrays.asList(list.get(0));
 	}
 	@RequestMapping(value = "/gio-hang/san-pham2", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")

@@ -1,5 +1,6 @@
 package com.se.entity;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -39,9 +42,11 @@ public class SanPham {
 	private NhanHieu nhanHieu;
 	
 	@OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<HinhAnhSanPham> danhSachHinhAnhSanPham;
 	
-	@OneToMany(mappedBy = "sanPham")	
+	@OneToMany(mappedBy = "sanPham",fetch = FetchType.EAGER)	
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<ChiTietSanPham> danhSachChiTietSanPham;
 	
 	@OneToMany(mappedBy = "sanPham")	
@@ -185,5 +190,15 @@ public class SanPham {
 				+ ", nhanHieu=" + nhanHieu + ", tenSanPham=" + tenSanPham + ", giaTien="
 				+ giaTien + ", chietKhau=" + chietKhau + "]";
 	}
-	
+	public double tongSoLuong(){
+		int sum = 0;
+		if(danhSachChiTietSanPham != null) {
+			for (ChiTietSanPham chiTietSanPham : danhSachChiTietSanPham) {
+				sum += chiTietSanPham.getSoLuongTon();
+			}
+		}
+		return sum;
+		
+		
+	}
 }
