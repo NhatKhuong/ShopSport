@@ -59,10 +59,8 @@ public class HomeController {
 		
 		model.addAttribute("dsSanPhamTrongGioHang",dsSanPhamTrongGioHang);
 		model.addAttribute("listSanPham", list);
-		model.addAttribute("UserLogin", nguoiDung);
-		
+		model.addAttribute("UserLogin", nguoiDung);		
 		return "home";
-
 	}
 
 	@GetMapping("/shop")
