@@ -10,6 +10,8 @@ import com.se.service.NguoiDungService;
 public class User {
 	@Autowired
 	private static NguoiDungService nguoiDungService;
+	
+	
 	public static String getEmailNguoiDung() {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String email;
@@ -21,5 +23,16 @@ public class User {
 		}
 		return email;
 	}
+//	public static NguoiDung getNguoiDung() {
+//		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		String email;
+//		
+//		if (principal instanceof UserDetails) {
+//			email = ((UserDetails) principal).getUsername();
+//		} else {
+//			email = principal.toString();
+//		}
+//		return nguoiDungService.getByEmail(email);
+//	}
 
 }

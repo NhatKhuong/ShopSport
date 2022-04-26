@@ -17,15 +17,15 @@ import com.se.entity.DiaChi;
 public class DiaChiDaoImpl implements DiaChiDao {
 
 	@Autowired
-	private SessionFactory sessionFactory ;
-	
+	private SessionFactory sessionFactory;
+
 	@Override
 	public List<DiaChi> getDanhSachDiaChi() {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			String sql = "select * from diaChi  ";
-			List<DiaChi> danhSachDiaChi= session.createNativeQuery(sql, DiaChi.class).getResultList();
+			List<DiaChi> danhSachDiaChi = session.createNativeQuery(sql, DiaChi.class).getResultList();
 			return danhSachDiaChi;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -40,7 +40,8 @@ public class DiaChiDaoImpl implements DiaChiDao {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			String sql = "select distinct tinhThanhPho from DiaChi";
-			 Query query = session.createQuery(sql);
+			Query query = session.createQuery(sql);
+	
 			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,8 +55,8 @@ public class DiaChiDaoImpl implements DiaChiDao {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			String sql = "select distinct quanHuyen from  Diachi where tinhThanhPho = :tinhThanhPho";
-			 Query query = session.createNativeQuery(sql);
-			 query.setParameter("tinhThanhPho",thanhPho);
+			Query query = session.createNativeQuery(sql);
+			query.setParameter("tinhThanhPho", thanhPho);
 			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,17 +67,36 @@ public class DiaChiDaoImpl implements DiaChiDao {
 	@Override
 	public List<String> getDanhSachPhuongXaTheoQuanHuyenVaTinh(String quanHuyen, String tinhThanhPho) {
 		// TODO Auto-generated method stub
-				Session session = sessionFactory.getCurrentSession();
-				try {
-					String sql = "select phuongXa from  Diachi where tinhThanhPho = :tinhThanhPho and quanHuyen = :quanHuyen";
-					 Query query = session.createNativeQuery(sql);
-					 query.setParameter("tinhThanhPho",tinhThanhPho);
-					 query.setParameter("quanHuyen",quanHuyen);
-					return query.getResultList();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				return null;
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			String sql = "select phuongXa from  Diachi where tinhThanhPho = :tinhThanhPho and quanHuyen = :quanHuyen";
+			Query query = session.createNativeQuery(sql);
+			query.setParameter("tinhThanhPho", tinhThanhPho);
+			query.setParameter("quanHuyen", quanHuyen);
+			return query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
-	
+
+	@Override
+	public DiaChi getDiaChi(String phuongXa, String quanHuyen, String tinhThanhPho) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			String sql = "select * from  Diachi where tinhThanhPho = N'"+tinhThanhPho+"' and quanHuyen =  N'"+quanHuyen+"' and phuongXa =  N'"+phuongXa+"'";
+			return  session.createNativeQuery(sql, DiaChi.class).getSingleResult();
+//			query.setParameter("tinhThanhPho", tinhThanhPho);
+//			query.setParameter("quanHuyen", quanHuyen);
+//			query.setParameter("phuongXa", phuongXa);
+//			System.err.println(query.getQueryString());
+//			return (DiaChi) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

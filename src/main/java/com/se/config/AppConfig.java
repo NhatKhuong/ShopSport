@@ -38,6 +38,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Description;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -46,9 +47,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -68,10 +73,22 @@ public class AppConfig extends WebMvcConfigurerAdapter implements WebMvcConfigur
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setPrefix("/WEB-INF/view/");
 		viewResolver.setSuffix(".jsp");
+		viewResolver.setContentType("text/html; charset=UTF-8");
+//		viewResolver.setCharacterEncoding("UTF-8");
+//		templateResolver.setCharacterEncoding("UTF-8");v
+		
+		
 		return viewResolver;
 	}
-	
-	
+//	@Bean
+//	public FilterRegistrationBean filterRegistrationBean() {
+//	    FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+//	    CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+//	    characterEncodingFilter.setForceEncoding(true);
+//	    characterEncodingFilter.setEncoding("UTF-8");
+//	    registrationBean.setFilter(characterEncodingFilter);
+//	    return registrationBean;
+//	}
 	@Bean
 	public DataSource myDataSource() {
 		
@@ -95,6 +112,7 @@ public class AppConfig extends WebMvcConfigurerAdapter implements WebMvcConfigur
 		myDataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));
 		myDataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
 		
+		
 		return myDataSource;
 	}
 	private Properties getHibernateProperties() {
@@ -102,7 +120,12 @@ public class AppConfig extends WebMvcConfigurerAdapter implements WebMvcConfigur
 		
 		props.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
 		props.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-		props.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.ddl-auto")); 
+		props.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.ddl-auto"));
+		props.setProperty("spring.http.encoding.charset","UTF-8");
+		props.setProperty("spring.http.encoding.enabled","true");
+		props.setProperty("spring.http.encoding.force", "true");
+//		# Charset of HTTP requests and responses. Added to the "Content-Type" header if not set explicitly.
+//
 		return  props;
 	}
 	

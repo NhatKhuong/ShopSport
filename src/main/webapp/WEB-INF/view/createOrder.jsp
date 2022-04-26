@@ -6,7 +6,7 @@
                 <html>
 
                 <head>
-                    <meta charset="ISO-8859-1">
+                    <meta charset="utf-8">
                     <title> Mua hàng </title>
                     <link rel="stylesheet"
                         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -44,62 +44,67 @@
                                         </div>
                                         <div class="component pt-3 mb-4 pb-2">
                                             <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <label for="hoTen">Họ tên</label>
-                                                        <input type="text" name="hoTen" id="hoTen" class="form-control"
-                                                            placeholder="Nhập họ và tên" aria-describedby="helpId">
-                                                        <small id="helpHoTen" class="text-muted"></small>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="soDienThoai">Số điện thoại</label>
-                                                        <input type="text" name="soDienThoai" id="soDienThoai"
-                                                            class="form-control" placeholder="Nhập số điện thoại"
-                                                            aria-describedby="helpId">
-                                                        <small id="helpSoDienThoai" class="text-muted"></small>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-6">
+                                             <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="tinhThanhPho">Tỉnh/Thành phố</label>
-                                                        <select class="form-control" name="tinhThanhPho"
+                                                        <form:select path="diaChi.tinhThanhPho" class="form-control" name="tinhThanhPho"
                                                             id="tinhThanhPho">
                                                             <option selected disabled>Chọn tỉnh / thành phố</option>
                                                             <option>Hồ chí minh</option>
                                                             <option>Hà nội</option>
                                                             <option>Tây ninh</option>
-                                                        </select>
+                                                        </form:select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="quanHuyen">Quận/Huyện</label>
-                                                        <select class="form-control" name="quanHuyen" id="quanHuyen"
-                                                            disabled="disabled">
+                                                        <form:select path="diaChi.quanHuyen" class="form-control" name="quanHuyen"
+                                                            id="quanHuyen" disabled="disabled">
                                                             <option selected disabled>Chọn quận / huyện</option>
                                                             <option>Quận 1</option>
                                                             <option>Quận 2</option>
                                                             <option>Quận 3</option>
-                                                        </select>
+                                                        </form:select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="phuongXa">Phường xã</label>
-                                                        <select class="form-control" name="phuongXa" id="phuongXa"
-                                                            disabled="disabled">
+                                                        <form:select path="diaChi.phuongXa" class="form-control" name="phuongXa"
+                                                            id="phuongXa" disabled="disabled">
                                                             <option selected disabled>Chọn phường xã</option>
                                                             <option>Hồ chí minh</option>
                                                             <option>Hà nội</option>
                                                             <option>Tây ninh</option>
-                                                        </select>
+                                                        </form:select>
                                                     </div>
+                                                 
+
+                                                </div>
+                                                <div class="col-6">
+                                                   <%-- <div class="form-group">
+                                                        <label for="hoTen">Họ tên người nhận</label>
+                                                        <input type="text" name="hoTen" id="hoTen" disabled="disabled" class="form-control"
+                                                            placeholder="Nhập họ và tên" aria-describedby="helpId" value="${donHang.nguoiDung.hoTen}">
+                                                        <small id="helpHoTen" class="text-muted"></small>
+                                                
+                                                    </div> --%> 
                                                     <div class="form-group">
+                                                        <label for="soDienThoai" >Số điện thoại</label>
+                                                        <form:input path="soDienThoai" type="text" name="soDienThoai"   id="soDienThoai"
+                                                            class="form-control" placeholder="Nhập số điện thoại" 
+                                                            value="${donHang.nguoiDung.soDienThoai}"
+                                                            aria-describedby="helpId"></form:input>
+                                                            
+                                                        <small id="helpSoDienThoai" class="text-muted"></small>
+                                                    </div>
+                                                       <div class="form-group">
                                                         <label for="diaChi">Địa chỉ</label>
-                                                        <input type="text" name="diaChiChiTiet" id="diaChi"
+                                                        <form:input path="diaChiCuThe" type="text" name="diaChiChiTiet" id="diaChi"
                                                             class="form-control" placeholder="Nhập địa chỉ"
-                                                            aria-describedby="helpId">
+                                                            aria-describedby="helpId"></form:input>
                                                         <small id="helpDiaChi" class="text-muted"></small>
                                                     </div>
 
                                                 </div>
+                                               
                                             </div>
                                         </div>
                                         <div class="header-title mt-4">
@@ -237,17 +242,24 @@
                                         varStatus="tagStatus">
                                         <tr>
                                             <td>
-                                                <form:input path="danhSachChiTietDonHang[${tagStatus.index}].chiTietSanPham"
-                                                    value="${danhSachChiTietDonHang.chiTietSanPham}" readonly="true" />
-                                            </td>
-                                            <!-- <td>
-                                                <form:input path="danhSachChiTietDonHang[${tagStatus.index}].lastName"
-                                                    value="${danhSachChiTietDonHang.lastName}" readonly="true" />
+                                                <form:hidden
+                                                    path="danhSachChiTietDonHang[${tagStatus.index}].chiTietSanPham.maChiTietSanPham"
+                                                    value="${danhSachChiTietDonHang.chiTietSanPham.maChiTietSanPham}"
+                                                    readonly="true" />
                                             </td>
                                             <td>
-                                                <form:input path="danhSachChiTietDonHang[${tagStatus.index}].email"
-                                                    value="${danhSachChiTietDonHang.email}" readonly="true" />
-                                            </td> -->
+                                                <form:hidden
+                                                    path="danhSachChiTietDonHang[${tagStatus.index}].soLuongMua"
+                                                    value="${danhSachChiTietDonHang.soLuongMua}" readonly="true" />
+                                            </td>
+                                            <td>
+                                                <form:hidden path="danhSachChiTietDonHang[${tagStatus.index}].giaMua"
+                                                    value="${danhSachChiTietDonHang.giaMua}" readonly="true" />
+                                            </td>
+                                            <td>
+                                                <form:hidden path="danhSachChiTietDonHang[${tagStatus.index}].chietKhau"
+                                                    value="${danhSachChiTietDonHang.chietKhau}" readonly="true" />
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                     <!-- / Hidden form  -->

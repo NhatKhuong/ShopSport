@@ -18,13 +18,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.se.entity.ChiTietDonHang;
 //import com.se.entity.ChiTietDonHang;
 import com.se.entity.ChiTietSanPham;
+import com.se.entity.DiaChi;
 import com.se.entity.DonHang;
 import com.se.entity.NguoiDung;
 import com.se.entity.SanPham;
 import com.se.entity.TrangThaiDonHang;
-import com.se.service.ChiTietSanPhamService;
+import com.se.service.ChiTietSanPhamService;import com.se.service.DiaChiService;
+import com.se.service.DonHangService;
 import com.se.service.NguoiDungService;
 import com.se.service.SanPhamService;
+import com.se.util.User;
 
 @Controller
 @PropertySource({"classpath:value-mssql.properties"})
@@ -32,6 +35,13 @@ public class OrderController {
 		
 	@Autowired
 	private SanPhamService sanPhamService;
+	
+	@Autowired
+	private DiaChiService diaChiService;
+	
+	@Autowired
+	private DonHangService donHangService;
+	
 	@Autowired
 	private Environment env;	
 	
@@ -68,7 +78,7 @@ public class OrderController {
 		ChiTietSanPham ct5 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00062", "KT00000");
 		ChiTietSanPham ct6 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00055", "KT00000");
 		List<ChiTietDonHang> list =  new ArrayList<ChiTietDonHang>();
-		DonHang donHang = new DonHang(nguoiDung,list, new TrangThaiDonHang( env.getProperty("hibernate.dialect")) , new Date(), 0);
+		DonHang donHang = new DonHang(nguoiDung,list, new TrangThaiDonHang( env.getProperty("trangThaiDonHang.maChoXacNhan")) , new Date(), 0);
 //		list.add(new ChiTietDonHang(ct1, 10,ct1.getSanPham().getGiaTien() - ct1.getSanPham().getGiaTien() * ct1.getSanPham().getChietKhau()/100,ct1.getSanPham().getChietKhau()));
 		list.add(new ChiTietDonHang(ct2, 3,ct2.getSanPham().getGiaTien() - ct2.getSanPham().getGiaTien() * ct2.getSanPham().getChietKhau()/100,ct2.getSanPham().getChietKhau()));
 		list.add(new ChiTietDonHang(ct3, 7,ct3.getSanPham().getGiaTien() - ct3.getSanPham().getGiaTien() * ct3.getSanPham().getChietKhau()/100,ct3.getSanPham().getChietKhau()));
@@ -76,18 +86,26 @@ public class OrderController {
 		list.add(new ChiTietDonHang(ct5, 2,ct5.getSanPham().getGiaTien() - ct5.getSanPham().getGiaTien() * ct5.getSanPham().getChietKhau()/100,ct5.getSanPham().getChietKhau()));
 		list.add(new ChiTietDonHang(ct6, 6,ct6.getSanPham().getGiaTien() - ct6.getSanPham().getGiaTien() * ct6.getSanPham().getChietKhau()/100,ct6.getSanPham().getChietKhau()));
 		model.addAttribute("donHang",donHang);
-		System.err.println(donHang.getDanhSachChiTietDonHang());
+
 		return "createOrder";
 	}
 	
 	@PostMapping("/don-hang/tao-don-hang")
 	public String saveUsers(@ModelAttribute("donHang") DonHang donHang) throws Exception{
-		System.out.println("-----------------");
-	System.err.println(donHang);
 //	  List<ChiTietDonHang> dsChiTietDonHang = donHang.getDanhSachChiTietDonHang();
 //	  for(ChiTietDonHang  chiTietDonHang: dsChiTietDonHang) {
 //	    System.out.println(chiTietDonHang.getSoLuongMua()+" : "+ chiTietDonHang.getChiTietSanPham());
 //	  }
+	donHang.setNguoiDung(nguoiDungService.getByEmail(User.getEmailNguoiDung()));
+	DiaChi diaChi = donHang.getDiaChi();
+	
+	donHang.setDiaChi(diaChiService.getDiaChi(diaChi.getPhuongXa(),diaChi.getQuanHuyen(), diaChi.getTinhThanhPho()));
+
+	System.err.println("------");
+	System.out.println(donHang.getDiaChiCuThe());
+	donHang.setTrangThaiDonHang(new TrangThaiDonHang(env.getProperty("trangThaiDonHang.maChoXacNhan")));
+	donHang.setNgayTao(new Date());
+	boolean result = donHangService.themHoaDon(donHang);
 	return "redirect:/don-hang/tao-don-hang";
 	}
 }

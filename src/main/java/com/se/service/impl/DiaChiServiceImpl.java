@@ -44,4 +44,11 @@ public class DiaChiServiceImpl implements DiaChiService{
 		return diaChiDao.getDanhSachPhuongXaTheoQuanHuyenVaTinh(quanHuyen, tinhThanhPho);
 	}
 
+	@Override
+	@Transactional
+	public DiaChi getDiaChi(String PhuongXa, String quanHuyen, String tinhThanhPho) {
+		// TODO Auto-generated method stub
+		return diaChiDao.getDiaChi(PhuongXa, quanHuyen, tinhThanhPho);
+	}
+
 }

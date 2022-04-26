@@ -1,5 +1,6 @@
 package com.se.config;
 
+import javax.servlet.Filter;
 import javax.sql.DataSource;
 
 import org.apache.taglibs.standard.lang.jstl.AndOperator;
@@ -11,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.User.UserBuilder;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -33,6 +36,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		
+		 CharacterEncodingFilter filter = new CharacterEncodingFilter();
+		    filter.setEncoding("UTF-8");
+		    filter.setForceEncoding(true);
+		    http.addFilterBefore(filter,CsrfFilter.class);
 		// TODO Auto-generated method stub
 		http.authorizeRequests()
 		.antMatchers("/resources/css/**").permitAll()

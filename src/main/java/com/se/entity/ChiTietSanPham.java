@@ -70,6 +70,11 @@ public class ChiTietSanPham implements Serializable {
 		
 		return kichThuoc;
 	}
+	public void setMaChiTietSanPham(String maChiTietSanPham) {
+		this.maChiTietSanPham = maChiTietSanPham;
+	}
+
+
 	public void setKichThuoc(KichThuoc kichThuoc) {
 		if(sanPham != null && sanPham.getMaSanPham() != null && kichThuoc != null && kichThuoc.getMaKichThuoc() != null)
 			this.maChiTietSanPham =sanPham.getMaSanPham()+kichThuoc.getMaKichThuoc();

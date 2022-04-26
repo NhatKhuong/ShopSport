@@ -9,5 +9,6 @@ public interface DiaChiDao {
 	public List<String> getDanhSachTinhThanhPho();
 	public List<String> getDanhSachQuanHuyenTheoTinh(String thanhPho);
 	public List<String> getDanhSachPhuongXaTheoQuanHuyenVaTinh(String quanHuyen , String tinhThanhPho);
+	public DiaChi getDiaChi(String PhuongXa ,String quanHuyen , String tinhThanhPho);
 }
                                                                            
