@@ -52,3 +52,23 @@ async function addDataInSelect(data, optionDefault, selectElement) {
   });
   selectElement.innerHTML = optionDefault + result;
 }
+
+// validation form
+$("#form-save-order").on("submit", (e) => {
+  var status = true;
+  if (quanHuyen.selectedIndex == 0) {
+    status = false;
+    document.getElementById("helpQuanHuyen").classList.remove("d-none");
+  }
+  if (tinhThanhPho.selectedIndex == 0) {
+    status = false;
+    document.getElementById("helpTinhThanhPho").classList.remove("d-none");
+  }
+  if (quanHuyen.selectedIndex == 0) {
+    status = false;
+    document.getElementById("helpPhuongXa").classList.remove("d-none");
+  }
+  alert(status);
+
+  if (!status) e.preventDefault();
+});

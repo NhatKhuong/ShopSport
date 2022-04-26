@@ -1,4 +1,3 @@
-
 /* Image product*/
 .product-detail .images-detail {
   display: flex;
@@ -357,3 +356,42 @@
   border-bottom: 4px solid #ba933e !important;
   padding: 0.5rem 2rem;
 }
+
+/* Notification success add to cart */
+/* css Modal trang thai them vao gio hang */
+
+.content_stutus_add {
+  text-align: center;
+}
+
+/* .add_to_card_modal_container {
+  display: flex !important;
+} */
+
+.dialog_content_card_status {
+  width: 180px !important;
+}
+
+.content_stutus {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.content_stutus_add img {
+  width: 60px;
+  height: 60px;
+}
+
+.modal-content_card_status {
+  margin-top: 35vh !important;
+  width: 210px;
+  background-color: #444444;
+  opacity: 0.9;
+}
+
+.modal-dialog_card_status {
+  padding-left: 10% !important;
+}
+/* /. Notification success add to cart */

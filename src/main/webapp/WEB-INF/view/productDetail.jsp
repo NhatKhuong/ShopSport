@@ -153,12 +153,12 @@
                                                     <b> số lượng: </b>
                                                 </div>
                                                 <div class="quantity ">
-                                                    <button class="btn ml-2" id="btnQuantityPrvate"
+                                                    <button class="btn ml-2" type="button" id="btnQuantityPrvate"
                                                         onclick='quantityPrivate(this)'> <i class="fa fa-minus"
                                                             aria-hidden="true"></i></button>
 
                                                     <span class="btn quantity-number" id="quantity">1</span>
-                                                    <button class="btn mr-2" id="btnQuantityPluss"
+                                                    <button class="btn mr-2" type="button" id="btnQuantityPluss"
                                                         onclick="quantityPluss(this)"> <i class="fa fa-plus"
                                                             aria-hidden="true"></i></button>
 
@@ -173,8 +173,8 @@
                                                         ngay</button>
                                                 </div>
                                                 <div class="btn-option" id="add-to-cart">
-                                                    <button onclick="addToCard()" class="btn"><i class="fa fa-money"
-                                                            aria-hidden="true"></i> Thêm
+                                                    <button onclick="addToCard()" type="button" class="btn"><i
+                                                            class="fa fa-money" aria-hidden="true"></i> Thêm
                                                         vào
                                                         giỏ</button>
                                                 </div>
@@ -404,16 +404,29 @@
                         </div>
                     </div>
                     <!-- Modal success -->
-                    <div id="myModal" class="modal fade">
-                        <div class="modal-dialog">
-                            <div class="modal-content content_stutus_add">
-                                <img src="<c:url value='/resources/imgview/status_addtocard.jpg'/>">
-                                <div class="content_stutus">
-                                    Thêm thành công
+                    <div class="modal fade add_to_card_modal_container" id="myModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog_card_status" role="document">
+                            <div class="modal-content modal-content_card_status">
+
+                                <div class="modal-body">
+                                    <div class="status_block">
+                                        <div class="dialog_content dialog_content_card_status ">
+                                            <div class="content_stutus_add">
+                                                <img
+                                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/MW-Icon-CheckMark.svg/1200px-MW-Icon-CheckMark.svg.png">
+                                                <div class="content_stutus">
+                                                    Thêm thành công
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
+
 
                     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

@@ -23,7 +23,7 @@ function updateTotalPrice(e) {
   var card_item_info_price = card_item_info.getElementsByClassName(
     "card_item_info_price"
   )[0];
-  // =========== t sua cho nay ==============
+  // =========== t sua cho nay ==============p
   if (!card_item_info_price) {
     return;
   }
@@ -45,6 +45,11 @@ function updateTotalPrice(e) {
 
 function updateQutityInDB(e) {
   var soLuong = e.innerText;
+  // console.log(
+  //   e.parentElement.parentElement.parentElement.getElementsByClassName(
+  //     "maSanPhamTrongGioHang"
+  //   )
+  // );
   var maSanPham =
     e.parentElement.parentElement.parentElement.getElementsByClassName(
       "maSanPhamTrongGioHang"
@@ -197,6 +202,7 @@ function deleteCardItem(e) {
     },
     error: function (e) {
       console.log("ERROR: ", e);
+      loadDuLieuGioHang();
     },
   });
 }
@@ -212,6 +218,9 @@ function loadDataCard(data) {
         
             <div class="maSanPham" hidden>${
               e.chiTietSanPham.sanPham.maSanPham
+            }</div> 
+            <div class="maSanPhamTrongGioHang" hidden>${
+              e.maSanPhamTrongGioHang
             }</div>
         <div class="check_item">
             <input type="checkbox" class="check_item_input" onchange="checkItem(this)">

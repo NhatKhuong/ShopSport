@@ -140,7 +140,6 @@ function addToCard() {
       // });
     },
     error: function (e) {
-      alert("loi");
       // $("#myModal").on("show.bs.modal", function () {
       //     var myModal = $(this);
       //     clearTimeout(myModal.data("hideInterval"));

@@ -36,7 +36,7 @@
                                 </div>
                                 <!-- /breadcrumb -->
 
-                                <form:form class='row' modelAttribute="donHang"
+                                <form:form class='row' modelAttribute="donHang" id='form-save-order'
                                     action='${pageContext.request.contextPath}/don-hang/tao-don-hang' method="POST">
                                     <div class="box  col-8">
                                         <div class="header-title">
@@ -48,32 +48,29 @@
                                                     <div class="form-group">
                                                         <label for="tinhThanhPho">Tỉnh/Thành phố</label>
                                                         <form:select path="diaChi.tinhThanhPho" class="form-control"
-                                                            name="tinhThanhPho" id="tinhThanhPho">
+                                                       id="tinhThanhPho">
                                                             <option selected disabled>Chọn tỉnh / thành phố</option>
-                                                            <option>Hồ chí minh</option>
-                                                            <option>Hà nội</option>
-                                                            <option>Tây ninh</option>
                                                         </form:select>
+                                                        <small class="text-danger d-none" id='helpTinhThanhPho'>Bạn chưa chọn thành
+                                                            phố</small>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="quanHuyen">Quận/Huyện</label>
                                                         <form:select path="diaChi.quanHuyen" class="form-control"
-                                                            name="quanHuyen" id="quanHuyen" disabled="disabled">
+                                                              id="quanHuyen" disabled="disabled">
                                                             <option selected disabled>Chọn quận / huyện</option>
-                                                            <option>Quận 1</option>
-                                                            <option>Quận 2</option>
-                                                            <option>Quận 3</option>
                                                         </form:select>
+                                                        <small class="text-danger d-none " id='helpQuanHuyen'>Bạn chưa chọn quận
+                                                            huyện</small>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="phuongXa">Phường xã</label>
                                                         <form:select path="diaChi.phuongXa" class="form-control"
-                                                            name="phuongXa" id="phuongXa" disabled="disabled">
+                                                             id="phuongXa" disabled="disabled">
                                                             <option selected disabled>Chọn phường xã</option>
-                                                            <option>Hồ chí minh</option>
-                                                            <option>Hà nội</option>
-                                                            <option>Tây ninh</option>
                                                         </form:select>
+                                                        <small class="text-danger d-none"  id='helpPhuongXa'>Bạn chưa chọn phường
+                                                            xã</small>
                                                     </div>
 
 
@@ -95,13 +92,13 @@
                                                         placeholder="Nhập số điện thoại"
                                                         value="${donHang.nguoiDung.soDienThoai}"
                                                         aria-describedby="helpId"></form:input>
-
                                                     <small id="helpSoDienThoai" class="text-muted"></small>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="diaChi">Địa chỉ</label>
                                                     <form:input path="diaChiCuThe" type="text" name="diaChiChiTiet"
                                                         id="diaChi" class="form-control" placeholder="Nhập địa chỉ"
+                                                        value="${donHang.nguoiDung.soDienThoai}"
                                                         aria-describedby="helpId"></form:input>
                                                     <small id="helpDiaChi" class="text-muted"></small>
                                                 </div>
