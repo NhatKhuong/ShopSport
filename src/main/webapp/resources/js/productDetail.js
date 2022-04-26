@@ -106,6 +106,56 @@ $(document).ready(function () {
     });
 });
 
+function addToCard() {
+    var tenKichThuoc = document.querySelector(".sizes .active").innerText;
+    var soLuong = document.getElementById("quantity").innerText;
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: `${contextPath}/gio-hang/them`,
+        dataType: "json",
+        data: {
+            productId,
+            tenKichThuoc,
+            soLuong,
+        },
+        timeout: 100000,
+
+        success: function (data) {
+            // $(function () {
+            $("#myModal").on("show.bs.modal", function () {
+                var myModal = $(this);
+                clearTimeout(myModal.data("hideInterval"));
+                myModal.data(
+                    "hideInterval",
+                    setTimeout(function () {
+                        myModal.modal("hide");
+                    }, 3000)
+                );
+            });
+            // });
+        },
+        error: function (e) {
+            alert("loi");
+            // $("#myModal").on("show.bs.modal", function () {
+            //     var myModal = $(this);
+            //     clearTimeout(myModal.data("hideInterval"));
+            //     myModal.data(
+            //         "hideInterval",
+            //         setTimeout(function () {
+            //             myModal.modal("hide");
+            //         }, 3000)
+            //     );
+            // });
+
+            $("#myModal").modal();
+            // setTimeout(function () {
+            //     $("#myModal").modal("hide");
+            // }, 1000);
+        },
+    });
+}
+
 (() => {})();
 
 function getQuantityProductBySizeName(tenKichThuoc) {
@@ -125,14 +175,6 @@ function getQuantityProductBySizeName(tenKichThuoc) {
         timeout: 100000,
         success: function (data) {
             console.log("SUCCESS: ", data);
-            // var result =
-            //   "<h3> You just add new Person </h3>" +
-            //   "<strong>Name:</strong> " +
-            //   data.name +
-            //   "<br>" +
-            //   "<strong>Age:</strong> " +
-            //   data.age;
-            // $("#ajax-response").html(result);
 
             document.getElementById("soLuongTon").innerText = data;
         },

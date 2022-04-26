@@ -11,6 +11,7 @@ public class SanPhamTrongGioHangPK  implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String nguoiDung;
 	private String chiTietSanPham;
+	
 	public SanPhamTrongGioHangPK() {
 		super();
 	}

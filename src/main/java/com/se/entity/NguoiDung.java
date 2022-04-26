@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 /*
  * createdAt: 04/10/2022
  * */
@@ -20,17 +21,14 @@ public class NguoiDung {
 	@Id
 	private String maNguoiDung;
 	@ManyToOne
-	@JoinColumn(name="maDiaChi")
+	@JoinColumn(name = "maDiaChi")
 	@NotNull
 	private DiaChi diaChi;
 	@OneToMany(mappedBy = "nguoiDung")
 	private List<DonHang> danhSachDonHang;
 	@OneToMany(mappedBy = "nguoiDung")
-<<<<<<< HEAD
-	
+
 	@JsonIgnore
-=======
->>>>>>> caa114bf29b125c851ba918f8a7d61ee8db20a0a
 	private List<SanPhamTrongGioHang> danhSachSanPhamTrongGioHang;
 	@OneToMany(mappedBy = "nguoiDung")
 	private List<DanhGia> danhSachDanhGia;
@@ -47,11 +45,12 @@ public class NguoiDung {
 	private boolean gioiTinh;
 	private boolean trangThai;
 	private String soDienThoai;
+
 	public NguoiDung() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public NguoiDung(String maNguoiDung, @NotNull DiaChi diaChi, @NotNull String hoTen, String diaChiChiTiet,
 			@NotNull String email, @NotNull String matKhau, boolean gioiTinh, boolean trangThai, String soDienThoai) {
 		super();
@@ -66,59 +65,10 @@ public class NguoiDung {
 		this.soDienThoai = soDienThoai;
 	}
 
-<<<<<<< HEAD
-=======
-	
-	public String getMaNguoiDung() {
-		return maNguoiDung;
-	}
-
-	public DiaChi getDiaChi() {
-		return diaChi;
-	}
-	 @JsonIgnore
-	public List<DonHang> getDanhSachDonHang() {
-		return danhSachDonHang;
-	}
-	 @JsonIgnore
-	public List<SanPhamTrongGioHang> getDanhSachSanPhamTrongGioHang() {
-		return danhSachSanPhamTrongGioHang;
-	}
-	 @JsonIgnore
-	public List<DanhGia> getDanhSachDanhGia() {
-		return danhSachDanhGia;
-	}
-
-	public String getHoTen() {
-		return hoTen;
-	}
-
-	public String getDiaChiChiTiet() {
-		return diaChiChiTiet;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getMatKhau() {
-		return matKhau;
-	}
-
-	public boolean isGioiTinh() {
-		return gioiTinh;
-	}
-
-	public boolean isTrangThai() {
-		return trangThai;
-	}
-
->>>>>>> caa114bf29b125c851ba918f8a7d61ee8db20a0a
 	public String getSoDienThoai() {
 		return soDienThoai;
 	}
 
-<<<<<<< HEAD
 	public void setSoDienThoai(String soDienThoai) {
 		this.soDienThoai = soDienThoai;
 	}
@@ -126,126 +76,98 @@ public class NguoiDung {
 	public String getMaNguoiDung() {
 		return maNguoiDung;
 	}
+
 	public void setMaNguoiDung(String maNguoiDung) {
 		this.maNguoiDung = maNguoiDung;
 	}
+
 	public DiaChi getDiaChi() {
 		return diaChi;
 	}
+
 	public void setDiaChi(DiaChi diaChi) {
 		this.diaChi = diaChi;
 	}
+
+	@JsonIgnore
 	public List<DonHang> getDanhSachDonHang() {
 		return danhSachDonHang;
 	}
+
+	@JsonProperty
 	public void setDanhSachDonHang(List<DonHang> danhSachDonHang) {
 		this.danhSachDonHang = danhSachDonHang;
 	}
+
 	public List<SanPhamTrongGioHang> getDanhSachSanPhamTrongGioHang() {
 		return danhSachSanPhamTrongGioHang;
 	}
+
 	public void setDanhSachSanPhamTrongGioHang(List<SanPhamTrongGioHang> danhSachSanPhamTrongGioHang) {
 		this.danhSachSanPhamTrongGioHang = danhSachSanPhamTrongGioHang;
 	}
+	@JsonIgnore
 	public List<DanhGia> getDanhSachDanhGia() {
 		return danhSachDanhGia;
 	}
+	@JsonProperty
 	public void setDanhSachDanhGia(List<DanhGia> danhSachDanhGia) {
 		this.danhSachDanhGia = danhSachDanhGia;
 	}
+
 	public String getHoTen() {
 		return hoTen;
 	}
+
 	public void setHoTen(String hoTen) {
 		this.hoTen = hoTen;
 	}
+
 	public String getDiaChiChiTiet() {
 		return diaChiChiTiet;
 	}
+
 	public void setDiaChiChiTiet(String diaChiChiTiet) {
 		this.diaChiChiTiet = diaChiChiTiet;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getMatKhau() {
 		return matKhau;
 	}
+
 	public void setMatKhau(String matKhau) {
 		this.matKhau = matKhau;
 	}
+
 	public boolean isGioiTinh() {
 		return gioiTinh;
 	}
+
 	public void setGioiTinh(boolean gioiTinh) {
 		this.gioiTinh = gioiTinh;
 	}
+
 	public boolean isTrangThai() {
 		return trangThai;
 	}
-=======
-	public void setMaNguoiDung(String maNguoiDung) {
-		this.maNguoiDung = maNguoiDung;
-	}
 
-	public void setDiaChi(DiaChi diaChi) {
-		this.diaChi = diaChi;
-	}
-	 @JsonProperty
-	public void setDanhSachDonHang(List<DonHang> danhSachDonHang) {
-		this.danhSachDonHang = danhSachDonHang;
-	}
-	 @JsonProperty
-	public void setDanhSachSanPhamTrongGioHang(List<SanPhamTrongGioHang> danhSachSanPhamTrongGioHang) {
-		this.danhSachSanPhamTrongGioHang = danhSachSanPhamTrongGioHang;
-	}
-	 @JsonProperty
-	public void setDanhSachDanhGia(List<DanhGia> danhSachDanhGia) {
-		this.danhSachDanhGia = danhSachDanhGia;
-	}
-
-	public void setHoTen(String hoTen) {
-		this.hoTen = hoTen;
-	}
-
-	public void setDiaChiChiTiet(String diaChiChiTiet) {
-		this.diaChiChiTiet = diaChiChiTiet;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setMatKhau(String matKhau) {
-		this.matKhau = matKhau;
-	}
-
-	public void setGioiTinh(boolean gioiTinh) {
-		this.gioiTinh = gioiTinh;
-	}
-
->>>>>>> caa114bf29b125c851ba918f8a7d61ee8db20a0a
 	public void setTrangThai(boolean trangThai) {
 		this.trangThai = trangThai;
 	}
 
-<<<<<<< HEAD
-=======
-	public void setSoDienThoai(String soDienThoai) {
-		this.soDienThoai = soDienThoai;
-	}
-
->>>>>>> caa114bf29b125c851ba918f8a7d61ee8db20a0a
 	@Override
 	public String toString() {
 		return "NguoiDung [maNguoiDung=" + maNguoiDung + ", diaChi=" + diaChi + ", hoTen=" + hoTen + ", diaChiChiTiet="
 				+ diaChiChiTiet + ", email=" + email + ", matKhau=" + matKhau + ", gioiTinh=" + gioiTinh
 				+ ", trangThai=" + trangThai + "]";
 	}
-	
-	
-	
+
 }

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<script type="text/javascript">
+ var productId = '<%= request.getParameter("maSanPham") %>'
+</script>   
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item-product.css">
             <!DOCTYPE html>
@@ -162,7 +165,7 @@
                                             </div>
                                             <div class="btn-option" id="add-to-cart">
                                                 <button
-                                                    onclick="sanpham/them-vao-gio-hang?maSanPham=${sanPham.maSanPham}"
+                                                    onclick="addToCard()"
                                                     class="btn"><i class="fa fa-money" aria-hidden="true"></i> Thêm
                                                     vào
                                                     giỏ</button>
@@ -375,12 +378,22 @@
                                 </c:forEach>
 
                             </div>
-
                         </div>
                     </div>
 
                     <div id='footer'>
                         <jsp:include page="components/footer.jsp"></jsp:include>
+                    </div>
+                </div>
+                <!-- Modal success -->
+                <div id="myModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content content_stutus_add">
+                            <img src="<c:url value='/resources/imgview/status_addtocard.jpg'/>">
+                            <div class="content_stutus">
+                                Thêm thành công
+                            </div>
+                        </div> 
                     </div>
                 </div>
 

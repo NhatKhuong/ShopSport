@@ -15,13 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.se.entity.ChiTietSanPham;
+import com.se.entity.KichThuoc;
 import com.se.entity.LoaiSanPham;
 import com.se.entity.MonTheThao;
 import com.se.entity.NguoiDung;
 import com.se.entity.NhanHieu;
 import com.se.entity.SanPham;
 import com.se.entity.SanPhamTrongGioHang;
+import com.se.service.ChiTietSanPhamService;
 import com.se.service.DiaChiService;
+import com.se.service.KichThuocService;
 import com.se.service.NguoiDungService;
 import com.se.service.SanPhamService;
 import com.se.service.SanPhamTrongGioHangService;
@@ -41,6 +45,12 @@ public class HomeController {
 	
 	@Autowired
 	private DiaChiService diaChiService;
+	
+	@Autowired
+	private KichThuocService kichThuocService;
+	
+	@Autowired
+	private ChiTietSanPhamService chiTietSanPhamService;
 
 	@GetMapping("/")
 	public String showHome(Model model) {
@@ -86,19 +96,4 @@ public class HomeController {
 		return "trangthaidonhang";
 	}
 	
-
-	@RequestMapping(value = "/gio-hang/san-pham", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
-	public @ResponseBody List<SanPhamTrongGioHang> sanPhamTrongGioHang(HttpServletRequest request)  {
-		
-		NguoiDung nguoiDung = nguoiDungService.getByEmail(User.getEmailNguoiDung());
-		List<SanPhamTrongGioHang> list = sanPhamTrongGioHangService.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
-		System.err.println(list.get(0));
-		return Arrays.asList(list.get(0));
-	}
-	@RequestMapping(value = "/gio-hang/san-pham2", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
-	public @ResponseBody SanPhamTrongGioHang sanPhamTrongGioHang2(HttpServletRequest request)  {
-		NguoiDung nguoiDung = nguoiDungService.getByEmail(User.getEmailNguoiDung());
-		List<SanPhamTrongGioHang> list = sanPhamTrongGioHangService.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
-		return list.get(0);
-	}
 }
