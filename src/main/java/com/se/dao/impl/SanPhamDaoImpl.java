@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.se.dao.SanPhamDao;
+import com.se.entity.ChiTietSanPham;
 import com.se.entity.SanPham;
 
 @Repository

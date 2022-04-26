@@ -175,7 +175,6 @@ public class DonHang {
 
 		if (danhSachChiTietDonHang != null) {
 			for (ChiTietDonHang chiTietDonHang : danhSachChiTietDonHang) {
-
 				sum += chiTietDonHang.getGiaMua();
 			}
 		}

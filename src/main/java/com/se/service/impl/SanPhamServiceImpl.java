@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.se.dao.SanPhamDao;
+import com.se.entity.ChiTietSanPham;
 import com.se.entity.SanPham;
 import com.se.service.SanPhamService;
 
@@ -59,5 +60,7 @@ public class SanPhamServiceImpl implements SanPhamService{
 		// TODO Auto-generated method stub
 		return sanPhamDao.getByFilter(tenLoai, tenMon, tenThuongHieu, fromPrice, toPrice, numPage, limit);
 	}
+
+
 
 }

@@ -44,11 +44,11 @@
                                         </div>
                                         <div class="component pt-3 mb-4 pb-2">
                                             <div class="row">
-                                             <div class="col-6">
+                                                <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="tinhThanhPho">Tỉnh/Thành phố</label>
-                                                        <form:select path="diaChi.tinhThanhPho" class="form-control" name="tinhThanhPho"
-                                                            id="tinhThanhPho">
+                                                        <form:select path="diaChi.tinhThanhPho" class="form-control"
+                                                            name="tinhThanhPho" id="tinhThanhPho">
                                                             <option selected disabled>Chọn tỉnh / thành phố</option>
                                                             <option>Hồ chí minh</option>
                                                             <option>Hà nội</option>
@@ -57,8 +57,8 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="quanHuyen">Quận/Huyện</label>
-                                                        <form:select path="diaChi.quanHuyen" class="form-control" name="quanHuyen"
-                                                            id="quanHuyen" disabled="disabled">
+                                                        <form:select path="diaChi.quanHuyen" class="form-control"
+                                                            name="quanHuyen" id="quanHuyen" disabled="disabled">
                                                             <option selected disabled>Chọn quận / huyện</option>
                                                             <option>Quận 1</option>
                                                             <option>Quận 2</option>
@@ -67,213 +67,215 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="phuongXa">Phường xã</label>
-                                                        <form:select path="diaChi.phuongXa" class="form-control" name="phuongXa"
-                                                            id="phuongXa" disabled="disabled">
+                                                        <form:select path="diaChi.phuongXa" class="form-control"
+                                                            name="phuongXa" id="phuongXa" disabled="disabled">
                                                             <option selected disabled>Chọn phường xã</option>
                                                             <option>Hồ chí minh</option>
                                                             <option>Hà nội</option>
                                                             <option>Tây ninh</option>
                                                         </form:select>
                                                     </div>
-                                                 
+
 
                                                 </div>
                                                 <div class="col-6">
-                                                   <%-- <div class="form-group">
+                                                    <%-- <div class="form-group">
                                                         <label for="hoTen">Họ tên người nhận</label>
-                                                        <input type="text" name="hoTen" id="hoTen" disabled="disabled" class="form-control"
-                                                            placeholder="Nhập họ và tên" aria-describedby="helpId" value="${donHang.nguoiDung.hoTen}">
+                                                        <input type="text" name="hoTen" id="hoTen" disabled="disabled"
+                                                            class="form-control" placeholder="Nhập họ và tên"
+                                                            aria-describedby="helpId"
+                                                            value="${donHang.nguoiDung.hoTen}">
                                                         <small id="helpHoTen" class="text-muted"></small>
-                                                
-                                                    </div> --%> 
-                                                    <div class="form-group">
-                                                        <label for="soDienThoai" >Số điện thoại</label>
-                                                        <form:input path="soDienThoai" type="text" name="soDienThoai"   id="soDienThoai"
-                                                            class="form-control" placeholder="Nhập số điện thoại" 
-                                                            value="${donHang.nguoiDung.soDienThoai}"
-                                                            aria-describedby="helpId"></form:input>
-                                                            
-                                                        <small id="helpSoDienThoai" class="text-muted"></small>
-                                                    </div>
-                                                       <div class="form-group">
-                                                        <label for="diaChi">Địa chỉ</label>
-                                                        <form:input path="diaChiCuThe" type="text" name="diaChiChiTiet" id="diaChi"
-                                                            class="form-control" placeholder="Nhập địa chỉ"
-                                                            aria-describedby="helpId"></form:input>
-                                                        <small id="helpDiaChi" class="text-muted"></small>
-                                                    </div>
 
-                                                </div>
-                                               
-                                            </div>
-                                        </div>
-                                        <div class="header-title mt-4">
-                                            <span>Sản phẩm đặt</span>
-                                        </div>
+                                                </div> --%>
+                                                <div class="form-group">
+                                                    <label for="soDienThoai">Số điện thoại</label>
+                                                    <form:input path="soDienThoai" type="text" name="soDienThoai"
+                                                        id="soDienThoai" class="form-control"
+                                                        placeholder="Nhập số điện thoại"
+                                                        value="${donHang.nguoiDung.soDienThoai}"
+                                                        aria-describedby="helpId"></form:input>
 
-                                        <div class="component">
-                                            <div>
-                                                <div class=choise-delivery>
-                                                    <small>Choose your delivery option</small>
+                                                    <small id="helpSoDienThoai" class="text-muted"></small>
                                                 </div>
-                                                <div class='card-select color-blue'
-                                                    style="width: 250px; margin-bottom: 20px">
-                                                    <div class=" top">
-                                                        <div class="info">
-                                                            <img alt="" width="15"
-                                                                src="${pageContext.request.contextPath}/resources/images/icon/checkIcon.png">
+                                                <div class="form-group">
+                                                    <label for="diaChi">Địa chỉ</label>
+                                                    <form:input path="diaChiCuThe" type="text" name="diaChiChiTiet"
+                                                        id="diaChi" class="form-control" placeholder="Nhập địa chỉ"
+                                                        aria-describedby="helpId"></form:input>
+                                                    <small id="helpDiaChi" class="text-muted"></small>
+                                                </div>
 
-                                                            <span class="price pl-2"> ${donHang.phiVanChuyen }</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="bot">
-                                                        <small class="sub">GH tiêu chuẩn</small> <br>
-                                                        <small class="sub">Nhận vào: 23 thg 4-16 thg 5</small>
-                                                    </div>
-                                                </div>
                                             </div>
-                                            <div class='items-order'>
-                                                <c:forEach items="${donHang.danhSachChiTietDonHang }" var="item">
-                                                    <div class='item'>
-                                                        <div class="item-avatar">
-                                                            <img alt="" width="80"
-                                                                src="${pageContext.request.contextPath}/resources/images/${item.chiTietSanPham.sanPham.danhSachHinhAnhSanPham[0].hinhAnh}">
-                                                        </div>
-                                                        <div class='item-name'>
-                                                            <div class='name'>
-                                                                <p>${item.chiTietSanPham.sanPham.tenSanPham}</p>
-                                                            </div>
-                                                            <div class='sub'>Size:
-                                                                ${item.chiTietSanPham.kichThuoc.tenKichThuoc } </div>
-                                                        </div>
-                                                        <div class='item-price'>
-                                                            <span
-                                                                class="current-price price">${item.chiTietSanPham.sanPham.giaTien
-                                                                - item.chiTietSanPham.sanPham.giaTien *
-                                                                item.chiTietSanPham.sanPham.chietKhau/100} </span>
-                                                            <span
-                                                                class="origin-price price">${item.chiTietSanPham.sanPham.giaTien
-                                                                } </span>
-                                                            <span
-                                                                class="promotion-ratio percent">${item.chiTietSanPham.sanPham.chietKhau
-                                                                } </span>
-                                                            <div class="operations"></div>
-                                                        </div>
-                                                        <div class='item-quantiry'>
-                                                            <b>X </b> <span>${item.soLuongMua } </span>
-                                                        </div>
-                                                    </div>
-                                                </c:forEach>
-                                            </div>
+
                                         </div>
                                     </div>
-                                    <div class="box col-4 pl-2">
-                                        <div class="header-title">
-                                            <span> Thanh toán</span>
+                                    <div class="header-title mt-4">
+                                        <span>Sản phẩm đặt</span>
+                                    </div>
+
+                                    <div class="component">
+                                        <div>
+                                            <div class=choise-delivery>
+                                                <small>Choose your delivery option</small>
+                                            </div>
+                                            <div class='card-select color-blue'
+                                                style="width: 250px; margin-bottom: 20px">
+                                                <div class=" top">
+                                                    <div class="info">
+                                                        <img alt="" width="15"
+                                                            src="${pageContext.request.contextPath}/resources/images/icon/checkIcon.png">
+
+                                                        <span class="price pl-2"> ${donHang.phiVanChuyen }</span>
+                                                    </div>
+                                                </div>
+                                                <div class="bot">
+                                                    <small class="sub">GH tiêu chuẩn</small> <br>
+                                                    <small class="sub">Nhận vào: 23 thg 4-16 thg 5</small>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="component ">
-                                            <div>
-                                                <div class="title-component">
-                                                    <span>Chọn phương thức thanh toán</span>
-                                                </div>
-                                                <div class='card-select'>
-                                                    <div class=" top">
-                                                        <div class="info">
-                                                            <img alt="" width="30"
-                                                                src="https://laz-img-cdn.alicdn.com/tfs/TB1ZP8kM1T2gK0jSZFvXXXnFXXa-96-96.png">
-                                                            <span class="title">Thanh toán khi nhận hàng</span>
+                                        <div class='items-order'>
+                                            <c:forEach items="${donHang.danhSachChiTietDonHang }" var="item">
+                                                <div class='item'>
+                                                    <div class="item-avatar">
+                                                        <img alt="" width="80"
+                                                            src="${pageContext.request.contextPath}/resources/images/${item.chiTietSanPham.sanPham.danhSachHinhAnhSanPham[0].hinhAnh}">
+                                                    </div>
+                                                    <div class='item-name'>
+                                                        <div class='name'>
+                                                            <p>${item.chiTietSanPham.sanPham.tenSanPham}</p>
                                                         </div>
-                                                        <div class="icon ">
-                                                            <img alt="" width="15"
-                                                                src="${pageContext.request.contextPath}/resources/images/icon/checkIcon.png">
-                                                        </div>
+                                                        <div class='sub'>Size:
+                                                            ${item.chiTietSanPham.kichThuoc.tenKichThuoc } </div>
                                                     </div>
-                                                    <div class="bot">
-                                                        <small class="sub">Thanh toán tại nhà cho đơn vị vận
-                                                            chuyển</small>
+                                                    <div class='item-price'>
+                                                        <span
+                                                            class="current-price price">${item.chiTietSanPham.sanPham.giaTien
+                                                            - item.chiTietSanPham.sanPham.giaTien *
+                                                            item.chiTietSanPham.sanPham.chietKhau/100} </span>
+                                                        <span
+                                                            class="origin-price price">${item.chiTietSanPham.sanPham.giaTien
+                                                            } </span>
+                                                        <span
+                                                            class="promotion-ratio percent">${item.chiTietSanPham.sanPham.chietKhau
+                                                            } </span>
+                                                        <div class="operations"></div>
                                                     </div>
-                                                </div>
-
-                                            </div>
-                                            <div>
-                                                <div class="title-component mt-4">
-                                                    <span>Giảm giá</span>
-
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Nhập mã giảm giá" aria-describedby="basic-addon2">
-                                                    <div class="input-group-append ">
-                                                        <span class="input-group-text bg-primary text-white"
-                                                            id="basic-addon2">Thêm</span>
+                                                    <div class='item-quantiry'>
+                                                        <b>X </b> <span>${item.soLuongMua } </span>
                                                     </div>
                                                 </div>
-
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="box col-4 pl-2">
+                                <div class="header-title">
+                                    <span> Thanh toán</span>
+                                </div>
+                                <div class="component ">
+                                    <div>
+                                        <div class="title-component">
+                                            <span>Chọn phương thức thanh toán</span>
+                                        </div>
+                                        <div class='card-select'>
+                                            <div class=" top">
+                                                <div class="info">
+                                                    <img alt="" width="30"
+                                                        src="https://laz-img-cdn.alicdn.com/tfs/TB1ZP8kM1T2gK0jSZFvXXXnFXXa-96-96.png">
+                                                    <span class="title">Thanh toán khi nhận hàng</span>
+                                                </div>
+                                                <div class="icon ">
+                                                    <img alt="" width="15"
+                                                        src="${pageContext.request.contextPath}/resources/images/icon/checkIcon.png">
+                                                </div>
                                             </div>
-                                            <div>
-                                                <div class="title-component mt-4">
-                                                    <span>Tổng quan</span>
-                                                </div>
-                                                <div class='general-line'>
-                                                    <span class='left title'> Tổng đơn hàng</span>
-                                                    <span class='right price'>${donHang.tongTienDonHang() }</span>
-                                                </div>
-                                                <div class='general-line'>
-                                                    <span class='left '>Phí vận chuyển</span>
-                                                    <span class='right price'> ${donHang.phiVanChuyen } </span>
-                                                </div>
-                                                <hr>
-                                                <div class='general-line'>
-                                                    <span class='left text-dark'>Tổng</span>
-                                                    <span class='right price text-danger'> ${donHang.tongTien()}</span>
-                                                </div>
-                                            </div>
-                                            <div class='btn-xac-nhan'>
-                                                <input type="submit" class="form-control btn bg-danger text-white"
-                                                    value="Thanh toán">
+                                            <div class="bot">
+                                                <small class="sub">Thanh toán tại nhà cho đơn vị vận
+                                                    chuyển</small>
                                             </div>
                                         </div>
 
                                     </div>
-                                    <!-- Hidden form  -->
-                                    <!-- <form:hidden path="danhSachChiTietDonHang"
+                                    <div>
+                                        <div class="title-component mt-4">
+                                            <span>Giảm giá</span>
+
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" placeholder="Nhập mã giảm giá"
+                                                aria-describedby="basic-addon2">
+                                            <div class="input-group-append ">
+                                                <span class="input-group-text bg-primary text-white"
+                                                    id="basic-addon2">Thêm</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        <div class="title-component mt-4">
+                                            <span>Tổng quan</span>
+                                        </div>
+                                        <div class='general-line'>
+                                            <span class='left title'> Tổng đơn hàng</span>
+                                            <span class='right price'>${donHang.tongTienDonHang() }</span>
+                                        </div>
+                                        <div class='general-line'>
+                                            <span class='left '>Phí vận chuyển</span>
+                                            <span class='right price'> ${donHang.phiVanChuyen } </span>
+                                        </div>
+                                        <hr>
+                                        <div class='general-line'>
+                                            <span class='left text-dark'>Tổng</span>
+                                            <span class='right price text-danger'> ${donHang.tongTien()}</span>
+                                        </div>
+                                    </div>
+                                    <div class='btn-xac-nhan'>
+                                        <input type="submit" class="form-control btn bg-danger text-white"
+                                            value="Thanh toán">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- Hidden form  -->
+                            <!-- <form:hidden path="danhSachChiTietDonHang"
                                         value="${donHang.danhSachChiTietDonHang}" /> -->
-                                    <c:forEach items="${donHang.danhSachChiTietDonHang}" var="danhSachChiTietDonHang"
-                                        varStatus="tagStatus">
-                                        <tr>
-                                            <td>
-                                                <form:hidden
-                                                    path="danhSachChiTietDonHang[${tagStatus.index}].chiTietSanPham.maChiTietSanPham"
-                                                    value="${danhSachChiTietDonHang.chiTietSanPham.maChiTietSanPham}"
-                                                    readonly="true" />
-                                            </td>
-                                            <td>
-                                                <form:hidden
-                                                    path="danhSachChiTietDonHang[${tagStatus.index}].soLuongMua"
-                                                    value="${danhSachChiTietDonHang.soLuongMua}" readonly="true" />
-                                            </td>
-                                            <td>
-                                                <form:hidden path="danhSachChiTietDonHang[${tagStatus.index}].giaMua"
-                                                    value="${danhSachChiTietDonHang.giaMua}" readonly="true" />
-                                            </td>
-                                            <td>
-                                                <form:hidden path="danhSachChiTietDonHang[${tagStatus.index}].chietKhau"
-                                                    value="${danhSachChiTietDonHang.chietKhau}" readonly="true" />
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                    <!-- / Hidden form  -->
-                                </form:form>
+                            <c:forEach items="${donHang.danhSachChiTietDonHang}" var="danhSachChiTietDonHang"
+                                varStatus="tagStatus">
+                                <tr>
+                                    <td>
+                                        <form:hidden
+                                            path="danhSachChiTietDonHang[${tagStatus.index}].chiTietSanPham.maChiTietSanPham"
+                                            value="${danhSachChiTietDonHang.chiTietSanPham.maChiTietSanPham}"
+                                            readonly="true" />
+                                    </td>
+                                    <td>
+                                        <form:hidden path="danhSachChiTietDonHang[${tagStatus.index}].soLuongMua"
+                                            value="${danhSachChiTietDonHang.soLuongMua}" readonly="true" />
+                                    </td>
+                                    <td>
+                                        <form:hidden path="danhSachChiTietDonHang[${tagStatus.index}].giaMua"
+                                            value="${danhSachChiTietDonHang.giaMua}" readonly="true" />
+                                    </td>
+                                    <td>
+                                        <form:hidden path="danhSachChiTietDonHang[${tagStatus.index}].chietKhau"
+                                            value="${danhSachChiTietDonHang.chietKhau}" readonly="true" />
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            <!-- / Hidden form  -->
+                            </form:form>
 
 
 
-                                <!-- /Body -->
-                            </div>
-
-                            <div id='footer'>
-                                <jsp:include page="components/footer.jsp"></jsp:include>
-                            </div>
+                            <!-- /Body -->
                         </div>
+
+                        <div id='footer'>
+                            <jsp:include page="components/footer.jsp"></jsp:include>
+                        </div>
+                    </div>
 
                     </div>
 

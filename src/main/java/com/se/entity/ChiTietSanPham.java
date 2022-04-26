@@ -57,7 +57,7 @@ public class ChiTietSanPham implements Serializable {
 	public String getMaChiTietSanPham() {
 		return maChiTietSanPham;
 	}
-	 @JsonIgnore
+
 	public SanPham getSanPham() {
 		return sanPham;
 	}

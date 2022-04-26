@@ -89,10 +89,12 @@ public class NguoiDung {
 		this.diaChi = diaChi;
 	}
 
+	@JsonIgnore
 	public List<DonHang> getDanhSachDonHang() {
 		return danhSachDonHang;
 	}
 
+	@JsonProperty
 	public void setDanhSachDonHang(List<DonHang> danhSachDonHang) {
 		this.danhSachDonHang = danhSachDonHang;
 	}
@@ -104,11 +106,11 @@ public class NguoiDung {
 	public void setDanhSachSanPhamTrongGioHang(List<SanPhamTrongGioHang> danhSachSanPhamTrongGioHang) {
 		this.danhSachSanPhamTrongGioHang = danhSachSanPhamTrongGioHang;
 	}
-
+	@JsonIgnore
 	public List<DanhGia> getDanhSachDanhGia() {
 		return danhSachDanhGia;
 	}
-
+	@JsonProperty
 	public void setDanhSachDanhGia(List<DanhGia> danhSachDanhGia) {
 		this.danhSachDanhGia = danhSachDanhGia;
 	}

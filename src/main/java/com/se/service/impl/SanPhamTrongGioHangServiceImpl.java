@@ -18,22 +18,23 @@ public class SanPhamTrongGioHangServiceImpl implements SanPhamTrongGioHangServic
 
 	@Override
 	@Transactional
-	public void add(SanPhamTrongGioHangDao sanPhamTrongGioHang) {
-		// TODO Auto-generated method stub
+	public void add(SanPhamTrongGioHang sanPhamTrongGioHang) {
+		sanPhamTrongGioHangDao.add(sanPhamTrongGioHang);
 		
 	}
 
 	@Override
 	@Transactional
-	public void delete(String maChiTietSan) {
+	public void delete(String id) {
 		// TODO Auto-generated method stub
+		sanPhamTrongGioHangDao.delete(id);
 		
 	}
 
 	@Override
 	@Transactional
-	public void update(SanPhamTrongGioHangDao sanPhamTrongGioHang) {
-		// TODO Auto-generated method stub
+	public void update(SanPhamTrongGioHang sanPhamTrongGioHang) {
+		sanPhamTrongGioHangDao.update(sanPhamTrongGioHang);
 		
 		
 	}
@@ -42,6 +43,13 @@ public class SanPhamTrongGioHangServiceImpl implements SanPhamTrongGioHangServic
 	@Transactional
 	public List<SanPhamTrongGioHang> getDSSanPhamTrongGioHangTheoMaNguoiDung(String maNguoiDung) {
 		return sanPhamTrongGioHangDao.getDSSanPhamTrongGioHangTheoMaNguoiDung(maNguoiDung);
+	}
+
+	@Override
+	@Transactional
+	public SanPhamTrongGioHang getById(String id) {
+		// TODO Auto-generated method stub
+		return sanPhamTrongGioHangDao.getById(id);
 	}
 	
 		

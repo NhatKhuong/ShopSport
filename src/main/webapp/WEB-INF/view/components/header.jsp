@@ -86,7 +86,7 @@
                                     <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                                     <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                     <li class="checkout">
-                                        <a href="" data-toggle="modal" data-target="#CardModal" aria-hidden="true">
+                                        <a href="" data-toggle="modal" data-target="#CardModal" aria-hidden="true" onclick="loadDuLieuGioHang()">
                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                             <span id="checkout_items" class="checkout_items">2</span>
                                         </a>
@@ -112,10 +112,10 @@
                             </button>
                         </div>
 
-                        <div class="modal-body modal_body_card">
-                            <c:forEach var="item" items="${dsSanPhamTrongGioHang}">
+                        <div class="modal-body modal_body_card" id="cardProducts">
+                             <c:forEach var="item" items="${dsSanPhamTrongGioHang}">
 
-                                <div class="card_product">
+                                <%-- <div class="card_product">
                                     <div class="check_item">
                                         <input type="checkbox" class="check_item_input">
                                     </div>
@@ -150,10 +150,10 @@
                                         aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
-                                </div>
+                                </div> --%>
 
                             </c:forEach>
-
+ 
 
                         </div>
                         <div class="modal-footer">
