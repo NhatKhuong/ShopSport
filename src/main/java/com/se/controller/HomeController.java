@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.se.entity.ChiTietSanPham;
+import com.se.entity.DonHang;
 import com.se.entity.KichThuoc;
 import com.se.entity.LoaiSanPham;
 import com.se.entity.MonTheThao;
@@ -39,16 +40,16 @@ public class HomeController {
 
 	@Autowired
 	private NguoiDungService nguoiDungService;
-	
-	@Autowired 
+
+	@Autowired
 	private SanPhamTrongGioHangService sanPhamTrongGioHangService;
-	
+
 	@Autowired
 	private DiaChiService diaChiService;
-	
+
 	@Autowired
 	private KichThuocService kichThuocService;
-	
+
 	@Autowired
 	private ChiTietSanPhamService chiTietSanPhamService;
 
@@ -56,20 +57,23 @@ public class HomeController {
 	public String showHome(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String email;
-		
+
 		if (principal instanceof UserDetails) {
 			email = ((UserDetails) principal).getUsername();
 		} else {
 			email = principal.toString();
 		}
 		NguoiDung nguoiDung = nguoiDungService.getByEmail(email);
-		
+
 		List<SanPham> list = sanPhamService.getByFilter("", "", "", 5, 1000000000, 125, 10);
-		List<SanPhamTrongGioHang> dsSanPhamTrongGioHang = sanPhamTrongGioHangService.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
-		
-		model.addAttribute("dsSanPhamTrongGioHang",dsSanPhamTrongGioHang);
+		List<SanPhamTrongGioHang> dsSanPhamTrongGioHang = sanPhamTrongGioHangService
+				.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
+
+		model.addAttribute("dsSanPhamTrongGioHang", dsSanPhamTrongGioHang);
 		model.addAttribute("listSanPham", list);
-		model.addAttribute("UserLogin", nguoiDung);		
+		model.addAttribute("UserLogin", nguoiDung);
+
+		model.addAttribute("donHang", new DonHang());
 		return "home";
 	}
 
@@ -79,9 +83,10 @@ public class HomeController {
 		model.addAttribute("listSanPham", list);
 		String email = User.getEmailNguoiDung();
 		NguoiDung nguoiDung = nguoiDungService.getByEmail(email);
-		List<SanPhamTrongGioHang> dsSanPhamTrongGioHang = sanPhamTrongGioHangService.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
-		model.addAttribute("dsSanPhamTrongGioHang",dsSanPhamTrongGioHang);
-		
+		List<SanPhamTrongGioHang> dsSanPhamTrongGioHang = sanPhamTrongGioHangService
+				.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
+		model.addAttribute("dsSanPhamTrongGioHang", dsSanPhamTrongGioHang);
+
 		return "shop";
 	}
 
@@ -95,5 +100,5 @@ public class HomeController {
 
 		return "trangthaidonhang";
 	}
-	
+
 }

@@ -58,7 +58,7 @@ public class OrderController {
 	
 	@GetMapping("/don-hang/tao-don-hang")
 	public String hienDonHang(Model model,@ModelAttribute("donHang") DonHang donHang ) {
-		
+		System.out.println(donHang);
 		List<String[]> listPreadcrumb = new ArrayList<String[]>();
 		
 //		 String[0] =  name page 
