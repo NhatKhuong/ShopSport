@@ -72,19 +72,20 @@ public class OrderController {
 		donHang.setNguoiDung(nguoiDung);
 		
 		ArrayList<ChiTietDonHang> danhSachChiTietDonHang =  new ArrayList<ChiTietDonHang>();
+		if(donHang.getDanhSachChiTietDonHang() == null || donHang.getDanhSachChiTietDonHang().size() ==0) {
+			return "redirect:/";
+		}
 		int soLuongCTHD = donHang.getDanhSachChiTietDonHang().size();
 		for(int i = 0; i < soLuongCTHD; i ++) {
 			ChiTietDonHang chiTietDonHang= donHang.getDanhSachChiTietDonHang().get(i);
 			KichThuoc kichThuoc = kichThuocService.getKichThuocTheoTenKichThuoc(chiTietDonHang.getChiTietSanPham().getKichThuoc().getTenKichThuoc());
 			ChiTietSanPham chiTietSanPham = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc(chiTietDonHang.getChiTietSanPham().getSanPham().getMaSanPham(),kichThuoc.getMaKichThuoc());
 			chiTietDonHang.setChiTietSanPham(chiTietSanPham);
-			chiTietDonHang.setGiaMua(chiTietSanPham.getSanPham().getGiaTien());
+			chiTietDonHang.setGiaMua(chiTietSanPham.getSanPham().getGiaTien()-chiTietSanPham.getSanPham().getChietKhau()/100*chiTietSanPham.getSanPham().getGiaTien());
 			chiTietDonHang.setChietKhau(chiTietSanPham.getSanPham().getChietKhau());
-			//			ChiTietDonHang chiTietDonHang = 
-//			 donHang.getDanhSachChiTietDonHang().get(i).
 			danhSachChiTietDonHang.add(chiTietDonHang);
 		}
-		donHang.setDanhSachChiTietDonHang(danhSachChiTietDonHang);
+//		donHang.setDanhSachChiTietDonHang(danhSachChiTietDonHang);
 		
 //		ChiTietSanPham ct1 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00093", "KT00000");
 //		ChiTietSanPham ct2 = chiTietSanPhamService.getChiTietSanPhamByMaSanPhamMaKichThuoc("SPAA00080", "KT00000");

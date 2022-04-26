@@ -168,7 +168,7 @@
                                 action='${pageContext.request.contextPath}/don-hang/tao-don-hang' method="GET"
                                 modelAttribute="donHang">
                                 <button type="submit" class="btn_checkout">Thanh Toán</button>
-                                <div id="value-form-hidden"></div>
+                                <div id="value-form-hidden" style="width: 1px; overflow: hidden; height: 1px ;"></div>
                             </form:form>
                         </div>
                     </div>

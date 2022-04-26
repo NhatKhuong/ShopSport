@@ -321,7 +321,7 @@ function loadDataCard(data) {
       value="${tenKichThuoc}"
       readonly="true" />
 
-     <form:hidden id="hidden-soLuong" name="danhSachChiTietDonHang[${i++}].soLuongMua"
+     <input id="hidden-soLuong" name="danhSachChiTietDonHang[${i++}].soLuongMua"
      value="${soLuong}"
       readonly="true" />
         `;
