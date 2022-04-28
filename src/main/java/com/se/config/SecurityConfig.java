@@ -40,7 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		 CharacterEncodingFilter filter = new CharacterEncodingFilter();
 		    filter.setEncoding("UTF-8");
 		    filter.setForceEncoding(true);
-		    http.addFilterBefore(filter,CsrfFilter.class);
+		   		    http.addFilterBefore(filter,CsrfFilter.class);
+		   		    
 		// TODO Auto-generated method stub
 		http.authorizeRequests()
 		.antMatchers("/resources/css/**").permitAll()
@@ -57,6 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.permitAll()
 		.and()
 		.exceptionHandling().accessDeniedPage("/access-denied");
+		
+		  http.csrf().disable();
 	}
 
 }

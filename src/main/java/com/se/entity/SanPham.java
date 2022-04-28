@@ -67,6 +67,12 @@ public class SanPham {
 	}
 	
 	
+	public SanPham(String maSanPham) {
+		super();
+		this.maSanPham = maSanPham;
+	}
+
+
 	public SanPham(String maSanPham, @NotNull LoaiSanPham loaiSanPham, @NotNull MonTheThao monTheThao,
 			@NotNull NhanHieu nhanHieu, List<HinhAnhSanPham> danhSachHinhAnhSanPham,
 			List<ChiTietSanPham> danhSachChiTietSanPham, @NotNull String tenSanPham, String mieuTa, Double giaTien,

@@ -51,6 +51,11 @@ public class NguoiDung {
 		// TODO Auto-generated constructor stub
 	}
 
+	public NguoiDung(String maNguoiDung) {
+		super();
+		this.maNguoiDung = maNguoiDung;
+	}
+
 	public NguoiDung(String maNguoiDung, @NotNull DiaChi diaChi, @NotNull String hoTen, String diaChiChiTiet,
 			@NotNull String email, @NotNull String matKhau, boolean gioiTinh, boolean trangThai, String soDienThoai) {
 		super();

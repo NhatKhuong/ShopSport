@@ -39,10 +39,17 @@ public class DanhGia {
 		this.thoiGian = thoiGian;
 	}
 
+	public DanhGia(SanPham sanPham, NguoiDung nguoiDung) {
+		super();
+		this.sanPham = new SanPham();
+		this.nguoiDung = nguoiDung;
+	}
+
 	public DanhGia() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 
 	public SanPham getSanPham() {
 		return sanPham;

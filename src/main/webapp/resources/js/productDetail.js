@@ -1,8 +1,8 @@
 const formHiddenTenKichThuoc = document.getElementById("hidden-tenKichThuoc");
 const formHiddenSoLuong = document.getElementById("hidden-soLuong");
-
 const soLuongMua = document.getElementById("quantity");
 const submitFormBuy = document.getElementById("submit-buy-now");
+const maSanPham = new URL(window.location.href).searchParams.get("maSanPham");
 // Vote rating
 (function voteRating() {
   var ratings = document.querySelectorAll(".rating-start");
@@ -197,3 +197,40 @@ submitFormBuy.addEventListener("submit", (e) => {
   formHiddenSoLuong.value = +soLuongMua.innerText;
   formHiddenTenKichThuoc.value = tenKichThuoc.innerText;
 });
+/* input */
+
+// comment
+(async () => {
+  // on click submit comment
+  document
+    .getElementById("submit-comment")
+    .addEventListener("click", async (e) => {
+      // productId = delace on top productdetail
+      const formData = new FormData();
+      var rating = document.querySelector('input[name="rating-input"]:checked');
+      var review = document.getElementById("review");
+      const fileInput = document.querySelector("#avatar-1");
+
+      if (!review) {
+        alert("Bạn chưa viết đánh giá");
+      }
+
+      if (fileInput.files.length != 0) {
+        formData.append("file", fileInput.files[0]);
+      } else {
+        formData.append("file", new File([""], "")); // it not save
+      }
+      formData.append("rating", rating.value);
+      formData.append("review", review.value);
+      formData.append("productId", maSanPham);
+      const options = {
+        method: "POST",
+        body: formData,
+      };
+      const response = await fetch(
+        contextPath + "/danh-gia/them-danh-gia",
+        options
+      );
+      console.log(await response.json());
+    });
+})();
