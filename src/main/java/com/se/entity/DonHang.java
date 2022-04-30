@@ -3,6 +3,7 @@ package com.se.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -59,6 +60,13 @@ public class DonHang {
 		this.phiVanChuyen = phiVanChuyen;
 		this.soDienThoai = soDienThoai;
 	}
+	
+
+	public DonHang(String maDonHang) {
+		super();
+		this.maDonHang = maDonHang;
+	}
+
 
 	public DonHang(@NotNull NguoiDung nguoiDung, List<ChiTietDonHang> danhSachChiTietDonHang,
 			TrangThaiDonHang trangThaiDonHang,

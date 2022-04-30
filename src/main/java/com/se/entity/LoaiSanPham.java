@@ -21,8 +21,8 @@ public class LoaiSanPham {
 	@NotNull
 	private String tenLoaiSanPham;
 	
-	@OneToMany(mappedBy = "loaiSanPham")
-	private List<SanPham> danhSachSanPham;
+//	@OneToMany(mappedBy = "loaiSanPham")
+//	private List<SanPham> danhSachSanPham;
 	
 	public LoaiSanPham(String maLoaiSanPham, String tenLoaiSanPham) {
 		super();
@@ -45,14 +45,7 @@ public class LoaiSanPham {
 	public void setTenLoaiSanPham(String tenLoaiSanPham) {
 		this.tenLoaiSanPham = tenLoaiSanPham;
 	}
-	@JsonIgnore
-	public List<SanPham> getDanhSachSanPham() {
-		return danhSachSanPham;
-	}
-	@JsonProperty
-	public void setDanhSachSanPham(List<SanPham> danhSachSanPham) {
-		this.danhSachSanPham = danhSachSanPham;
-	}
+ 
 	@Override
 	public String toString() {
 		return "LoaiSanPham [maLoaiSanPham=" + maLoaiSanPham + ", tenLoaiSanPham=" + tenLoaiSanPham + "]";

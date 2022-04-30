@@ -20,10 +20,10 @@ public class MonTheThao {
 	@Column(columnDefinition = "nvarchar(255)")
 	@NotNull
 	private String tenMonTheThao;
-	
-	@OneToMany(mappedBy = "monTheThao")
-	private List<SanPham> danhSachSanPham;
-	
+//	
+//	@OneToMany(mappedBy = "monTheThao")
+//	private List<SanPham> danhSachSanPham;
+//	
 	public MonTheThao(String maMonTheThao, String tenMonTheThao) {
 		super();
 		this.maMonTheThao = maMonTheThao;
@@ -50,15 +50,15 @@ public class MonTheThao {
 		this.tenMonTheThao = tenMonTheThao;
 	}
 
-	
-	@JsonIgnore
-	public List<SanPham> getDanhSachSanPham() {
-		return danhSachSanPham;
-	}
-	@JsonProperty
-	public void setDanhSachSanPham(List<SanPham> danhSachSanPham) {
-		this.danhSachSanPham = danhSachSanPham;
-	}
+//	
+//	@JsonIgnore
+//	public List<SanPham> getDanhSachSanPham() {
+//		return danhSachSanPham;
+//	}
+//	@JsonProperty
+//	public void setDanhSachSanPham(List<SanPham> danhSachSanPham) {
+//		this.danhSachSanPham = danhSachSanPham;
+//	}
 	@Override
 	public String toString() {
 		return "MonTheThao [maMonTheThao=" + maMonTheThao + ", tenMonTheThao=" + tenMonTheThao + "]";
