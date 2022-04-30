@@ -144,6 +144,8 @@
                 <div class="order_status_item_price">700.000 đ</div>
             </div>
 
+           
+
             <div class="order_status_item_footer">
              <div class="order_status_item_footer_price">
                  <div class="order_status_item_footer_price_title">Tổng số tiền:</div>
@@ -161,6 +163,24 @@
                             <!-- /Body -->
                         </div>
                     </div>
+
+                    <nav class="pagination_block" aria-label="...">
+                        <ul class="pagination" id="pagination_id">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1"><i class="fa fa-angle-left"
+                                        aria-hidden="true"></i></a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                    
                     <div id='footer'>
                         <jsp:include page="components/footer.jsp"></jsp:include>
                     </div>

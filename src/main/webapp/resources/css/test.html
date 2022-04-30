@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS -->
+        <style>
+            .sidebar_section {
+                padding-bottom: 35px;
+                margin-bottom: 50px;
+                border-bottom: solid 1px #ebebeb;
+            }
+
+            #slider-range {
+                margin-left: 7px !important;
+            }
+            #amount {
+                margin-top: 8px;
+                color: #1e1e27 !important;
+                font-size: 16px !important;
+                font-weight: 500 !important;
+            }
+            .filter_button {
+                width: 100%;
+                height: 30px;
+                background: #1e1e27;
+                text-align: center;
+                margin-top: 25px;
+                cursor: pointer;
+                -webkit-transition: all 0.3s ease;
+                -moz-transition: all 0.3s ease;
+                -ms-transition: all 0.3s ease;
+                -o-transition: all 0.3s ease;
+                transition: all 0.3s ease;
+            }
+            .filter_button:hover {
+                background: #34343f;
+            }
+            .filter_button span {
+                font-size: 12px;
+                font-weight: 600;
+                text-transform: uppercase;
+                line-height: 30px;
+                color: #ffffff;
+            }
+        </style>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <div class="sidebar_section">
+            <div class="sidebar_title">
+                <h5>Filter by Price</h5>
+            </div>
+            <p>
+                <input
+                    type="range"
+                    id="amount"
+                    readonly
+                    style="border: 0; color: #f6931f; font-weight: bold"
+                />
+            </p>
+            <div id="slider-range"></div>
+            <div class="filter_button"><span>filter</span></div>
+        </div>
+        <script>
+            function initPriceSlider() {
+                $("#slider-range").slider({
+                    range: true,
+                    min: 0,
+                    max: 1000,
+                    values: [0, 580],
+                    slide: function (event, ui) {
+                        $("#amount").val(
+                            "$" + ui.values[0] + " - $" + ui.values[1]
+                        );
+                    },
+                });
+
+                $("#amount").val(
+                    "$" +
+                        $("#slider-range").slider("values", 0) +
+                        " - $" +
+                        $("#slider-range").slider("values", 1)
+                );
+            }
+        </script>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

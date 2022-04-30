@@ -12,7 +12,12 @@ public interface SanPhamService {
 	public SanPham getById(String id);
 	public List<SanPham> getAll();
 	public List<SanPham> getByFilter(String tenLoai, String tenMon, String tenThuongHieu, double fromPrice, double toPrice, int numPage, int limit);
-	
+	public List<SanPham> getSanPhamFilter(String strLoaiSanPham, String strMonTheThao, String strNhanHieu, double price_to,
+			double price_from, int pageIndex, int limit);
+	public int getNumResult(String strLoaiSanPham, String strMonTheThao, String strNhanHieu, double price_to,
+			double price_from);
+	public List<SanPham> getSanPhamByLoaiSanPham(String loaiSanPham);
+	public List<SanPham> getAllTop20();
 
 
 }

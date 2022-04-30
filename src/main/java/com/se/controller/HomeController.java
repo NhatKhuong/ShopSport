@@ -27,7 +27,10 @@ import com.se.entity.SanPhamTrongGioHang;
 import com.se.service.ChiTietSanPhamService;
 import com.se.service.DiaChiService;
 import com.se.service.KichThuocService;
+import com.se.service.LoaiSanPhamService;
+import com.se.service.MonTheThaoService;
 import com.se.service.NguoiDungService;
+import com.se.service.NhanHieuService;
 import com.se.service.SanPhamService;
 import com.se.service.SanPhamTrongGioHangService;
 import com.se.util.User;
@@ -52,6 +55,15 @@ public class HomeController {
 
 	@Autowired
 	private ChiTietSanPhamService chiTietSanPhamService;
+	
+	@Autowired
+	private LoaiSanPhamService loaiSanPhamService;
+	
+	@Autowired 
+	private MonTheThaoService monTheThaoService;
+	
+	@Autowired
+	private NhanHieuService nhanHieuService;
 
 	@GetMapping("/")
 	public String showHome(Model model) {
@@ -68,6 +80,8 @@ public class HomeController {
 		List<SanPham> list = sanPhamService.getByFilter("", "", "", 5, 1000000000, 125, 10);
 		List<SanPhamTrongGioHang> dsSanPhamTrongGioHang = sanPhamTrongGioHangService
 				.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
+		
+		System.out.println(list);
 
 		model.addAttribute("dsSanPhamTrongGioHang", dsSanPhamTrongGioHang);
 		model.addAttribute("listSanPham", list);
@@ -85,7 +99,19 @@ public class HomeController {
 		NguoiDung nguoiDung = nguoiDungService.getByEmail(email);
 		List<SanPhamTrongGioHang> dsSanPhamTrongGioHang = sanPhamTrongGioHangService
 				.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
+		
+		
+		List<LoaiSanPham> dsLoaiSanPham = loaiSanPhamService.getDanhSachTenLoaiSanPham();
+		List<MonTheThao> dsMonTheThao = monTheThaoService.getDanhSachTenMonTheThao();
+		List<NhanHieu> dsNhanHieu = nhanHieuService.getDanhSachThuongHieu();
+		System.out.println(dsNhanHieu);
+		
 		model.addAttribute("dsSanPhamTrongGioHang", dsSanPhamTrongGioHang);
+		model.addAttribute("dsLoaiSanPham",dsLoaiSanPham);
+		model.addAttribute("dsMonTheThao",dsMonTheThao);
+		model.addAttribute("dsNhanHieu",dsNhanHieu);
+		
+		
 
 		return "shop";
 	}

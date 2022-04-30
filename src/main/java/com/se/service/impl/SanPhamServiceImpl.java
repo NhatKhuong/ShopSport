@@ -61,6 +61,30 @@ public class SanPhamServiceImpl implements SanPhamService{
 		return sanPhamDao.getByFilter(tenLoai, tenMon, tenThuongHieu, fromPrice, toPrice, numPage, limit);
 	}
 
+	@Override
+	@Transactional
+	public List<SanPham> getSanPhamFilter(String strLoaiSanPham, String strMonTheThao, String strNhanHieu,
+			double price_to, double price_from, int pageIndex, int limit) {
+		return sanPhamDao.getSanPhamFilter(strLoaiSanPham, strMonTheThao, strNhanHieu, price_to, price_from, pageIndex, limit);
+	}
 
+	@Override
+	@Transactional
+	public int getNumResult(String strLoaiSanPham, String strMonTheThao, String strNhanHieu, double price_to,
+			double price_from) {
+		return sanPhamDao.getNumResult(strLoaiSanPham, strMonTheThao, strNhanHieu, price_to, price_from);
+	}
+
+	@Override
+	@Transactional
+	public List<SanPham> getSanPhamByLoaiSanPham(String loaiSanPham) {
+		return sanPhamDao.getSanPhamByLoaiSanPham(loaiSanPham);
+	}
+
+	@Override
+	@Transactional
+	public List<SanPham> getAllTop20() {
+		return sanPhamDao.getAllTop20();
+	}
 
 }

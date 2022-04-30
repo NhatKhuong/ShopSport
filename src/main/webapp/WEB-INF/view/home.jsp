@@ -99,28 +99,28 @@
                                             <ul
                                                 class="arrivals_grid_sorting clearfix button-group filters-button-group">
                                                 <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked"
-                                                    data-filter="*">all</li>
+                                                 onclick="fiterByButtonCategori(this)">all</li>
                                                 <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center"
-                                                    data-filter=".women">Quần áo</li>
+                                                onclick="fiterByButtonCategori(this)">Quần áo</li>
                                                 <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center"
-                                                    data-filter=".accessories">Dụng cụ & thiết bị</li>
+                                                onclick="fiterByButtonCategori(this)">Dụng cụ & thiết bị</li>
                                                 <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center"
-                                                    data-filter=".men">Giầy thể thao</li>
+                                                onclick="fiterByButtonCategori(this)">Giầy thể thao</li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="items-product-suggest owl-carousel ">
-                                        <c:forEach var="item" items="${listSanPham }" varStatus="status">
+                                    <div class="items-product-suggest owl-carousel" id="fiterContainer">
+                                        <!-- <c:forEach var="item" items="${listSanPham }" varStatus="status">
                                             <c:set var="item" value="${item}" scope="request" />
                                             <c:set var="col" value="${false}" scope="request" />
                                             <jsp:include page="components/item-product.jsp">
                                                 <jsp:param value="${col}" name="col" />
                                                 <jsp:param value="${item }" name="item" />
                                             </jsp:include>
-                                        </c:forEach>
+                                        </c:forEach> -->
 
                                     </div>
                                 </div>

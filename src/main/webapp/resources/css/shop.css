@@ -383,7 +383,9 @@ p{
 	margin-right: 20px
 }
 
-
+.categories__nav__item__level2:hover {
+	cursor: pointer;
+}
 
 
 
