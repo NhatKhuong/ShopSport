@@ -17,7 +17,7 @@ $(document).ready(function () {
 })();
 // Format Currency
 function formatCurrency(number) {
-    console.log(number);
+    // console.log(number);
     // if (isNaN(number)) return number;
     return new Intl.NumberFormat("vi-VN", {
         style: "currency",

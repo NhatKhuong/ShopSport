@@ -290,7 +290,6 @@
 
 .comments .comment .name {
     color: #767676;
-
     font-weight: 500;
 }
 .comments .comment .date {
@@ -304,7 +303,7 @@
     justify-content: center;
 }
 .create-comment .your-rating .ratings {
-    font-size: 30px;
+    font-size: 35px;
 }
 
 .create-comment .your-rating .ratings i {
@@ -323,8 +322,6 @@
 }
 /* /Tab */
 
-.list-product-suggest {
-}
 .components-title {
     position: relative;
     text-align: center;
@@ -381,15 +378,23 @@
 }
 
 .modal-content_card_status {
-    margin-top: 35vh !important;
     width: 210px !important;
     background-color: #444444 !important;
     opacity: 0.9;
-    margin-top: 45vh !important;
 }
 
 .modal-dialog_card_status {
-    padding-left: 10% !important;
+    display: flex;
+    justify-content: center;
+    top: 40%;
+    /* transform: translateY(-50%); */
+}
+
+.add_to_card_modal_container.show {
+    display: block !important;
+    background-color: #00000063 !important;
+    transition: 0.3s;
+    /* opacity: 0.2; */
 }
 /* /. Notification success add to cart */
 

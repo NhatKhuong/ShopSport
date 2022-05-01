@@ -18,8 +18,8 @@ public class NhanHieu {
 	@Column(columnDefinition = "nvarchar(255)")
 	@NotNull
 	private String tenNhanHieu;
-	@OneToMany(mappedBy = "nhanHieu")
-	private List<SanPham> danhSachSanPham;
+//	@OneToMany(mappedBy = "nhanHieu")
+//	private List<SanPham> danhSachSanPham;
 	public NhanHieu(String maNhanHieu, String tenNhanHieu) {
 		super();
 		this.maNhanHieu = maNhanHieu;
@@ -42,14 +42,14 @@ public class NhanHieu {
 		this.tenNhanHieu = tenNhanHieu;
 	}
 	
-	@JsonIgnore
-	public List<SanPham> getDanhSachSanPham() {
-		return danhSachSanPham;
-	}
-	@JsonProperty
-	public void setDanhSachSanPham(List<SanPham> danhSachSanPham) {
-		this.danhSachSanPham = danhSachSanPham;
-	}
+//	@JsonIgnore
+//	public List<SanPham> getDanhSachSanPham() {
+//		return danhSachSanPham;
+//	}
+//	@JsonProperty
+//	public void setDanhSachSanPham(List<SanPham> danhSachSanPham) {
+//		this.danhSachSanPham = danhSachSanPham;
+//	}
 	@Override
 	public String toString() {
 		return "NhanHieu [maNhanHieu=" + maNhanHieu + ", tenNhanHieu=" + tenNhanHieu + ", danhSachSanPham="

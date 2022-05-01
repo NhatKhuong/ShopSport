@@ -1,9 +1,12 @@
 package com.se.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +25,6 @@ public class DanhGiaDaoImpl implements DanhGiaDao{
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		try {	
-			System.out.println(danhGia);
 			session.save(danhGia);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -59,20 +61,41 @@ public class DanhGiaDaoImpl implements DanhGiaDao{
 	}
 
 	@Override
-	public List<DanhGia> layDanhSachDanhGia(int page, int limit) {
+	public int soLuongDanhGiaTheoMaSanPham( String maSanPham) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
-		List<DanhGia> danhSachDanhGia = null;
-		int numStart = (page-1)*limit;
+ 
 		try {
+			String sql = "select count(*) from DanhGia where maSanPham = :maSanPham ";
 			
-			String sql = "select * from DanhGia order by DanhGia.thoiGian offset "+numStart+" rows  fetch next "+limit+" rows only";
-			danhSachDanhGia = session.createNativeQuery(sql, DanhGia.class).getResultList();
+			Query query =  session.createNativeQuery(sql);
+			query.setParameter("maSanPham", maSanPham);
+//			System.err.println(query.getFirstResult());
+			return (int) query.getSingleResult();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		return danhSachDanhGia;
+		return 0;
+	}
+
+	@Override
+	public List<DanhGia> layDanhSachDanhGiaTheoMaSanPham(int page, int limit, String maSanPham) {
+//		System.err.println(maSanPham);
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		int numStart = (page-1)*limit;
+		try {
+			
+			String sql = "select * from DanhGia where maSanPham = :maSanPham order by thoiGian desc offset "+numStart+" rows  fetch next "+limit+" rows only";
+			Query<DanhGia> query =  session.createNativeQuery(sql, DanhGia.class);
+			query.setParameter("maSanPham", maSanPham);
+			return query.getResultList();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return new ArrayList<DanhGia>();
 	}
 
 }

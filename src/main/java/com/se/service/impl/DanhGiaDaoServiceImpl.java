@@ -40,9 +40,15 @@ public class DanhGiaDaoServiceImpl implements DanhGiaDaoService {
 
 	@Override
 	@Transactional
-	public List<DanhGia> layDanhSachDanhGia(int page, int limit) {
-		// TODO Auto-generated method stub
-		return layDanhSachDanhGia(page, limit);
+	public List<DanhGia>  layDanhSachDanhGiaTheoMaSanPham(int page, int limit, String maSanPham){
+	
+		return danhGiaDao.layDanhSachDanhGiaTheoMaSanPham(page, limit, maSanPham);
+	}
+	@Override
+	@Transactional
+	public int soLuongDanhGiaTheoMaSanPham(String maSanPham) {
+		
+		return danhGiaDao.soLuongDanhGiaTheoMaSanPham(maSanPham);
 	}
 
 }

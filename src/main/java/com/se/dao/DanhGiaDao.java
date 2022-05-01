@@ -8,5 +8,6 @@ public interface DanhGiaDao {
 	public boolean themDanhGia(DanhGia danhGia);
 	public boolean suaDanhGia(DanhGia danhGia);
 	public boolean xoaDanhGia(String maNguoiDung, String maSanPham);
-	public  List<DanhGia>  layDanhSachDanhGia(int page, int limit);
+	public  List<DanhGia>  layDanhSachDanhGiaTheoMaSanPham(int page, int limit, String maSanPham);
+	public int soLuongDanhGiaTheoMaSanPham( String maSanPham);
 }

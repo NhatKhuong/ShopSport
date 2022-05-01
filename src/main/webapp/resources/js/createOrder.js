@@ -1,6 +1,8 @@
 const tinhThanhPho = document.getElementById("tinhThanhPho");
 const quanHuyen = document.getElementById("quanHuyen");
 const phuongXa = document.getElementById("phuongXa");
+const soDienThoai = document.getElementById("soDienThoai");
+const diaChiCuThe = document.getElementById("diaChiCuThe");
 
 (async function loadDataTinh() {
   const optionDefault = `  <option selected disabled>Chọn tỉnh / thành phố</option>`;
@@ -52,23 +54,41 @@ async function addDataInSelect(data, optionDefault, selectElement) {
   });
   selectElement.innerHTML = optionDefault + result;
 }
+function checkError(check, idHelp) {
+  if (check) {
+    document.getElementById(idHelp).classList.add("d-none");
+    return 0;
+  } else {
+    document.getElementById(idHelp).classList.remove("d-none");
+    return 1;
+  }
+}
 
 // validation form
-$("#form-save-order").on("submit", (e) => {
-  var status = true;
-  if (quanHuyen.selectedIndex == 0) {
-    status = false;
-    document.getElementById("helpQuanHuyen").classList.remove("d-none");
-  }
-  if (tinhThanhPho.selectedIndex == 0) {
-    status = false;
-    document.getElementById("helpTinhThanhPho").classList.remove("d-none");
-  }
-  if (quanHuyen.selectedIndex == 0) {
-    status = false;
-    document.getElementById("helpPhuongXa").classList.remove("d-none");
-  }
-  alert(status);
+$("#form-save-order").on("submit", async (e) => {
+  var errorNumber = 0;
+  errorNumber += checkError(quanHuyen.selectedIndex != 0, "helpQuanHuyen");
+  errorNumber += checkError(
+    tinhThanhPho.selectedIndex != 0,
+    "helpTinhThanhPho"
+  );
+  errorNumber += checkError(phuongXa.selectedIndex != 0, "helpPhuongXa");
+  errorNumber += checkError(diaChiCuThe.value, "helpDiaChiCuThe");
+  errorNumber += checkError(
+    new RegExp("^([+]?[s0-9]+)?(d{3}|[(]?[0-9]+[)])?([-]?[s]?[0-9])+$").test(
+      soDienThoai.value
+    ),
+    "helpSoDienThoai"
+  );
 
-  if (!status) e.preventDefault();
+  if (errorNumber == 0) {
+    Swal.fire({
+      title: "Đặt hàng thành công!",
+      text: "Cảm ơn bạn",
+      icon: "success",
+      confirmButtonText: "Đồng ý",
+    });
+  } else {
+    e.preventDefault();
+  }
 });

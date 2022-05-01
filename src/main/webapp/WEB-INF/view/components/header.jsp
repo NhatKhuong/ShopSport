@@ -5,6 +5,7 @@
             <!-- this is so important. ajax will call it -->
             <script>var contextPath = "${pageContext.request.contextPath}"</script>
             <script src="<c:url value='/resources/js/layout.js'/>" defer="defer"></script>
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <header class="header trans_300">
 
                 <!-- Top Navigation -->

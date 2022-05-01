@@ -10,12 +10,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @IdClass(DanhGiaPK.class)
 public class DanhGia {
 	@Id 
 	@ManyToOne
 	@JoinColumn(name="maSanPham")
+	
 	private SanPham sanPham;
 	@Id 
 	@ManyToOne
@@ -50,11 +54,11 @@ public class DanhGia {
 		// TODO Auto-generated constructor stub
 	}
 
-
+	@JsonIgnore
 	public SanPham getSanPham() {
 		return sanPham;
 	}
-
+	@JsonProperty
 	public void setSanPham(SanPham sanPham) {
 		this.sanPham = sanPham;
 	}

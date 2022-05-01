@@ -12,6 +12,9 @@
 				<head>
 					<meta charset="utf-8">
 					<title>Insert title here</title>
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+						integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+						crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 					<link rel="stylesheet"
 						href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
@@ -205,11 +208,10 @@
 									<section class="container-tab pb-3">
 										<nav class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
 											<a class="nav-item nav-link active " id="#nav-description" data-toggle="tab"
-												href="#nav-description" role="tab"
-												aria-controls="nav-general">description</a> <a
-												class="nav-item nav-link " id="#nav-comment" id='clock'
+												href="#nav-description" role="tab" aria-controls="nav-general">Chi
+												tiết</a> <a class="nav-item nav-link " id="#nav-comment" id='clock'
 												data-toggle="tab" href="#nav-comment" role="tab"
-												aria-controls="nav-profile">Reviews(1)</a>
+												aria-controls="nav-profile">Đánh giá(1)</a>
 										</nav>
 									</section>
 
@@ -224,97 +226,57 @@
 										</div>
 										<div class="tab-pane fSade show " id="nav-comment" role="tabpanel"
 											aria-labelledby="nav-comment">
-											<div class="comments pb-3">
-												<div class="title pb-3 ">
-													<h4>1 review for Daily Ritual Women’s</h4>
-												</div>
-
-												<div class="comment">
-													<div class="avatar">
-														<img src="
-                                        https://secure.gravatar.com/avatar/bb90dcb0ceabfc8bf10c550f1ee95ee7?s=60&d=mm&r=g"
-															alt="">
-													</div>
-													<div class="info-comment">
-														<div class="name  pb-1">Nguyễn Thanh sơn</div>
-														<div class="ratings pb-1">
-															<i class="fa fa-star" aria-hidden="true"></i> <i
-																class="fa fa-star" aria-hidden="true"></i> <i
-																class="fa fa-star" aria-hidden="true"></i> <i
-																class="fa fa-star" aria-hidden="true"></i> <i
-																class="fa fa-star" aria-hidden="true"></i>
-
-														</div>
-														<div class="date">
-															<small> June 11, 2021</small>
-														</div>
-														<div class="content">It has survived not only</div>
-													</div>
-
-												</div>
-												<div class="comment">
-													<div class="avatar">
-														<img src="
-                                        https://secure.gravatar.com/avatar/bb90dcb0ceabfc8bf10c550f1ee95ee7?s=60&d=mm&r=g"
-															alt="">
-													</div>
-													<div class="info-comment">
-														<div class="name  pb-1">Nguyễn Thanh sơn</div>
-														<div class="ratings pb-1">
-															<i class="fa fa-star" aria-hidden="true"></i> <i
-																class="fa fa-star" aria-hidden="true"></i> <i
-																class="fa fa-star" aria-hidden="true"></i> <i
-																class="fa fa-star" aria-hidden="true"></i> <i
-																class="fa fa-star" aria-hidden="true"></i>
-
-														</div>
-														<div class="date">
-															<small> June 11, 2021</small>
-														</div>
-														<div class="content">It has survived not only</div>
-													</div>
-
-												</div>
-												<div class="comment">
-													<div class="avatar">
-														<img src="
-                                        https://secure.gravatar.com/avatar/bb90dcb0ceabfc8bf10c550f1ee95ee7?s=60&d=mm&r=g"
-															alt="">
-													</div>
-													<div class="info-comment">
-														<div class="name  pb-1">Nguyễn Thanh sơn</div>
-														<div class="ratings pb-1">
-															<i class="fa fa-star" aria-hidden="true"></i> <i
-																class="fa fa-star" aria-hidden="true"></i> <i
-																class="fa fa-star" aria-hidden="true"></i> <i
-																class="fa fa-star" aria-hidden="true"></i> <i
-																class="fa fa-star" aria-hidden="true"></i>
-														</div>
-														<div class="date">
-															<small> June 11, 2021</small>
-														</div>
-														<div class="content">It has survived not only</div>
-													</div>
-												</div>
-												<nav class="mt-4">
-													<ul class="pagination mb-0" style="justify-content: flex-end;">
-														<li class="page-item"><a class="page-link" href="#"
-																aria-label="Previous"> <span
-																	aria-hidden="true">&laquo;</span>
-																<span class="sr-only">Previous</span>
-															</a></li>
-														<li class="page-item"><a class="page-link" href="#">1</a></li>
-														<li class="page-item"><a class="page-link" href="#">2</a></li>
-														<li class="page-item"><a class="page-link" href="#">3</a></li>
-														<li class="page-item"><a class="page-link" href="#"
-																aria-label="Next"> <span
-																	aria-hidden="true">&raquo;</span>
-																<span class="sr-only">Next</span>
-															</a></li>
-													</ul>
-												</nav>
-
+											<div class="title pb-3 ">
+												<h4>5 đánh giá cho sản phẩm này</h4>
 											</div>
+											<div class="comments pb-3" id="comments"
+												style="max-height: 500px;overflow: scroll;  overflow-x: hidden;">
+												<!-- <div class="comment">
+													<div class="avatar">
+														<img src="https://secure.gravatar.com/avatar/bb90dcb0ceabfc8bf10c550f1ee95ee7?s=60&d=mm&r=g"
+															alt="">
+													</div>
+													<div class="info-comment">
+														<div class="d-flex align-items-center">
+															<div class="name  pb-1">Nguyễn Thanh sơn </div>
+															<div class="date ml-2">
+																<small> June 11, 2021</small>
+															</div>
+														</div>
+														<div class="ratings pb-1">
+															<i class="fa fa-star" aria-hidden="true"></i> <i
+																class="fa fa-star" aria-hidden="true"></i> <i
+																class="fa fa-star" aria-hidden="true"></i> <i
+																class="fa fa-star" aria-hidden="true"></i> <i
+																class="fa fa-star" aria-hidden="true"></i>
+														</div>
+														<div class="content">It has survived not only</div>
+														<div class="image pt-2">
+															<img height="60"
+																src="https://secure.gravatar.com/avatar/bb90dcb0ceabfc8bf10c550f1ee95ee7?s=60&d=mm&r=g"
+																class="rounded float-left">
+														</div>
+													</div>
+
+												</div> -->
+											</div>
+											<nav class="mt-4">
+												<ul class="pagination mb-0" style="justify-content: flex-end;"
+													id="pagination-comment">
+													<!-- <li class="page-item"><a class="page-link" href="#"
+															aria-label="Previous"> <span
+																aria-hidden="true">&laquo;</span>
+															<span class="sr-only">Previous</span>
+														</a></li>
+													<li class="page-item"><a class="page-link" href="#">1</a></li>
+													<li class="page-item"><a class="page-link" href="#">2</a></li>
+													<li class="page-item"><a class="page-link" href="#">3</a></li>
+													<li class="page-item"><a class="page-link" href="#"
+															aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+															<span class="sr-only">Next</span>
+														</a></li> -->
+												</ul>
+											</nav>
 											<div class="create-comment pt-3 text-center">
 
 
@@ -333,9 +295,7 @@
 													<!-- markup -->
 													<!-- note: your server code `/site/avatar_upload/1` will receive `$_FILES['avatar-1']` on form submission -->
 													<!-- the avatar markup -->
-													<form:form method="POST"
-														action="${pageContext.request.contextPath}/uploadFile"
-														enctype="multipart/form-data" class="form form-vertical">
+													<form:form method="POST" class="form form-vertical">
 
 														<div class="row">
 															<div class="col-sm-3 text-center">
@@ -536,7 +496,7 @@
 							removeTitle: 'Cancel or reset changes',
 							elErrorContainer: '#kv-avatar-errors-1',
 							msgErrorClass: 'alert alert-block alert-danger',
-							defaultPreviewContent: '<img src="/samples/default-avatar-male.png" alt="Your Avatar">',
+							defaultPreviewContent: '<img src="/samples/default-avatar-male.png" alt="HÌnh ảnh đánh giá">',
 							layoutTemplates: { main2: '{preview} ' + btnCust + ' {remove} {browse}' },
 							allowedFileExtensions: ["jpg", "png", "gif"]
 						});
