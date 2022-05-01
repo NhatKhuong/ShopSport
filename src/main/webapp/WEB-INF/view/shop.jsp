@@ -54,36 +54,52 @@
                 <li class="categories__nav__item__level1" id="football">Loại sản phẩm <i class="fa fa-angle-down"
                         aria-hidden="true"></i></li>
                 <ul class="categories__nav__level2" id="football_items">
-                    <li class="categories__nav__item__level2"> <input type="checkbox" name=""> <label for=""> Thiết bị
+                   <!--  <li class="categories__nav__item__level2"> <input type="checkbox" name=""> <label for=""> Thiết bị
                         </label> </li>
                     <li class="categories__nav__item__level2"> <input type="checkbox" name=""> <label for=""> Dụng cụ
                         </label></li>
                     <li class="categories__nav__item__level2"> <input type="checkbox" name=""> <label for=""> Quần áo
                         </label></li>
                         <li class="categories__nav__item__level2"> <input type="checkbox" name=""> <label for=""> Giày 
-                        </label></li>
+                        </label></li> -->
+                        <c:forEach var="item" items="${dsLoaiSanPham}">
+                        	<li class="categories__nav__item__level2 categories__nav__item__level2_loaiSanPham">
+                        		<input onchange="searchFilterCheckbox()" type="checkbox" name="loaiSanPham" id="${item.maLoaiSanPham}">
+                        		<label for="${item.maLoaiSanPham }">${item.tenLoaiSanPham }</label></li>
+                        </c:forEach>
+                        
                 </ul>
                 <li class="categories__nav__item__level1" id="volleyball">Môn thể thao <i class="fa fa-angle-down"
                         aria-hidden="true"></i></li>
                 <ul class="categories__nav__level2" id="volleyball_items">
-                    <li class="categories__nav__item__level2"> <input type="checkbox" name=""> <label for=""> Bóng đá
+                   <!--  <li class="categories__nav__item__level2"> <input type="checkbox" name=""> <label for=""> Bóng đá
                         </label></li>
                     <li class="categories__nav__item__level2"> <input type="checkbox" name=""> <label for=""> Bóng chuyền
                         </label></li>
                     <li class="categories__nav__item__level2"> <input type="checkbox" name=""> <label for=""> Bóng rổ
                         </label></li>
                         <li class="categories__nav__item__level2"> <input type="checkbox" name=""> <label for=""> Bơi lội
-                        </label></li>
+                        </label></li> -->
+                        <c:forEach var="item" items="${dsMonTheThao}">
+                        	<li class="categories__nav__item__level2 categories__nav__item__level2_monTheThao">
+                        		<input onchange="searchFilterCheckbox()" type="checkbox" name="monTheThao" id="${item.maMonTheThao}">
+                        		<label for="${item.maMonTheThao }">${item.tenMonTheThao }</label></li>
+                        </c:forEach>
                 </ul>
                 <li class="categories__nav__item__level1" id="sportType">Thương hiệu<i class="fa fa-angle-down"
                     aria-hidden="true"></i></li>
                       <ul class="categories__nav__level2" id="sportType_items">
-                    <li class="categories__nav__item__level2"> <input type="checkbox" name=""> <label for=""> Adidas
+                   <!--  <li class="categories__nav__item__level2"> <input type="checkbox" name=""> <label for=""> Adidas
                     </label></li>
                 <li class="categories__nav__item__level2"> <input type="checkbox" name=""> <label for="">Nike
                     </label></li>
                 <li class="categories__nav__item__level2"> <input type="checkbox" name=""> <label for="">Bitis
-                    </label></li>
+                    </label></li> -->
+                    <c:forEach var="item" items="${dsNhanHieu}">
+                        	<li class="categories__nav__item__level2 categories__nav__item__level2_nhanHieu">
+                        		<input onchange="searchFilterCheckbox()" type="checkbox" name="nhanHieu" id="${item.maNhanHieu}">
+                        		<label for="${item.maNhanHieu}">${item.tenNhanHieu}</label></li>
+                        </c:forEach>
             </ul>
                 
             </ul>
@@ -148,13 +164,13 @@
 										</li>
 										<li>
 											<span>Show</span>
-											<span class="num_sorting_text">6</span>
-											<i class="fa fa-angle-down"></i>
-											<ul class="sorting_num">
-												<li class="num_sorting_btn"><span>6</span></li>
-												<li class="num_sorting_btn"><span>12</span></li>
-												<li class="num_sorting_btn"><span>24</span></li>
-											</ul>
+											<!-- <span class="num_sorting_text">6</span> -->
+											<!-- <i class="fa fa-angle-down"></i> -->
+											<select onchange="searchFilterCheckbox()"  class="sorting_num_re">
+												<option value="6" class="num_sorting_btn_re">6</option>
+												<option value="12" class="num_sorting_btn_re">12</option>
+												<option value="24" class="num_sorting_btn_re">24</option>
+											</select>
 										</li>
 									</ul>
 									<div class="pages d-flex flex-row align-items-center pagination">
@@ -176,18 +192,18 @@
             </div>
 
             <div class="display__item__itemList__item_result">
-                <div class="row">
-                <c:forEach var="item" items="${listSanPham }"  varStatus="status">
+                <div class="row" id="container_item_product">
+                <!-- <c:forEach var="item" items="${listSanPham }"  varStatus="status">
                 	 <c:set var="item" value="${item}" scope="request" />
 	                <jsp:include page="components/item-product.jsp">
 	               		<jsp:param value="${item }" name="item"/>
                 	</jsp:include>
-                </c:forEach>                    
+                </c:forEach> -->
                 </div>
             </div>
             <nav class="pagination_block" aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item disabled">
+                <ul class="pagination" id="pagination_id">
+                    <!-- <li class="page-item disabled">
                         <a class="page-link" href="#" tabindex="-1"><i class="fa fa-angle-left"
                                 aria-hidden="true"></i></a>
                     </li>
@@ -198,7 +214,7 @@
                     <li class="page-item"><a class="page-link" href="#">3</a></li>
                     <li class="page-item">
                         <a class="page-link" href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
         </div>
@@ -226,6 +242,8 @@
             crossorigin="anonymous"
         ></script>
         <script src="<c:url value='/resources/js/home.js'/>"></script>
+        <script src="<c:url value='/resources/js/shop.js'/>"></script>
+        <script src="<c:url value='/resources/js/layout.js'/>"></script>
         <script src="<c:url value='/resources/js/filter.js'/>"></script>
   
 </body>

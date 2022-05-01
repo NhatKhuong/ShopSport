@@ -11,11 +11,27 @@ import com.se.dao.MonTheThaoDao;
 import com.se.entity.MonTheThao;
 
 @Repository
-public class MonTheThaoImpl implements MonTheThaoDao {
-
-	@Autowired
-	SessionFactory sessionFactory;
+public class MonTheThaoDaoImpl implements MonTheThaoDao{
 	
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	@Override
+	public List<MonTheThao> getDanhSachTenMonTheThao() {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			
+			String sql = "select * from MonTheThao";
+			List<MonTheThao> list = session.createNativeQuery(sql,MonTheThao.class).getResultList();
+			return list;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	@Override
 	public List<MonTheThao> getAllMTT() {
 		// TODO Auto-generated method stub
@@ -77,5 +93,6 @@ public class MonTheThaoImpl implements MonTheThaoDao {
 		}
 		return null;
 	}
+
 
 }

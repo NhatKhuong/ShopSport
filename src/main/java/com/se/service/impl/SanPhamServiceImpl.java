@@ -12,15 +12,15 @@ import com.se.entity.SanPham;
 import com.se.service.SanPhamService;
 
 @Service
-public class SanPhamServiceImpl implements SanPhamService{
+public class SanPhamServiceImpl implements SanPhamService {
 	@Autowired
-	private SanPhamDao sanPhamDao; 
+	private SanPhamDao sanPhamDao;
 
 	@Override
 	@Transactional
 	public void save(SanPham sanPham) {
 		sanPhamDao.save(sanPham);
-		
+
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class SanPhamServiceImpl implements SanPhamService{
 	public void delete(String maSanPham) {
 		// TODO Auto-generated method stub
 		sanPhamDao.delete(maSanPham);
-		
+
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class SanPhamServiceImpl implements SanPhamService{
 	public void update(SanPham sanPham) {
 		// TODO Auto-generated method stub
 		sanPhamDao.update(sanPham);
-		
+
 	}
 
 	@Override
@@ -66,6 +66,33 @@ public class SanPhamServiceImpl implements SanPhamService{
 	public String getMaSanPhamCuoiCung() {
 		// TODO Auto-generated method stub
 		return sanPhamDao.getMaSanPhamCuoiCung();
+	}
+
+	@Override
+	@Transactional
+	public List<SanPham> getSanPhamFilter(String strLoaiSanPham, String strMonTheThao, String strNhanHieu,
+			double price_to, double price_from, int pageIndex, int limit) {
+		return sanPhamDao.getSanPhamFilter(strLoaiSanPham, strMonTheThao, strNhanHieu, price_to, price_from, pageIndex,
+				limit);
+	}
+
+	@Override
+	@Transactional
+	public int getNumResult(String strLoaiSanPham, String strMonTheThao, String strNhanHieu, double price_to,
+			double price_from) {
+		return sanPhamDao.getNumResult(strLoaiSanPham, strMonTheThao, strNhanHieu, price_to, price_from);
+	}
+
+	@Override
+	@Transactional
+	public List<SanPham> getSanPhamByLoaiSanPham(String loaiSanPham) {
+		return sanPhamDao.getSanPhamByLoaiSanPham(loaiSanPham);
+	}
+
+	@Override
+	@Transactional
+	public List<SanPham> getAllTop20() {
+		return sanPhamDao.getAllTop20();
 	}
 
 }

@@ -2,10 +2,9 @@ package com.se.service.impl;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.se.dao.LoaiSanPhamDao;
 import com.se.entity.LoaiSanPham;
@@ -15,7 +14,12 @@ import com.se.service.LoaiSanPhamService;
 public class LoaiSanPhamServiceImpl implements LoaiSanPhamService {
 	@Autowired
 	private LoaiSanPhamDao loaiSanPhamDao;
-	
+
+	@Override
+	@Transactional
+	public List<LoaiSanPham> getDanhSachTenLoaiSanPham() {
+		return loaiSanPhamDao.getDanhSachTenLoaiSanPham();
+	}
 
 	@Override
 	@Transactional
@@ -24,7 +28,6 @@ public class LoaiSanPhamServiceImpl implements LoaiSanPhamService {
 		return loaiSanPhamDao.getAllLoaiSanPham();
 	}
 
-
 	@Override
 	@Transactional
 	public String getMaLoaiSanPhamCuoiCung() {
@@ -32,14 +35,12 @@ public class LoaiSanPhamServiceImpl implements LoaiSanPhamService {
 		return loaiSanPhamDao.getMaLoaiSanPhamCuoiCung();
 	}
 
-
 	@Override
 	@Transactional
 	public void saveLoaiSanPham(LoaiSanPham loaiSanPham) {
 		// TODO Auto-generated method stub
 		loaiSanPhamDao.saveLoaiSanPham(loaiSanPham);
 	}
-
 
 	@Override
 	@Transactional

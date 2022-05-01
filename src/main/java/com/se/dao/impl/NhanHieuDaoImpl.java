@@ -13,11 +13,11 @@ import com.se.dao.NhanHieuDao;
 import com.se.entity.NhanHieu;
 
 @Repository
-public class NhanHieuDaoImpl implements NhanHieuDao{
+public class NhanHieuDaoImpl implements NhanHieuDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	@Override
 	public List<NhanHieu> getAllNhanHieu() {
 		// TODO Auto-generated method stub
@@ -26,7 +26,7 @@ public class NhanHieuDaoImpl implements NhanHieuDao{
 			String sql = "select * from NhanHieu";
 			List<NhanHieu> list = session.createNativeQuery(sql, NhanHieu.class).getResultList();
 			return list;
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -43,7 +43,7 @@ public class NhanHieuDaoImpl implements NhanHieuDao{
 			String sql = "select top 1 maNhanHieu from NhanHieu order by maNhanHieu desc";
 			maSanPhamCuoi = (String) session.createNativeQuery(sql).getSingleResult();
 			return maSanPhamCuoi;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
@@ -53,13 +53,13 @@ public class NhanHieuDaoImpl implements NhanHieuDao{
 	@Override
 	public void saveNhanHieu(NhanHieu nhanHieu) {
 		// TODO Auto-generated method stub
-				Session session = sessionFactory.getCurrentSession();
-				try {	
-					session.save(nhanHieu);
-				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
-				}
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.save(nhanHieu);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -67,12 +67,25 @@ public class NhanHieuDaoImpl implements NhanHieuDao{
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			String sql = "select * from NhanHieu where tenNhanHieu LIKE N'"+tenNhanHieu+"'";
+			String sql = "select * from NhanHieu where tenNhanHieu LIKE N'" + tenNhanHieu + "'";
 			NhanHieu nhanHieu = session.createNativeQuery(sql, NhanHieu.class).getSingleResult();
 			return nhanHieu;
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<NhanHieu> getDanhSachThuongHieu() {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			String sql = "select * from NhanHieu";
+			List<NhanHieu> list = session.createNativeQuery(sql, NhanHieu.class).getResultList();
+			return list;
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;

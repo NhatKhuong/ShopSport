@@ -9,4 +9,5 @@ public interface MonTheThaoDao {
 	public String getMaMTTCuoi();
 	public void saveMTT(MonTheThao monTheThao);
 	public MonTheThao timMonTheThaoBangTen(String tenMonTheThao);
+	public List<MonTheThao> getDanhSachTenMonTheThao();
 }

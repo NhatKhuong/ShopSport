@@ -16,7 +16,7 @@ public class NhanHieuServiceImpl implements NhanHieuService {
 
 	@Autowired
 	private NhanHieuDao nhanHieuDao;
-	
+
 	@Override
 	@Transactional
 	public List<NhanHieu> getAllNhanHieu() {
@@ -36,7 +36,7 @@ public class NhanHieuServiceImpl implements NhanHieuService {
 	public void saveNhanHieu(NhanHieu nhanHieu) {
 		// TODO Auto-generated method stub
 		nhanHieuDao.saveNhanHieu(nhanHieu);
-		
+
 	}
 
 	@Override
@@ -46,4 +46,9 @@ public class NhanHieuServiceImpl implements NhanHieuService {
 		return nhanHieuDao.timNhanHieuBangTen(tenNhanHieu);
 	}
 
+	@Override
+	@Transactional
+	public List<NhanHieu> getDanhSachThuongHieu() {
+		return nhanHieuDao.getDanhSachThuongHieu();
+	}
 }

@@ -79,7 +79,7 @@
                                 <nav class="navbar">
                                     <ul class="navbar_menu">
                                         <li><a href="">home</a></li>
-                                        <li><a href="shop">shop</a></li>
+                                        <li><a href="shop" >shop</a></li>
                                         <li><a href="#">promotion</a></li>
                                         <li><a href="#">pages</a></li>
                                         <li><a href="#">blog</a></li>
@@ -107,11 +107,11 @@
                 <div class="modal fade model_card" id="CardModal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content modal-content_custom">
                             <div class="modal-header">
                                 <input type="checkbox" class="check_all">
                                 <h5 class="modal-title" id="exampleModalLabel">Giỏ hàng</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close close_model" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>

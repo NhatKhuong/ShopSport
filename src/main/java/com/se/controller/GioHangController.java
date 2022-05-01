@@ -53,6 +53,7 @@ public class GioHangController {
 		System.out.println(request.getParameter("soLuong"));
 		int soLuong = Integer.parseInt(request.getParameter("soLuong"));
 		String maSanPham = request.getParameter("productId");
+		System.out.println("===================="+maSanPham);
 		
 		
 		KichThuoc kichThuoc = kichThuocService.getKichThuocTheoTenKichThuoc(tenKichThuoc);

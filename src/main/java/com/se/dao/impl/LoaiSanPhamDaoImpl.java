@@ -15,7 +15,24 @@ public class LoaiSanPhamDaoImpl implements LoaiSanPhamDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
+	@Override
+	public List<LoaiSanPham> getDanhSachTenLoaiSanPham() {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+
+			String sql = "select * from LoaiSanPham";
+			List<LoaiSanPham> list = session.createNativeQuery(sql, LoaiSanPham.class).getResultList();
+			return list;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
 	@Override
 	public List<LoaiSanPham> getAllLoaiSanPham() {
 		Session session = sessionFactory.getCurrentSession();
@@ -39,7 +56,7 @@ public class LoaiSanPhamDaoImpl implements LoaiSanPhamDao {
 			String sql = "select top 1 maLoaiSanPham from LoaiSanPham order by maLoaiSanPham desc";
 			maLoaiSanPhamCuoi = (String) session.createNativeQuery(sql).getSingleResult();
 			return maLoaiSanPhamCuoi;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
@@ -50,7 +67,7 @@ public class LoaiSanPhamDaoImpl implements LoaiSanPhamDao {
 	public void saveLoaiSanPham(LoaiSanPham loaiSanPham) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
-		try {	
+		try {
 			session.save(loaiSanPham);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -62,7 +79,7 @@ public class LoaiSanPhamDaoImpl implements LoaiSanPhamDao {
 	public LoaiSanPham timLoaiSanPhambangTen(String tenLoaiSanPham) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			String sql = "select * from LoaiSanPham where tenLoaiSanPham like N'"+tenLoaiSanPham+"'";
+			String sql = "select * from LoaiSanPham where tenLoaiSanPham like N'" + tenLoaiSanPham + "'";
 			LoaiSanPham loaiSanPham = session.createNativeQuery(sql, LoaiSanPham.class).getSingleResult();
 			return loaiSanPham;
 		} catch (Exception e) {

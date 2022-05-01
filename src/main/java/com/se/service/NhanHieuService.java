@@ -9,4 +9,6 @@ public interface NhanHieuService {
 	public String getMaCuoiNhanHieu();
 	public void saveNhanHieu(NhanHieu nhanHieu);
 	public NhanHieu timNhanHieuBangTen(String tenNhanHieu);
+	public List<NhanHieu> getDanhSachThuongHieu();
+
 }

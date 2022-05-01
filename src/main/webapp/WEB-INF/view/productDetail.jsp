@@ -401,7 +401,7 @@
 						</div>
 					</div>
 					<!-- Modal success -->
-					<div class="modal fade add_to_card_modal_container" id="myModal" tabindex="-1" role="dialog"
+					<!-- <div class="modal fade add_to_card_modal_container" id="myModal" tabindex="-1" role="dialog"
 						aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 						<div class="modal-dialog modal-dialog_card_status" role="document">
 							<div class="modal-content modal-content_card_status">
@@ -420,7 +420,29 @@
 
 							</div>
 						</div>
-					</div>
+					</div> -->
+
+					<div class="modal fade add_to_card_modal_container" id="myModalDialogSuccess" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog_card_status" role="document">
+                            <div class="modal-content modal-content_card_status">
+                                <div class="modal-body">
+                                    <div class="status_block">
+                                        <div class="dialog_content dialog_content_card_status ">
+                                            <div class="content_stutus_add">
+                                                <img
+                                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/MW-Icon-CheckMark.svg/1200px-MW-Icon-CheckMark.svg.png">
+                                                <div class="content_stutus">
+                                                    Thêm thành công
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
 
 
 					<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
