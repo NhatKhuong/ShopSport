@@ -77,6 +77,7 @@ public class LoaiSanPhamDaoImpl implements LoaiSanPhamDao {
 
 	@Override
 	public LoaiSanPham timLoaiSanPhambangTen(String tenLoaiSanPham) {
+		System.out.println("Loai san pham:"+tenLoaiSanPham);
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			String sql = "select * from LoaiSanPham where tenLoaiSanPham like N'" + tenLoaiSanPham + "'";
