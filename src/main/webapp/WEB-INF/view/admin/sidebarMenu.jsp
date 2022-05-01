@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 
+	<script>var contextPath = "${pageContext.request.contextPath}"</script>
   <aside class="app-sidebar">
   
     <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="/images/admin.jpg" width="50px"

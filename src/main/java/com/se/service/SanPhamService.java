@@ -2,7 +2,6 @@ package com.se.service;
 
 import java.util.List;
 
-import com.se.entity.ChiTietSanPham;
 import com.se.entity.SanPham;
 
 public interface SanPhamService {
@@ -12,7 +11,5 @@ public interface SanPhamService {
 	public SanPham getById(String id);
 	public List<SanPham> getAll();
 	public List<SanPham> getByFilter(String tenLoai, String tenMon, String tenThuongHieu, double fromPrice, double toPrice, int numPage, int limit);
-	
-
-
+	public String getMaSanPhamCuoiCung();
 }

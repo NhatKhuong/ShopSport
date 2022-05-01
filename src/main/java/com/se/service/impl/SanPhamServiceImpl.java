@@ -61,6 +61,11 @@ public class SanPhamServiceImpl implements SanPhamService{
 		return sanPhamDao.getByFilter(tenLoai, tenMon, tenThuongHieu, fromPrice, toPrice, numPage, limit);
 	}
 
-
+	@Override
+	@Transactional
+	public String getMaSanPhamCuoiCung() {
+		// TODO Auto-generated method stub
+		return sanPhamDao.getMaSanPhamCuoiCung();
+	}
 
 }

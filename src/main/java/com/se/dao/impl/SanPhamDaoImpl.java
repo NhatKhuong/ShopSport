@@ -110,4 +110,20 @@ public class SanPhamDaoImpl implements SanPhamDao{
 		return null;
 	}
 
+	@Override
+	public String getMaSanPhamCuoiCung() {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		String maSanPhamCuoi;
+		try {
+			String sql = "select top 1 maSanPham from SanPham order by maSanPham desc";
+			maSanPhamCuoi = (String) session.createNativeQuery(sql).getSingleResult();
+			return maSanPhamCuoi;
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }
