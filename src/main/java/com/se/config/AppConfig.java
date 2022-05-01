@@ -44,7 +44,10 @@ import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -67,6 +70,7 @@ public class AppConfig extends WebMvcConfigurerAdapter implements WebMvcConfigur
 	@Autowired
 	private Environment env;	
 	private Logger logger = Logger.getLogger(getClass().getName());
+	private int MAX_UPLOAD_SIZE = 10 * 1024 * 1024;
 	
 	@Bean
 	public ViewResolver viewResolver() {
@@ -80,6 +84,14 @@ public class AppConfig extends WebMvcConfigurerAdapter implements WebMvcConfigur
 		
 		return viewResolver;
 	}
+	@Bean(name = "multipartResolver")
+	public CommonsMultipartResolver multipartResolver() {
+	    CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+	    multipartResolver.setMaxUploadSize(MAX_UPLOAD_SIZE);
+	    return multipartResolver;
+	}
+
+
 //	@Bean
 //	public FilterRegistrationBean filterRegistrationBean() {
 //	    FilterRegistrationBean registrationBean = new FilterRegistrationBean();
@@ -156,6 +168,12 @@ public class AppConfig extends WebMvcConfigurerAdapter implements WebMvcConfigur
 		int temp = Integer.parseInt(env.getProperty(key));
 		return temp;
 	}
+
+	@Override
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+		configurer.enable();
+	}
+	
 }
 
 

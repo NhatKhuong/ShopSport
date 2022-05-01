@@ -242,6 +242,7 @@
             crossorigin="anonymous"
         ></script>
         <script src="<c:url value='/resources/js/home.js'/>"></script>
+        <script src="<c:url value='/resources/js/shop.js'/>"></script>
         <script src="<c:url value='/resources/js/layout.js'/>"></script>
         <script src="<c:url value='/resources/js/filter.js'/>"></script>
   
