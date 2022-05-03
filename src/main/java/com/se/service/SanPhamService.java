@@ -30,5 +30,12 @@ public interface SanPhamService {
 	public List<SanPham> getSanPhamByLoaiSanPham(String loaiSanPham);
 
 	public List<SanPham> getAllTop20();
+	
+	public List<SanPham> getByName_Status(String tenSanPham, int trangThai, double giaTien,String loaiSanPham);
 
+	public int getSoLuongSanPhamTheoMa(String ma) ;
+	
+	public List<?> getDanhSachSanPham_SoLuong() ;
+	boolean capNhatSanPham(String maSanPham, String tenSanPham, double giaSanPham, int trangThai);
+	
 }

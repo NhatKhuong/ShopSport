@@ -1,5 +1,7 @@
 package com.se.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +30,19 @@ public class ChiTietSanPhamDaoImpl implements ChiTietSanPhamDao{
 		}
 		return null;
 	}
-
+	
+	@Override
+	public List<ChiTietSanPham> getDanhSachChiTietSanPhamTheoMa(String ma) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			
+			String sql = "select * from ChiTietSanPham where maSanPham='"+ ma+"' ";
+			List<ChiTietSanPham> listSanPham = session.createNativeQuery(sql, ChiTietSanPham.class).getResultList();
+			return listSanPham;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

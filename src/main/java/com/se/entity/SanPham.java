@@ -60,6 +60,7 @@ public class SanPham {
 
 	private Double giaTien ;
 	private float chietKhau;
+	@NotNull
 	private boolean trangThai;
 	
 	public SanPham() {
@@ -116,12 +117,12 @@ public class SanPham {
 	public void setDanhSachHinhAnhSanPham(List<HinhAnhSanPham> danhSachHinhAnhSanPham) {
 		this.danhSachHinhAnhSanPham = danhSachHinhAnhSanPham;
 	}
-
+	
+	
 	@JsonIgnore
 	public List<ChiTietSanPham> getDanhSachChiTietSanPham() {
 		return danhSachChiTietSanPham;
 	}
-
 
 	public void setDanhSachChiTietSanPham(List<ChiTietSanPham> danhSachChiTietSanPham) {
 		this.danhSachChiTietSanPham = danhSachChiTietSanPham;
@@ -180,7 +181,9 @@ public class SanPham {
 		this.nhanHieu = nhanHieu;
 	}
 	
-	
+	public String getTrangThai() {
+		return trangThai?"Đang kinh doanh":"Ngừng kinh doanh";
+	}
 
 	public boolean isTrangThai() {
 		return trangThai;
@@ -204,7 +207,5 @@ public class SanPham {
 			}
 		}
 		return sum;
-		
-		
 	}
 }
