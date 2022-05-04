@@ -41,7 +41,6 @@ var maSanPhamDanhGia;
       var rating = document.querySelector('input[name="rating-input"]:checked');
       var review = document.getElementById("review");
       const fileInput = document.querySelector("#avatar-1");
-      console.log(review.value);
       if (review.value.trim() == "") {
         alert("Bạn chưa viết đánh giá");
         return;
@@ -87,8 +86,6 @@ var maSanPhamDanhGia;
 // show form add review
 var srcImageReview = "";
 (() => {
-  var noiDungTextarea = document.getElementById("review");
-  var noiDungTextarea = document.getElementById("review");
   document.querySelectorAll(".order_status_item_reiview").forEach((e) => {
     e.addEventListener("click", async (e) => {
       var product = e.target.parentElement.parentElement;
