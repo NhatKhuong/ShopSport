@@ -292,10 +292,12 @@ public class SanPhamDaoImpl implements SanPhamDao {
 			sanPham.setTenSanPham(tenSanPham);
 			sanPham.setGiaTien(giaSanPham);
 			if(trangThai==1)
-			sanPham.setTrangThai(true);
+				sanPham.setTrangThai(true);
 			if(trangThai==0)
 				sanPham.setTrangThai(false);
 			session.update(sanPham);
+			
+			System.out.println(sanPham);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script>var contextPath = "${pageContext.request.contextPath}"</script>
 <!DOCTYPE html>
 <html lang="en">
 

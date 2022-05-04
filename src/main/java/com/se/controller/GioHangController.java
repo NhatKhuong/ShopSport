@@ -35,9 +35,9 @@ public class GioHangController {
 	@Autowired
 	private ChiTietSanPhamService chiTietSanPhamService;
 	
-	
+	@ResponseBody
 	@RequestMapping(value = "/gio-hang/san-pham", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
-	public @ResponseBody List<SanPhamTrongGioHang> sanPhamTrongGioHang(HttpServletRequest request)  {
+	public List<SanPhamTrongGioHang> sanPhamTrongGioHang(HttpServletRequest request)  {
 		
 		NguoiDung nguoiDung = nguoiDungService.getByEmail(User.getEmailNguoiDung());
 		List<SanPhamTrongGioHang> list = sanPhamTrongGioHangService.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());

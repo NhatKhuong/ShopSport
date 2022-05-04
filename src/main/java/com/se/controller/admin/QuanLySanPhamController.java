@@ -244,6 +244,7 @@ public class QuanLySanPhamController {
 		String maSanPham = request.getParameter("maSanPham");
 		String tenSanPham = request.getParameter("tenSanPham");
 		int trangThai = Integer.parseInt(request.getParameter("trangThai"));
+		
 		double giaTien = Double.parseDouble(request.getParameter("giaTien").split("đ")[0]);
 		return  sanPhamService.capNhatSanPham(maSanPham, tenSanPham, giaTien, trangThai)?"Cập nhật thành công":"Cập nhật thất bại";
 	}

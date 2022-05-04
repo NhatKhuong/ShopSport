@@ -49,5 +49,33 @@ public class NguoiDungServiceImpl implements NguoiDungService{
 		// TODO Auto-generated method stub
 		return nguoiDungDao.getAll();
 	}
+
+	@Override
+	@Transactional
+	public List<NguoiDung> getByFilter(String hoten, String diaChi) {
+		// TODO Auto-generated method stub
+		return nguoiDungDao.getByFilter(hoten, diaChi);
+	}
+
+	@Override
+	@Transactional
+	public void deletePerson(String theId) {
+		nguoiDungDao.deletePerson(theId);
+		
+	}
+
+	@Override
+	@Transactional
+	public List<NguoiDung> getByName_Status(String hoTen, int trangThai) {
+		return nguoiDungDao.getByName_Status(hoTen, trangThai);
+	}
+
+	@Override
+	@Transactional
+	public boolean capNhatNguoiDung(String maNguoiDung, String hoTen, String diaChiChiTiet, int gioiTinh, int trangThai,
+			String matKhau) {
+		// TODO Auto-generated method stub
+		return nguoiDungDao.capNhatNguoiDung(maNguoiDung, hoTen, diaChiChiTiet, gioiTinh, trangThai, matKhau);
+	}
 	
 }
