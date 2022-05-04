@@ -41,8 +41,10 @@ var maSanPhamDanhGia;
       var rating = document.querySelector('input[name="rating-input"]:checked');
       var review = document.getElementById("review");
       const fileInput = document.querySelector("#avatar-1");
-      if (!review) {
+      console.log(review.value);
+      if (review.value.trim() == "") {
         alert("Bạn chưa viết đánh giá");
+        return;
       }
       if (fileInput.files.length != 0) {
         formData.append("file", fileInput.files[0]);
