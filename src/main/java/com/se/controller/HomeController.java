@@ -121,10 +121,6 @@ public class HomeController {
 		return "layout";
 	}
 
-	@GetMapping("/trang-thai-don-hang")
-	public String showOrderStatus(Model model) {
 
-		return "trangthaidonhang";
-	}
 
 }

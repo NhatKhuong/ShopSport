@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.se.entity.ChiTietDonHang;
@@ -29,6 +32,7 @@ import com.se.service.DonHangService;
 import com.se.service.KichThuocService;
 import com.se.service.NguoiDungService;
 import com.se.service.SanPhamService;
+import com.se.service.TrangThaiDonHangService;
 import com.se.util.User;
 
 @Controller
@@ -55,6 +59,9 @@ public class OrderController {
 	
 	@Autowired
 	private ChiTietSanPhamService chiTietSanPhamService;
+	
+	@Autowired
+	private TrangThaiDonHangService trangThaiDonHangService;
 	
 	@GetMapping("/don-hang/tao-don-hang")
 	public String hienDonHang(Model model,@ModelAttribute("donHang") DonHang donHang ) {
@@ -91,7 +98,7 @@ public class OrderController {
 	}
 	
 	@PostMapping("/don-hang/tao-don-hang")
-	public String luuDonHang(@ModelAttribute("donHang") DonHang donHang) throws Exception{
+	public String luuDonHang(@ModelAttribute("donHang") DonHang donHang, Model model) throws Exception{
  
 	donHang.setNguoiDung(nguoiDungService.getByEmail(User.getEmailNguoiDung()));
 	DiaChi diaChi = donHang.getDiaChi();
@@ -102,5 +109,35 @@ public class OrderController {
 	donHang.setNgayTao(new Date());
 	boolean result = donHangService.themHoaDon(donHang);
 	return "redirect:/don-hang/tao-don-hang";
+	}
+	
+	@GetMapping({"/don-hang/danh-sach-don-hang/{maTrangThaiDonHang}", "/don-hang/danh-sach-don-hang"})
+	public String showOrderStatus(Model model, HttpServletRequest request ,@PathVariable  (value="maTrangThaiDonHang",required = false) String maTrangThaiDonHang ) {
+		int page = 1 ,limit = 5;
+		try {
+			page = Integer.parseInt(request.getParameter("page"));
+			limit = Integer.parseInt(request.getParameter("limit"));
+			if(page <0)
+				page =1;
+		} catch (Exception e) {
+			
+		}
+		List<DonHang> danhSachDonHang= donHangService.layDanhSachDonHang(page, limit, maTrangThaiDonHang);
+		int tongSoDonHang = donHangService.layTongDonHangTheoTrangThai(maTrangThaiDonHang);
+		int tongSoTrang  = tongSoDonHang % limit == 0  ? tongSoDonHang/limit : tongSoDonHang/limit+1;
+		List<TrangThaiDonHang> danhSachTrangThaiDonHang = trangThaiDonHangService.layDanhSachTrangThaiDonHang();
+		model.addAttribute("danhSachDonHang",danhSachDonHang);
+		model.addAttribute("danhSachTrangThaiDonHang",danhSachTrangThaiDonHang);
+		model.addAttribute("tongSoTrang",tongSoTrang == 0 ? 1 : tongSoTrang );
+		model.addAttribute("page",page);
+		
+		return "danhSachDonHang";
+	}
+	@GetMapping({"/don-hang/chi-tiet-don-hang/{maDonHang}"})
+	public String showChiTietDonHang(Model model, HttpServletRequest request ,@PathVariable  (value="maDonHang",required = true) String maDonHang ) {
+		DonHang donHang = donHangService.getDonHangById(maDonHang);
+		model.addAttribute("donHang",donHang);
+ 
+		return "chiTietDonHang";
 	}
 }

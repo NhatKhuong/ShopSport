@@ -25,7 +25,7 @@ public class DanhGiaDaoImpl implements DanhGiaDao{
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		try {	
-			session.save(danhGia);
+			session.saveOrUpdate(danhGia);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -96,6 +96,22 @@ public class DanhGiaDaoImpl implements DanhGiaDao{
 			e.printStackTrace();
 		}
 		return new ArrayList<DanhGia>();
+	}
+
+	@Override
+	public DanhGia layDanhGiaTheoMaSanPhamVaMaNguoiDung( String maSanPham, String maNguoiDung) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			String sql = "select * from DanhGia where maSanPham = :maSanPham  and maNguoiDung = :maNguoiDung";
+			Query<DanhGia> query =  session.createNativeQuery(sql, DanhGia.class);
+			query.setParameter("maSanPham", maSanPham);
+			query.setParameter("maNguoiDung", maNguoiDung);
+			return query.getSingleResult();
+		} catch (Exception e) {
+			// TODO: handle exception
+//			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

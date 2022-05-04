@@ -2,7 +2,8 @@
 	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 		<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 			<script type="text/javascript">
-				var productId = `<%=request.getParameter("maSanPham")%> 	`
+				var productId = `<%=request.getParameter("maSanPham")%>
+	`
 			</script>
 			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 				<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/item-product.css">
@@ -42,15 +43,7 @@
 					<link rel="stylesheet" href="<c:url value='/resources/css/home.css' />">
 					<link rel="stylesheet" href="<c:url value='/resources/css/productDetail.css' />">
 					<link rel="stylesheet" href="<c:url value='/resources/css/layout.css' />">
-					<!-- input custome  -->
-					<link rel="stylesheet"
-						href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css"
-						crossorigin="anonymous">
-					<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/css/fileinput.min.css"
-						media="all" rel="stylesheet" type="text/css" />
-					<link rel="stylesheet"
-						href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
-						crossorigin="anonymous">
+
 
 				</head>
 
@@ -230,7 +223,7 @@
 												<h4>5 đánh giá cho sản phẩm này</h4>
 											</div>
 											<div class="comments pb-3" id="comments"
-												style="max-height: 500px;overflow: scroll;  overflow-x: hidden;">
+												style="max-height: 500px; overflow: scroll; overflow-x: hidden;">
 												<!-- <div class="comment">
 													<div class="avatar">
 														<img src="https://secure.gravatar.com/avatar/bb90dcb0ceabfc8bf10c550f1ee95ee7?s=60&d=mm&r=g"
@@ -277,100 +270,7 @@
 														</a></li> -->
 												</ul>
 											</nav>
-											<div class="create-comment pt-3 text-center">
 
-
-												<!-- 	<div class="reivew">
-
-									<div class="row col-12 pt-3">
-										<lable for="review" class="pb-2">Your review *</lable>
-										<textarea name="review" id="review" class="p-3 form-control"
-											cols="30" rows="3"></textarea>
-									</div>
-
-								</div> -->
-												<div class="option pt-4 pl-0 pr-0">
-													<!-- some CSS styling changes and overrides -->
-
-													<!-- markup -->
-													<!-- note: your server code `/site/avatar_upload/1` will receive `$_FILES['avatar-1']` on form submission -->
-													<!-- the avatar markup -->
-													<form:form method="POST" class="form form-vertical">
-
-														<div class="row">
-															<div class="col-sm-3 text-center">
-																<div class="kv-avatar">
-																	<div class="file-loading">
-																		<input id="avatar-1" name="file" type="file"
-																			required>
-																	</div>
-																</div>
-																<div class="kv-avatar-hint">
-																	<small>Select file < 1500 KB</small>
-																</div>
-															</div>
-															<div class="col-sm-9">
-																<div class=" bg-light p-4">
-																	<h5 class="text-secondary">Add a review</h5>
-																	<div class="your-rating">
-																		<!--  code JSP set rating at here (checked) -->
-																		<div class="ratings-input"
-																			style="display: none;">
-																			<input type="radio" name="rating-input"
-																				value='1' class="rating-input"
-																				id="rating-input-1"> <input type="radio"
-																				name="rating-input" value='2'
-																				class="rating-input"
-																				id="rating-input-2"> <input type="radio"
-																				name="rating-input" value='3'
-																				class="rating-input"
-																				id="rating-input-3"> <input type="radio"
-																				name="rating-input" value='4'
-																				class="rating-input"
-																				id="rating-input-4"> <input type="radio"
-																				name="rating-input" value='5'
-																				class="rating-input" id="rating-input-5"
-																				checked>
-																		</div>
-																		<div class="ratings">
-																			<i class="fa fa-star rating-start"
-																				id="rating-1" aria-hidden="true"> </i>
-																			<i class="fa fa-star rating-start"
-																				id="rating-2" aria-hidden="true"> </i>
-																			<i class="fa fa-star rating-start"
-																				id="rating-3" aria-hidden="true"></i> <i
-																				class="fa fa-star rating-start"
-																				id="rating-4" aria-hidden="true"></i> <i
-																				class="fa fa-star rating-start"
-																				id="rating-5" aria-hidden="true"></i>
-																		</div>
-																	</div>
-																</div>
-																<div class="row col-12 pt-3">
-																	<lable for="review" class="pb-2">Your review *
-																	</lable>
-																	<textarea name="review" id="review"
-																		class="p-3 form-control" cols="30"
-																		rows="3"></textarea>
-																</div>
-
-																<div class="form-group">
-																	<hr>
-																	<div class="text-right">
-																		<button type="button" id="submit-comment"
-																			class="btn btn-primary">Submit</button>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</form:form>
-													<div id="kv-avatar-errors-1" class="text-center"
-														style="display: none"></div>
-
-													<!-- the fileinput plugin initialization -->
-
-												</div>
-											</div>
 										</div>
 									</div>
 								</div>
@@ -422,27 +322,25 @@
 						</div>
 					</div> -->
 
-					<div class="modal fade add_to_card_modal_container" id="myModalDialogSuccess" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog_card_status" role="document">
-                            <div class="modal-content modal-content_card_status">
-                                <div class="modal-body">
-                                    <div class="status_block">
-                                        <div class="dialog_content dialog_content_card_status ">
-                                            <div class="content_stutus_add">
-                                                <img
-                                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/MW-Icon-CheckMark.svg/1200px-MW-Icon-CheckMark.svg.png">
-                                                <div class="content_stutus">
-                                                    Thêm thành công
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+					<div class="modal fade add_to_card_modal_container" id="myModalDialogSuccess" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+						<div class="modal-dialog modal-dialog_card_status" role="document">
+							<div class="modal-content modal-content_card_status">
+								<div class="modal-body">
+									<div class="status_block">
+										<div class="dialog_content dialog_content_card_status ">
+											<div class="content_stutus_add">
+												<img
+													src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/MW-Icon-CheckMark.svg/1200px-MW-Icon-CheckMark.svg.png">
+												<div class="content_stutus">Thêm thành công</div>
+											</div>
+										</div>
+									</div>
+								</div>
 
-                            </div>
-                        </div>
-                    </div>
+							</div>
+						</div>
+					</div>
 
 
 					<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -465,41 +363,9 @@
 					<script src="<c:url value='/resources/js/lib/owl.support.js'/>" data-cover></script>
 					<script src="<c:url value='/resources/js/lib/owl.autoplay.js'/>" data-cover></script>
 
-					<!-- Input js  -->
-					<script
-						src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/js/plugins/piexif.min.js"
-						type="text/javascript"></script>
-					<script
-						src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/js/plugins/sortable.min.js"
-						type="text/javascript"></script>
-					<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-						crossorigin="anonymous"></script>
-					<script
-						src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/js/fileinput.min.js"></script>
-					<script
-						src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/js/locales/LANG.js"></script>
 
 					<script>
-						var btnCust = '<button type="button" class="btn btn-secondary" title="Add picture tags" ' +
-							'onclick="alert(\'Call your custom code here.\')">' +
-							'<i class="bi-tag"></i>' +
-							'</button>';
-						$("#avatar-1").fileinput({
-							overwriteInitial: true,
-							maxFileSize: 1500,
-							showClose: false,
-							showCaption: false,
-							browseLabel: '',
-							removeLabel: '',
-							browseIcon: '<i class="bi-folder2-open"></i>',
-							removeIcon: '<i class="bi-x-lg"></i>',
-							removeTitle: 'Cancel or reset changes',
-							elErrorContainer: '#kv-avatar-errors-1',
-							msgErrorClass: 'alert alert-block alert-danger',
-							defaultPreviewContent: '<img src="/samples/default-avatar-male.png" alt="HÌnh ảnh đánh giá">',
-							layoutTemplates: { main2: '{preview} ' + btnCust + ' {remove} {browse}' },
-							allowedFileExtensions: ["jpg", "png", "gif"]
-						});
+
 					</script>
 
 				</body>

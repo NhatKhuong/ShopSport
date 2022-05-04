@@ -51,4 +51,10 @@ public class DanhGiaDaoServiceImpl implements DanhGiaDaoService {
 		return danhGiaDao.soLuongDanhGiaTheoMaSanPham(maSanPham);
 	}
 
+	@Override
+	@Transactional
+	public DanhGia layDanhGiaTheoMaSanPhamVaMaNguoiDung(String maSanPham, String maNguoiDung) {
+		return danhGiaDao.layDanhGiaTheoMaSanPhamVaMaNguoiDung(maSanPham, maNguoiDung);
+	}
+
 }

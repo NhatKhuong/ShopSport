@@ -3,6 +3,11 @@
     justify-content: space-around;
     padding: 0;
 }
+.block-btn-status a{
+	color: black;
+	text-decoration: none;
+	
+}
 
 .btn-status{
     height: 100%;
@@ -14,6 +19,12 @@
 }
 
 .btn-status:hover{
+    border-bottom: 3px solid #fe4c50;
+    cursor: pointer;
+    transition: 0.3s;
+    
+}
+.btn-status.active{
     border-bottom: 3px solid #fe4c50;
     cursor: pointer;
     transition: 0.3s;
@@ -63,14 +74,21 @@
 
 .order_status_item_body{
     display: flex;
-    padding: 15px 0;
+    padding: 5px 0;
     margin: 5px 0;
     align-items: center;
     justify-content: space-between;
 }
 
-.order_status_item_name{
-    font-size: 16px;
+.order_status_item_name a{
+    font-size: 12px;
+    font-weight: 500;
+    color: black;
+    text-decoration: none;
+}
+.order_status_item_name a:hover{
+ 
+    text-decoration: underline;
 }
 
 .order_status_item_img{
@@ -78,6 +96,7 @@
     width: 80px;
     height: 80px;
     border: 1px solid #ccc;
+    overflow:hidden;
     display: flex;
 }
 
@@ -85,6 +104,19 @@
     width: 70px;
     margin: auto;
 }
+.order_status_item_reiview {
+	color: #007BFF;
+	 margin-top: 5px;
+	 font-size: 13px
+	 
+}
+
+.order_status_item_reiview:hover {
+  text-decoration: underline;
+  cursor:pointer;
+
+}
+
 
 .order_status_item_footer{
     border-top: 2px solid rgb(224, 233, 240);

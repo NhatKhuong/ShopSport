@@ -12,6 +12,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -58,11 +59,11 @@ public class DanhGiaController {
 			String review = request.getParameter("review");
 			String rating = request.getParameter("rating");
 			String maSanPham = request.getParameter("productId");
-			String fileName = "";
+			String fileName = null;
 
 			SanPham sanPham = new SanPham(maSanPham);
 			NguoiDung nguoiDung = nguoiDungService.getByEmail(User.getEmailNguoiDung());
-
+			DanhGia danhGia = null;
 //			File.separator if linux = \ if window = /
 			String filePath = httpSession.getServletContext().getRealPath("/") + File.separator + "resources"
 					+ File.separator + "images" + File.separator + "reviews" + File.separator;
@@ -73,15 +74,16 @@ public class DanhGiaController {
 				String extension = FilenameUtils.getExtension(multipartFile.getOriginalFilename()); // .png
 				fileName = name + "." + extension;
 				File file = new File(filePath, fileName);
-			
+				multipartFile.transferTo(file);
 				// save in 2 locations: in this project and project build
 				try {
 					String pathResource = env.getProperty("path.resources");
 					String pathLocal = pathResource +  File.separator +"images"+ File.separator+"reviews"+ File.separator;
 					if(pathResource != null && !pathResource.equals("")) {
 						File file2 = new File(pathLocal, fileName);
-						file2.createNewFile();
-						System.out.println("save local file ok");
+						 FileUtils.copyFile(file, file2);
+						 file2.createNewFile();
+				
 					}
 					
 				} catch (Exception e) {
@@ -89,15 +91,30 @@ public class DanhGiaController {
 					System.err.println("Path real in value-mssql.properties not foud");
 					
 				}
-				multipartFile.transferTo(file);
+			
+
+			}else {
+				//  update but not update image 
+				danhGia = danhGiaService.layDanhGiaTheoMaSanPhamVaMaNguoiDung(maSanPham, nguoiDung.getMaNguoiDung());
 			}
-			DanhGia danhGia = new DanhGia(sanPham, nguoiDung, Integer.parseInt(rating), review, fileName, new Date());
+			 
+			if(danhGia == null) {
+				danhGia = new DanhGia(sanPham, nguoiDung, Integer.parseInt(rating), review, fileName, new Date());
+			}else {
+				if(fileName != null) {
+					danhGia.setHinhAnh(fileName);
+//					delete image old
+				}
+				danhGia.setNoiDung(review);
+				danhGia.setXepHang(Integer.parseInt(rating));
+				danhGia.setThoiGian( new Date());
+			}
 			if (!danhGiaService.themDanhGia(danhGia)) {
 				status = false;
 			}
 
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			status = false;
 		}
 		return "{\"status\": \"" + status + "\"}";
@@ -128,11 +145,17 @@ public class DanhGiaController {
 		}
 		return json + "}";
 	}
+	@RequestMapping(value = "/danh-gia/danh-gia-theo-ma-san-pham", method = RequestMethod.GET)
+	public @ResponseBody DanhGia danhSachDanhGiaTheoMaSanPhamVaMaNguoiDung(HttpServletRequest request) {
+		String maSanPham = request.getParameter("maSanPham");
+		NguoiDung nguoiDung = nguoiDungService.getByEmail(User.getEmailNguoiDung());
+		DanhGia danhGia = danhGiaService.layDanhGiaTheoMaSanPhamVaMaNguoiDung(maSanPham, nguoiDung.getMaNguoiDung());
+		return danhGia;
+	}
 
 	@RequestMapping(value = "/danh-gia/tong-so-danh-gia", method = RequestMethod.GET)
 	public @ResponseBody int tongSoDanhGia(HttpServletRequest request) {
 		String maSanPham = request.getParameter("maSanPham");
-		
 		return danhGiaService.soLuongDanhGiaTheoMaSanPham(maSanPham);
 	}
 }
