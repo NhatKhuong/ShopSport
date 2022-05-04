@@ -56,4 +56,18 @@ public class DonHangServiceImpl implements DonHangService {
 		// TODO Auto-generated method stub
 		return donHangDao.getDanhSachDonHangTheoTrangThai(maTrangThai, maNguoiDung, tenNguoiDung);
 	}
+
+	@Override
+	@Transactional
+	public List<DonHang> layDanhSachDonHang(int page, int limit, String maTrangThai) {
+		// TODO Auto-generated method stub
+		return donHangDao.layDanhSachDonHang(page, limit, maTrangThai);
+	}
+
+	@Override
+	@Transactional
+	public int layTongDonHangTheoTrangThai(String maTrangThai) {
+	
+		return donHangDao.layTongDonHangTheoTrangThai(maTrangThai);
+	}
 }
