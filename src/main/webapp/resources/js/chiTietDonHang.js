@@ -61,7 +61,6 @@ var maSanPhamDanhGia;
         options
       );
       var status = await response.json();
-      console.log(status.status);
       if (status.status != "false") {
         Swal.fire({
           title: "Đánh giá thành công!",
@@ -77,7 +76,6 @@ var maSanPhamDanhGia;
           confirmButtonText: "Đồng ý",
         });
       }
-      review.value = "";
       fileInput.files[0] = undefined;
       $("#addReivewModal").modal("hide");
     });

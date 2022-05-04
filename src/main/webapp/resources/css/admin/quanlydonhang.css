@@ -1,0 +1,32 @@
+.btnStatus {
+    background-color: white;
+    border: none;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    border-bottom: 2px solid #fff;
+}
+
+.btnStatus:click {
+    outline: none;
+}
+
+.btnStatus:hover {
+    cursor: pointer;
+    color: rgb(167, 167, 235);
+    border-bottom: 2px solid rgb(167, 167, 235);
+    transition: 0.5s;
+}
+
+.status__container {
+    display: flex;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+.active_btn {
+    border-bottom: 2px solid rgb(167, 167, 235);
+    color: rgb(167, 167, 235);
+}

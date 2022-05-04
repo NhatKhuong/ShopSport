@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /*
  * createdAt: 04/10/2022
  * */
@@ -130,10 +133,12 @@ public class DonHang {
 		this.trangThaiDonHang = trangThaiDonHang;
 	}
 
+	@JsonIgnore
 	public List<ChiTietDonHang> getDanhSachChiTietDonHang() {
 		return danhSachChiTietDonHang;
 	}
-
+	
+	@JsonProperty
 	public void setDanhSachChiTietDonHang(List<ChiTietDonHang> danhSachChiTietDonHang) {
 		this.danhSachChiTietDonHang = danhSachChiTietDonHang;
 	}
@@ -173,7 +178,7 @@ public class DonHang {
 	@Override
 	public String toString() {
 		return "DonHang [maDonHang=" + maDonHang + ", nguoiDung=" + nguoiDung + ", diaChi=" + diaChi
-				+ ", trangThaiDonHang=" + trangThaiDonHang + ", danhSachChiTietDonHang=" + danhSachChiTietDonHang
+				+ ", trangThaiDonHang=" + trangThaiDonHang 
 				+ ", diaChiCuThe=" + diaChiCuThe + ", ngayTao=" + ngayTao + ", ngayGiao=" + ngayGiao + ", phiVanChuyen="
 				+ phiVanChuyen + "]";
 	}

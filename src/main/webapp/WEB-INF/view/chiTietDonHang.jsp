@@ -90,7 +90,7 @@
 								</div>
 								<div>
 									<div class="order_status_item_price price">${ chiTietDonHang.giaMua * chiTietDonHang.soLuongMua}</div>
-									<div class="order_status_item_reiview ">Viết đánh giá</div>
+									<div class="order_status_item_reiview ${donHang.trangThaiDonHang.maTrangThaiDonHang == 'TTDH00003' ? '' : 'd-none' }">Viết đánh giá</div>
 								</div>
 
 							</div>
@@ -242,7 +242,6 @@
 											</div>
 										</div>
 										<div class="row col-12 pt-3">
-											<lable for="review " class="pb-2 pl-0 text-left"  >Viết đánh giá <i class ='text-danger'>*</i> </lable>
 											<textarea name="review" id="review" class="p-3 form-control"
 												cols="30" rows="3"></textarea>
 										</div>

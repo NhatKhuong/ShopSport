@@ -33,7 +33,7 @@ public class TrangThaiDonHang {
 		super();
 		this.maTrangThaiDonHang = maTrangThaiDonHang;
 	}
-
+	
 	public TrangThaiDonHang() {
 		super();
 		// TODO Auto-generated constructor stub

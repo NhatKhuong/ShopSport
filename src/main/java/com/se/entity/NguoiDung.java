@@ -159,9 +159,19 @@ public class NguoiDung {
 	public void setGioiTinh(boolean gioiTinh) {
 		this.gioiTinh = gioiTinh;
 	}
+	
+	public String getGioiTinh() {
+		
+		return gioiTinh?"Nữ":"Nam" ;
+		
+	}
 
 	public boolean isTrangThai() {
 		return trangThai;
+	}
+	
+	public String getTrangThai() {
+		return trangThai?"Chặn":"Chưa Chặn";
 	}
 
 	public void setTrangThai(boolean trangThai) {

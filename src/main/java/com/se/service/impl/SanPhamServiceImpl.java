@@ -94,5 +94,30 @@ public class SanPhamServiceImpl implements SanPhamService {
 	public List<SanPham> getAllTop20() {
 		return sanPhamDao.getAllTop20();
 	}
+	
+	@Override
+	@Transactional
+	public List<SanPham> getByName_Status(String tenSanPham, int trangThai, double giaTien,String loaiSanPham) {
+		// TODO Auto-generated method stub
+		return sanPhamDao.getByName_Status(tenSanPham, trangThai,giaTien,loaiSanPham);
+	}
 
+	@Override
+	@Transactional
+	public int getSoLuongSanPhamTheoMa(String ma) {
+		// TODO Auto-generated method stub
+		return sanPhamDao.getSoLuongSanPhamTheoMa(ma);
+	}
+	@Override
+	@Transactional
+	public List<?> getDanhSachSanPham_SoLuong() {
+		return sanPhamDao.getDanhSachSanPham_SoLuong();
+	}
+	
+	@Override
+	@Transactional
+	public boolean capNhatSanPham(String maSanPham, String tenSanPham, double giaSanPham, int trangThai) {
+		// TODO Auto-generated method stub
+		return sanPhamDao.capNhatSanPham(maSanPham, tenSanPham, giaSanPham, trangThai);
+	}
 }
