@@ -80,7 +80,7 @@ public class OrderController {
 		
 		ArrayList<ChiTietDonHang> danhSachChiTietDonHang =  new ArrayList<ChiTietDonHang>();
 		if(donHang.getDanhSachChiTietDonHang() == null || donHang.getDanhSachChiTietDonHang().size() ==0) {
-			return "redirect:/";
+			return "redirect:/don-hang/danh-sach-don-hang";
 		}
 		int soLuongCTHD = donHang.getDanhSachChiTietDonHang().size();
 		for(int i = 0; i < soLuongCTHD; i ++) {
