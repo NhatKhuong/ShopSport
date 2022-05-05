@@ -3,7 +3,79 @@ var numPageSub;
 var limitSub = 5;
 var numButtonOldActice;
 
+const urlParams = new URLSearchParams(window.location.search);
+const myParam = urlParams.get("key");
+console.log("myParam====" + myParam);
+if (myParam == 1) {
+    var inputQuanAo = document.getElementById("LSP00001");
+    console.log(inputQuanAo.checked);
+    inputQuanAo.checked = true;
+} else if (myParam == 2) {
+    var inputDungCu = document.getElementById("LSP00003");
+    console.log(inputDungCu);
+    inputDungCu.checked = true;
+} else if (myParam == 3) {
+    var inputGiay = document.getElementById("LSP00004");
+    console.log(inputGiay);
+    inputGiay.checked = true;
+}
+
 searchFilterCheckbox();
+
+// jQuery(document).ready(function ($) {
+//
+var header = $(".header");
+var topNav = $(".top_nav");
+var mainSlider = $(".main_slider");
+var hamburger = $(".hamburger_container");
+var menu = $(".hamburger_menu");
+var menuActive = false;
+var hamburgerClose = $(".hamburger_close");
+var fsOverlay = $(".fs_menu_overlay");
+
+console.log(header);
+
+setHeader();
+
+function setHeader() {
+    if (window.innerWidth < 992) {
+        if ($(window).scrollTop() > 100) {
+            header.css({ top: "0" });
+        } else {
+            header.css({ top: "0" });
+        }
+    } else {
+        if ($(window).scrollTop() > 100) {
+            header.css({ top: "-50px" });
+        } else {
+            header.css({ top: "0" });
+        }
+    }
+    if (window.innerWidth > 991 && menuActive) {
+        closeMenu();
+    }
+}
+
+function initPriceSlider() {
+    console.log("cateforufdf" + maxPrice);
+    $("#slider-range").slider({
+        range: true,
+        min: 0,
+        max: maxPrice,
+        values: [0, Math.floor(maxPrice / 4)],
+        slide: function (event, ui) {
+            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+        },
+    });
+
+    $("#amount").val(
+        "$" +
+            $("#slider-range").slider("values", 0) +
+            " - $" +
+            $("#slider-range").slider("values", 1)
+    );
+}
+// });
 
 async function getNumpage(
     strLoaiSanPham,
@@ -60,8 +132,13 @@ function getPageActiveAndDisableOutButton(e) {
     numButtonOldActice = e.getElementsByClassName("page-link")[0].innerText;
     console.log("numButtonOldActice: " + numButtonOldActice);
 
-    var price_to = 100000000;
-    var price_from = 0;
+    // var price_to = 100000000;
+    // var price_from = 0;
+
+    var priceRange = $("#amount").val();
+    var price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
+    var price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+    console.log(priceRange, price_from, price_to);
 
     var elementsLoaiSanPham = document.getElementsByClassName(
         "categories__nav__item__level2_loaiSanPham"
@@ -111,6 +188,7 @@ function getPageActiveAndDisableOutButton(e) {
     console.log("searchFilter-------------" + pageIndex);
     var limit = document.querySelector("select").value;
     console.log("limit---------" + limit);
+
     searchFilter(
         listLoaiSanPham,
         listMonTheThao,
@@ -272,8 +350,111 @@ function renderPagination(numPage, offset, limit) {
 }
 
 async function searchFilterCheckbox() {
-    var price_to = 100000000;
-    var price_from = 0;
+    var elementsLoaiSanPham = document.getElementsByClassName(
+        "categories__nav__item__level2_loaiSanPham"
+    );
+    var elementsMonTheThao = document.getElementsByClassName(
+        "categories__nav__item__level2_monTheThao"
+    );
+    var elementsNhanHieu = document.getElementsByClassName(
+        "categories__nav__item__level2_nhanHieu"
+    );
+
+    var listLoaiSanPham = [];
+    for (var i = 0; i < elementsLoaiSanPham.length; i++) {
+        if (elementsLoaiSanPham[i].querySelector("input:checked")) {
+            listLoaiSanPham.push(
+                elementsLoaiSanPham[i].querySelector("label").innerText
+            );
+        }
+    }
+
+    var listMonTheThao = [];
+    for (var i = 0; i < elementsMonTheThao.length; i++) {
+        if (elementsMonTheThao[i].querySelector("input:checked")) {
+            listMonTheThao.push(
+                elementsMonTheThao[i].querySelector("label").innerText
+            );
+        }
+    }
+
+    var listNhanHieu = [];
+    for (var i = 0; i < elementsNhanHieu.length; i++) {
+        if (elementsNhanHieu[i].querySelector("input:checked")) {
+            listNhanHieu.push(
+                elementsNhanHieu[i].querySelector("label").innerText
+            );
+        }
+    }
+
+    maxPrice = parseInt(
+        (
+            await Promise.all([
+                getMaxPrice(listLoaiSanPham, listMonTheThao, listNhanHieu),
+            ])
+        )[0]
+    );
+    initPriceSlider();
+    var priceRange = $("#amount").val();
+    if (priceRange != "") {
+        console.log("vao");
+        var price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
+        var price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+    } else {
+        var price_from = 0;
+        var price_to = maxPrice;
+    }
+
+    var pageIndex;
+    try {
+        pageIndex = document
+            .querySelector(".active")
+            .getElementsByClassName("page-link")[0].innerText;
+    } catch (error) {
+        pageIndex = 1;
+    }
+
+    console.log("searchFilter-------------" + pageIndex);
+    var limit = document.querySelector("select").value;
+    console.log("limit---------" + limit);
+
+    searchFilter(
+        listLoaiSanPham,
+        listMonTheThao,
+        listNhanHieu,
+        pageIndex,
+        price_to,
+        price_from,
+        limit
+    );
+    var numPage = await getNumpage(
+        listLoaiSanPham,
+        listMonTheThao,
+        listNhanHieu,
+        price_from,
+        price_to,
+        limit
+    );
+
+    console.log(numPage);
+    offsetSub = 0;
+    renderPagination(numPage, offsetSub, limitSub);
+
+    // ============================================================sua========================================
+    numPageSub = numPage;
+    // ============================================================
+}
+
+async function searchbyPriceFilter() {
+    var priceRange = $("#amount").val();
+    if (priceRange != "") {
+        console.log("vao by filter");
+        var price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
+        var price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+    } else {
+        var price_from = 0;
+        var price_to = maxPrice;
+    }
 
     var elementsLoaiSanPham = document.getElementsByClassName(
         "categories__nav__item__level2_loaiSanPham"
@@ -323,6 +504,7 @@ async function searchFilterCheckbox() {
     console.log("searchFilter-------------" + pageIndex);
     var limit = document.querySelector("select").value;
     console.log("limit---------" + limit);
+
     searchFilter(
         listLoaiSanPham,
         listMonTheThao,
@@ -340,13 +522,34 @@ async function searchFilterCheckbox() {
         price_to,
         limit
     );
+
     console.log(numPage);
     offsetSub = 0;
     renderPagination(numPage, offsetSub, limitSub);
-
+    maxPrice = parseInt(
+        (
+            await Promise.all([
+                getMaxPrice(listLoaiSanPham, listMonTheThao, listNhanHieu),
+            ])
+        )[0]
+    );
     // ============================================================sua========================================
     numPageSub = numPage;
     // ============================================================
+}
+
+async function getMaxPrice(listLoaiSanPham, listMonTheThao, listNhanHieu) {
+    var a = await fetch(
+        contextPath +
+            `/cua-hang/max-price?` +
+            new URLSearchParams({
+                listLoaiSanPham: listLoaiSanPham,
+                listMonTheThao: listMonTheThao,
+                listNhanHieu: listNhanHieu,
+            })
+    );
+    var result = await a.json();
+    return result.maxPrice;
 }
 
 // Function search fiter
@@ -361,18 +564,17 @@ async function searchFilter(
 ) {
     // -------------------------------------------------------------------------------------------
 
+    var data = {
+        listLoaiSanPham: listLoaiSanPham,
+        listMonTheThao: listMonTheThao,
+        listNhanHieu: listNhanHieu,
+        pageIndex: pageIndex,
+        price_to: price_to,
+        price_from: price_from,
+        limit: limit,
+    };
     var a = await fetch(
-        contextPath +
-            `/cua-hang/loc?` +
-            new URLSearchParams({
-                listLoaiSanPham: listLoaiSanPham,
-                listMonTheThao: listMonTheThao,
-                listNhanHieu: listNhanHieu,
-                pageIndex: pageIndex,
-                price_to: price_to,
-                price_from: price_from,
-                limit: limit,
-            })
+        contextPath + `/cua-hang/loc?` + new URLSearchParams(data)
     );
     var result = await a.json();
 

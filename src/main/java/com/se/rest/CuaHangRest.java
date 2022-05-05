@@ -142,8 +142,59 @@ public class CuaHangRest {
 		
 		
 		return listResult;
-			
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/cua-hang/max-price", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public String getMaxPrice(HttpServletRequest request ) {
+		System.out.println("====vào");
+		List<String> listLoaiSanPham = Arrays.asList(request.getParameter("listLoaiSanPham").split(","));
+		List<String> listMonTheThao = Arrays.asList(request.getParameter("listMonTheThao").split(","));
+		List<String> listNhanHieu = Arrays.asList(request.getParameter("listNhanHieu").split(","));
+		
+		String strLoaiSanPham = "";
+		if(listLoaiSanPham == null) {
+			strLoaiSanPham = " LoaiSanPham.tenLoaiSanPham like N'%%'";	
+		} else if(listLoaiSanPham.size() == 1){
+			strLoaiSanPham = " LoaiSanPham.tenLoaiSanPham like N'%"+listLoaiSanPham.get(0)+"%'";	
+		} else {
+			strLoaiSanPham = " LoaiSanPham.tenLoaiSanPham like N'%"+listLoaiSanPham.get(0)+"%'";			
+			for(int i = 1; i<listLoaiSanPham.size();i++) {
+				strLoaiSanPham += " or " + "LoaiSanPham.tenLoaiSanPham like N'%"+listLoaiSanPham.get(i)+"%'";
+			}
+		}
+		
+		
+		String strMonTheThao = "";
+		if(listMonTheThao == null) {
+			strMonTheThao = " MonTheThao.tenMonTheThao like N'%%'";	
+		} else if(listMonTheThao.size() == 1){
+			strMonTheThao = " MonTheThao.tenMonTheThao like N'%"+listMonTheThao.get(0)+"%'";
+		} else {
+			strMonTheThao = " MonTheThao.tenMonTheThao like N'%"+listMonTheThao.get(0)+"%'";			
+			for(int i = 1; i<listMonTheThao.size();i++) {
+				strMonTheThao += " or " + "MonTheThao.tenMonTheThao like N'%"+listMonTheThao.get(i)+"%'";
+			}
+		}
+	
+		String strNhanHieu = "";
+		if(listNhanHieu == null) {
+			strNhanHieu = " NhanHieu.tenNhanHieu like N'%%'";	
+		} else if(listNhanHieu.size() == 1){
+			strNhanHieu = " NhanHieu.tenNhanHieu like N'%"+listNhanHieu.get(0)+"%'";
+		} else {
+			strNhanHieu = " NhanHieu.tenNhanHieu like N'%"+listNhanHieu.get(0)+"%'";			
+			for(int i = 1; i<listNhanHieu.size();i++) {
+				strNhanHieu += " or " + "NhanHieu.tenNhanHieu like N'%"+listNhanHieu.get(i)+"%'";
+			}
+		}
+		
+		double maxPrice = sanPhamService.getMaxPrice(strLoaiSanPham, strMonTheThao, strNhanHieu);
+		System.out.println("maxPrice rest: "+maxPrice);
+		return "{\"maxPrice\": \"" + maxPrice + "\"}";
+		
 		
 	}
+	
 
 }

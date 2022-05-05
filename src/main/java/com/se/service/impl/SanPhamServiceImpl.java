@@ -120,4 +120,10 @@ public class SanPhamServiceImpl implements SanPhamService {
 		// TODO Auto-generated method stub
 		return sanPhamDao.capNhatSanPham(maSanPham, tenSanPham, giaSanPham, trangThai);
 	}
+
+	@Override
+	@Transactional
+	public double getMaxPrice(String strLoaiSanPham, String strMonTheThao, String strNhanHieu) {
+		return sanPhamDao.getMaxPrice(strLoaiSanPham, strMonTheThao, strNhanHieu);
+	}
 }

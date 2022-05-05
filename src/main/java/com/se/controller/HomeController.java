@@ -65,7 +65,7 @@ public class HomeController {
 	@Autowired
 	private NhanHieuService nhanHieuService;
 
-	@GetMapping("/")
+	@GetMapping({"/","/home"})
 	public String showHome(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String email;
@@ -119,6 +119,18 @@ public class HomeController {
 	@GetMapping("")
 	public String layOut() {
 		return "layout";
+	}
+	
+	@GetMapping("/back-to-home")
+	public String backToHome() {
+		return "redirect:/home";
+		
+	}
+	
+	@GetMapping("/back-to-shop")
+	public String backToShop() {
+		return "redirect:/shop";
+		
 	}
 
 

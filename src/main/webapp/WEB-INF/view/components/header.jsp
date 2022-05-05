@@ -3,7 +3,11 @@
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
             <!-- this is so important. ajax will call it -->
-            <script>var contextPath = "${pageContext.request.contextPath}"</script>
+            <script>
+                var contextPath = "${pageContext.request.contextPath}";
+                var maxPrice =999999999999;
+            </script>
+            
             <script src="<c:url value='/resources/js/layout.js'/>" defer="defer"></script>
             <script src="<c:url value='/resources/js/register.js'/>" defer="defer"></script>
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -59,6 +63,8 @@
                                                 <li><a href="" data-toggle="modal" data-target="#RegisterModal"
                                                         aria-hidden="true"><i class="fa fa-user-plus"
                                                             aria-hidden="true"></i>Register</a></li>
+                                                <li><a href="/ShopSport/don-hang/danh-sach-don-hang"
+                                                    aria-hidden="true"></i>Hóa đơn</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -75,12 +81,12 @@
                         <div class="row">
                             <div class="col-lg-12 text-right">
                                 <div class="logo_container">
-                                    <a href="#">colo<span>shop</span></a>
+                                    <a href="/ShopSport/home">colo<span>shop</span></a>
                                 </div>
                                 <nav class="navbar">
                                     <ul class="navbar_menu">
-                                        <li><a href="">home</a></li>
-                                        <li><a href="shop" >shop</a></li>
+                                        <li><a href="/ShopSport/home">home</a></li>
+                                        <li><a href="/ShopSport/shop" >shop</a></li>
                                         <li><a href="#">promotion</a></li>
                                         <li><a href="#">pages</a></li>
                                         <li><a href="#">blog</a></li>
