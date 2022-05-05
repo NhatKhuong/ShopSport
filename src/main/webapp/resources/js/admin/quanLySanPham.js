@@ -1,3 +1,35 @@
+/*(() => {
+	var checkAll = document.getElementById("all");
+
+	var listInputCheck = document.getElementsByClassName("checkInput");
+	checkAll.addEventListener("change", (e) => {
+		if (checkAll.checked) {
+			for (var item of listInputCheck) {
+				item.checked = true;
+			}
+		} else {
+			for (var item of listInputCheck) {
+				item.checked = false;
+			}
+		}
+	});
+})();
+
+
+async function chuyenTrangThaiNhieu() {
+	var listInputCheck = document.getElementsByClassName("checkInput");
+	for (var item of listInputCheck) {
+		if (item.checked) {
+			var buttonAccept =
+				item.parentElement.parentElement.getElementsByClassName(
+					"trash"
+				)[0];
+			 deleteRowI(buttonAccept) ;
+		}
+	}
+}*/
+
+
 loadLoaiSanPham();
 
 var trangThaiTrang = 2;
@@ -31,7 +63,7 @@ function getDanhSachSanPham() {
 	giaTien = document.getElementById('giaTien').value;
 	trangThai = document.getElementById("mySelect").value;
 	loaiSanPham = document.getElementById("selectLoaiSanPham").value;
-	trangThaiTrang = trangThai;
+	trangThaiTrang = document.getElementById("mySelect").value;
 	getDanhSachSanPhamTheoTen(tenSanPham, trangThai, giaTien, loaiSanPham);
 }
 
@@ -106,7 +138,7 @@ function getDanhSachSanPhamTheoTen(tenSanPham, trangThai, giaTien, loaiSanPham) 
 						//sl =  loadTongSoLuong(v.maSanPham);
 						var sl = await loadSoLuong(v.maSanPham);
 
-						return "<tr> <td width='10'><input type='checkbox' name='check1' value='1'></td>" +
+						return "<tr> <td width='10'><input class='checkInput' type='checkbox' name='check1' value='1'></td>" +
 							"  <td>" + v.maSanPham + "</td>" +
 							"  <td>" + v.tenSanPham + "</td>"
 							+ "  <td>" + sl + "</td>" +
@@ -123,7 +155,6 @@ function getDanhSachSanPhamTheoTen(tenSanPham, trangThai, giaTien, loaiSanPham) 
 				document.getElementById("danhSachSanPham").innerHTML = temp.join(" ");
 				deleteSanPhamListener();
 				updateSanPhamListener();
-				capNhatSanPhamListener()
 			}
 			pageSanPham();
 			//pageSanPham(data, start, end);
@@ -218,7 +249,7 @@ function getDanhSachSanPhamTheoTen(tenSanPham, trangThai, giaTien, loaiSanPham) 
 			//sl =  loadTongSoLuong(v.maSanPham);
 			var sl = await loadSoLuong(v.maSanPham);
 
-			return "<tr> <td width='10'><input type='checkbox' name='check1' value='1'></td>" +
+			return "<tr> <td width='10'><input class='checkInput' type='checkbox' name='check1' value='1'></td>" +
 				"  <td>" + v.maSanPham + "</td>" +
 				"  <td>" + v.tenSanPham + "</td>"
 				+ "  <td>" + sl + "</td>" +
@@ -258,11 +289,21 @@ function deleteSanPham(maSanPham) {
 		},
 	});
 }
-function deleteRow(r) {
+function deleteRowI(r) {
 	var i = r.parentNode.parentNode.rowIndex;
-	deleteSanPham(document.getElementById("tableListSanPham").rows[i].cells[1].innerHTML);
 	document.getElementById("tableListSanPham").deleteRow(i);
 }
+
+function deleteRowIndex(i) {
+	document.getElementById("tableListSanPham").deleteRow(i);
+}
+
+function deleteSanPhamDB(r) {
+	var i = r.parentNode.parentNode.rowIndex;
+	deleteSanPham(document.getElementById("tableListSanPham").rows[i].cells[1].innerHTML);
+}
+
+
 
 function deleteSanPhamListener() {
 	jQuery(function() {
@@ -274,13 +315,15 @@ function deleteSanPhamListener() {
 			})
 				.then((willDelete) => {
 					if (willDelete) {
-						if (trangThaiTrang != 2)
-							deleteRow(this);
+						if (trangThaiTrang != 2) {
+							deleteRowI(this);
+							deleteSanPhamDB(this);
+						}
 						else {
-							console.log(trangThaiTrang);
 							var i = this.parentNode.parentNode.rowIndex;
 							var temp = document.getElementById("tableListSanPham").rows[i].cells[6].innerText;
 							document.getElementById("tableListSanPham").rows[i].cells[6].innerHTML = temp == "Ngừng kinh doanh" ? "<td><span class='badge bg-success'>" + "Đang kinh doanh" + "</span></td>" : "<td><span class='badge bg-warning'>" + "Ngừng kinh doanh" + "</span></td>";
+							deleteSanPhamDB(this);
 						}
 						swal("Đã thay đổi thành công.!", {
 						});
@@ -305,12 +348,23 @@ function loadModal(r) {
 }
 
 function updateRow(i) {
-	document.getElementById("tableListSanPham").rows[i].cells[1].innerHTML = jQuery('#modalMaSP').val();
-	document.getElementById("tableListSanPham").rows[i].cells[2].innerHTML = jQuery('#modalTenSP').val();
-	document.getElementById("tableListSanPham").rows[i].cells[6].innerHTML = jQuery('#modalTrangThaiSP').val() == 1 ? "<td><span class='badge bg-success'>" + "Đang kinh doanh" + "</span></td>" : "<td><span class='badge bg-warning'>" + "Ngừng kinh doanh" + "</span></td>";
-	document.getElementById("tableListSanPham").rows[i].cells[4].innerHTML = jQuery('#modalGiaSP').val();
-}
-
+	if (trangThaiTrang != 2) {
+		if (trangThaiTrang == jQuery('#modalTrangThaiSP').val()) {
+			document.getElementById("tableListSanPham").rows[i].cells[1].innerHTML = jQuery('#modalMaSP').val();
+			document.getElementById("tableListSanPham").rows[i].cells[2].innerHTML = jQuery('#modalTenSP').val();
+			document.getElementById("tableListSanPham").rows[i].cells[4].innerHTML = jQuery('#modalGiaSP').val();
+		} else {
+			deleteRowIndex(i);
+			console.log(i);
+		}
+	}
+	else {
+		document.getElementById("tableListSanPham").rows[i].cells[1].innerHTML = jQuery('#modalMaSP').val();
+		document.getElementById("tableListSanPham").rows[i].cells[2].innerHTML = jQuery('#modalTenSP').val();
+		document.getElementById("tableListSanPham").rows[i].cells[6].innerHTML = jQuery('#modalTrangThaiSP').val() == 1 ? "<td><span class='badge bg-success'>" + "Đang kinh doanh" + "</span></td>" : "<td><span class='badge bg-warning'>" + "Ngừng kinh doanh" + "</span></td>";
+		document.getElementById("tableListSanPham").rows[i].cells[4].innerHTML = jQuery('#modalGiaSP').val();
+	}
+};
 
 function updateSanPhamListener() {
 	jQuery(function() {
@@ -319,14 +373,14 @@ function updateSanPhamListener() {
 		});
 	})
 };
+capNhatSanPhamListener();
 function capNhatSanPhamListener() {
-	jQuery(function() {
-		jQuery("#btnLuu").click(function() {
-			capNhatSanPham(jQuery('#modalMaSP').val(), jQuery('#modalTenSP').val(), jQuery('#modalTrangThaiSP').val(), jQuery('#modalGiaSP').val());
-			updateRow(rowIndex);
-			jQuery('#ModalUP').modal('hide');
-		});
-	})
+	jQuery("#btnLuu").click(function() {
+		capNhatSanPham(jQuery('#modalMaSP').val(), jQuery('#modalTenSP').val(), jQuery('#modalTrangThaiSP').val(), jQuery('#modalGiaSP').val());
+		updateRow(rowIndex);
+		console.log(rowIndex);
+		jQuery('#ModalUP').modal('hide');
+	});
 };
 
 function capNhatSanPham(maSanPham, tenSanPham, trangThai, giaTien) {
@@ -350,7 +404,4 @@ function capNhatSanPham(maSanPham, tenSanPham, trangThai, giaTien) {
 		},
 	});
 };
-
-
-
 
