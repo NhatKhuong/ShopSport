@@ -9,6 +9,7 @@
             </script>
             
             <script src="<c:url value='/resources/js/layout.js'/>" defer="defer"></script>
+            <script src="<c:url value='/resources/js/register.js'/>" defer="defer"></script>
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <header class="header trans_300">
 
@@ -207,30 +208,30 @@
                                 <form>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form3Example1cg">Your Name: </label>
-                                        <input type="text" id="form3Example1cg" class="form-control form-control" />
+                                        <label class="form-label" for="yourName">Your Name: </label>
+                                        <input type="text" id="yourName" class="form-control form-control" />
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form3Example3cg">Your Email:</label>
-                                        <input type="email" id="form3Example3cg" class="form-control form-control" />
+                                        <label class="form-label" for="yourEmail">Your Email:</label>
+                                        <input type="email" id="yourEmail" class="form-control form-control" />
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form3Example4cg">Password:</label>
-                                        <input type="password" id="form3Example4cg" class="form-control form-control" />
+                                        <label class="form-label" for="passWord">Password:</label>
+                                        <input type="password" id="passWord" class="form-control form-control" />
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form3Example4cdg">Repeat your password:</label>
-                                        <input type="password" id="form3Example4cdg"
+                                        <label class="form-label" for="repeatPassword">Repeat your password:</label>
+                                        <input type="password" id="repeatPassword"
                                             class="form-control form-control" />
                                     </div>
 
                                     <div class="form-check-inline d-flex justify-content-center mb-5">
                                         <input class="form-check-input me-2" type="checkbox" value=""
-                                            id="form2Example3cg" />
-                                        <label class="form-check-label" for="form2Example3g">
+                                            id="agree" />
+                                        <label class="form-check-label" for="agree">
                                             I agree all statements in <a href="#!" class="text-body"><u>Terms of
                                                     service</u></a>
                                         </label>
@@ -238,7 +239,7 @@
 
                                     <div class="d-flex justify-content-center">
                                         <button type="button"
-                                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body createUser">Register</button>
                                     </div>
 
                                     <p class="text-center text-muted mt-5 mb-0 register_login_here">Have already an
