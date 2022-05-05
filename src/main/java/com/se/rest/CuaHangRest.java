@@ -142,8 +142,6 @@ public class CuaHangRest {
 		
 		
 		return listResult;
-			
-		
 	}
 	
 	@ResponseBody
