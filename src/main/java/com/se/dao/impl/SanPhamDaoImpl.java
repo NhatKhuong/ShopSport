@@ -306,4 +306,29 @@ public class SanPhamDaoImpl implements SanPhamDao {
 		}
 	}
 
+	@Override
+	public double getMaxPrice(String strLoaiSanPham, String strMonTheThao, String strNhanHieu) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			
+			String sql = "select  top 1 giaTien\r\n"
+					+ "						from SanPham join LoaiSanPham on SanPham.maLoaiSanPham = LoaiSanPham.maLoaiSanPham\r\n"
+					+ "						join NhanHieu on SanPham.maNhanHieu = NhanHieu.maNhanHieu\r\n"
+					+ "						join MonTheThao on SanPham.maMonTheThao = MonTheThao.maMonTheThao \r\n"
+					+ "						join ChiTietSanPham on SanPham.maSanPham = ChiTietSanPham.maSanPham\r\n"
+					+ "						where " + strLoaiSanPham + "and" + strMonTheThao + "and" + strNhanHieu
+					+ "order by giaTien desc";
+			
+		double maxPrice = Double.parseDouble(session.createNativeQuery(sql).uniqueResult().toString());
+			
+		System.out.println(maxPrice);
+		return maxPrice;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 }

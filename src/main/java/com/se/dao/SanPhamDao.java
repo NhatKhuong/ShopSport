@@ -25,4 +25,6 @@ public interface SanPhamDao {
 
 	boolean capNhatSanPham(String maSanPham, String tenSanPham, double giaSanPham, int trangThai);
 	
+	public double getMaxPrice(String strLoaiSanPham,String strMonTheThao,String strNhanHieu);
+	
 }

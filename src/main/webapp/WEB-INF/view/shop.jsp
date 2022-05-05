@@ -13,6 +13,8 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 <link rel="stylesheet" href="<c:url value='/resources/css/shop.css' />">
 <link rel="stylesheet" href="<c:url value='/resources/css/filter.css' />">
+<link rel="stylesheet" href="<c:url value='/resources/css/jquery-ui.css' />">
+<link rel="stylesheet" href="<c:url value='/resources/css/categories_styles.css' />">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/item-product.css">
 
@@ -24,7 +26,7 @@
     </div>
     <div class= "display__item row">
         <div class="pl-5 display__item__filter col-3">  
-          <div class="">
+          <!-- <div class="">
                   <div class="">
                     <div class="">
                         <hr>
@@ -44,6 +46,23 @@
                   <div class="btn__filter">
                       <button>Lọc <i class="fa fa-angle-right" aria-hidden="true"></i></button>
                   </div>
+                </div> -->
+                <div class="sidebar_section">
+                    <div class="sidebar_title">
+                        <h5>Filter by Price</h5>
+                    </div>
+                    <p>
+                        <input
+                            type="text"
+                            id="amount"
+                            readonly
+                            style="border: 0; color: #f6931f; font-weight: bold"
+                        />
+                    </p>
+                    <div id="slider-range"></div>
+                    <div onclick="searchbyPriceFilter()" class="filter_button">
+                        <span>filter</span>
+                    </div>
                 </div>
 					
         
@@ -149,11 +168,11 @@
             </div>
 
         </div>
-        <div class="display__item__itemList col-9">
+        <div class="display__item__itemList col-8">
             <div class="display__item__itemList__header">
                 <div class="product_sorting_container product_sorting_container_top">
 									<ul class="product_sorting">
-										<li>
+										<!-- <li>
 											<span class="type_sorting_text">Default Sorting</span>
 											<i class="fa fa-angle-down"></i>
 											<ul class="sorting_type">
@@ -161,12 +180,12 @@
 												<li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Price</span></li>
 												<li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Product Name</span></li>
 											</ul>
-										</li>
+										</li> -->
+                                        <span>Show</span>
 										<li>
-											<span>Show</span>
 											<!-- <span class="num_sorting_text">6</span> -->
 											<!-- <i class="fa fa-angle-down"></i> -->
-											<select onchange="searchFilterCheckbox()"  class="sorting_num_re">
+											<select onchange="searchbyPriceFilter()"  class="sorting_num_re">
 												<option value="6" class="num_sorting_btn_re">6</option>
 												<option value="12" class="num_sorting_btn_re">12</option>
 												<option value="24" class="num_sorting_btn_re">24</option>
@@ -242,9 +261,12 @@
             crossorigin="anonymous"
         ></script>
         <script src="<c:url value='/resources/js/home.js'/>"></script>
-        <script src="<c:url value='/resources/js/shop.js'/>"></script>
+        
         <script src="<c:url value='/resources/js/layout.js'/>"></script>
         <script src="<c:url value='/resources/js/filter.js'/>"></script>
+        <script src="<c:url value='/resources/js/jquery-ui.js'/>"></script>
+        <script src="<c:url value='/resources/js/shop.js'/>"></script>
+        <%-- <script src="<c:url value='/resources/js/categories_custom.js'/>"></script> --%>
   
 </body>
 </html>
