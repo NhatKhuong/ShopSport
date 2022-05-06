@@ -218,7 +218,7 @@ function deleteCardItem(e) {
             var a = e.parentElement
                 .getElementsByClassName("maSanPhamTrongGioHang")[0]
                 .parentElement.remove();
-            // updateTotalPriceWhenChangeQuanityItem();
+            updateTotalPriceWhenChangeQuanityItem();
         },
     });
 }
@@ -358,6 +358,51 @@ function loadDataCard(data) {
             .join(" ");
     });
 })();
+
+async function loadModalSearch() {
+    var contition = document.getElementById("searchInput").value;
+    var a = await fetch(
+        contextPath +
+            `/header/tim-kiem?` +
+            new URLSearchParams({
+                contition: contition,
+            })
+    );
+
+    var result = await a.json();
+
+    var modal_body_search_category_list_container = document.getElementById(
+        "modal-body-search_category_list_container"
+    );
+    modal_body_search_category_list_container.innerHTML = result
+        .map((e) => {
+            return `
+        <div class="card_product" onclick='window.location.href="${contextPath}/san-pham/chi-tiet-san-pham?maSanPham=${
+                e.maSanPham
+            }"'>
+                
+        <div class="card_item_img">
+            <img
+                src='${contextPath}/resources/images/${
+                e.danhSachHinhAnhSanPham[0].hinhAnh
+            }'>
+        </div>
+        <div class="card_item_info">
+            <div class="card_item_info_name break_text">
+                ${e.tenSanPham}</div>
+
+            <div class="card_item_info_price_item">
+                <div class="card_item_info_price price">
+                    ${e.giaTien - (e.giaTien * e.chietKhau) / 100}
+                </div>
+
+            </div>
+        </div>
+    </div>
+        `;
+        })
+        .join(" ");
+}
 
 // ==============================================================shop.js=========================
 

@@ -39,4 +39,20 @@ public class TrangChuRest {
 		}
 		return listResult;	
 	}
+	
+	
+
+	@ResponseBody
+	@RequestMapping(value = "/header/tim-kiem", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public List<SanPham> loadDataSearch(HttpServletRequest request){
+		
+		String condition = request.getParameter("contition");
+		List<SanPham> list = new ArrayList<SanPham>();
+		if(condition.equals("")) {
+			list = sanPhamService.getSanPhamBanChay();
+		}else {
+			list = sanPhamService.getDanhSachSanPhamTimKiem(condition);			
+		}
+		return list;	
+	}
 }

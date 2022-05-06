@@ -5,9 +5,9 @@
             <!-- this is so important. ajax will call it -->
             <script>
                 var contextPath = "${pageContext.request.contextPath}";
-                var maxPrice =999999999999;
+                var maxPrice = 999999999999;
             </script>
-            
+
             <script src="<c:url value='/resources/js/layout.js'/>" defer="defer"></script>
             <script src="<c:url value='/resources/js/register.js'/>" defer="defer"></script>
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -64,7 +64,7 @@
                                                         aria-hidden="true"><i class="fa fa-user-plus"
                                                             aria-hidden="true"></i>Register</a></li>
                                                 <li><a href="/ShopSport/don-hang/danh-sach-don-hang"
-                                                    aria-hidden="true"></i>Hóa đơn</a></li>
+                                                        aria-hidden="true"></i>Hóa đơn</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -86,14 +86,15 @@
                                 <nav class="navbar">
                                     <ul class="navbar_menu">
                                         <li><a href="/ShopSport/home">home</a></li>
-                                        <li><a href="/ShopSport/shop" >shop</a></li>
+                                        <li><a href="/ShopSport/shop">shop</a></li>
                                         <li><a href="#">promotion</a></li>
                                         <li><a href="#">pages</a></li>
                                         <li><a href="#">blog</a></li>
                                         <li><a href="contact.html">contact</a></li>
                                     </ul>
                                     <ul class="navbar_user">
-                                        <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                                        <li><div onclick="loadModalSearch()" data-toggle="modal" data-target="#searchModal" href=""><i
+                                                    class="fa fa-search" aria-hidden="true"></i></div></li>
                                         <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                         <li class="checkout">
                                             <a href="" data-toggle="modal" data-target="#CardModal" aria-hidden="true"
@@ -125,8 +126,8 @@
 
                             <div class="modal-body modal_body_card" id="cardProducts">
                                 <c:forEach var="item" items="${dsSanPhamTrongGioHang}">
-
-                                    <%-- <div class="card_product">
+                                    <!-- 
+                                     <div class="card_product">
                                         <div class="check_item">
                                             <input type="checkbox" class="check_item_input">
                                         </div>
@@ -137,7 +138,7 @@
                                         <div class="card_item_info">
                                             <div class="card_item_info_name break_text">
                                                 ${item.chiTietSanPham.sanPham.tenSanPham}</div>
-                                            <!-- <div class="card_item_info_quatity">1</div> -->
+                                            
                                             <div class="quantity">
 
                                                 <button class="btn ml-2 " onclick='quantityPrivate(this)'> <i
@@ -161,30 +162,64 @@
                                             aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-                            </div> --%>
+                            </div>  -->
 
-                            </c:forEach>
+                                </c:forEach>
 
 
-                        </div>
-                        <div class="modal-footer">
-                            <div class="Subtotal">
-                                <div class="Subtotal_title">Tổng tiền</div>
-                                <div class="Subtotal_price price">0</div>
                             </div>
-                            <form:form class="block_checkout" id="form-card"
-                                action='${pageContext.request.contextPath}/don-hang/tao-don-hang' method="GET"
-                                modelAttribute="donHang">
-                                <button type="submit" class="btn_checkout">Thanh Toán</button>
-                                <div id="value-form-hidden" style="width: 1px; overflow: hidden; height: 1px ;"></div>
-                            </form:form>
+                            <div class="modal-footer">
+                                <div class="Subtotal">
+                                    <div class="Subtotal_title">Tổng tiền</div>
+                                    <div class="Subtotal_price price">0</div>
+                                </div>
+                                <form:form class="block_checkout" id="form-card"
+                                    action='${pageContext.request.contextPath}/don-hang/tao-don-hang' method="GET"
+                                    modelAttribute="donHang">
+                                    <button type="submit" class="btn_checkout">Thanh Toán</button>
+                                    <div id="value-form-hidden" style="width: 1px; overflow: hidden; height: 1px ;">
+                                    </div>
+                                </form:form>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
 
 
                 <!-- Modal card -->
+
+                <!-- Modal search -->
+
+                <div class="modal fade model_card" id="searchModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog_search" role="document">
+                        <div class="modal-content modal-content_search">
+                            <div class="modal-header">
+                                <div class="search_block">
+                                    <input type="text" id="searchInput"  onkeyup="loadModalSearch()">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </div>
+                            </div>
+
+                            <div class="modal-body modal-body-search" id="">
+                                    <div class="modal-body-search_category">
+                                        <div class="modal-body-search_category_title">Loại sản phẩm</div>
+                                        <a href="/ShopSport/shop?key=1" class="categori_item">Quần Áo</a>
+                                        <a href="/ShopSport/shop?key=3" class="categori_item">Giầy thể thao</a>
+                                        <a href="/ShopSport/shop?key=2" class="categori_item">Dụng dụ & Thiết bị</a>
+                                    </div>
+                                    
+                                    <div class="modal-body-search_category_listPoduct">
+                                        <div class="modal-body-search_category_listPoduct_title">Sản phẩm</div>
+                                        <div class="modal-body-search_category" id="modal-body-search_category_list_container">
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal search  -->
 
 
                 <!-- Modal Register -->
@@ -224,13 +259,11 @@
 
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="repeatPassword">Repeat your password:</label>
-                                        <input type="password" id="repeatPassword"
-                                            class="form-control form-control" />
+                                        <input type="password" id="repeatPassword" class="form-control form-control" />
                                     </div>
 
                                     <div class="form-check-inline d-flex justify-content-center mb-5">
-                                        <input class="form-check-input me-2" type="checkbox" value=""
-                                            id="agree" />
+                                        <input class="form-check-input me-2" type="checkbox" value="" id="agree" />
                                         <label class="form-check-label" for="agree">
                                             I agree all statements in <a href="#!" class="text-body"><u>Terms of
                                                     service</u></a>

@@ -800,3 +800,78 @@ ul {
     position: fixed;
     right: 0;
 }
+
+/* Modal search */
+
+.modal-dialog_search {
+    margin-top: 35vh;
+}
+
+.search_block input {
+    /* display: block; */
+    width: 95%;
+    outline: none;
+    border: none;
+    height: 38px;
+    font-size: 22px;
+
+    background-color: #ffffff00;
+    color: #000;
+}
+
+.search_block {
+    border: 2px solid #594b4b78;
+    width: 100%;
+    height: 40px;
+}
+
+.search_block > i {
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+.modal-content_search {
+    width: 750px;
+    left: -22%;
+}
+
+.modal-body-search {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-body-search_category_listPoduct {
+    height: 420px;
+    overflow-y: auto;
+}
+
+.modal-body-search_category {
+    padding-bottom: 20px;
+}
+
+.categori_item {
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #34281e;
+}
+
+.modal-body-search_category_title {
+    margin-bottom: 5px;
+}
+
+.modal-body-search_category_listPoduct_title .modal-body-search_category_title {
+    font-size: 17px;
+    font-weight: bold;
+    font-style: italic;
+    color: #bc8888;
+}
+
+.modal-body-search_category_title > a {
+    cursor: pointer;
+}
+
+.card_product {
+    cursor: pointer;
+}
+
+/* Modal search */

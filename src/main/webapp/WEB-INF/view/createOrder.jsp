@@ -151,6 +151,7 @@
                                                         </div>
                                                         <div class='sub'>Size:
                                                             ${item.chiTietSanPham.kichThuoc.tenKichThuoc } </div>
+                                                        <div hidden class="maSanPhamThanhToan">${item.chiTietSanPham.maChiTietSanPham}</div>
                                                     </div>
                                                     <div class='item-price'>
                                                         <span
@@ -235,7 +236,7 @@
                                         </div>
                                     </div>
                                     <div class='btn-xac-nhan'>
-                                        <input type="submit" class="form-control btn bg-danger text-white"
+                                        <input onclick="deleteProductInCardWhenCheckout()" type="submit" class="form-control btn bg-danger text-white"
                                             value="Thanh toán">
                                     </div>
                                 </div>

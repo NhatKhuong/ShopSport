@@ -1,6 +1,7 @@
 package com.se.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.se.entity.ChiTietDonHang;
 //import com.se.entity.ChiTietDonHang;
@@ -32,6 +36,7 @@ import com.se.service.DonHangService;
 import com.se.service.KichThuocService;
 import com.se.service.NguoiDungService;
 import com.se.service.SanPhamService;
+import com.se.service.SanPhamTrongGioHangService;
 import com.se.service.TrangThaiDonHangService;
 import com.se.util.User;
 
@@ -62,6 +67,10 @@ public class OrderController {
 	
 	@Autowired
 	private TrangThaiDonHangService trangThaiDonHangService;
+	
+	@Autowired
+	private SanPhamTrongGioHangService sanPhamTrongGioHangService;
+	
 	
 	@GetMapping("/don-hang/tao-don-hang")
 	public String hienDonHang(Model model,@ModelAttribute("donHang") DonHang donHang ) {
@@ -139,5 +148,18 @@ public class OrderController {
 		model.addAttribute("donHang",donHang);
  
 		return "chiTietDonHang";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/don-hang/xoa-san-pham-gio-hang", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public void deleteProductInCard(HttpServletRequest request) {
+		List<String> listMaChiTietSanPhamThanhToan = Arrays.asList(request.getParameter("listMaSanPhamThanhToan").split(","));
+		System.out.println(listMaChiTietSanPhamThanhToan);
+		String email = User.getEmailNguoiDung();
+		NguoiDung nguoiDung = nguoiDungService.getByEmail(email);
+		for (String item : listMaChiTietSanPhamThanhToan) {
+			String maSanPhamTrongGioHang = nguoiDung.getMaNguoiDung()+item;
+			sanPhamTrongGioHangService.delete(maSanPhamTrongGioHang);
+		}
 	}
 }
