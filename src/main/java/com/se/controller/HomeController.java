@@ -75,17 +75,26 @@ public class HomeController {
 		} else {
 			email = principal.toString();
 		}
-		NguoiDung nguoiDung = nguoiDungService.getByEmail(email);
+
+
+	
+		try {
+			NguoiDung nguoiDung = nguoiDungService.getByEmail(email);
+			List<SanPhamTrongGioHang> dsSanPhamTrongGioHang = sanPhamTrongGioHangService
+					.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
+			model.addAttribute("UserLogin", nguoiDung);
+			model.addAttribute("dsSanPhamTrongGioHang", dsSanPhamTrongGioHang);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Login require");
+		}
+		
+	
 
 		List<SanPham> list = sanPhamService.getByFilter("", "", "", 5, 1000000000, 125, 10);
-		List<SanPhamTrongGioHang> dsSanPhamTrongGioHang = sanPhamTrongGioHangService
-				.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
-		
-		System.out.println(list);
-
-		model.addAttribute("dsSanPhamTrongGioHang", dsSanPhamTrongGioHang);
+	
 		model.addAttribute("listSanPham", list);
-		model.addAttribute("UserLogin", nguoiDung);
+
 
 		model.addAttribute("donHang", new DonHang());
 		return "home";

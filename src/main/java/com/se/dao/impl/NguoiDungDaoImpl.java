@@ -60,11 +60,10 @@ public class NguoiDungDaoImpl implements NguoiDungDao {
 
 			String sql = "select * from NguoiDung where email = '" + email + "'";
 			NguoiDung nguoiDung = session.createNativeQuery(sql, NguoiDung.class).getSingleResult();
-
 			return nguoiDung;
 		} catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		return null;
 	}

@@ -257,7 +257,6 @@
 								</button>
 							</div>
 							<div class="modal-body">
-
 								<ul class="nav nav nav-tabs mb-3" id="pills-tab" role="tablist">
 									<li class="nav-item"><a class="nav-link active" id="pills-home-tab"
 											data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
@@ -287,10 +286,6 @@
 													class="form-control" id="modalTenSP" type="text" required
 													value="Bàn ăn gỗ Theresa">
 											</div>
-											<!--<div class="form-group  col-md-6">
-							<label class="control-label">Số lượng</label> <input
-								class="form-control" type="number" required value="20">
-						</div>-->
 											<div class="form-group col-md-6 ">
 												<label for="exampleSelect1" class="control-label">Tình
 													trạng sản phẩm</label> <select class="form-control"

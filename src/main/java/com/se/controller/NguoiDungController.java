@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,15 +27,38 @@ public class NguoiDungController {
 	@RequestMapping(value = "/dang-ky-user", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
 	public @ResponseBody String themUser(HttpServletRequest req) {
 		String maSPCuoi = sanPhamService.getMaSanPhamCuoiCung().substring(4);
-		// Chuyển String
+		// Chuyá»ƒn String
 		int soMaSPCuoi = Integer.parseInt(maSPCuoi);
-		// + mã lên để thành mã mới
+		// + mÃ£ lÃªn Ä‘á»ƒ thÃ nh mÃ£ má»›i
 		soMaSPCuoi++;
-		// Định dạng lại mã mới
+		// Ä�á»‹nh dáº¡ng láº¡i mÃ£ má»›i
 		String maSP = String.format("SPAA%05d", soMaSPCuoi);
 
 		nguoiDungService.save(null);
 		return "Add User Success";
+	}
+
+	@RequestMapping(value = "/is-login", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public @ResponseBody String checkLogin() {
+		boolean status = false;
+		try {
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String email;
+			
+			if (principal instanceof UserDetails) {
+				email = ((UserDetails) principal).getUsername();
+			} else {
+				email = principal.toString();
+			}
+			System.out.println(email);
+			if (!email.equalsIgnoreCase("anonymousUser"))
+				status = true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			status = false;
+		}
+
+		return "{\"status\": \"" + status + "\"}";
 	}
 
 }
