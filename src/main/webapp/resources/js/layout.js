@@ -388,12 +388,18 @@ async function loadModalSearch() {
             }'>
         </div>
         <div class="card_item_info">
-            <div class="card_item_info_name break_text">
+            <div class="card_item_info_name_search break_text">
                 ${e.tenSanPham}</div>
 
             <div class="card_item_info_price_item">
-                <div class="card_item_info_price price">
-                    ${e.giaTien - (e.giaTien * e.chietKhau) / 100}
+                
+                <div class="card_item_info_price price_new">
+                    ${formatCurrency(
+                        e.giaTien - (e.giaTien * e.chietKhau) / 100
+                    )}
+                </div>
+                <div class="card_item_info_price price_old">
+                    ${formatCurrency(e.giaTien)}
                 </div>
 
             </div>

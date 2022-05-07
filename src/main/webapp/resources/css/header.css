@@ -804,7 +804,7 @@ ul {
 /* Modal search */
 
 .modal-dialog_search {
-    margin-top: 35vh;
+    margin-top: 20vh;
 }
 
 .search_block input {
@@ -843,6 +843,7 @@ ul {
 .modal-body-search_category_listPoduct {
     height: 420px;
     overflow-y: auto;
+    width: 460px;
 }
 
 .modal-body-search_category {
@@ -850,28 +851,48 @@ ul {
 }
 
 .categori_item {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-size: 16px;
     color: #34281e;
+    display: block;
+    cursor: pointer;
+}
+
+.categori_item:hover {
+    text-decoration: none;
+    color: #e4a232;
+}
+
+.card_item_info_name_search {
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 700;
 }
 
 .modal-body-search_category_title {
     margin-bottom: 5px;
 }
 
-.modal-body-search_category_listPoduct_title .modal-body-search_category_title {
+.modal-body-search_category_listPoduct_title,
+.modal-body-search_category_title {
     font-size: 17px;
     font-weight: bold;
     font-style: italic;
-    color: #bc8888;
-}
-
-.modal-body-search_category_title > a {
-    cursor: pointer;
+    color: #e4a232;
 }
 
 .card_product {
     cursor: pointer;
+}
+
+.price_old {
+    text-decoration: line-through;
+    color: #afa1a8;
+    font-style: italic;
+}
+
+.price_new {
+    color: #e4a232;
 }
 
 /* Modal search */

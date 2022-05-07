@@ -208,10 +208,12 @@
                                         <a href="/ShopSport/shop?key=3" class="categori_item">Giầy thể thao</a>
                                         <a href="/ShopSport/shop?key=2" class="categori_item">Dụng dụ & Thiết bị</a>
                                     </div>
-                                    
-                                    <div class="modal-body-search_category_listPoduct">
+                                    <div class="">
+
                                         <div class="modal-body-search_category_listPoduct_title">Sản phẩm</div>
-                                        <div class="modal-body-search_category" id="modal-body-search_category_list_container">
+                                        <div class="modal-body-search_category_listPoduct">
+                                            <div class="modal-body-search_category" id="modal-body-search_category_list_container">
+                                            </div>
                                         </div>
                                     </div>
                             </div>
