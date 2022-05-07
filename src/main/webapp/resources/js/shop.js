@@ -395,14 +395,16 @@ async function searchFilterCheckbox() {
         )[0]
     );
     initPriceSlider();
+    var price_from;
+    var price_to;
     var priceRange = $("#amount").val();
     if (priceRange != "") {
         console.log("vao");
-        var price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
-        var price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+        price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
+        price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
     } else {
-        var price_from = 0;
-        var price_to = maxPrice;
+        price_from = 0;
+        price_to = maxPrice;
     }
 
     var pageIndex;
@@ -446,15 +448,18 @@ async function searchFilterCheckbox() {
 }
 
 async function searchbyPriceFilter() {
+    var price_from;
+    var price_to;
     var priceRange = $("#amount").val();
     if (priceRange != "") {
         console.log("vao by filter");
-        var price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
-        var price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+        price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
+        price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
     } else {
-        var price_from = 0;
-        var price_to = maxPrice;
+        price_from = 0;
+        price_to = maxPrice;
     }
+    console.log("=========" + price_from + "=========" + price_to);
 
     var elementsLoaiSanPham = document.getElementsByClassName(
         "categories__nav__item__level2_loaiSanPham"
@@ -526,13 +531,13 @@ async function searchbyPriceFilter() {
     console.log(numPage);
     offsetSub = 0;
     renderPagination(numPage, offsetSub, limitSub);
-    maxPrice = parseInt(
-        (
-            await Promise.all([
-                getMaxPrice(listLoaiSanPham, listMonTheThao, listNhanHieu),
-            ])
-        )[0]
-    );
+    // maxPrice = parseInt(
+    //     (
+    //         await Promise.all([
+    //             getMaxPrice(listLoaiSanPham, listMonTheThao, listNhanHieu),
+    //         ])
+    //     )[0]
+    // );
     // ============================================================sua========================================
     numPageSub = numPage;
     // ============================================================

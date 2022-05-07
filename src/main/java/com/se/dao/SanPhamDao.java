@@ -27,4 +27,8 @@ public interface SanPhamDao {
 	
 	public double getMaxPrice(String strLoaiSanPham,String strMonTheThao,String strNhanHieu);
 	
+	public List<SanPham> getDanhSachSanPhamTimKiem(String condition);
+	
+	public List<SanPham> getSanPhamBanChay();
+	
 }

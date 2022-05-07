@@ -85,6 +85,7 @@ public class CuaHangRest {
 	@ResponseBody
 	@RequestMapping(value = "/cua-hang/loc", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
 	public List<SanPham> filterProduct(HttpServletRequest request ) {
+		System.out.println("vào Lộc");
 		List<String> listLoaiSanPham = Arrays.asList(request.getParameter("listLoaiSanPham").split(","));
 		List<String> listMonTheThao = Arrays.asList(request.getParameter("listMonTheThao").split(","));
 		List<String> listNhanHieu = Arrays.asList(request.getParameter("listNhanHieu").split(","));
@@ -139,6 +140,7 @@ public class CuaHangRest {
 		}
 		
 		List<SanPham> listResult = sanPhamService.getSanPhamFilter(strLoaiSanPham, strMonTheThao, strNhanHieu, price_to, price_from, pageIndex, limit);
+		System.out.println(listResult);
 		
 		
 		return listResult;

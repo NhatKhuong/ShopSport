@@ -126,4 +126,16 @@ public class SanPhamServiceImpl implements SanPhamService {
 	public double getMaxPrice(String strLoaiSanPham, String strMonTheThao, String strNhanHieu) {
 		return sanPhamDao.getMaxPrice(strLoaiSanPham, strMonTheThao, strNhanHieu);
 	}
+
+	@Override
+	@Transactional
+	public List<SanPham> getDanhSachSanPhamTimKiem(String condition) {
+		return sanPhamDao.getDanhSachSanPhamTimKiem(condition);
+	}
+
+	@Override
+	@Transactional
+	public List<SanPham> getSanPhamBanChay() {
+		return sanPhamDao.getSanPhamBanChay();
+	}
 }
