@@ -139,7 +139,6 @@ async function addSanPham() {
 }
 
 /*Upload image*/
-
 $(document).ready(function () {
   $("#input-44").fileinput({
     uploadUrl: "#",

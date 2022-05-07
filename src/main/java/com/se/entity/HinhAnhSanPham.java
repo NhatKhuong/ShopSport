@@ -33,6 +33,10 @@ public class HinhAnhSanPham {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public HinhAnhSanPham(String maHinhAnh) {
+		// TODO Auto-generated constructor stub
+		this.maHinhAnh = maHinhAnh;
+	}
 	public String getMaHinhAnh() {
 		return maHinhAnh;
 	}

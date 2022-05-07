@@ -235,6 +235,7 @@ public class SanPhamDaoImpl implements SanPhamDao {
 						+ "and  lsp.tenLoaiSanPham like N'%" + loaiSanPham + "%' " + "and giaTien>=" + giaTien;
 			}
 		}
+		System.out.println(sql);
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			List<SanPham> list = session.createNativeQuery(sql, SanPham.class).getResultList();

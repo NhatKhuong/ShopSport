@@ -83,7 +83,6 @@ public class DanhGiaController {
 						File file2 = new File(pathLocal, fileName);
 						 FileUtils.copyFile(file, file2);
 						 file2.createNewFile();
-				
 					}
 					
 				} catch (Exception e) {

@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//src/main/java/com/se/controller/HomeController.java=UTF-8
 encoding//src/main/java/com/se/controller/OrderController.java=UTF-8
 encoding//src/main/java/com/se/controller/ProductController.java=UTF-8
+encoding//src/main/java/com/se/controller/admin/QuanLySanPhamController.java=UTF-8
 encoding//src/main/java/com/se/dao/impl/DiaChiDaoImpl.java=UTF-8
 encoding//src/main/webapp/WEB-INF/view/admin/admin.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/view/admin/baoCaoDoanhThu.jsp=UTF-8

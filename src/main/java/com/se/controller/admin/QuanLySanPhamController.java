@@ -53,7 +53,7 @@ public class QuanLySanPhamController {
 		 * List<String> listMaSanPham = new ArrayList<String>();
 		 * for (Object ob : list) {
 		 * Object[] listO = (Object[]) ob;
-		 * // từng thuộc tính vô như
+		 * // tá»«ng thuá»™c tÃ­nh vÃ´ nhÆ°
 		 * String stt = (String) listO[0];
 		 * String stt1 = (String) listO[1];
 		 * int stt2 = Integer.parseInt(listO[2].toString());
@@ -62,9 +62,9 @@ public class QuanLySanPhamController {
 		 * boolean stt5 = (boolean) listO[5];
 		 * String stt6 = " ";
 		 * if (stt5)
-		 * stt6 += "Đang kinh doanh";
+		 * stt6 += "Ä�ang kinh doanh";
 		 * else
-		 * stt6 += "Ngừng kinh doanh";
+		 * stt6 += "Ngá»«ng kinh doanh";
 		 * // System.out.println(stt + "  " + stt1 + "  " + stt2 + "  " + stt3 + "  " +
 		 * stt4 + "  " + stt6);
 		 * 
@@ -138,7 +138,7 @@ public class QuanLySanPhamController {
 			monTheThaoService.saveMTT(monTheThao);
 			System.out.println("oke");
 		} else {
-			System.out.println("Tr�ng");
+			System.out.println("Trï¿½ng");
 		}
 		return "add success";
 	}
@@ -159,7 +159,7 @@ public class QuanLySanPhamController {
 			nhanHieuService.saveNhanHieu(nhanHieu);
 			System.out.println("oke");
 		} else {
-			System.out.println("Tr�ng");
+			System.out.println("Trï¿½ng");
 		}
 		return "add success";
 	}
@@ -180,7 +180,7 @@ public class QuanLySanPhamController {
 			loaiSanPhamService.saveLoaiSanPham(loaiSanPham);
 			System.out.println("oke");
 		} else {
-			System.out.println("Tr�ng");
+			System.out.println("Trï¿½ng");
 		}
 		return "add success";
 	}
@@ -245,7 +245,7 @@ public class QuanLySanPhamController {
 		// System.out.println("oke");
 		// }
 		// else {
-		// System.out.println("Tr�ng");
+		// System.out.println("Trï¿½ng");
 		// }
 		// File.separator if linux = \ if window = /
 
@@ -267,9 +267,6 @@ public class QuanLySanPhamController {
 		return "add success";
 	}
 
-	@JsonIgnore
-	@JsonManagedReference
-	@JsonBackReference
 	@ResponseBody
 	@RequestMapping(value = "/quan-ly/quan-ly-san-pham-loc", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
 	public List<SanPham> locSanPhamTheoTen(HttpServletRequest request) {
@@ -277,13 +274,12 @@ public class QuanLySanPhamController {
 		String loaiSanPham = request.getParameter("loaiSanPham");
 		String tenSanPham = request.getParameter("tenSanPham");
 		double giaTien = Double.parseDouble(request.getParameter("giaTien"));
+	
 		List<SanPham> listSanPham = sanPhamService.getByName_Status(tenSanPham, trangThai, giaTien, loaiSanPham);
+		System.out.println(listSanPham);
 		return listSanPham;
 	}
-
-	@JsonIgnore
-	@JsonManagedReference
-	@JsonBackReference
+ 
 	@ResponseBody
 	@RequestMapping(value = "/quan-ly/quan-ly-san-pham-cap-nhat", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
 	public String capNhatSanPham(HttpServletRequest request) {
@@ -291,37 +287,40 @@ public class QuanLySanPhamController {
 		String tenSanPham = request.getParameter("tenSanPham");
 		int trangThai = Integer.parseInt(request.getParameter("trangThai"));
 
-		double giaTien = Double.parseDouble(request.getParameter("giaTien").split("đ")[0]);
-		return sanPhamService.capNhatSanPham(maSanPham, tenSanPham, giaTien, trangThai) ? "Cập nhật thành công"
-				: "Cập nhật thất bại";
+		double giaTien = Double.parseDouble(request.getParameter("giaTien").split("Ä‘")[0]);
+		return sanPhamService.capNhatSanPham(maSanPham, tenSanPham, giaTien, trangThai) ? "Cáº­p nháº­t thÃ nh cÃ´ng"
+				: "Cáº­p nháº­t tháº¥t báº¡i";
 	}
 
-	@JsonIgnore
-	@JsonManagedReference
-	@JsonBackReference
+
 	@ResponseBody
 	@RequestMapping(value = "/quan-ly/quan-ly-san-pham-doi-trang-thai", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
 	public String xoaSanPhamTheoMa(HttpServletRequest request) {
 		String maSanPham = request.getParameter("maSanPham");
 		sanPhamService.delete(maSanPham);
-		return "Xóa thành công";
+		return "XÃ³a thÃ nh cÃ´ng";
 	}
 
-	@JsonIgnore
-	@JsonManagedReference
-	@JsonBackReference
+
 	@ResponseBody
 	@RequestMapping(value = "/quan-ly/quan-ly-san-pham-load-lsp", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
 	public List<LoaiSanPham> loadLoaiSanPham(HttpServletRequest request) {
+		
+//		System.err.println(loaiSanPhamService.getDanhSachTenLoaiSanPham().size());
 		return loaiSanPhamService.getDanhSachTenLoaiSanPham();
 	}
 
-	@JsonIgnore
-	@JsonManagedReference
-	@JsonBackReference
 	@ResponseBody
 	@RequestMapping(value = "/quan-ly/quan-ly-san-pham-load-so-luong", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
 	public int loadTongSoLuong(HttpServletRequest request) {
 		return sanPhamService.getSoLuongSanPhamTheoMa(request.getParameter("maSanPham"));
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/quan-ly/lay-pham-theo-ma", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public SanPham laySanPhamTheoMa(HttpServletRequest request) {
+		String maSanPham  = request.getParameter("maSanPham");
+		return sanPhamService.getById(maSanPham);
+	}
+
 }
