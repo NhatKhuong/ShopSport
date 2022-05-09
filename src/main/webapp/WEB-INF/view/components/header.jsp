@@ -2,23 +2,9 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="security"
-	uri="http://www.springframework.org/security/tags"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/header.css">
 <!-- this is so important. ajax will call it -->
-
-<security:authorize access="isAuthenticated()">
-	<script>
-		const authenticated = true;
-	</script>
-</security:authorize>
-<security:authorize access="isAnonymous()">
-	<script>
-		const authenticated = false;
-	</script>
-</security:authorize>
-
 <script>
 	var contextPath = "${pageContext.request.contextPath}";
 	var maxPrice = 999999999999;
@@ -100,10 +86,8 @@
 							<li><a href="contact.html">contact</a></li>
 						</ul>
 						<ul class="navbar_user">
-							<li><div onclick="loadModalSearch()" data-toggle="modal"
-									data-target="#searchModal" href="">
-									<i class="fa fa-search" aria-hidden="true"></i>
-								</div></li>
+							<li><a href="#"><i class="fa fa-search"
+									aria-hidden="true"></i></a></li>
 							<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
 							<li class="checkout"><a href="" data-toggle="modal"
 								data-target="#CardModal" aria-hidden="true"
@@ -135,8 +119,8 @@
 
 				<div class="modal-body modal_body_card" id="cardProducts">
 					<c:forEach var="item" items="${dsSanPhamTrongGioHang}">
-						<!-- 
-                                     <div class="card_product">
+
+						<%-- <div class="card_product">
                                         <div class="check_item">
                                             <input type="checkbox" class="check_item_input">
                                         </div>
@@ -147,7 +131,7 @@
                                         <div class="card_item_info">
                                             <div class="card_item_info_name break_text">
                                                 ${item.chiTietSanPham.sanPham.tenSanPham}</div>
-                                            
+                                            <!-- <div class="card_item_info_quatity">1</div> -->
                                             <div class="quantity">
 
                                                 <button class="btn ml-2 " onclick='quantityPrivate(this)'> <i
@@ -171,7 +155,7 @@
                                             aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-                            </div>  -->
+                            </div> --%>
 
 					</c:forEach>
 
@@ -196,43 +180,6 @@
 
 
 	<!-- Modal card -->
-
-	<!-- Modal search -->
-
-	<div class="modal fade model_card" id="searchModal" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog_search" role="document">
-			<div class="modal-content modal-content_search">
-				<div class="modal-header">
-					<div class="search_block">
-						<input type="text" id="searchInput" onkeyup="loadModalSearch()">
-						<i class="fa fa-search" aria-hidden="true"></i>
-					</div>
-				</div>
-
-				<div class="modal-body modal-body-search" id="">
-					<div class="modal-body-search_category">
-						<div class="modal-body-search_category_title">Loại sản phẩm</div>
-						<a href="/ShopSport/shop?key=1" class="categori_item">Quần Áo</a>
-						<a href="/ShopSport/shop?key=3" class="categori_item">Giầy thể
-							thao</a> <a href="/ShopSport/shop?key=2" class="categori_item">Dụng
-							dụ & Thiết bị</a>
-					</div>
-					<div class="">
-
-						<div class="modal-body-search_category_listPoduct_title">Sản
-							phẩm</div>
-						<div class="modal-body-search_category_listPoduct">
-							<div class="modal-body-search_category"
-								id="modal-body-search_category_list_container"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Modal search  -->
 
 
 	<!-- Modal Register -->
@@ -259,24 +206,24 @@
 					<form>
 
 						<div class="form-outline mb-4">
-							<label class="form-label" for="yourName">Your Name: </label> <input
-								type="text" id="yourName" class="form-control form-control" />
+							<label class="form-label" for="yourName">Your Name: <span id="tbYouName" style="color: rgb(246, 94, 67);">(*)</span></label> <input
+								type="text" id="yourName" class="form-control form-control"  onblur="changeRegexInputTen();" />
 						</div>
 
 						<div class="form-outline mb-4">
-							<label class="form-label" for="yourEmail">Your Email:</label> <input
-								type="email" id="yourEmail" class="form-control form-control" />
+							<label class="form-label" for="yourEmail">Your Email: <span id="tbEmail" style="color: rgb(246, 94, 67);">(*)</span></label> <input
+								type="email" id="yourEmail" class="form-control form-control" onblur="changeRegexInputEmail();" />
 						</div>
 
 						<div class="form-outline mb-4">
-							<label class="form-label" for="passWord">Password:</label> <input
-								type="password" id="passWord" class="form-control form-control" />
+							<label class="form-label" for="passWord">Password: <span id="tbPassWord" style="color: rgb(246, 94, 67);">(*)</span></label> <input
+								type="password" id="passWord" class="form-control form-control" onblur="changeRegexInputPassWord();"  />
 						</div>
 
 						<div class="form-outline mb-4">
 							<label class="form-label" for="repeatPassword">Repeat
-								your password:</label> <input type="password" id="repeatPassword"
-								class="form-control form-control" />
+								your password: <span id="tbRepeatPassword" style="color: rgb(246, 94, 67);">(*)</span></label><input type="password" id="repeatPassword"
+								class="form-control form-control" onblur="changeRegexInputRepeatPassWord();"/>
 						</div>
 
 						<div class="form-check-inline d-flex justify-content-center mb-5">
@@ -306,5 +253,4 @@
 	</div>
 
 	<!-- end -->
-
 </header>

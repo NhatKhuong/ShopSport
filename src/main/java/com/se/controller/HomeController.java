@@ -102,12 +102,12 @@ public class HomeController {
 
 	@GetMapping("/shop")
 	public String showShop(Model model) {
-		List<SanPham> list = sanPhamService.getByFilter("", "", "", 50000, 100000, 1, 9);
-		model.addAttribute("listSanPham", list);
-		String email = User.getEmailNguoiDung();
-		NguoiDung nguoiDung = nguoiDungService.getByEmail(email);
-		List<SanPhamTrongGioHang> dsSanPhamTrongGioHang = sanPhamTrongGioHangService
-				.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
+//		List<SanPham> list = sanPhamService.getByFilter("", "", "", 50000, 100000, 1, 9);
+//		model.addAttribute("listSanPham", list);
+//		String email = User.getEmailNguoiDung();
+//		NguoiDung nguoiDung = nguoiDungService.getByEmail(email);
+//		List<SanPhamTrongGioHang> dsSanPhamTrongGioHang = sanPhamTrongGioHangService
+//				.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
 		
 		
 		List<LoaiSanPham> dsLoaiSanPham = loaiSanPhamService.getDanhSachTenLoaiSanPham();
@@ -115,7 +115,7 @@ public class HomeController {
 		List<NhanHieu> dsNhanHieu = nhanHieuService.getDanhSachThuongHieu();
 		System.out.println(dsNhanHieu);
 		
-		model.addAttribute("dsSanPhamTrongGioHang", dsSanPhamTrongGioHang);
+//		model.addAttribute("dsSanPhamTrongGioHang", dsSanPhamTrongGioHang);
 		model.addAttribute("dsLoaiSanPham",dsLoaiSanPham);
 		model.addAttribute("dsMonTheThao",dsMonTheThao);
 		model.addAttribute("dsNhanHieu",dsNhanHieu);
