@@ -2,6 +2,13 @@ html {
     scroll-behavior: smooth;
 }
 
+.break_text {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
+}
+
 body {
     font-family: "Poppins", sans-serif;
     font-size: 14px;
@@ -57,18 +64,25 @@ p {
 }
 
 .products_featured_item-info > .name {
-    color: #1a1a1a;
-    font-size: 16px;
+    color: #d59115;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .products_featured_item-info {
     padding: 10px 0 15px 0;
+    width: 110px;
 }
 
 .products_featured_item-info > .price {
     margin: 10px 0;
-    color: #666;
-    font-size: 16px;
+    color: #fe4c50;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.products_featured_item-info > .price_old {
+    color: #b5aec4;
 }
 
 .products_featured_item {
@@ -77,6 +91,36 @@ p {
     /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
     box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
     border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    /*  */
+
+    /* animation: flicker 1.5s infinite alternate; */
+}
+li.products_featured_item:before {
+    content: "";
+    width: 50px;
+    height: 300px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+        90deg,
+        rgb(254, 251, 251) 0%,
+        rgba(255, 255, 255) 100%
+    );
+    transform: rotate(40deg);
+    position: absolute;
+    top: -45px;
+    opacity: 0.2;
+
+    animation: flicker 1.5s infinite;
+}
+@keyframes flicker {
+    from {
+        right: -46%;
+    }
+    to {
+        right: 150%;
+    }
 }
 
 .products_featured_item:hover {
@@ -90,15 +134,24 @@ p {
 .products_featured_item_img {
     width: 100px;
     margin-right: 20px;
+    display: flex;
 }
 
 .products_featured_item_img > img {
     width: 100px;
+    object-fit: contain;
 }
 
 .products_featured_nav {
     list-style: none;
     padding: 0;
+    height: 420px;
+    overflow-y: hidden;
+    width: 290px;
+}
+
+.products_featured_nav:hover {
+    overflow-y: auto;
 }
 
 .display__item__filter > hr {
@@ -367,4 +420,17 @@ p {
 
 .num_sorting_btn_re {
     width: 200px;
+}
+
+.rank {
+    align-items: center;
+    display: flex;
+    padding: 0 10px;
+    font-size: 14px;
+    color: red;
+    font-weight: bold;
+}
+
+.display__item__itemList {
+    margin-left: 50px;
 }

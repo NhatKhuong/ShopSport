@@ -91,9 +91,9 @@ public class HomeController {
 		
 	
 
-		List<SanPham> list = sanPhamService.getByFilter("", "", "", 5, 1000000000, 125, 10);
-	
-		model.addAttribute("listSanPham", list);
+//		List<SanPham> list = sanPhamService.getByFilter("", "", "", 5, 1000000000, 125, 10);
+//	
+//		model.addAttribute("listSanPham", list);
 
 
 		model.addAttribute("donHang", new DonHang());

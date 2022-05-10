@@ -86,8 +86,8 @@
 							<li><a href="contact.html">contact</a></li>
 						</ul>
 						<ul class="navbar_user">
-							<li><a href="#"><i class="fa fa-search"
-									aria-hidden="true"></i></a></li>
+							<li><div onclick="loadModalSearch()" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search"
+									aria-hidden="true"></i></div></li>
 							<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
 							<li class="checkout"><a href="" data-toggle="modal"
 								data-target="#CardModal" aria-hidden="true"
@@ -180,6 +180,41 @@
 
 
 	<!-- Modal card -->
+
+	<!-- Search Modal -->
+
+	<div class="modal fade model_card" id="searchModal" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog_search" role="document">
+		<div class="modal-content modal-content_search">
+			<div class="modal-header">
+				<div class="search_block">
+					<input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm"  onkeyup="loadModalSearch()">
+					<i class="fa fa-search" aria-hidden="true"></i>
+				</div>
+			</div>
+
+			<div class="modal-body modal-body-search" id="">
+					<div class="modal-body-search_category">
+						<div class="modal-body-search_category_title">Loại sản phẩm</div>
+						<a href="/ShopSport/shop?key=1" class="categori_item">Quần Áo</a>
+						<a href="/ShopSport/shop?key=3" class="categori_item">Giầy thể thao</a>
+						<a href="/ShopSport/shop?key=2" class="categori_item">Dụng dụ & Thiết bị</a>
+					</div>
+					<div class="">
+
+						<div class="modal-body-search_category_listPoduct_title">Sản phẩm</div>
+						<div class="modal-body-search_category_listPoduct">
+							<div class="modal-body-search_category" id="modal-body-search_category_list_container">
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<!-- Search Modal -->
 
 
 	<!-- Modal Register -->

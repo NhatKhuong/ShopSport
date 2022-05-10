@@ -20,6 +20,7 @@ if (myParam == 1) {
     inputGiay.checked = true;
 }
 
+getProducRank();
 searchFilterCheckbox();
 
 // jQuery(document).ready(function ($) {
@@ -36,6 +37,27 @@ var fsOverlay = $(".fs_menu_overlay");
 console.log(header);
 
 setHeader();
+
+function hiddenPrice() {
+    console.log("hiddenPrice");
+    var percent = document.getElementsByClassName("percent");
+    for (var i = 0; i < percent.length; i++) {
+        console.log(percent[i].innerText);
+        if (percent[i].innerText === "0 %") {
+            console.log(percent[i].parentElement);
+            var priceOld =
+                percent[
+                    i
+                ].parentElement.parentElement.parentElement.getElementsByClassName(
+                    "price_old"
+                )[0];
+            priceOld.style.visibility = "hidden";
+            priceOld.style.width = "0px";
+            percent[i].parentElement.style.visibility = "hidden";
+            // percent[i].parentElement.style.display = "none !important";
+        }
+    }
+}
 
 function setHeader() {
     if (window.innerWidth < 992) {
@@ -54,6 +76,42 @@ function setHeader() {
     if (window.innerWidth > 991 && menuActive) {
         closeMenu();
     }
+}
+
+async function getProducRank() {
+    var a = await fetch(contextPath + `/cua-hang/top-10`);
+    var result = await a.json();
+    console.log(result);
+    var products_featured_nav_container = document.getElementById(
+        "products_featured_nav_container"
+    );
+    var i = 0;
+    products_featured_nav_container.innerHTML = result
+        .map((e) => {
+            i = i + 1;
+            return `
+            <li class="products_featured_item" onclick='window.location.href="${contextPath}/san-pham/chi-tiet-san-pham?maSanPham=${
+                e.maSanPham
+            }"'>
+            <div class="rank"># ${i}</div>
+            <div class="products_featured_item_img">
+                <img src='${contextPath}/resources/images/${
+                e.danhSachHinhAnhSanPham[0].hinhAnh
+            }'>
+            </div>
+            <div class="products_featured_item-info">
+                <div class="name break_text">${e.tenSanPham}</div>
+                <div class="price">${formatCurrency(
+                    e.giaTien - (e.giaTien * e.chietKhau) / 100
+                )}</div>
+                <div class="price price_old">${formatCurrency(e.giaTien)}</div>
+                
+            </div>
+            
+        </li>
+    `;
+        })
+        .join(" ");
 }
 
 function initPriceSlider() {
@@ -619,7 +677,9 @@ async function searchFilter(
                         <div class="price"> ${formatCurrency(
                             e.giaTien - (e.giaTien * e.chietKhau) / 100
                         )}</div> <span
-                            class="price">${formatCurrency(e.giaTien)}</span>
+                            class="price price_old">${formatCurrency(
+                                e.giaTien
+                            )}</span>
                     </div>
                 </div>
             </div>
@@ -630,4 +690,5 @@ async function searchFilter(
         `;
         })
         .join(" ");
+    hiddenPrice();
 }
