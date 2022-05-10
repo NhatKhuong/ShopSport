@@ -1,19 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-
-<sec:authorize access="!isAuthenticated()">
-	<script type="text/javascript">
-		var authenticated  = false; 
-</script>
-</sec:authorize>
-<sec:authorize access="isAuthenticated()">
-  	<script type="text/javascript">
-		var authenticated  = true; 
-</script>
-</sec:authorize>
 
 <script type="text/javascript">
 				var productId = `<%=request.getParameter("maSanPham")%>

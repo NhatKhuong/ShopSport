@@ -5,6 +5,21 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/header.css">
 <!-- this is so important. ajax will call it -->
+
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+
+<sec:authorize access="!isAuthenticated()">
+	<script type="text/javascript">
+		var authenticated  = false; 
+</script>
+</sec:authorize>
+<sec:authorize access="isAuthenticated()">
+  	<script type="text/javascript">
+		var authenticated  = true; 
+</script>
+</sec:authorize>
+
 <script>
 	var contextPath = "${pageContext.request.contextPath}";
 	var maxPrice = 999999999999;
