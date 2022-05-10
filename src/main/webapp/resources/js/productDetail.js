@@ -100,7 +100,6 @@ function showDialogSuccessStatus() {
 }
 
 function addToCard() {
-
 	if (!authenticated) {
 		if (confirm("Bạn chưa đăng nhập ! Bạn có muốn đăng nhập không ?") == true) {
 			window.location.href = `${contextPath}/dang-nhap`
@@ -158,6 +157,7 @@ function getQuantityProductBySizeName(tenKichThuoc) {
 		timeout: 100000,
 		success: function(data) {
 			console.log("SUCCESS: ", data);
+
 			document.getElementById("soLuongTon").innerText = data;
 		},
 		error: function(e) {
@@ -179,3 +179,100 @@ submitFormBuy.addEventListener("submit", (e) => {
 });
 
 /* input */
+async function loadQuantityTotalComment() {
+	var params = new URLSearchParams({ maSanPham });
+	var response = await fetch(
+		`${contextPath}/danh-gia/tong-so-danh-gia?${params}`
+	);
+	var totalReview = await response.json();
+	totalReview = totalReview;
+	totalPage =
+		totalReview % limit == 0 ? totalReview / limit : totalReview / limit + 1;
+}
+loadQuantityTotalComment();
+// load list comment
+async function loadComment(page, limit) {
+	if (!limit) limit = 1;
+
+	var params = new URLSearchParams({ page, limit, maSanPham });
+	axios({
+		method: "get",
+		url: `${contextPath}/danh-gia/danh-sach-danh-gia?${params}`,
+	}).then(function(response) {
+		var danhSachDanhGia = response.data.danhSachDanhGia;
+		document.getElementById("comments").innerHTML = danhSachDanhGia
+			.map((e) => {
+				return `
+        <div class="comment">
+        <div class="avatar">
+          <img src="https://secure.gravatar.com/avatar/bb90dcb0ceabfc8bf10c550f1ee95ee7?s=60&d=mm&r=g"
+            alt="">
+        </div>
+        <div class="info-comment">
+        <div class="name  pb-1">${e.nguoiDung.hoTen} </div>
+          <div class="d-flex align-items-center">
+     
+            <div class="ratings pb-1">
+            <i class="fa fa-star" aria-hidden="true"></i> <i
+              class="fa fa-star${e.xepHang < 2 ? "-o" : ""
+					} " aria-hidden="true"></i> <i
+              class="fa fa-star${e.xepHang < 3 ? "-o" : ""
+					} " aria-hidden="true"></i> <i
+              class="fa fa-star${e.xepHang < 4 ? "-o" : ""
+					} " aria-hidden="true"></i> <i
+              class="fa fa-star${e.xepHang < 5 ? "-o" : ""
+					} " aria-hidden="true"></i>
+          </div>
+             
+          <div class="date ml-2">
+          <small> ${new Date(e.thoiGian).toLocaleString()}</small>
+        </div>
+          </div>
+       
+          <div class="content">${e.noiDung}</div>
+          <div class="image pt-2 ${e.hinhAnh ? "" : "d-none"}">
+            <img height="60"
+              src="${contextPath}/resources/images/reviews/${e.hinhAnh}"
+              class="rounded float-left">
+          </div>
+        </div>
+      </div>
+        `;
+			})
+			.join(" ");
+	});
+
+	if (totalPage == undefined) {
+		await loadQuantityTotalComment();
+	}
+	loadPagination(totalPage, page);
+}
+function loadPagination(pageTotal, pageNow) {
+	console.log({ pageTotal, pageNow });
+	var pagination = document.getElementById("pagination-comment");
+	var left = `
+  	<li class="page-item ${pageNow == 1 ? "disabled" : ""}">
+      <i class="page-link" aria-label="Previous" onclick='loadComment(${pageNow - 1
+		})'>
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </i>
+    </li>`;
+	var right = `
+    <li class="page-item ${pageNow == pageTotal ? "disabled" : ""}">
+      <i class="page-link" aria-label="Next" onclick='loadComment(${pageNow + 1
+		})'> 
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </i>
+    </li>
+  `;
+	var item = "";
+
+	for (var i = 0; i < parseInt(pageTotal); i++) {
+		item += `<li class="page-item ${i + 1 == pageNow ? "active" : ""
+			}"><i class="page-link " onclick='loadComment(${i + 1})'>${i + 1}</i></li>`;
+	}
+	pagination.innerHTML = left + item + right;
+}
+loadComment(1, limit);
