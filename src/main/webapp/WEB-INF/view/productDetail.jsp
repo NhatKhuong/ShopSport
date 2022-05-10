@@ -137,8 +137,8 @@
 									<b> Kích thước: </b>
 								</div>
 								<div class="sizes">
+								
 									<c:forEach var="item" items="${dsKichThuoc}">
-
 										<button class="btn mr-2 size " type="button"
 											onclick='getQuantityProductBySizeName("${item}")'>${item}</button>
 										</a>
