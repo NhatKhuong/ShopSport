@@ -188,63 +188,8 @@ submitFormBuy.addEventListener("submit", (e) => {
     formHiddenSoLuong.value = +soLuongMua.innerText;
     formHiddenTenKichThuoc.value = tenKichThuoc.innerText;
 });
+
 /* input */
-
-// comment
-(async () => {
-    // on click submit comment
-    document
-        .getElementById("submit-comment")
-        .addEventListener("click", async (e) => {
-            // productId = delace on top productdetail
-            const formData = new FormData();
-            var rating = document.querySelector(
-                'input[name="rating-input"]:checked'
-            );
-            var review = document.getElementById("review");
-            const fileInput = document.querySelector("#avatar-1");
-            if (!review) {
-                alert("Bạn chưa viết đánh giá");
-            }
-
-            if (fileInput.files.length != 0) {
-                formData.append("file", fileInput.files[0]);
-            } else {
-                formData.append("file", new File([""], "")); // it not save
-            }
-            formData.append("rating", rating.value);
-            formData.append("review", review.value);
-            formData.append("productId", maSanPham);
-            const options = {
-                method: "POST",
-                body: formData,
-            };
-            const response = await fetch(
-                contextPath + "/danh-gia/them-danh-gia",
-                options
-            );
-            var status = await response.json();
-            console.log(status.status);
-            if (status.status != "false") {
-                Swal.fire({
-                    title: "Đánh giá thành công!",
-                    text: "Cảm ơn bạn",
-                    icon: "success",
-                    confirmButtonText: "Đồng ý",
-                });
-            } else {
-                Swal.fire({
-                    title: "Không thành công!",
-                    text: "Bạn đã đánh giá rồi",
-                    icon: "error",
-                    confirmButtonText: "Đồng ý",
-                });
-            }
-            review.value = "";
-            fileInput.files[0] = undefined;
-        });
-})();
-
 async function loadQuantityTotalComment() {
     var params = new URLSearchParams({ maSanPham });
     var response = await fetch(
@@ -342,7 +287,8 @@ function loadPagination(pageTotal, pageNow) {
     </li>
   `;
     var item = "";
-    for (var i = 0; i < pageTotal; i++) {
+
+    for (var i = 0; i < parseInt(pageTotal); i++) {
         item += `<li class="page-item ${
             i + 1 == pageNow ? "active" : ""
         }"><i class="page-link " onclick='loadComment(${i + 1})'>${
