@@ -76,7 +76,7 @@ public class DanhGiaController {
 //		 check file not null 
 			if (!multipartFile.getOriginalFilename().equals("")) {
 				UUID name = UUID.randomUUID(); // auto random name file
-				System.out.println(multipartFile.getSize());
+//				System.out.println(multipartFile.getSize());
 				String extension = FilenameUtils.getExtension(multipartFile.getOriginalFilename()); // .png
 				fileName = name + "." + extension;
 				File file = new File(filePath, fileName);
@@ -85,7 +85,7 @@ public class DanhGiaController {
 				try {
 					if(pathResource != null && !pathResource.equals("")) {
 						File file2 = new File(pathLocal, fileName);
-						System.out.println(pathLocal);
+//						System.out.println(pathLocal);
 						 FileUtils.copyFile(file, file2);
 						 file2.createNewFile();
 					}
@@ -99,13 +99,15 @@ public class DanhGiaController {
 			if(danhGia == null) {
 				danhGia = new DanhGia(sanPham, nguoiDung, Integer.parseInt(rating), review, fileName, new Date());
 			}else {
-				System.err.println(fileName);
+//				System.err.println(fileName);
 				if(fileName != null) {
-					danhGia.setHinhAnh(fileName);
+				
 //					delete image build
-					FileCustom.deleteFile(filePath+fileName);
+					FileCustom.deleteFile(filePath+danhGia.getHinhAnh());
 //					delete file local 
-					FileCustom.deleteFile(pathLocal+ fileName);
+					FileCustom.deleteFile(pathLocal +danhGia.getHinhAnh());
+					
+					danhGia.setHinhAnh(fileName);
 				}
 				danhGia.setNoiDung(review);
 				danhGia.setXepHang(Integer.parseInt(rating));

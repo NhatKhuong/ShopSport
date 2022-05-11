@@ -32,7 +32,6 @@ public class FileCustom {
 		      throw new Exception("File path "+filePath + " not found"); 
 		    }
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.getMessage();
 			return false;
 		}		
