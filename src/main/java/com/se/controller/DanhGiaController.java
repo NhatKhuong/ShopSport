@@ -76,6 +76,7 @@ public class DanhGiaController {
 //		 check file not null 
 			if (!multipartFile.getOriginalFilename().equals("")) {
 				UUID name = UUID.randomUUID(); // auto random name file
+				System.out.println(multipartFile.getSize());
 				String extension = FilenameUtils.getExtension(multipartFile.getOriginalFilename()); // .png
 				fileName = name + "." + extension;
 				File file = new File(filePath, fileName);

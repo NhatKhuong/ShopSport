@@ -67,14 +67,24 @@
 									class="fa fa-angle-down"></i>
 							</a>
 								<ul class="account_selection">
-									<li><a href=""><i class="fa fa-sign-in"
+								
+									<sec:authorize access="!isAuthenticated()">
+										<li><a href=""><i class="fa fa-sign-in"
 											aria-hidden="true"></i>Sign In</a></li>
 									<li><a href="" data-toggle="modal"
 										data-target="#RegisterModal" aria-hidden="true"><i
 											class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
-									<li><a href="/ShopSport/don-hang/danh-sach-don-hang"
+									</sec:authorize>
+									<sec:authorize access="isAuthenticated()">
+										<li><a href="" data-toggle="modal"
+										data-target="#RegisterModal" aria-hidden="true"><i
+											class="fa fa-user-plus" aria-hidden="true"></i>Logout</a></li>
+									  	 <li><a href="/ShopSport/don-hang/danh-sach-don-hang"
 										aria-hidden="true"></i>Hóa đơn</a></li>
-								</ul></li>
+									</sec:authorize>
+									
+										</ul>
+								</li>
 						</ul>
 					</div>
 				</div>
