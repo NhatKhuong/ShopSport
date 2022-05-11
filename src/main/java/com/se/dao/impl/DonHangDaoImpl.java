@@ -10,6 +10,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.se.dao.ChiTietSanPhamDao;
 import com.se.dao.DonHangDao;
 import com.se.entity.ChiTietDonHang;
 import com.se.entity.DanhGia;
@@ -18,6 +19,8 @@ import com.se.util.RenerateId;
 
 @Repository
 public class DonHangDaoImpl implements DonHangDao {
+	@Autowired 
+	private ChiTietSanPhamDao chiTietSanPhamDao;
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -48,10 +51,13 @@ public class DonHangDaoImpl implements DonHangDao {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			session.persist(donHang);
+			ChiTietDonHang chiTietDonHang;
 			int length = donHang.getDanhSachChiTietDonHang().size();
 			for (int i = 0; i < length; i++) {
 				donHang.getDanhSachChiTietDonHang().get(i).setDonHang(new DonHang(donHang.getMaDonHang()));
-				session.save(donHang.getDanhSachChiTietDonHang().get(i));
+				 chiTietDonHang = donHang.getDanhSachChiTietDonHang().get(i);
+				session.save(chiTietDonHang);
+				chiTietSanPhamDao.giamSoLuongTonChiTietSanPhamTheoMa(chiTietDonHang.getChiTietSanPham().getMaChiTietSanPham(), chiTietDonHang.getSoLuongMua());
 			}
 
 			return true;

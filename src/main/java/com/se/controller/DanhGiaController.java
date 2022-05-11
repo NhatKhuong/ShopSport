@@ -37,6 +37,7 @@ import com.se.entity.NguoiDung;
 import com.se.entity.SanPham;
 import com.se.service.DanhGiaDaoService;
 import com.se.service.NguoiDungService;
+import com.se.util.FileCustom;
 import com.se.util.User;
 
 @Controller
@@ -56,6 +57,11 @@ public class DanhGiaController {
 			HttpSession httpSession, HttpServletRequest request) {
 		boolean status = true;
 		try {
+			String pathResource = env.getProperty("path.resources");
+			String pathLocal = pathResource +  File.separator +"images"+ File.separator+"reviews"+ File.separator;
+			String filePath = httpSession.getServletContext().getRealPath("/") + File.separator + "resources"
+					+ File.separator + "images" + File.separator + "reviews" + File.separator;
+			
 			String review = request.getParameter("review");
 			String rating = request.getParameter("rating");
 			String maSanPham = request.getParameter("productId");
@@ -63,10 +69,9 @@ public class DanhGiaController {
 
 			SanPham sanPham = new SanPham(maSanPham);
 			NguoiDung nguoiDung = nguoiDungService.getByEmail(User.getEmailNguoiDung());
-			DanhGia danhGia = null;
+			DanhGia danhGia = danhGiaService.layDanhGiaTheoMaSanPhamVaMaNguoiDung(maSanPham, nguoiDung.getMaNguoiDung());;
 //			File.separator if linux = \ if window = /
-			String filePath = httpSession.getServletContext().getRealPath("/") + File.separator + "resources"
-					+ File.separator + "images" + File.separator + "reviews" + File.separator;
+			
 
 //		 check file not null 
 			if (!multipartFile.getOriginalFilename().equals("")) {
@@ -77,10 +82,9 @@ public class DanhGiaController {
 				multipartFile.transferTo(file);
 				// save in 2 locations: in this project and project build
 				try {
-					String pathResource = env.getProperty("path.resources");
-					String pathLocal = pathResource +  File.separator +"images"+ File.separator+"reviews"+ File.separator;
 					if(pathResource != null && !pathResource.equals("")) {
 						File file2 = new File(pathLocal, fileName);
+						System.out.println(pathLocal);
 						 FileUtils.copyFile(file, file2);
 						 file2.createNewFile();
 					}
@@ -90,19 +94,17 @@ public class DanhGiaController {
 					System.err.println("Path real in value-mssql.properties not foud");
 					
 				}
-			
-
-			}else {
-				//  update but not update image 
-				danhGia = danhGiaService.layDanhGiaTheoMaSanPhamVaMaNguoiDung(maSanPham, nguoiDung.getMaNguoiDung());
 			}
-			 
 			if(danhGia == null) {
 				danhGia = new DanhGia(sanPham, nguoiDung, Integer.parseInt(rating), review, fileName, new Date());
 			}else {
+				System.err.println(fileName);
 				if(fileName != null) {
 					danhGia.setHinhAnh(fileName);
-//					delete image old
+//					delete image build
+					FileCustom.deleteFile(filePath+fileName);
+//					delete file local 
+					FileCustom.deleteFile(pathLocal+ fileName);
 				}
 				danhGia.setNoiDung(review);
 				danhGia.setXepHang(Integer.parseInt(rating));
