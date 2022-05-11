@@ -141,6 +141,13 @@ public class HomeController {
 		return "redirect:/shop";
 		
 	}
+	
+	@GetMapping("/contact")
+	public String goToContact() {
+		return "contact";
+		
+	}
+	
 
 
 

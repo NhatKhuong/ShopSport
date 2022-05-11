@@ -126,7 +126,7 @@
 										</div>
 										<div>
 										<div class="order_status_item_price price">${ chiTietDonHang.giaMua}</div>
-											<div class="order_status_item_reiview ${donHang.trangThaiDonHang.maTrangThaiDonHang == 'TTDH00003' ? '' : 'd-none' }">Viết đánh giá</div>
+											<div class="order_status_item_reiview ${donHang.trangThaiDonHang.maTrangThaiDonHang == 'TTDH00004' ? '' : 'd-none' }">Viết đánh giá</div>
 										</div>
 									</div>
 									<hr>

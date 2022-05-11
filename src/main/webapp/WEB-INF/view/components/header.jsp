@@ -98,7 +98,7 @@
 							<li><a href="#">promotion</a></li>
 							<li><a href="#">pages</a></li>
 							<li><a href="#">blog</a></li>
-							<li><a href="contact.html">contact</a></li>
+							<li><a href="/ShopSport/contact">contact</a></li>
 						</ul>
 						<ul class="navbar_user">
 							<li><div onclick="loadModalSearch()" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search"
