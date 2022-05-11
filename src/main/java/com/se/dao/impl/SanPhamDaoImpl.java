@@ -354,7 +354,7 @@ public class SanPhamDaoImpl implements SanPhamDao {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			
-			String sql = "select top 5 * from SanPham";
+			String sql = "select top 10 * from SanPham";
 			List<SanPham> list = session.createNativeQuery(sql, SanPham.class).getResultList();
 			return list;
 			

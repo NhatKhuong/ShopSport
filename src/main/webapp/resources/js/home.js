@@ -1,5 +1,75 @@
+getBestSellerProduct();
+async function getBestSellerProduct() {
+    var a = await fetch(contextPath + `/trang-chu/san-pham-ban-chay`);
+    var result = await a.json();
+    console.log(result);
+    var bestseller_product_container = document.getElementById(
+        "bestseller_product_container"
+    );
+    bestseller_product_container.innerHTML = result
+        .map((e) => {
+            return `
+    <div class="product-item men item"
+    onclick='window.location.href="${contextPath}/san-pham/chi-tiet-san-pham?maSanPham=${
+                e.maSanPham
+            }"'>
 
+        <div class="product discount product_filter">
 
+            <div class="product_image">
+                <img
+                    src='${contextPath}/resources/images/${
+                e.danhSachHinhAnhSanPham[0].hinhAnh
+            }'>
+            </div>
+            <div class="favorite favorite_left"></div>
+            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
+                <span class='percent'>${e.chietKhau} %</span>
+            </div>
+            <div class="product_info">
+                <h6 class="product_title">
+                    <a>${e.tenSanPham}</a>
+                </h6>
+                <div class="product_price">
+                    <div class="price">${formatCurrency(
+                        e.giaTien - (e.giaTien * e.chietKhau) / 100
+                    )}</div> <span
+                        class="price price_old">${formatCurrency(
+                            e.giaTien
+                        )}</span>
+                </div>
+            </div>
+        </div>
+        <div class="red_button add_to_cart_button w-100 ">
+            <a href="#" class='w-100'>Thêm vào giỏ hàng</a>
+        </div>
+</div>
+    `;
+        })
+        .join(" ");
+    console.log(1);
+    hiddenPrice();
+}
+function hiddenPrice() {
+    console.log("hiddenPrice");
+    var percent = document.getElementsByClassName("percent");
+    for (var i = 0; i < percent.length; i++) {
+        console.log(percent[i].innerText);
+        if (percent[i].innerText === "0 %") {
+            console.log(percent[i].parentElement);
+            var priceOld =
+                percent[
+                    i
+                ].parentElement.parentElement.parentElement.getElementsByClassName(
+                    "price_old"
+                )[0];
+            priceOld.style.visibility = "hidden";
+            priceOld.style.width = "0px";
+            percent[i].parentElement.style.visibility = "hidden";
+            // percent[i].parentElement.style.display = "none !important";
+        }
+    }
+}
 (async () => {
     await filterByButton("ALL");
     document.getElementsByClassName("grid_sorting_button button")[0].click();
@@ -130,7 +200,9 @@ async function filterByButton(condition) {
                     <div class="price">${formatCurrency(
                         e.giaTien - (e.giaTien * e.chietKhau) / 100
                     )}</div> <span
-                        class="price">${formatCurrency(e.giaTien)}</span>
+                        class="price price_old">${formatCurrency(
+                            e.giaTien
+                        )}</span>
                 </div>
             </div>
         </div>
@@ -142,4 +214,5 @@ async function filterByButton(condition) {
         })
         .join(" ");
     console.log(1);
+    hiddenPrice();
 }
