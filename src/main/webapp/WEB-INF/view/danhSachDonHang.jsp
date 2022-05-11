@@ -43,15 +43,12 @@
 	margin-right: 5px;
 }
 </style>
-
 <body>
 	<div class="container--fluid">
 
 		<div id='header'>
 			<jsp:include page="components/header.jsp"></jsp:include>
 		</div>
-
-
 		<div class="components">
 			<!-- Body -->
 			<div class="container">
@@ -153,7 +150,6 @@
 					<!-- /Body -->
 				</div>
 			</div>
-
 			<nav class="pagination_block d-flex justify-content-center mb-4">
 				<ul class="pagination" id="pagination_id">
 					<li class="page-item ${page == 1 ? 'disabled':'' }"><a
@@ -168,7 +164,6 @@
 							class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 				</ul>
 			</nav>
-
 			<div id='footer'>
 				<jsp:include page="components/footer.jsp"></jsp:include>
 			</div>
