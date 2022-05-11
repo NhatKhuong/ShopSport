@@ -171,7 +171,7 @@ public class NguoiDung {
 	}
 	
 	public String getTrangThai() {
-		return trangThai?"Chặn":"Chưa Chặn";
+		return trangThai?"Truy Cập":"Bị Chặn";
 	}
 
 	public void setTrangThai(boolean trangThai) {

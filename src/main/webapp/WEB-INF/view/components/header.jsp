@@ -108,7 +108,7 @@
 								data-target="#CardModal" aria-hidden="true"
 								onclick="loadDuLieuGioHang()"> <i
 									class="fa fa-shopping-cart" aria-hidden="true"></i> <span
-									id="checkout_items" class="checkout_items">2</span>
+									id="checkout_items" class="checkout_items">0</span>
 							</a></li>
 						</ul>
 						<div class="hamburger_container">

@@ -157,7 +157,7 @@
 								</div>
 								<div class="title rioght mr-2 ">
 									<span>
-										<div id="soLuongTon">5</div> sản phẩm có sẵn
+										<div id="soLuongTon">5</div>
 									</span>
 								</div>
 							</div>
@@ -295,7 +295,7 @@
 				</div>
 
 				<div class="items-product-suggest owl-carousel ">
-					<c:forEach var="item" items="${listSanPham }" varStatus="status">
+					<c:forEach var="item" items="${listsp}" varStatus="status">
 						<c:set var="item" value="${item}" scope="request" />
 						<c:set var="col" value="${false}" scope="request" />
 						<jsp:include page="components/item-product.jsp">
@@ -303,6 +303,8 @@
 							<jsp:param value="${item }" name="item" />
 						</jsp:include>
 					</c:forEach>
+
+					
 
 				</div>
 			</div>
@@ -365,9 +367,10 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-
+	<script src="<c:url value='/resources/js/layout.js'/>"></script>
 	<script src="<c:url value='/resources/js/productDetail.js'/>"></script>
 	<script src="<c:url value='/resources/js/home.js'/>"></script>
+
 
 	<!-- owlcarousel2 -->
 	<script
@@ -381,6 +384,26 @@
 		data-cover></script>
 	<script src="<c:url value='/resources/js/lib/owl.autoplay.js'/>"
 		data-cover></script>
+	<script>
+		
+		var percent = document.getElementsByClassName("percent");
+    for (var i = 0; i < percent.length; i++) {
+        console.log(percent[i].innerText);
+        if (percent[i].innerText === "0%") {
+            console.log(percent[i].parentElement);
+            var priceOld =
+                percent[
+                    i
+                ].parentElement.parentElement.parentElement.getElementsByClassName(
+                    "price_old"
+                )[0];
+            priceOld.style.visibility = "hidden";
+            priceOld.style.width = "0px";
+            percent[i].parentElement.style.visibility = "hidden";
+            // percent[i].parentElement.style.display = "none !important";
+        }
+    }
+	</script>
 
 
 	<script>

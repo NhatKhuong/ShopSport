@@ -135,7 +135,7 @@
 				<div class="col-md-4">
 					<p>
 						Họ và tên:<input type="text" id="locTenNguoiDung"
-							class="form-control">
+							class="form-control" onkeyup='tableSearch()'>
 					</p>
 					<input type="button" id="btn-dashboard-filter"
 						class="btn btn-primary btn-sm" value="Lọc kết quả"
@@ -145,8 +145,8 @@
 					<p>
 						Trạng thái: <select class="dashboard-filter form-control"
 							id="mySelect">
-							<option value="2">-- Tất cả --</option>
-							<option value="1">Chặn</option>
+							<option value="2" selected="selected">-- Tất cả --</option>
+							<option value="1">Truy Cập</option>
 							<option value="0">Bị Chặn</option>
 						</select>
 					</p>
@@ -169,20 +169,16 @@
 								<div class="col-sm-2"></div>
 
 								<div class="col-sm-2">
-									<a class="btn btn-delete btn-sm print-file" type="button"
-										title="In" onclick="InduLieu()"><i
-										class="fas fa-print"></i> In dữ liệu</a>
+									<a class="btn btn-add btn-sm" type="button"
+										title="Chặn" onclick="chuyenTrangThaiNhieu()"><i
+										class="fas fa-print"></i> Chặn</a>
 								</div>
 								<div class="col-sm-2">
 									<a class="btn btn-delete btn-sm pdf-file" type="button"
-										title="In" onclick="myFunction(this)"><i
-										class="fas fa-file-pdf"></i> Xuất PDF</a>
+										title="Hủy Chặn" onclick="huyTrangThaiNhieu()"><i
+										class="fas fa-file-pdf"></i> Hủy Chặn</a>
 								</div>
-								<div class="col-sm-2">
-									<a class="btn btn-delete btn-sm" type="button" title="Xóa"
-										onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-										Xóa tất cả </a>
-								</div>
+
 							</div>
 							<table class="table table-hover table-bordered"
 								id="tableListNguoiDung">
@@ -196,7 +192,6 @@
 										<th>Email</th>
 										<th>Giới tính</th>
 										<th>Trạng thái</th>
-										<th>Mật khẩu</th>
 										<th>Chức năng</th>
 									</tr>
 								</thead>

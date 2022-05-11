@@ -88,6 +88,40 @@ public class QuanLyNguoiDungController {
 		String matKhau=request.getParameter("matKhau");
 		return  nguoiDungService.capNhatNguoiDung(maNguoiDung, hoTen, diaChiChiTiet, gioiTinh, trangThai, matKhau)?"Cập nhật thành công":"Cập nhật thất bại";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/quan-ly/quan-ly-nguoi-dung/chuyen-trang-thai", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public String chuyenTrangThai(HttpServletRequest request) {
+		
+		String maNguoiDung = request.getParameter("maNguoiDung");
+		NguoiDung nguoiDung = nguoiDungService.getById(maNguoiDung);
+		String trangThaiCu = nguoiDung.getTrangThai();
+		
+		if(nguoiDung.getTrangThai().equals("Truy Cập")) 
+			nguoiDung.setTrangThai(false);
+		else
+			nguoiDung.setTrangThai(false);	
+		
+		nguoiDungService.update(nguoiDung);
+		return trangThaiCu;		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/quan-ly/quan-ly-nguoi-dung/huy-trang-thai", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public String huyTrangThai(HttpServletRequest request) {
+		
+		String maNguoiDung = request.getParameter("maNguoiDung");
+		NguoiDung nguoiDung = nguoiDungService.getById(maNguoiDung);
+		String trangThaiCu = nguoiDung.getTrangThai();
+		
+		if(nguoiDung.getTrangThai().equals("Bị Chặn")) 
+			nguoiDung.setTrangThai(true);
+		else
+			nguoiDung.setTrangThai(true);	
+		
+		nguoiDungService.update(nguoiDung);
+		return trangThaiCu;		
+	}
 
 	
 	
