@@ -69,20 +69,18 @@
 								<ul class="account_selection">
 								
 									<sec:authorize access="!isAuthenticated()">
-										<li><a href=""><i class="fa fa-sign-in"
+										<li><a href="/ShopSport/dang-nhap" ><i class="fa fa-sign-in"
 											aria-hidden="true"></i>Sign In</a></li>
 									<li><a href="" data-toggle="modal"
 										data-target="#RegisterModal" aria-hidden="true"><i
 											class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
 									</sec:authorize>
 									<sec:authorize access="isAuthenticated()">
-										<li><a href="" data-toggle="modal"
-										data-target="#RegisterModal" aria-hidden="true"><i
+										<li><a href="/ShopSport/logout" ><i 
 											class="fa fa-user-plus" aria-hidden="true"></i>Logout</a></li>
 									  	 <li><a href="/ShopSport/don-hang/danh-sach-don-hang"
 										aria-hidden="true"></i>Hóa đơn</a></li>
 									</sec:authorize>
-									
 										</ul>
 								</li>
 						</ul>

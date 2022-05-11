@@ -58,6 +58,8 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
+import com.mchange.net.MailSender;
+import com.mchange.net.SmtpMailSender;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 
@@ -173,7 +175,7 @@ public class AppConfig extends WebMvcConfigurerAdapter implements WebMvcConfigur
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
-	
+
 }
 
 
