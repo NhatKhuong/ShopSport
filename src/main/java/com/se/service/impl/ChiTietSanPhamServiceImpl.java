@@ -28,4 +28,11 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService{
 		
 		return chiTietSanPhamDao.getDanhSachChiTietSanPhamTheoMa(ma);
 	}
+
+	@Override
+	@Transactional
+	public boolean giamSoLuongTonChiTietSanPhamTheoMa(String maChiTietSanPham, int soLuong) {
+		// TODO Auto-generated method stub
+		return chiTietSanPhamDao.giamSoLuongTonChiTietSanPhamTheoMa(maChiTietSanPham,soLuong);
+	}
 }

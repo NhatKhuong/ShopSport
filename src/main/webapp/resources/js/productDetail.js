@@ -1,13 +1,12 @@
 // check size 'khac' and auto select in size index= 1
 (() => {
   var item = document.querySelector(".sizes .size");
-  console.log(item);
+
+   item.classList.add("active");
   if (item.innerText == "Khac" || item.innerText == "Khác") {
     document.querySelector(".sizes").parentElement.classList.add("d-none");
-    item.classList.add("active");
-  } else {
-    item.classList.add("active");
   }
+   getQuantityProductBySizeName(item.innerText);
 })();
 
 const formHiddenTenKichThuoc = document.getElementById("hidden-tenKichThuoc");
@@ -48,7 +47,8 @@ var totalReview = 0,
   console.log(sizes);
   sizes.forEach((el) =>
     el.addEventListener("click", (event) => {
-      if (eOld) eOld.classList.remove("active");
+      if (eOld) eOld.classList.remove("active")
+      else document.querySelector(".sizes .size").classList.remove("active");
       event.target.classList.add("active");
       eOld = event.target;
     })

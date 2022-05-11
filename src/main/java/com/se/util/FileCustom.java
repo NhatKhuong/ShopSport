@@ -25,4 +25,17 @@ public class FileCustom {
 		}		
 		return true;
 	}
+	public static boolean deleteFile(String filePath) {
+		try {
+			File myObj = new File(filePath); 
+		    if (!myObj.delete()) { 
+		      throw new Exception("File path "+filePath + " not found"); 
+		    }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+			return false;
+		}		
+		return true;
+	}
 }

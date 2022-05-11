@@ -38,10 +38,9 @@ public class SanPhamTrongGioHangDaoImpl implements SanPhamTrongGioHangDao {
 
 			SanPhamTrongGioHang sanPhamTrongGioHang = session.get(SanPhamTrongGioHang.class, id);
 			session.delete(sanPhamTrongGioHang);
-
 		} catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 
 	}
