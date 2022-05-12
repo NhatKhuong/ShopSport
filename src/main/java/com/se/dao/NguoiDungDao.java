@@ -12,11 +12,12 @@ public interface NguoiDungDao {
 	public NguoiDung getByEmail(String email);
 	public List<NguoiDung> getAll();
 	
-	
 	public List<NguoiDung> getByFilter(String hoten,String diaChi);
 	public void deletePerson(String theId);
 	public List<NguoiDung> getByName_Status(String hoTen, int trangThai);
 	boolean capNhatNguoiDung(String maNguoiDung, String hoTen, String diaChiChiTiet,int gioiTinh, int trangThai, String matKhau);
+	
+	public boolean capNhatMatKhauNguoiDung(String maNguoiDung,String matKhau);
 
 
 }
