@@ -171,7 +171,7 @@ public class ThongKeDonHangDaoImpl implements ThongKeDonHangDao {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			String sql = "SELECT TOP 10       SanPham.*\r\n" + "FROM            SanPham INNER JOIN\r\n"
+			String sql = "SELECT TOP 5       SanPham.*\r\n" + "FROM            SanPham INNER JOIN\r\n"
 					+ "                         ChiTietSanPham ON SanPham.maSanPham = ChiTietSanPham.maSanPham INNER JOIN\r\n"
 					+ "                         ChiTietDonHang ON ChiTietSanPham.maChiTietSanPham = ChiTietDonHang.maChiTietSanPham INNER JOIN\r\n"
 					+ "                         DonHang ON ChiTietDonHang.maDonHang = DonHang.maDonHang\r\n"
@@ -188,12 +188,11 @@ public class ThongKeDonHangDaoImpl implements ThongKeDonHangDao {
 		return null;
 	}
 
-// Chưa làm xong
 	@Override
 	public List<?> listHoaDonBan(String ngayBatDau, String ngayKetThuc) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			String sql = "SELECT        DonHang.maDonHang, NguoiDung.hoTen,DonHang.ngayTao , SUM(ChiTietDonHang.soLuongMua) AS [Số lượng sản phẩm mua], SUM(ChiTietDonHang.giaMua * ChiTietDonHang.soLuongMua) AS [Tổng tiền]\r\n"
+			String sql = "SELECT       DonHang.maDonHang, NguoiDung.hoTen,DonHang.ngayTao , SUM(ChiTietDonHang.soLuongMua) AS [Số lượng sản phẩm mua], SUM(ChiTietDonHang.giaMua * ChiTietDonHang.soLuongMua) AS [Tổng tiền]\r\n"
 					+ "FROM            DonHang INNER JOIN\r\n"
 					+ "                         ChiTietDonHang ON DonHang.maDonHang = ChiTietDonHang.maDonHang INNER JOIN\r\n"
 					+ "                         ChiTietSanPham ON ChiTietDonHang.maChiTietSanPham = ChiTietSanPham.maChiTietSanPham INNER JOIN\r\n"
@@ -223,6 +222,24 @@ public class ThongKeDonHangDaoImpl implements ThongKeDonHangDao {
 
 			List<?> listSP = session.createNativeQuery(sql).getResultList();
 			return listSP;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<?> listThongKe() {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			String sql = "SELECT       MONTH(ngayTao)AS [Tháng],SUM(giaMua*soLuongMua)AS[Tổng doanh thu]\r\n"
+					+ "FROM            DonHang INNER JOIN\r\n"
+					+ "                         ChiTietDonHang ON DonHang.maDonHang = ChiTietDonHang.maDonHang\r\n"
+					+ "WHERE ChiTietDonHang.maDonHang = DonHang.maDonHang AND YEAR(ngayTao) = YEAR(GETDATE())\r\n"
+					+ "GROUP BY  MONTH(ngayTao)";
+			List<?> listThongKe = session.createNativeQuery(sql).getResultList();
+			return listThongKe;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

@@ -104,5 +104,36 @@ public class ChiTietSanPhamDaoImpl implements ChiTietSanPhamDao {
 		}
 		return null;
 	}
+	
+	@Override
+	public ChiTietSanPham getChiTietTheoMa(String maChiTiet) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		
+		try {
+			String sql = "select * from ChiTietSanPham\r\n"
+					+ "where maChiTietSanPham = N'"+maChiTiet+"'";
+			ChiTietSanPham chiTietSanPham = session.createNativeQuery(sql, ChiTietSanPham.class).getSingleResult();
+			return chiTietSanPham;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+	@Override
+	public void updateChiTietSanPham(ChiTietSanPham chiTietSanPham) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.update(chiTietSanPham);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+	}
 
 }

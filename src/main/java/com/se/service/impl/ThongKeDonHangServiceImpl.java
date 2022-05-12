@@ -100,4 +100,11 @@ public class ThongKeDonHangServiceImpl implements ThongKeDonHangService {
 		// TODO Auto-generated method stub
 		return donHangDao.listSanPhamHetHang();
 	}
+
+	@Override
+	@Transactional
+	public List<?> listThongKe() {
+		// TODO Auto-generated method stub
+		return donHangDao.listThongKe();
+	}
 }

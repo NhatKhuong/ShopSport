@@ -48,8 +48,25 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
 		return chiTietSanPhamDao.getMaChiTietSanPhamCuoiCung();
 	}
 
+	@Override
+	@Transactional
 	public boolean giamSoLuongTonChiTietSanPhamTheoMa(String maChiTietSanPham, int soLuong) {
 		// TODO Auto-generated method stub
 		return chiTietSanPhamDao.giamSoLuongTonChiTietSanPhamTheoMa(maChiTietSanPham, soLuong);
 	}
+	
+	@Override
+	@Transactional
+	public ChiTietSanPham getChiTietTheoMa(String maChiTiet) {
+		// TODO Auto-generated method stub
+		return chiTietSanPhamDao.getChiTietTheoMa(maChiTiet);
+	}
+
+	@Override
+	@Transactional
+	public void updateChiTietSanPham(ChiTietSanPham chiTietSanPham) {
+		// TODO Auto-generated method stub
+		chiTietSanPhamDao.updateChiTietSanPham(chiTietSanPham);
+	}
+
 }

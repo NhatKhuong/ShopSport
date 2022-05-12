@@ -62,6 +62,42 @@ public class KichThuocDaoImpl implements KichThuocDao{
 		return null;
 	}
 	
+	@Override
+	public List<KichThuoc> getAllKichThuoc() {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			
+			String sql = "SELECT * FROM [dbo].[KichThuoc]";
+			 List<KichThuoc> kichThuoc = session.createNativeQuery(sql,KichThuoc.class).getResultList();
+			return kichThuoc;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<KichThuoc> getListKichThuoc(String maLoaiKichThuoc) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			
+			String sql = "select * from KichThuoc\r\n"
+					+ "where maLoaiKichThuoc = N'"+maLoaiKichThuoc+"'";
+			 List<KichThuoc> kichThuoc = session.createNativeQuery(sql,KichThuoc.class).getResultList();
+			return kichThuoc;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	
 	
 	
 
