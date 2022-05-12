@@ -7,14 +7,15 @@
             <head>
                 <meta charset="ISO-8859-1">
                 <title> --- </title>
+                <link rel="stylesheet" href="<c:url value='/resources/css/contact_styles.css' />">
                 <link rel="stylesheet"
                     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
                     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
                     crossorigin="anonymous" />
 
-                <link rel="stylesheet" href="<c:url value='/resources/css/home.css' />">
-                 <link rel="stylesheet" href="<c:url value='/resources/css/contact_styles.css' />">
+              <%--   <link rel="stylesheet" href="<c:url value='/resources/css/home.css' />"> --%>
+                 
             </head>
 
 
@@ -28,7 +29,7 @@
 
                     <div class="components">
                         <!-- Body -->
-                        <div class="container">
+                        <div class="container" style="margin-top: 120px">
                             <!-- breadcrumb -->
 
                             <div class="breadcrumb-components">
@@ -38,7 +39,7 @@
 
 							
 							
-                <div class="row">
+                <div class="row" style="margin-top: 20px;">
                     <div class="col">
                         <div id="google_map">
                             <div class="map_container">
@@ -238,15 +239,12 @@
 
 
                 </div>
+                
+                   
                 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-                    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-                    crossorigin="anonymous"></script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-                    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-                    crossorigin="anonymous"></script>
-                    <script src="<c:url value='/resources/js/contact_custom.js'/>" data-cover></script>
-                   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+                <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
+                <script src="<c:url value='/resources/js/contact_custom.js'/>"></script>
             </body>
 
             </html>
