@@ -141,4 +141,20 @@ public class NguoiDungController {
 		return "redirect:/dang-nhap";
 	}
 
+	@RequestMapping(value = "/contact", method = RequestMethod.POST)
+	public String contact(HttpServletRequest request) {
+		String email = request.getParameter("email");
+		String name = request.getParameter("name");
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		title =  "Contact support SHOPSHORT: " + title;
+		String body =  "Contact from Email: "+email+ " Name: "+name+" with content: <br/> <p> "+content+" </p> ";
+		try {
+			Mail.sendEmail("nhatkhuong2001@gmail.com", title, body);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		return "redirect:/contact";
+	}
+
 }

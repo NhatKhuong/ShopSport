@@ -19,7 +19,6 @@ public class Mail {
         mailSender.setPassword("ShopSport2022");
 
         Properties javaMailProperties = new Properties();
-        
         javaMailProperties.setProperty("mail.transport.protocol", "smtp");     
         javaMailProperties.setProperty("mail.host", "smtp.gmail.com");  
         javaMailProperties.put("mail.smtp.auth", "true");  
@@ -33,12 +32,14 @@ public class Mail {
         MimeMessagePreparator preparator = new MimeMessagePreparator() {
             public void prepare(MimeMessage mimeMessage) throws Exception {
                 MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
+
                 message.setTo(to);
                 message.setFrom(mailSender.getUsername());
                 message.setSubject(sub);
                 message.setBcc(mailSender.getUsername());
                 message.setText(body, true);
             }
+            
         };
         mailSender.send(preparator);
 

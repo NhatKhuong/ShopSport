@@ -129,7 +129,7 @@
                                 Fill out the form below to recieve a free and
                                 confidential.
                             </p>
-                            <form action="post">
+                            <form action="contact" method="POST" onsubmit="alert('Chúng tôi sẽ liên hệ bạn sớm nhất. Cảm ơn bạn')">
                                 <div>
                                     <input
                                         id="input_name"
@@ -152,16 +152,26 @@
                                     <input
                                         id="input_website"
                                         class="form_input input_website input_ph"
-                                        type="url"
-                                        name="name"
-                                        placeholder="Website"
+                                        type="text"
+                                        name="title"
+                                        placeholder="Title"
                                         required="required"
                                         data-error="Name is required."
                                     />
+                                 <!--      <input
+                                        id="input_website"
+                                        class="form_input input_website input_ph"
+                                        type="url"
+                                        name="title"
+                                        placeholder="Title"
+                                        required="required"
+                                        data-error="Name is required."
+                                    /> -->
+                                    
                                     <textarea
                                         id="input_message"
                                         class="input_ph input_message"
-                                        name="message"
+                                        name="content"
                                         placeholder="Message"
                                         rows="3"
                                         required
