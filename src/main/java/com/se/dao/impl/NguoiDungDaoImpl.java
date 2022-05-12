@@ -179,7 +179,7 @@ public class NguoiDungDaoImpl implements NguoiDungDao {
 			return false;
 		}
 		}
-
+	@Override
 	public String getMaNguoiDungCuoiCung() {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();

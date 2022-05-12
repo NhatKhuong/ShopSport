@@ -13,7 +13,7 @@
 	<br>
 	Role: <sec:authentication property="principal.authorities"/> --%>
 	<h1 class='text-danger'>Bạn không có quyền truy cập</h1>
-	<a href='${pageContext.request.contextPath}/dang-nhap'>Nhấn vào đây để đăng nhập lại</a>
+	<a href='${pageContext.request.contextPath}/logout'>Nhấn vào đây để đăng nhập lại</a>
 
 </body>
 </html>

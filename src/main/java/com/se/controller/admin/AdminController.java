@@ -8,6 +8,6 @@ public class AdminController {
 	
 	@RequestMapping("/quan-ly")
 	public String showQuanLyDonHang() {
-		return "admin/admin";
+		return "admin/baoCaoDoanhThu";
 	}
 }

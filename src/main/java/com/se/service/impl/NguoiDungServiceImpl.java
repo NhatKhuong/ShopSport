@@ -84,6 +84,8 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 		return nguoiDungDao.capNhatMatKhauNguoiDung(maNguoiDung, matKhau);
 	}
 
+	@Override
+	@Transactional
 	public String getMaNguoiDungCuoiCung() {
 		// TODO Auto-generated method stub
 		return nguoiDungDao.getMaNguoiDungCuoiCung();
