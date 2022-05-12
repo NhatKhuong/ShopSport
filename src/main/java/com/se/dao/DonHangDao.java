@@ -29,5 +29,7 @@ public interface DonHangDao {
 	public List<DonHang> layDanhSachDonHang(int page, int limit, String maTrangThai);
 
 	public int layTongDonHangTheoTrangThai(String maTrangThai);
+	
+
 
 }

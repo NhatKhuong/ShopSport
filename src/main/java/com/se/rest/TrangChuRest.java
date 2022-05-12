@@ -55,4 +55,20 @@ public class TrangChuRest {
 		}
 		return list;	
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/trang-chu/san-pham-ban-chay", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public List<SanPham> getSanPhamBanChay(HttpServletRequest request){
+		
+		List<SanPham> list = sanPhamService.getSanPhamBanChay();
+		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/cua-hang/top-10", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public List<SanPham> getProductRank(HttpServletRequest request){
+		
+		List<SanPham> list = sanPhamService.getSanPhamBanChay();
+		return list;
+	}
 }

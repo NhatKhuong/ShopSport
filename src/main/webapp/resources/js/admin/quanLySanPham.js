@@ -88,6 +88,21 @@ function loadLoaiSanPham() {
 }
 getDanhSachSanPham();
 
+function eventChangeTrangThaiLoc() {
+	var cbb = document.getElementById("mySelect");
+	cbb.addEventListener("change", async () => {
+		getDanhSachSanPham();
+	});
+}
+eventChangeTrangThaiLoc();
+function eventChangeLoaiSanPhamLoc() {
+	var cbbLSP = document.getElementById("selectLoaiSanPham");
+	cbbLSP.addEventListener("change", async () => {
+		getDanhSachSanPham();
+	});
+}
+eventChangeLoaiSanPhamLoc();
+
 function getDanhSachSanPham() {
 	var tenSanPham = "";
 	var trangThai = "0";
@@ -482,7 +497,7 @@ function capNhatSanPhamListener() {
 		capNhatSanPham(
 			jQuery("#modalMaSP").val(),
 			jQuery("#modalTenSP").val(),
-			
+
 			jQuery("#modalTrangThaiSP").val(),
 			jQuery("#modalGiaSP").val(),
 			soLuong,
@@ -551,8 +566,8 @@ function loadKichThuocSanPham(maSanPham) {
 				temp += `<option value='${v.tenKichThuoc}'>${v.tenKichThuoc}</option>`;
 			});
 			//	document.getElementById("selectKichThuoc").innerHTML = temp;
-			document.getElementsByClassName("selectKichThuoc")[soLanThemCT -  1].innerHTML = temp;
-	},
+			document.getElementsByClassName("selectKichThuoc")[soLanThemCT - 1].innerHTML = temp;
+		},
 		error: function(e) {
 			console.log("ERROR: ", e);
 		},

@@ -64,8 +64,6 @@
                         <span>filter</span>
                     </div>
                 </div>
-					
-        
         <hr>
         
             <div class="display__item__filter__title">Danh mục</div>
@@ -130,39 +128,46 @@
 
             <div class="products_featured">
                 <div class="products_featured__title">Featured Products</div>
-                <ul class="products_featured_nav">
-                    <li class="products_featured_item">
+                <ul class="products_featured_nav" id="products_featured_nav_container">
+                    <!-- <li class="products_featured_item">
+                        <div class="rank"># 1</div>
                         <div class="products_featured_item_img">
                             <img src="https://blueskytechco.com/rubix/wp-content/uploads/2022/02/12_Cornstalk-Dracaena_1-600x720.jpg" alt="">
                         </div>
                         <div class="products_featured_item-info">
                             <div class="name">Flower</div>
                             <div class="price">$11,000</div>
-                            <div class="rating"></div>
+                            <div class="price price_old">$11,000</div>
+                            
                         </div>
                         
                     </li>
+
                     <li class="products_featured_item">
+                        <div class="rank"># 1</div>
                         <div class="products_featured_item_img">
                             <img src="https://blueskytechco.com/rubix/wp-content/uploads/2022/02/12_Cornstalk-Dracaena_1-600x720.jpg" alt="">
                         </div>
                         <div class="products_featured_item-info">
                             <div class="name">Flower</div>
                             <div class="price">$11,000</div>
-                            <div class="rating"></div>
+                            
                         </div>
+                        
                     </li>
+
                     <li class="products_featured_item">
+                        <div class="rank"># 1</div>
                         <div class="products_featured_item_img">
                             <img src="https://blueskytechco.com/rubix/wp-content/uploads/2022/02/12_Cornstalk-Dracaena_1-600x720.jpg" alt="">
                         </div>
                         <div class="products_featured_item-info">
                             <div class="name">Flower</div>
                             <div class="price">$11,000</div>
-                            <div class="rating"></div>
+                            
                         </div>
-                    </li>
-                    <li class="products_featured_item"></li>
+                        
+                    </li> -->
                 </ul>
             
             </div>
@@ -186,8 +191,8 @@
 											<!-- <span class="num_sorting_text">6</span> -->
 											<!-- <i class="fa fa-angle-down"></i> -->
 											<select onchange="searchbyPriceFilter()"  class="sorting_num_re">
-												<option value="6" class="num_sorting_btn_re">6</option>
 												<option value="12" class="num_sorting_btn_re">12</option>
+												<option value="16" class="num_sorting_btn_re">16</option>
 												<option value="24" class="num_sorting_btn_re">24</option>
 											</select>
 										</li>
@@ -265,6 +270,7 @@
         <script src="<c:url value='/resources/js/layout.js'/>"></script>
         <script src="<c:url value='/resources/js/filter.js'/>"></script>
         <script src="<c:url value='/resources/js/jquery-ui.js'/>"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-twinkle/0.8.0/jquery.twinkle.min.js"></script>
         <script src="<c:url value='/resources/js/shop.js'/>"></script>
         <%-- <script src="<c:url value='/resources/js/categories_custom.js'/>"></script> --%>
   

@@ -10,4 +10,5 @@ public interface ChiTietSanPhamService {
 	void update(ChiTietSanPham chiTietSanPham);
 	void add(ChiTietSanPham chiTietSanPham);
 	public String getMaChiTietSanPhamCuoiCung();
+	public boolean giamSoLuongTonChiTietSanPhamTheoMa(String maChiTietSanPham, int soLuong);
 }

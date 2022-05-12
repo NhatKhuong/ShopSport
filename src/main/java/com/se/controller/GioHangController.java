@@ -45,6 +45,20 @@ public class GioHangController {
 	}
 
 	
+	@ResponseBody
+	@RequestMapping(value = "/gio-hang/lay-so-luong", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public String getSoLuongSanPham(HttpServletRequest request)  {
+		System.out.println("lay so luong");
+		
+		NguoiDung nguoiDung = nguoiDungService.getByEmail(User.getEmailNguoiDung());
+		if(nguoiDung.equals(null)) {
+			return "{\"soLuong\": \"" + 0 + "\"}";
+		}
+		List<SanPhamTrongGioHang> list = sanPhamTrongGioHangService.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
+		System.out.println("so Luong:"+list.size());
+		return "{\"soLuong\": \"" + list.size() + "\"}";
+	}
+	
 	@RequestMapping(value = "/gio-hang/them", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
 	public @ResponseBody String themSanPhamGioHang(HttpServletRequest request)  {
 		System.out.println(1);

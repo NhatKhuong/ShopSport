@@ -5,6 +5,21 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/header.css">
 <!-- this is so important. ajax will call it -->
+
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+
+<sec:authorize access="!isAuthenticated()">
+	<script type="text/javascript">
+		var authenticated  = false; 
+</script>
+</sec:authorize>
+<sec:authorize access="isAuthenticated()">
+  	<script type="text/javascript">
+		var authenticated  = true; 
+</script>
+</sec:authorize>
+
 <script>
 	var contextPath = "${pageContext.request.contextPath}";
 	var maxPrice = 999999999999;
@@ -52,14 +67,22 @@
 									class="fa fa-angle-down"></i>
 							</a>
 								<ul class="account_selection">
-									<li><a href=""><i class="fa fa-sign-in"
+								
+									<sec:authorize access="!isAuthenticated()">
+										<li><a href="/ShopSport/dang-nhap" ><i class="fa fa-sign-in"
 											aria-hidden="true"></i>Sign In</a></li>
 									<li><a href="" data-toggle="modal"
 										data-target="#RegisterModal" aria-hidden="true"><i
 											class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
-									<li><a href="/ShopSport/don-hang/danh-sach-don-hang"
+									</sec:authorize>
+									<sec:authorize access="isAuthenticated()">
+										<li><a href="/ShopSport/logout" ><i 
+											class="fa fa-user-plus" aria-hidden="true"></i>Logout</a></li>
+									  	 <li><a href="/ShopSport/don-hang/danh-sach-don-hang"
 										aria-hidden="true"></i>Hóa đơn</a></li>
-								</ul></li>
+									</sec:authorize>
+										</ul>
+								</li>
 						</ul>
 					</div>
 				</div>
@@ -83,17 +106,17 @@
 							<li><a href="#">promotion</a></li>
 							<li><a href="#">pages</a></li>
 							<li><a href="#">blog</a></li>
-							<li><a href="contact.html">contact</a></li>
+							<li><a href="/ShopSport/contact">contact</a></li>
 						</ul>
 						<ul class="navbar_user">
-							<li><a href="#"><i class="fa fa-search"
-									aria-hidden="true"></i></a></li>
+							<li><div onclick="loadModalSearch()" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search"
+									aria-hidden="true"></i></div></li>
 							<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
 							<li class="checkout"><a href="" data-toggle="modal"
 								data-target="#CardModal" aria-hidden="true"
 								onclick="loadDuLieuGioHang()"> <i
 									class="fa fa-shopping-cart" aria-hidden="true"></i> <span
-									id="checkout_items" class="checkout_items">2</span>
+									id="checkout_items" class="checkout_items">0</span>
 							</a></li>
 						</ul>
 						<div class="hamburger_container">
@@ -118,7 +141,7 @@
 				</div>
 
 				<div class="modal-body modal_body_card" id="cardProducts">
-					<c:forEach var="item" items="${dsSanPhamTrongGioHang}">
+					<!-- <c:forEach var="item" items="${dsSanPhamTrongGioHang}">
 
 						<%-- <div class="card_product">
                                         <div class="check_item">
@@ -131,7 +154,7 @@
                                         <div class="card_item_info">
                                             <div class="card_item_info_name break_text">
                                                 ${item.chiTietSanPham.sanPham.tenSanPham}</div>
-                                            <!-- <div class="card_item_info_quatity">1</div> -->
+                                            
                                             <div class="quantity">
 
                                                 <button class="btn ml-2 " onclick='quantityPrivate(this)'> <i
@@ -157,7 +180,7 @@
                                         </button>
                             </div> --%>
 
-					</c:forEach>
+					</c:forEach> -->
 
 
 				</div>
@@ -180,6 +203,41 @@
 
 
 	<!-- Modal card -->
+
+	<!-- Search Modal -->
+
+	<div class="modal fade model_card" id="searchModal" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog_search" role="document">
+		<div class="modal-content modal-content_search">
+			<div class="modal-header">
+				<div class="search_block">
+					<input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm"  onkeyup="loadModalSearch()">
+					<i class="fa fa-search" aria-hidden="true"></i>
+				</div>
+			</div>
+
+			<div class="modal-body modal-body-search" id="">
+					<div class="modal-body-search_category">
+						<div class="modal-body-search_category_title">Loại sản phẩm</div>
+						<a href="/ShopSport/shop?key=1" class="categori_item">Quần Áo</a>
+						<a href="/ShopSport/shop?key=3" class="categori_item">Giầy thể thao</a>
+						<a href="/ShopSport/shop?key=2" class="categori_item">Dụng dụ & Thiết bị</a>
+					</div>
+					<div class="">
+
+						<div class="modal-body-search_category_listPoduct_title">Sản phẩm</div>
+						<div class="modal-body-search_category_listPoduct">
+							<div class="modal-body-search_category" id="modal-body-search_category_list_container">
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<!-- Search Modal -->
 
 
 	<!-- Modal Register -->

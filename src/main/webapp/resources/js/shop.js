@@ -18,8 +18,33 @@ if (myParam == 1) {
     var inputGiay = document.getElementById("LSP00004");
     console.log(inputGiay);
     inputGiay.checked = true;
+} else if (myParam == 4) {
+    var inputGiay = document.getElementById("MTT00001");
+    console.log(inputGiay);
+    inputGiay.checked = true;
+} else if (myParam == 5) {
+    var inputGiay = document.getElementById("MTT00002");
+    console.log(inputGiay);
+    inputGiay.checked = true;
+} else if (myParam == 6) {
+    var inputGiay = document.getElementById("MTT00003");
+    console.log(inputGiay);
+    inputGiay.checked = true;
+} else if (myParam == 7) {
+    var inputGiay = document.getElementById("MTT00004");
+    console.log(inputGiay);
+    inputGiay.checked = true;
+} else if (myParam == 8) {
+    var inputGiay = document.getElementById("MTT00006");
+    console.log(inputGiay);
+    inputGiay.checked = true;
+} else if (myParam == 9) {
+    var inputGiay = document.getElementById("MTT00007");
+    console.log(inputGiay);
+    inputGiay.checked = true;
 }
 
+getProducRank();
 searchFilterCheckbox();
 
 // jQuery(document).ready(function ($) {
@@ -36,6 +61,27 @@ var fsOverlay = $(".fs_menu_overlay");
 console.log(header);
 
 setHeader();
+
+function hiddenPrice() {
+    console.log("hiddenPrice");
+    var percent = document.getElementsByClassName("percent");
+    for (var i = 0; i < percent.length; i++) {
+        console.log(percent[i].innerText);
+        if (percent[i].innerText === "0 %") {
+            console.log(percent[i].parentElement);
+            var priceOld =
+                percent[
+                    i
+                ].parentElement.parentElement.parentElement.getElementsByClassName(
+                    "price_old"
+                )[0];
+            priceOld.style.visibility = "hidden";
+            priceOld.style.width = "0px";
+            percent[i].parentElement.style.visibility = "hidden";
+            // percent[i].parentElement.style.display = "none !important";
+        }
+    }
+}
 
 function setHeader() {
     if (window.innerWidth < 992) {
@@ -56,6 +102,42 @@ function setHeader() {
     }
 }
 
+async function getProducRank() {
+    var a = await fetch(contextPath + `/cua-hang/top-10`);
+    var result = await a.json();
+    console.log(result);
+    var products_featured_nav_container = document.getElementById(
+        "products_featured_nav_container"
+    );
+    var i = 0;
+    products_featured_nav_container.innerHTML = result
+        .map((e) => {
+            i = i + 1;
+            return `
+            <li class="products_featured_item" onclick='window.location.href="${contextPath}/san-pham/chi-tiet-san-pham?maSanPham=${
+                e.maSanPham
+            }"'>
+            <div class="rank"># ${i}</div>
+            <div class="products_featured_item_img">
+                <img src='${contextPath}/resources/images/${
+                e.danhSachHinhAnhSanPham[0].hinhAnh
+            }'>
+            </div>
+            <div class="products_featured_item-info">
+                <div class="name break_text">${e.tenSanPham}</div>
+                <div class="price">${formatCurrency(
+                    e.giaTien - (e.giaTien * e.chietKhau) / 100
+                )}</div>
+                <div class="price price_old">${formatCurrency(e.giaTien)}</div>
+                
+            </div>
+            
+        </li>
+    `;
+        })
+        .join(" ");
+}
+
 function initPriceSlider() {
     console.log("cateforufdf" + maxPrice);
     $("#slider-range").slider({
@@ -64,15 +146,19 @@ function initPriceSlider() {
         max: maxPrice,
         values: [0, Math.floor(maxPrice / 4)],
         slide: function (event, ui) {
-            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            $("#amount").val(
+                formatCurrency(ui.values[0]) +
+                    " - " +
+                    formatCurrency(ui.values[1])
+            );
+            // $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
         },
     });
 
     $("#amount").val(
-        "$" +
-            $("#slider-range").slider("values", 0) +
-            " - $" +
-            $("#slider-range").slider("values", 1)
+        formatCurrency($("#slider-range").slider("values", 0)) +
+            " - " +
+            formatCurrency($("#slider-range").slider("values", 1))
     );
 }
 // });
@@ -136,8 +222,14 @@ function getPageActiveAndDisableOutButton(e) {
     // var price_from = 0;
 
     var priceRange = $("#amount").val();
-    var price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
-    var price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+    var price_from = parseFloat(
+        priceRange.split("-")[0].replaceAll(".", "").replace("₫", "")
+    );
+    // var price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+    var price_to = parseFloat(
+        priceRange.split("-")[1].replaceAll(".", "").replace("₫", "")
+    );
+
     console.log(priceRange, price_from, price_to);
 
     var elementsLoaiSanPham = document.getElementsByClassName(
@@ -400,8 +492,16 @@ async function searchFilterCheckbox() {
     var priceRange = $("#amount").val();
     if (priceRange != "") {
         console.log("vao");
-        price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
-        price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+        // price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
+        // price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+        // var priceRange = $("#amount").val();
+        var price_from = parseFloat(
+            priceRange.split("-")[0].replaceAll(".", "").replace("₫", "")
+        );
+        // var price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+        var price_to = parseFloat(
+            priceRange.split("-")[1].replaceAll(".", "").replace("₫", "")
+        );
     } else {
         price_from = 0;
         price_to = maxPrice;
@@ -453,8 +553,16 @@ async function searchbyPriceFilter() {
     var priceRange = $("#amount").val();
     if (priceRange != "") {
         console.log("vao by filter");
-        price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
-        price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+        // price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
+        // price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+        // var priceRange = $("#amount").val();
+        var price_from = parseFloat(
+            priceRange.split("-")[0].replaceAll(".", "").replace("₫", "")
+        );
+        // var price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+        var price_to = parseFloat(
+            priceRange.split("-")[1].replaceAll(".", "").replace("₫", "")
+        );
     } else {
         price_from = 0;
         price_to = maxPrice;
@@ -619,7 +727,9 @@ async function searchFilter(
                         <div class="price"> ${formatCurrency(
                             e.giaTien - (e.giaTien * e.chietKhau) / 100
                         )}</div> <span
-                            class="price">${formatCurrency(e.giaTien)}</span>
+                            class="price price_old">${formatCurrency(
+                                e.giaTien
+                            )}</span>
                     </div>
                 </div>
             </div>
@@ -630,4 +740,5 @@ async function searchFilter(
         `;
         })
         .join(" ");
+    hiddenPrice();
 }

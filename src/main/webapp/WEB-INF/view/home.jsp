@@ -38,15 +38,12 @@
                             <div class="slider owl-carousel  owl-theme">
                                 <div class="item" >
                                     <img 
-                                        src='${pageContext.request.contextPath}/resources/imgSlider/slider_pic2.jpg'>
-                                       
-
+                                        src='${pageContext.request.contextPath}/resources/imgSlider/slider_pic2.jpg'>                                       
                                 </div>
                                   <div class="item">
                                     <img
                                         src='${pageContext.request.contextPath}/resources/imgSlider/slider1_pic.jpg'>
-                                       
-
+                      
                                 </div>
                             </div>
                         </div>
@@ -184,15 +181,20 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="items-product-suggest owl-carousel ">
-                                        <c:forEach var="item" items="${listSanPham }" varStatus="status">
+                                    <div class="items-product-suggest owl-carousel" id="bestseller_product_container">
+                                        <!-- <c:forEach var="item" items="${listSanPham }" varStatus="status">
                                             <c:set var="item" value="${item}" scope="request" />
                                             <c:set var="col" value="${false}" scope="request" />
                                             <jsp:include page="components/item-product.jsp">
                                                 <jsp:param value="${col}" name="col" />
                                                 <jsp:param value="${item }" name="item" />
                                             </jsp:include>
-                                        </c:forEach>
+                                        </c:forEach> -->
+
+                                        <!-- <script>
+                                            console.log("vào best seller");
+                                            hiddenPrice();
+                                        </script> -->
 
                                     </div>
                                 </div>

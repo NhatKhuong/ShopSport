@@ -1,5 +1,8 @@
-// Change quantity item
+// CHeck login card
 
+loadSoLuongSanPhamGioHang();
+
+// Change quantity item
 function formatCurrency(number) {
     console.log(number);
     // if (isNaN(number)) return number;
@@ -175,6 +178,13 @@ const updateTotalPriceWhenChangeQuanityItem = () => {
 })();
 
 async function loadDuLieuGioHang() {
+    // loadSoLuongSanPhamGioHang();
+    console.log(1);
+    if (!authenticated) {
+        window.location.href = `${contextPath}/dang-nhap`;
+        return;
+    }
+
     $.ajax({
         type: "GET",
         contentType: "application/json",
@@ -189,6 +199,16 @@ async function loadDuLieuGioHang() {
             console.log("ERROR: ", e);
         },
     });
+}
+
+async function loadSoLuongSanPhamGioHang() {
+    var a = await fetch(contextPath + `/gio-hang/lay-so-luong`);
+    result = await a.json();
+    console.log(result);
+    var checkout_items = document.getElementById("checkout_items");
+    console.log(result.soLuong);
+    console.log(result.soLuong);
+    checkout_items.innerText = result.soLuong;
 }
 
 // detele card item product
@@ -219,6 +239,7 @@ function deleteCardItem(e) {
                 .getElementsByClassName("maSanPhamTrongGioHang")[0]
                 .parentElement.remove();
             updateTotalPriceWhenChangeQuanityItem();
+            loadSoLuongSanPhamGioHang();
         },
     });
 }

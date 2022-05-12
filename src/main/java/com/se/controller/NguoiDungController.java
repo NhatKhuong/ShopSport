@@ -19,6 +19,8 @@ import com.se.service.DiaChiService;
 import com.se.service.NguoiDungService;
 import com.se.service.PhanQuyenService;
 import com.se.service.SanPhamService;
+import com.se.util.EncryptUtils;
+import com.se.util.Mail;
 
 @Controller
 public class NguoiDungController {
@@ -63,7 +65,7 @@ public class NguoiDungController {
 		try {
 			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			String email;
-			
+
 			if (principal instanceof UserDetails) {
 				email = ((UserDetails) principal).getUsername();
 			} else {
@@ -78,6 +80,69 @@ public class NguoiDungController {
 		}
 
 		return "{\"status\": \"" + status + "\"}";
+	}
+
+	@RequestMapping(value = "/quen-mat-khau", method = RequestMethod.GET)
+	public String quenMatKhau(HttpServletRequest request) {
+		
+		return "quenMatKhau";
+	}
+
+	@RequestMapping(value = "/quen-mat-khau", method = RequestMethod.POST)
+	public String quenMatKhauPOST(HttpServletRequest request) {
+		String error = null;
+		String mailSend = request.getParameter("mail");
+		try {
+			
+			if (mailSend == null) {
+				throw new Exception("Bạn chưa nhập email");
+			}
+			String title = "Khôi phục mật khẩu";
+			String body = "";
+			String host = "http://" + request.getServerName() + request.getContextPath() + "/";
+			NguoiDung nguoiDung = nguoiDungService.getByEmail(mailSend);
+			if (nguoiDung == null)
+				throw new Exception("Email không tồn tại");
+			String maNguoiDungEncode = EncryptUtils.base64encode(nguoiDung.getMaNguoiDung());
+			body = "Link khôi phục mật khẩu :   <a href='" + host + "dat-lai-mat-khau?token="+maNguoiDungEncode+"'>Link</a>";
+			Mail.sendEmail(mailSend, title, body);
+			request.setAttribute("message", "Vui lòng kiểm tra hộp thư email của bạn");
+		} catch (Exception e) {
+			error = e.getMessage();
+		}
+		request.setAttribute("error", error);
+		request.setAttribute("mail", mailSend);
+		return "quenMatKhau";
+	}
+
+	@RequestMapping(value = "/dat-lai-mat-khau", method = RequestMethod.GET)
+	public String datLaiMatKhau(HttpServletRequest request) {
+		String token = request.getParameter("token");
+		boolean status = false;
+		try {
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			status = false;
+		}
+
+		return "quenMatKhau";
+	}
+
+	@RequestMapping(value = "/dat-lai-mat-khau", method = RequestMethod.POST)
+	public String datLaiMatKhauPost(HttpServletRequest request) {
+		String token = request.getParameter("mail");
+		String title = "Khôi phục mật khẩu";
+
+		boolean status = false;
+		try {
+			EncryptUtils.base64decode("");
+		} catch (Exception e) {
+			// TODO: handle exception
+			status = false;
+		}
+
+		return "quenMatKhau";
 	}
 
 }

@@ -47,4 +47,9 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
 		// TODO Auto-generated method stub
 		return chiTietSanPhamDao.getMaChiTietSanPhamCuoiCung();
 	}
+
+	public boolean giamSoLuongTonChiTietSanPhamTheoMa(String maChiTietSanPham, int soLuong) {
+		// TODO Auto-generated method stub
+		return chiTietSanPhamDao.giamSoLuongTonChiTietSanPhamTheoMa(maChiTietSanPham, soLuong);
+	}
 }

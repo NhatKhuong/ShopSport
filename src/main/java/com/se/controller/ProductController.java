@@ -43,7 +43,7 @@ public class ProductController {
 
 	@GetMapping("/san-pham/chi-tiet-san-pham")
 	public String showProductDetail(@RequestParam("maSanPham") String maSanPham, Model model) {
-
+		System.out.println("vao /san-pham/chi-tiet-san-pham");
 		SanPham sanPham = sanPhamService.getById(maSanPham);
 		model.addAttribute("sanPham", sanPham);
 
@@ -55,8 +55,10 @@ public class ProductController {
 		model.addAttribute("dsKichThuoc", listKichThuoc);
 
 		//		list product suggest
-		List<SanPham> list = sanPhamService.getByFilter("", "", "", 50000, 100000, 1, 9);
-		model.addAttribute("listSanPham", list);
+		System.out.println("="+sanPham.getLoaiSanPham().getTenLoaiSanPham());
+		List<SanPham> list = sanPhamService.getSanPhamByLoaiSanPham(sanPham.getLoaiSanPham().getTenLoaiSanPham());
+		model.addAttribute("listsp", list);
+		System.out.println(list);
 
 		//	listPreadcrumb
 		List<String[]> listPreadcrumb = new ArrayList<String[]>();
