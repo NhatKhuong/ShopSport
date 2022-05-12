@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.se.entity.SanPham;
 import com.se.service.ThongKeDonHangService;
 
 @Controller
@@ -51,5 +52,26 @@ public class DoanhThuController {
 		String soDonHangHuyStr = soDonHangHuy + "";
 		list.add(soDonHangHuyStr);
 		return list;
+	}
+	@JsonIgnore
+	@JsonManagedReference
+	@JsonBackReference
+	@RequestMapping(value = "/quan-ly/bao-cao-doanh-thu-san-pham-ban-chay-load", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public @ResponseBody List<SanPham> reloadSanPhamBanChayTable(HttpServletRequest req) {
+		ngayBatDau = req.getParameter("ngayBatDau");
+		ngayKetThuc = req.getParameter("ngayKetThuc");
+		List<SanPham> listSanPhamBanChay = thongKeDonHangService.listSanPhamBanChay(ngayBatDau,ngayKetThuc);
+		return listSanPhamBanChay;
+	}
+	
+	@JsonIgnore
+	@JsonManagedReference
+	@JsonBackReference
+	@RequestMapping(value = "/quan-ly/bao-cao-doanh-thu-tong-don-hang-load", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public @ResponseBody List<?> reloadTongDonHangTable(HttpServletRequest req) {
+		ngayBatDau = req.getParameter("ngayBatDau");
+		ngayKetThuc = req.getParameter("ngayKetThuc");
+		List<?> listDonHangBan = thongKeDonHangService.listHoaDonBan(ngayBatDau,ngayKetThuc);
+		return listDonHangBan;
 	}
 }

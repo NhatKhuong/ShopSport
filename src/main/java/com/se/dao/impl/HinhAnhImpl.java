@@ -67,6 +67,32 @@ public class HinhAnhImpl implements HinhAnhDao{
 		}
 		return null;
 	}
+	@Override
+	public String getMaHinhAnhSanPhamCuoi() {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			String sql = "SELECT TOP 1 maHinhAnh FROM HinhAnhSanPham\r\n" + "ORDER BY maHinhAnh desc";
+			String hinhAnh = (String) session.createNativeQuery(sql).getSingleResult();
+			return hinhAnh;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+
+		}
+		return null;
+	}
+
+	@Override
+	public void hinhanhsave(HinhAnhSanPham hinhAnhSanPham) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.save(hinhAnhSanPham);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
 	
 
 }

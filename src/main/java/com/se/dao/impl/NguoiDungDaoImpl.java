@@ -63,7 +63,7 @@ public class NguoiDungDaoImpl implements NguoiDungDao {
 			return nguoiDung;
 		} catch (Exception e) {
 			// TODO: handle exception
-//			e.printStackTrace();
+			// e.printStackTrace();
 		}
 		return null;
 	}
@@ -165,6 +165,21 @@ public class NguoiDungDaoImpl implements NguoiDungDao {
 	}
 
 	@Override
+	public boolean capNhatMatKhauNguoiDung(String maNguoiDung, String matKhau) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			NguoiDung nguoiDung = session.find(NguoiDung.class, maNguoiDung);
+			nguoiDung.setMatKhau("{noop}"+matKhau);
+			session.update(nguoiDung);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+		}
+
 	public String getMaNguoiDungCuoiCung() {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();

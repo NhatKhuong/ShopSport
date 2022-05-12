@@ -37,5 +37,17 @@ public class KichThuocServiceImpl implements KichThuocService{
 		return kichThuocDao.getKichThuocTheoLoaiKichThuoc(maLoaiKichThuoc);
 	}
 
+	@Override
+	@Transactional
+	public List<KichThuoc> getAllKichThuoc() {
+		// TODO Auto-generated method stub
+		return kichThuocDao.getAllKichThuoc();
+	}
 
+	@Override
+	@Transactional
+	public List<KichThuoc> getListKichThuoc(String maLoaiKichThuoc) {
+		// TODO Auto-generated method stub
+		return kichThuocDao.getListKichThuoc(maLoaiKichThuoc);
+	}
 }

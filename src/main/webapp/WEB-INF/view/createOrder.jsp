@@ -17,6 +17,7 @@
                     <link rel="stylesheet" href="<c:url value='/resources/css/home.css' />">
                     <link rel="stylesheet" href="<c:url value='/resources/css/layout.css' />">
                     <link rel="stylesheet" href="<c:url value='/resources/css/createOrder.css' />">
+                    
                 </head>
 
 
@@ -285,8 +286,9 @@
 
                     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
                     <!--  Custome js-->
-                    <script src="<c:url value='/resources/js/home.js'/>"></script>
                     <script src="<c:url value='/resources/js/createOrder.js'/>"></script>
+                    <script src="<c:url value='/resources/js/home.js'/>"></script>
+                    
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
                         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
                         crossorigin="anonymous"></script>

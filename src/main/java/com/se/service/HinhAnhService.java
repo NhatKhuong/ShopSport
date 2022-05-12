@@ -6,4 +6,7 @@ public interface HinhAnhService {
 	public  boolean themHinhAnhSanPham(HinhAnhSanPham hinhAnhSanPham);
 	public  boolean xoaHinhAnhSanPham(String maHinhAnh);
 	public String getId();
+	
+	public String getMaHinhAnhSanPhamCuoi();
+	public void hinhanhsave(HinhAnhSanPham hinhAnhSanPham);
 }

@@ -80,6 +80,8 @@
 											class="fa fa-user-plus" aria-hidden="true"></i>Logout</a></li>
 									  	 <li><a href="/ShopSport/don-hang/danh-sach-don-hang"
 										aria-hidden="true"></i>Hóa đơn</a></li>
+										<li><a href="/ShopSport/tai-khoan/cap-nhat"
+										aria-hidden="true"></i>Tài khoản</a></li>
 									</sec:authorize>
 										</ul>
 								</li>

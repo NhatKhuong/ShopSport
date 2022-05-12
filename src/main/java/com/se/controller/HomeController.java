@@ -11,11 +11,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.se.entity.ChiTietSanPham;
+import com.se.entity.DiaChi;
 import com.se.entity.DonHang;
 import com.se.entity.KichThuoc;
 import com.se.entity.LoaiSanPham;
@@ -80,8 +83,7 @@ public class HomeController {
 	
 		try {
 			NguoiDung nguoiDung = nguoiDungService.getByEmail(email);
-			List<SanPhamTrongGioHang> dsSanPhamTrongGioHang = sanPhamTrongGioHangService
-					.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
+			List<SanPhamTrongGioHang> dsSanPhamTrongGioHang = sanPhamTrongGioHangService.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
 			model.addAttribute("UserLogin", nguoiDung);
 			model.addAttribute("dsSanPhamTrongGioHang", dsSanPhamTrongGioHang);
 		} catch (Exception e) {
@@ -147,5 +149,28 @@ public class HomeController {
 		return "contact";
 		
 	}
+	
+	@GetMapping("/tai-khoan/cap-nhat")
+	public String goToUpdateUser( Model model){
+		NguoiDung nguoiDung = nguoiDungService.getByEmail(User.getEmailNguoiDung());
+		System.out.println(nguoiDung);
+		model.addAttribute("nguoiDung", nguoiDung);
+		return "updateUser";
+	}
+	
+	@GetMapping("/nguoi-dung/update")
+	public String updateUser(@ModelAttribute("nguoiDung") NguoiDung nguoiDung) {
+		NguoiDung nguoiDungOld = nguoiDungService.getByEmail(User.getEmailNguoiDung());
+		DiaChi diaChi = diaChiService.getDiaChi(nguoiDung.getDiaChi().getPhuongXa(),nguoiDung.getDiaChi().getQuanHuyen(), nguoiDung.getDiaChi().getTinhThanhPho());
+		nguoiDungOld.setDiaChi(diaChi);
+		nguoiDungOld.setHoTen(nguoiDung.getHoTen());
+		nguoiDungOld.setDiaChiChiTiet(nguoiDung.getDiaChiChiTiet());
+		nguoiDungOld.setSoDienThoai(nguoiDung.getSoDienThoai());
+		System.out.println(nguoiDungOld);
+		nguoiDungService.update(nguoiDungOld);
+		return "redirect:/tai-khoan/cap-nhat";
+	}
+	
+	
 	
 }

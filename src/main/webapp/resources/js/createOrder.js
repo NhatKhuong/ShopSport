@@ -112,3 +112,12 @@ async function deleteProductInCardWhenCheckout() {
             })
     );
 }
+
+function notifySuccess(){
+	Swal.fire({
+			title: "Cập nhật thành công!",
+			text: "Cảm ơn bạn",
+			icon: "success",
+			confirmButtonText: "Đồng ý",
+		});
+}

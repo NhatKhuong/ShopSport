@@ -84,7 +84,7 @@ public class NguoiDungController {
 
 	@RequestMapping(value = "/quen-mat-khau", method = RequestMethod.GET)
 	public String quenMatKhau(HttpServletRequest request) {
-		
+
 		return "quenMatKhau";
 	}
 
@@ -93,18 +93,20 @@ public class NguoiDungController {
 		String error = null;
 		String mailSend = request.getParameter("mail");
 		try {
-			
+
 			if (mailSend == null) {
 				throw new Exception("Bạn chưa nhập email");
 			}
+			
 			String title = "Khôi phục mật khẩu";
 			String body = "";
-			String host = "http://" + request.getServerName() + request.getContextPath() + "/";
+			String host = "http://" + request.getServerName() + ":"+request.getServerPort()+ request.getContextPath() +"/";
 			NguoiDung nguoiDung = nguoiDungService.getByEmail(mailSend);
 			if (nguoiDung == null)
 				throw new Exception("Email không tồn tại");
 			String maNguoiDungEncode = EncryptUtils.base64encode(nguoiDung.getMaNguoiDung());
-			body = "Link khôi phục mật khẩu :   <a href='" + host + "dat-lai-mat-khau?token="+maNguoiDungEncode+"'>Link</a>";
+			body = "Link khôi phục mật khẩu :   <a href='" + host + "dat-lai-mat-khau?token=" + maNguoiDungEncode
+					+ "'>Link</a>";
 			Mail.sendEmail(mailSend, title, body);
 			request.setAttribute("message", "Vui lòng kiểm tra hộp thư email của bạn");
 		} catch (Exception e) {
@@ -118,31 +120,25 @@ public class NguoiDungController {
 	@RequestMapping(value = "/dat-lai-mat-khau", method = RequestMethod.GET)
 	public String datLaiMatKhau(HttpServletRequest request) {
 		String token = request.getParameter("token");
-		boolean status = false;
-		try {
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			status = false;
+		String maNguoiDung = EncryptUtils.base64decode(token);
+		if (maNguoiDung == null) {
+			return "redirect:/";
 		}
-
-		return "quenMatKhau";
+		return "datLaiMatKhau";
 	}
-
+	
 	@RequestMapping(value = "/dat-lai-mat-khau", method = RequestMethod.POST)
 	public String datLaiMatKhauPost(HttpServletRequest request) {
-		String token = request.getParameter("mail");
-		String title = "Khôi phục mật khẩu";
-
-		boolean status = false;
-		try {
-			EncryptUtils.base64decode("");
-		} catch (Exception e) {
-			// TODO: handle exception
-			status = false;
+		String token = request.getParameter("token");
+		String matKhau = request.getParameter("password");
+		String error = null;
+		String maNguoiDung = EncryptUtils.base64decode(token);
+		if (maNguoiDung == null)
+			error = "Cập nhật không thành công";
+		else {
+			boolean status = nguoiDungService.capNhatMatKhauNguoiDung(maNguoiDung, matKhau.trim());
 		}
-
-		return "quenMatKhau";
+		return "redirect:/dang-nhap";
 	}
 
 }

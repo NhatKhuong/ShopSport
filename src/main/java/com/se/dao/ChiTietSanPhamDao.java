@@ -12,4 +12,9 @@ public interface ChiTietSanPhamDao {
 	public String getMaChiTietSanPhamCuoiCung();
 	public boolean giamSoLuongTonChiTietSanPhamTheoMa(String maChiTietSanPham, int soLuong);
 	
+	
+	
+	public ChiTietSanPham getChiTietTheoMa(String maChiTiet);
+	public void updateChiTietSanPham(ChiTietSanPham chiTietSanPham);
+	
 }
