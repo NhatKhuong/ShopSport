@@ -1,0 +1,39 @@
+#btn-loc {
+	margin-top: 15px;
+	border: 0;
+	border-radius: 20px;
+	color: rgb(245, 157, 57);
+	background-color: rgb(251, 226, 197);
+	padding: 5px;
+	font-size: 13px;
+	line-height: 1.5;
+	padding-left: 10px;
+	border-radius: 0.357rem;
+	padding-right: 10px;
+	font-weight: 500;
+}
+
+#chuyenTrangThaiNhieu {
+	margin-left: -40px;
+	background: #f7c3c2;
+	border: none;
+	color: #de0400;
+	font-size: 13px;
+	padding: 5px;
+	font-size: 13px;
+	line-height: 1.5;
+	padding-left: 10px;
+	border-radius: 0.357rem;
+	padding-right: 10px;
+	font-weight: 500;
+}
+
+#taoMoiSanPham {
+	padding: 5px;
+	font-size: 13px;
+	line-height: 1.5;
+	padding-left: 10px;
+	border-radius: 0.357rem;
+	padding-right: 10px;
+	font-weight: 500;
+}

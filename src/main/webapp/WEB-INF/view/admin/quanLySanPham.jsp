@@ -47,7 +47,8 @@
 	crossorigin="anonymous">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/admin/quanlysanpham.css">
 
 <style>
 .tab-item {
@@ -149,12 +150,7 @@
 						</select>
 					</p>
 				</div>
-				<div class="col-md-4">
-					<p>
-						Giá tiền:<input type="text" class="form-control" id="giaTien"
-							value="0">
-					</p>
-				</div>
+
 				<div class="col-md-4">
 					<p>
 						Loại sản phẩm: <select class="dashboard-filter form-control"
@@ -162,22 +158,40 @@
 							<option value="Tất cả">-- Tất cả --</option>
 						</select>
 					</p>
-					<input type="button" id="btn-dashboard-filter"
-						class="btn btn-primary btn-sm" value="Lọc kết quả"
-						onclick='getDanhSachSanPham()'>
+
 				</div>
+				<div class="col-md-4">
+					<p>
+						Giá tiền từ: <input type="number" class="form-control" id="giaTien"
+							step="10000" min="0" max="1000000000" value="0">
+					</p>
+				</div>
+				<div class="col-md-4">
+					<p>
+						Giá tiền đến: <input type="number" class="form-control" id="giaTienDen"
+							step="10000" min="0" max="1000000000" value="0">
+					</p>
+				</div>
+				<div class="col-4">
+					<p></p>
 
-				<div class="row">
-					<div class="col-md-12">
-						<div class="tile">
-							<div class="tile-body">
-								<div class="row element-button">
-									<div class="col-sm-2">
+					<input type="button" id="btn-loc" class="btn btn-primary btn-sm"
+						value="Lọc kết quả" onclick='getDanhSachSanPham()'>
+				</div>
+			</div>
 
-										<a class="btn btn-add btn-sm" href="them-san-pham"
-											title="Thêm"><i class="fas fa-plus"></i> Tạo mới sản phẩm</a>
-									</div>
-									<!-- 	<div class="col-sm-2">
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="tile">
+						<div class="tile-body">
+							<div class="row">
+								<div class="col-2">
+									<a class="btn btn-add btn-sm" href="them-san-pham"
+										id="taoMoiSanPham" title="Thêm"><i class="fas fa-plus"></i>
+										Tạo mới sản phẩm</a>
+								</div>
+								<!-- 	<div class="col-sm-2">
 										<a class="btn btn-delete btn-sm print-file" type="button"
 											title="In" onclick="myApp.printTable()"><i
 											class="fas fa-print"></i> In dữ liệu</a>
@@ -188,27 +202,28 @@
 											class="fas fa-file-pdf"></i> Xuất PDF</a>
 									</div>
 									 -->
-									<div class="col-sm-2">
-										<a class="btn btn-delete btn-sm" type="button" title="Xóa" id="chuyenTrangThaiNhieu"><i class="fas fa-trash-alt"></i>
-											Chuyển trạng thái nhiều </a>
-									</div>
+								<div class="col-2">
+									<a class="btn btn-primary " type="button" title="Xóa"
+										id="chuyenTrangThaiNhieu"><i class="fa fa-refresh"></i>
+										Chuyển trạng thái nhiều </a>
 								</div>
-								<table class="table table-hover table-bordered"
-									id="tableListSanPham">
-									<thead>
-										<tr>
-											<th width="10"><input type="checkbox" id="all"></th>
-											<th width='120'>Mã sản phẩm</th>
-											<th width='550'>Tên sản phẩm</th>
-											<th width='70'>Số lượng</th>
-											<th width='120'>Giá tiền</th>
-											<th width='120'>Loại sản phẩm</th>
-											<th width='120'>Trạng Thái</th>
-											<th width='80'>Chức năng</th>
-										</tr>
-									</thead>
-									<tbody id="danhSachSanPham">
-										<!-- <c:forEach var="item" items="${listSanPham}">
+							</div>
+							<table class="table table-hover table-bordered"
+								id="tableListSanPham">
+								<thead>
+									<tr>
+										<th width="10"><input type="checkbox" id="all"></th>
+										<th width='120'>Mã sản phẩm</th>
+										<th width='550'>Tên sản phẩm</th>
+										<th width='70'>Số lượng</th>
+										<th width='120'>Giá tiền</th>
+										<th width='120'>Loại sản phẩm</th>
+										<th width='120'>Trạng Thái</th>
+										<th width='80'>Chức năng</th>
+									</tr>
+								</thead>
+								<tbody id="danhSachSanPham">
+									<!-- <c:forEach var="item" items="${listSanPham}">
 											<tr>
 												<td width="10"><input type="checkbox" name="check1"
 													value="1"></td>
@@ -230,13 +245,13 @@
 											</tr>
 										</c:forEach> -->
 
-									</tbody>
-								</table>
-							</div>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 		<div class="content__paging">
 			<div class="page">
@@ -278,7 +293,7 @@
 						<h2 aria-hidden="true" class="text-danger">&times;</h2>
 					</button>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body" style="height: 600px; overflow: auto;">
 					<ul class="nav nav nav-tabs mb-3" id="pills-tab" role="tablist">
 						<li class="nav-item"><a class="nav-link active"
 							id="pills-home-tab" data-toggle="pill" href="#pills-home"
