@@ -388,6 +388,7 @@
 		
 		var percent = document.getElementsByClassName("percent");
     for (var i = 0; i < percent.length; i++) {
+		
         console.log(percent[i].innerText);
         if (percent[i].innerText === "0%") {
             console.log(percent[i].parentElement);
