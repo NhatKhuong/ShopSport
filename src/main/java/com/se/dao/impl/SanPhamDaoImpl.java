@@ -144,8 +144,9 @@ public class SanPhamDaoImpl implements SanPhamDao {
 					+ "						join MonTheThao on SanPham.maMonTheThao = MonTheThao.maMonTheThao \r\n"
 					+ "						join NhanHieu on SanPham.maNhanHieu = NhanHieu.maNhanHieu\r\n"
 					+ "						join ChiTietSanPham on SanPham.maSanPham = ChiTietSanPham.maSanPham\r\n"
-					+ "						where " + "("+strLoaiSanPham+")" + "and" + "("+strMonTheThao+")" + "and" + "("+strNhanHieu+")"
-					+ "and (SanPham.giaTien >=" + price_from + " and SanPham.giaTien<=" + price_to + ") "
+					+ "						where " + "(" + strLoaiSanPham + ")" + "and" + "(" + strMonTheThao + ")"
+					+ "and" + "(" + strNhanHieu + ")" + "and (SanPham.giaTien >=" + price_from
+					+ " and SanPham.giaTien<=" + price_to + ") "
 					+ "group by SanPham.maSanPham,sanPham.trangThai ,SanPham.chietKhau, SanPham.giaTien , SanPham.mieuTa, SanPham.tenSanPham,  SanPham.maLoaiSanPham, SanPham.maMonTheThao, SanPham.maNhanHieu  "
 					+ "order by SanPham.maSanPham offset " + numStart + " rows  fetch next " + limit + " rows only";
 			List<SanPham> list = session.createNativeQuery(sql, SanPham.class).getResultList();
@@ -169,8 +170,9 @@ public class SanPhamDaoImpl implements SanPhamDao {
 					+ "						join NhanHieu on SanPham.maNhanHieu = NhanHieu.maNhanHieu\r\n"
 					+ "						join MonTheThao on SanPham.maMonTheThao = MonTheThao.maMonTheThao \r\n"
 					+ "						join ChiTietSanPham on SanPham.maSanPham = ChiTietSanPham.maSanPham\r\n"
-					+ "						where " + "("+strLoaiSanPham+")" + "and" + "("+strMonTheThao+")" + "and" + "("+strNhanHieu+")"
-					+ "and (SanPham.giaTien >=" + price_from + " and SanPham.giaTien<=" + price_to + ")";
+					+ "						where " + "(" + strLoaiSanPham + ")" + "and" + "(" + strMonTheThao + ")"
+					+ "and" + "(" + strNhanHieu + ")" + "and (SanPham.giaTien >=" + price_from
+					+ " and SanPham.giaTien<=" + price_to + ")";
 
 			int num = Integer.parseInt(session.createNativeQuery(sql).uniqueResult().toString());
 			return num;
@@ -215,28 +217,28 @@ public class SanPhamDaoImpl implements SanPhamDao {
 	}
 
 	@Override
-	public List<SanPham> getByName_Status(String tenSanPham, int trangThai, double giaTien, String loaiSanPham) {
+	public List<SanPham> getByName_Status(String tenSanPham, int trangThai, double giaTien, double giaTienDen,
+			String loaiSanPham) {
 		String sql = "";
 		if (trangThai == 2) {
 			if (loaiSanPham.equals("Tất cả")) {
 				sql += "select * from SanPham where tenSanPham like N'%" + tenSanPham + "%'" + " and giaTien>="
-						+ giaTien;
+						+ giaTien+ " and giaTien<=" + giaTienDen;
 			} else {
 				sql += "select * from SanPham sp join LoaiSanPham lsp on lsp.maLoaiSanPham=sp.maLoaiSanPham where tenSanPham like N'%"
 						+ tenSanPham + "%' " + "and  lsp.tenLoaiSanPham like N'%" + loaiSanPham + "%' "
-						+ "and giaTien>=" + giaTien;
+						+ "and giaTien>=" + giaTien + " and giaTien<=" + giaTienDen;
 			}
 		} else {
 			if (loaiSanPham.equals("Tất cả")) {
 				sql += "select * from SanPham sp join LoaiSanPham lsp on lsp.maLoaiSanPham=sp.maLoaiSanPham where trangThai="
-						+ trangThai + "and  tenSanPham like N'%" + tenSanPham + "%' " + "and giaTien>=" + giaTien;
+						+ trangThai + "and  tenSanPham like N'%" + tenSanPham + "%' " + "and giaTien>=" + giaTien+ " and giaTien<=" + giaTienDen;
 			} else {
 				sql += "select * from SanPham sp join LoaiSanPham lsp on lsp.maLoaiSanPham=sp.maLoaiSanPham where trangThai="
 						+ trangThai + "and  tenSanPham like N'%" + tenSanPham + "%' "
-						+ "and  lsp.tenLoaiSanPham like N'%" + loaiSanPham + "%' " + "and giaTien>=" + giaTien;
+						+ "and  lsp.tenLoaiSanPham like N'%" + loaiSanPham + "%' " + "and giaTien>=" + giaTien+ " and giaTien<=" + giaTienDen;
 			}
 		}
-		System.out.println(sql);
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			List<SanPham> list = session.createNativeQuery(sql, SanPham.class).getResultList();
@@ -285,7 +287,7 @@ public class SanPhamDaoImpl implements SanPhamDao {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public boolean capNhatSanPham(String maSanPham, String tenSanPham, double giaSanPham, int trangThai) {
 		Session session = sessionFactory.getCurrentSession();
@@ -293,13 +295,11 @@ public class SanPhamDaoImpl implements SanPhamDao {
 			SanPham sanPham = session.find(SanPham.class, maSanPham);
 			sanPham.setTenSanPham(tenSanPham);
 			sanPham.setGiaTien(giaSanPham);
-			if(trangThai==1)
+			if (trangThai == 1)
 				sanPham.setTrangThai(true);
-			if(trangThai==0)
+			if (trangThai == 0)
 				sanPham.setTrangThai(false);
 			session.update(sanPham);
-			
-			System.out.println(sanPham);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -312,20 +312,18 @@ public class SanPhamDaoImpl implements SanPhamDao {
 	public double getMaxPrice(String strLoaiSanPham, String strMonTheThao, String strNhanHieu) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			
+
 			String sql = "select  top 1 giaTien\r\n"
 					+ "						from SanPham join LoaiSanPham on SanPham.maLoaiSanPham = LoaiSanPham.maLoaiSanPham\r\n"
 					+ "						join NhanHieu on SanPham.maNhanHieu = NhanHieu.maNhanHieu\r\n"
 					+ "						join MonTheThao on SanPham.maMonTheThao = MonTheThao.maMonTheThao \r\n"
 					+ "						join ChiTietSanPham on SanPham.maSanPham = ChiTietSanPham.maSanPham\r\n"
-					+ "						where " + "("+strLoaiSanPham+")" + "and" + "("+strMonTheThao+")" + "and" + "("+strNhanHieu+")"
-					+ "order by giaTien desc";
-			
-		double maxPrice = Double.parseDouble(session.createNativeQuery(sql).uniqueResult().toString());
-			
-		System.out.println(maxPrice);
-		return maxPrice;
-			
+					+ "						where " + "(" + strLoaiSanPham + ")" + "and" + "(" + strMonTheThao + ")"
+					+ "and" + "(" + strNhanHieu + ")" + "order by giaTien desc";
+
+			double maxPrice = Double.parseDouble(session.createNativeQuery(sql).uniqueResult().toString());
+			return maxPrice;
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -337,11 +335,11 @@ public class SanPhamDaoImpl implements SanPhamDao {
 	public List<SanPham> getDanhSachSanPhamTimKiem(String condition) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			String product_name = condition.replaceAll(" ","%");
-			String sql = "select * from SanPham where tenSanPham like N'%"+product_name+"%'";
-			List<SanPham> list= session.createNativeQuery(sql, SanPham.class).getResultList();
+			String product_name = condition.replaceAll(" ", "%");
+			String sql = "select * from SanPham where tenSanPham like N'%" + product_name + "%'";
+			List<SanPham> list = session.createNativeQuery(sql, SanPham.class).getResultList();
 			return list;
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO: handle exception
@@ -353,11 +351,11 @@ public class SanPhamDaoImpl implements SanPhamDao {
 	public List<SanPham> getSanPhamBanChay() {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			
+
 			String sql = "select top 10 * from SanPham";
 			List<SanPham> list = session.createNativeQuery(sql, SanPham.class).getResultList();
 			return list;
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

@@ -17,7 +17,7 @@ public interface SanPhamDao {
 	public List<SanPham> getByFilter(String tenLoai, String tenMon, String tenThuongHieu, double fromPrice, double toPrice, int numPage, int limit);
 	public String getMaSanPhamCuoiCung();
 	public int getNumResult(String strLoaiSanPham,String strMonTheThao,String strNhanHieu, double price_to, double price_from);
-	public List<SanPham> getByName_Status(String tenSanPham, int trangThai, double giaTien,String loaiSanPham);
+	public List<SanPham> getByName_Status(String tenSanPham, int trangThai, double giaTien,double giaTienDen, String loaiSanPham);
 	
 	
 	public int getSoLuongSanPhamTheoMa(String ma) ;

@@ -1,0 +1,30 @@
+button {
+	height: 37px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #2bc2da;
+}
+
+button:hover {
+	opacity: 0.8;
+	cursor: pointer;
+	
+}
+
+.header-title{
+	text-align: center;
+	margin-top: 30px;
+    font-size: 25px;
+    font-weight: 500;
+    background-color: #2bc2da;
+    color: #fff;
+    border-radius: 3px;
+    padding: 2px 0;
+}
+
+.box{
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	margin-top: 20px
+}

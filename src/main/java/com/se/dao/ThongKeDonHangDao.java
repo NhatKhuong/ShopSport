@@ -17,4 +17,5 @@ public interface ThongKeDonHangDao {
 	public List<SanPham> listSanPhamBanChay(String ngayBatDau, String ngayKetThuc);
 	public List<?> listHoaDonBan(String ngayBatDau,String ngayKetThuc);
 	public List<?> listSanPhamHetHang();
+	public List<?> listThongKe();
 }

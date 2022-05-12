@@ -35,5 +35,20 @@ public class HinhAnhServiceImpl implements HinhAnhService{
 		// TODO Auto-generated method stub
 		return hinhAnhDao.getId();
 	}
+	
+	@Override
+	@Transactional
+	public String getMaHinhAnhSanPhamCuoi() {
+		// TODO Auto-generated method stub
+		return hinhAnhDao.getMaHinhAnhSanPhamCuoi();
+	}
+
+	@Override
+	@Transactional
+	public void hinhanhsave(HinhAnhSanPham hinhAnhSanPham) {
+		// TODO Auto-generated method stub
+		hinhAnhDao.hinhanhsave(hinhAnhSanPham);
+		
+	}
 
 }

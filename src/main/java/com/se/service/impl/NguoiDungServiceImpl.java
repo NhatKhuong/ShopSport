@@ -11,24 +11,23 @@ import com.se.entity.NguoiDung;
 import com.se.service.NguoiDungService;
 
 @Service
-public class NguoiDungServiceImpl implements NguoiDungService{
+public class NguoiDungServiceImpl implements NguoiDungService {
 
 	@Autowired
 	private NguoiDungDao nguoiDungDao;
-	
+
 	@Override
 	@Transactional
 	public void save(NguoiDung nguoiDung) {
 		nguoiDungDao.save(nguoiDung);
-		
-		
+
 	}
 
 	@Override
 	@Transactional
 	public void update(NguoiDung nguoiDung) {
 		nguoiDungDao.update(nguoiDung);
-		
+
 	}
 
 	@Override
@@ -61,7 +60,7 @@ public class NguoiDungServiceImpl implements NguoiDungService{
 	@Transactional
 	public void deletePerson(String theId) {
 		nguoiDungDao.deletePerson(theId);
-		
+
 	}
 
 	@Override
@@ -84,5 +83,10 @@ public class NguoiDungServiceImpl implements NguoiDungService{
 		// TODO Auto-generated method stub
 		return nguoiDungDao.capNhatMatKhauNguoiDung(maNguoiDung, matKhau);
 	}
-	
+
+	public String getMaNguoiDungCuoiCung() {
+		// TODO Auto-generated method stub
+		return nguoiDungDao.getMaNguoiDungCuoiCung();
+	}
+
 }

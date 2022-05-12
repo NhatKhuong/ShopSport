@@ -118,9 +118,12 @@
 					<div class="widget-small warning coloured-icon">
 						<i class='icon fa-3x bx bxs-shopping-bag-alt'></i>
 						<div class="info">
-							<h4>Tổng đơn hàng</h4>
-							<p id ="soDonHang">
-								<b >${soDonHang} đơn hàng</b>
+							<h4>
+								<a href="#tongDonHangTable" style="color: red;">Tổng đơn
+									hàng</a>
+							</h4>
+							<p id="soDonHang">
+								<b>${soDonHang} đơn hàng</b>
 							</p>
 						</div>
 					</div>
@@ -130,7 +133,7 @@
 						<i class='icon fa-3x bx bxs-info-circle'></i>
 						<div class="info">
 							<h4>Đơn hàng thành công</h4>
-							<p id ="soDonHangThanhCong">
+							<p id="soDonHangThanhCong">
 								<b>${soDonThanhCong} đơn hàng</b>
 							</p>
 						</div>
@@ -143,7 +146,7 @@
 						<i class='icon fa-3x bx bxs-chart'></i>
 						<div class="info">
 							<h4>Tổng thu nhập</h4>
-							<p id = "tongTienThuNhap">
+							<p id="tongTienThuNhap">
 								<b>${tienThuNhap} đ</b>
 							</p>
 						</div>
@@ -153,7 +156,9 @@
 					<div class="widget-small info coloured-icon">
 						<i class='icon fa-3x bx bxs-user-badge'></i>
 						<div class="info">
-							<h4>Hết hàng</h4>
+							<h4>
+								<a href="#hetHang" style="color: red;">Hết hàng</a>
+							</h4>
 							<p>
 								<b>${soSPHetHang} sản phẩm</b>
 							</p>
@@ -165,7 +170,7 @@
 						<i class='icon fa-3x bx bxs-tag-x'></i>
 						<div class="info">
 							<h4>Đơn hàng chờ xác nhận</h4>
-							<p id = "soDonHangChoXacNhan">
+							<p id="soDonHangChoXacNhan">
 								<b>${soDonHangChoXacNhan} đơn hàng</b>
 							</p>
 						</div>
@@ -176,7 +181,7 @@
 						<i class='icon fa-3x bx bxs-receipt'></i>
 						<div class="info">
 							<h4>Đơn hàng hủy</h4>
-							<p id ="soDonHangHuy">
+							<p id="soDonHangHuy">
 								<b>${soDonHangHuy } đơn hàng</b>
 							</p>
 						</div>
@@ -201,7 +206,7 @@
 				<div class="col-md-12">
 					<div class="tile">
 						<div>
-							<h3 class="tile-title">SẢN PHẨM BÁN CHẠY</h3>
+							<h3 class="tile-title">TOP 5 SẢN PHẨM BÁN CHẠY</h3>
 						</div>
 						<div class="tile-body">
 							<table class="table table-hover table-bordered" id="sampleTable">
@@ -210,17 +215,17 @@
 										<th>Mã sản phẩm</th>
 										<th>Tên sản phẩm</th>
 										<th>Giá tiền</th>
-										<th>Tên loại sản phẩm </th>
+										<th>Tên loại sản phẩm</th>
 									</tr>
 								</thead>
-								<tbody id = "sanPhamBanChaytable">
+								<tbody id="sanPhamBanChaytable">
 									<c:forEach var="item" items="${listSanPhamBanChay}">
-									<tr>
-										<td>${item.getMaSanPham()}</td>
-										<td>${item.getTenSanPham()}</td>
-										<td>${item.getGiaTien()}</td>
-										<td>${item.getLoaiSanPham().getTenLoaiSanPham()}</td>
-									</tr>
+										<tr>
+											<td>${item.getMaSanPham()}</td>
+											<td>${item.getTenSanPham()}</td>
+											<td>${item.getGiaTien()}</td>
+											<td>${item.getLoaiSanPham().getTenLoaiSanPham()}</td>
+										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
@@ -232,7 +237,7 @@
 				<div class="col-md-12">
 					<div class="tile">
 						<div>
-							<h3 class="tile-title">TỔNG ĐƠN HÀNG</h3>
+							<h3 class="tile-title" id="tongDonHangTable">TỔNG ĐƠN HÀNG</h3>
 						</div>
 						<div class="tile-body">
 							<table class="table table-hover table-bordered" id="sampleTable">
@@ -245,16 +250,20 @@
 										<th>Tổng tiền</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="donHangBanTable">
 									<c:forEach var="item" items="${listDonHangBan}">
-									<tr>
-										<td>${item[0]}</td>
-										<td>${item[1]}</td>
-										<td>${item[2]}</td>
-										<td>${item[3]}</td>
-										<td>${item[4]}</td>
-									</tr>
+										<tr>
+											<td>${item[0]}</td>
+											<td>${item[1]}</td>
+											<td>${item[2]}</td>
+											<td>${item[3]}</td>
+											<td>${Math.round(item[4])}đ</td>
+										</tr>
 									</c:forEach>
+									<!-- <tr>
+										<th colspan="4">Tổng cộng:</th>
+										<td>104.890.000 đ</td>
+									</tr> -->
 								</tbody>
 							</table>
 						</div>
@@ -265,7 +274,7 @@
 				<div class="col-md-12">
 					<div class="tile">
 						<div>
-							<h3 class="tile-title">SẢN PHẨM ĐÃ HẾT</h3>
+							<h3 class="tile-title" id="hetHang">SẢN PHẨM ĐÃ HẾT</h3>
 						</div>
 						<div class="tile-body">
 							<table class="table table-hover table-bordered" id="sampleTable">
@@ -281,7 +290,7 @@
 									</tr>
 								</thead>
 								<tbody>
-								<c:forEach var="item" items="${listsanPhamHetHang}">
+									<c:forEach var="item" items="${listsanPhamHetHang}">
 										<tr>
 											<td>${item[0]}</td>
 											<td>${item[1]}</td>
@@ -298,25 +307,52 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="tile">
+						<div>
+							<h3 class="tile-title" id="hetHang">TỔNG DOANH THU THEO THÁNG CỦA NĂM</h3>
+						</div>
+						<div class="tile-body">
+							<table class="table table-hover table-bordered" id="sampleTable">
+								<thead>
+									<tr>
+										<th>Tháng</th>
+										<th>Doanh thu của tháng</th>
 
-			<!-- 	<div class="row">
-			<div class="col-md-6">
-				<div class="tile">
-					<h3 class="tile-title">DỮ LIỆU HÀNG THÁNG</h3>
-					<div class="embed-responsive embed-responsive-16by9">
-						<canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
+									</tr>
+								</thead>
+								<tbody id="listDoanhThuThang">
+									<c:forEach var="item" items="${listThongKe}">
+										<tr>
+											<td>${item[0]}</td>
+											<td>${Math.round(item[1])}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<div class="tile">
-					<h3 class="tile-title">THỐNG KÊ DOANH SỐ</h3>
-					<div class="embed-responsive embed-responsive-16by9">
-						<canvas class="embed-responsive-item" id="barChartDemo"></canvas>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="tile">
+						<h3 class="tile-title">DỮ LIỆU HÀNG THÁNG</h3>
+						<div class="embed-responsive embed-responsive-16by9">
+							<canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="tile">
+						<h3 class="tile-title">THỐNG KÊ DOANH SỐ</h3>
+						<div class="embed-responsive embed-responsive-16by9">
+							<canvas class="embed-responsive-item" id="barChartDemo"></canvas>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div> -->
 
 			<div class="text-right" style="font-size: 12px">
 				<p>
@@ -334,39 +370,158 @@
 		src="${pageContext.request.contextPath}/resources/js/admin/pace.min.js"></script>
 	<!--===============================================================================================-->
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/chart.js"></script>
+		src="${pageContext.request.contextPath}/resources/js/admin/chart.js"></script>
 	<!--===============================================================================================-->
 	<script type="text/javascript">
+		
+		var doanhthuthang1,doanhthuthang2,doanhthuthang3,doanhthuthang4,doanhthuthang5,doanhthuthang6,doanhthuthang7,doanhthuthang8,
+			doanhthuthang9,doanhthuthang10,doanhthuthang11,doanhthuthang12;
+		let e = document.getElementById("listDoanhThuThang").getElementsByTagName("tr");
+		for (i = 0; i < e.length; i++) {
+		    var value = e[i].getElementsByTagName("td")[0].innerText
+		    if(value === '1'){
+		    	doanhthuthang1 = e[i].getElementsByTagName("td")[1].innerText
+		    }
+		    if(value === '2'){
+		    	doanhthuthang2 = e[i].getElementsByTagName("td")[1].innerText
+		    }
+		    if(value === '3'){
+		    	doanhthuthang3 = e[i].getElementsByTagName("td")[1].innerText
+		    }
+		    if(value === '4'){
+		    	doanhthuthang4 = e[i].getElementsByTagName("td")[1].innerText
+		    }
+		    if(value === '5'){
+		    	doanhthuthang5 = e[i].getElementsByTagName("td")[1].innerText
+		    }
+		    if(value === '6'){
+		    	doanhthuthang6 = e[i].getElementsByTagName("td")[1].innerText
+		    }
+		    if(value === '7'){
+		    	doanhthuthang7 = e[i].getElementsByTagName("td")[1].innerText
+		    }
+		    if(value === '8'){
+		    	doanhthuthang8 = e[i].getElementsByTagName("td")[1].innerText
+		    }
+		    if(value === '9'){
+		    	doanhthuthang9 = e[i].getElementsByTagName("td")[1].innerText
+		    }
+		    if(value === '10'){
+		    	doanhthuthang10 = e[i].getElementsByTagName("td")[1].innerText
+		    }
+		    if(value === '11'){
+		    	doanhthuthang11 = e[i].getElementsByTagName("td")[1].innerText
+		    }
+		    if(value === '12'){
+		    	doanhthuthang12 = e[i].getElementsByTagName("td")[1].innerText
+		    }
+		    if(doanhthuthang1 == null){
+	    		doanhthuthang1 = '0'
+	    	}
+		    if(doanhthuthang2 == null){
+	    		doanhthuthang2 = '0'
+	    	}
+		    if(doanhthuthang3 == null){
+	    		doanhthuthang3 = '0'
+	    	}
+		    if(doanhthuthang4 == null){
+	    		doanhthuthang4 = '0'
+	    	}
+		    if(doanhthuthang5 == null){
+	    		doanhthuthang5 = '0'
+	    	}
+		    if(doanhthuthang6 == null){
+	    		doanhthuthang6 = '0'
+	    	}
+		    if(doanhthuthang7 == null){
+	    		doanhthuthang7 = '0'
+	    	}
+		    if(doanhthuthang8 == null){
+	    		doanhthuthang8 = '0'
+	    	}
+		    if(doanhthuthang9 == null){
+	    		doanhthuthang9 = '0'
+	    	}
+		    if(doanhthuthang10 == null){
+	    		doanhthuthang10 = '0'
+	    	}
+		    if(doanhthuthang11 == null){
+	    		doanhthuthang11 = '0'
+	    	}
+		    if(doanhthuthang12 == null){
+	    		doanhthuthang12 = '0'
+	    	}
+		}
 		var data = {
 			labels : [ "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5",
 					"Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10",
 					"Tháng 11", "Tháng 12" ],
 			datasets : [ {
 				label : "Dữ liệu đầu tiên",
-				fillColor : "rgba(255, 255, 255, 0.158)",
-				strokeColor : "black",
-				pointColor : "rgb(220, 64, 59)",
-				pointStrokeColor : "#fff",
-				pointHighlightFill : "#fff",
-				pointHighlightStroke : "green",
-				data : [ 20, 59, 90, 51, 56, 100, 40, 60, 78, 53, 33, 81 ]
-			}, {
-				label : "Dữ liệu kế tiếp",
-				fillColor : "rgba(255, 255, 255, 0.158)",
-				strokeColor : "rgb(220, 64, 59)",
-				pointColor : "black",
-				pointStrokeColor : "#fff",
-				pointHighlightFill : "#fff",
-				pointHighlightStroke : "green",
-				data : [ 48, 48, 49, 39, 86, 10, 50, 70, 60, 70, 75, 90 ]
-			} ]
+				fillColor : "rgba(255, 213, 59, 0.767), 212, 59)",
+				strokeColor : "rgb(255, 212, 59)",
+				pointColor : "rgb(255, 212, 59)",
+				pointStrokeColor : "rgb(255, 212, 59)",
+				pointHighlightFill : "rgb(255, 212, 59)",
+				pointHighlightStroke : "rgb(255, 212, 59)",
+				data : [ parseInt(doanhthuthang1),parseInt(doanhthuthang2),parseInt(doanhthuthang3), parseInt(doanhthuthang4), parseInt(doanhthuthang5),parseInt(doanhthuthang6),parseInt(doanhthuthang7),parseInt(doanhthuthang8),parseInt(doanhthuthang9),parseInt(doanhthuthang10),parseInt(doanhthuthang11),parseInt(doanhthuthang12)]
+			}]
 		};
-
 		var ctxl = $("#lineChartDemo").get(0).getContext("2d");
 		var lineChart = new Chart(ctxl).Line(data);
 
 		var ctxb = $("#barChartDemo").get(0).getContext("2d");
 		var barChart = new Chart(ctxb).Bar(data);
+	</script>
+	<script type="text/javascript">
+		function formatCurrency(number) {
+			// if (isNaN(number)) return number;
+			return new Intl.NumberFormat("vi-VN", {
+				style : "currency",
+				currency : "VND",
+			}).format(number);
+		}
+	</script>
+	<script type="text/javascript">
+		//Thời Gian
+		function time() {
+			var today = new Date();
+			var weekday = new Array(7);
+			weekday[0] = "Chủ Nhật";
+			weekday[1] = "Thứ Hai";
+			weekday[2] = "Thứ Ba";
+			weekday[3] = "Thứ Tư";
+			weekday[4] = "Thứ Năm";
+			weekday[5] = "Thứ Sáu";
+			weekday[6] = "Thứ Bảy";
+			var day = weekday[today.getDay()];
+			var dd = today.getDate();
+			var mm = today.getMonth() + 1;
+			var yyyy = today.getFullYear();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			nowTime = h + " giờ " + m + " phút " + s + " giây";
+			if (dd < 10) {
+				dd = '0' + dd
+			}
+			if (mm < 10) {
+				mm = '0' + mm
+			}
+			today = day + ', ' + dd + '/' + mm + '/' + yyyy;
+			tmp = '<span class="date"> ' + today + ' - ' + nowTime + '</span>';
+			document.getElementById("clock").innerHTML = tmp;
+			clocktime = setTimeout("time()", "1000", "Javascript");
+
+			function checkTime(i) {
+				if (i < 10) {
+					i = "0" + i;
+				}
+				return i;
+			}
+		}
 	</script>
 	<!-- Google analytics script-->
 	<script type="text/javascript">

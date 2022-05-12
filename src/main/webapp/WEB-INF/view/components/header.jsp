@@ -80,6 +80,8 @@
 											class="fa fa-user-plus" aria-hidden="true"></i>Logout</a></li>
 									  	 <li><a href="/ShopSport/don-hang/danh-sach-don-hang"
 										aria-hidden="true"></i>Hóa đơn</a></li>
+										<li><a href="/ShopSport/tai-khoan/cap-nhat"
+										aria-hidden="true"></i>Tài khoản</a></li>
 									</sec:authorize>
 										</ul>
 								</li>
@@ -106,7 +108,7 @@
 							<li><a href="#">promotion</a></li>
 							<li><a href="#">pages</a></li>
 							<li><a href="#">blog</a></li>
-							<li><a href="contact.html">contact</a></li>
+							<li><a href="/ShopSport/contact">contact</a></li>
 						</ul>
 						<ul class="navbar_user">
 							<li><div onclick="loadModalSearch()" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search"
@@ -116,7 +118,7 @@
 								data-target="#CardModal" aria-hidden="true"
 								onclick="loadDuLieuGioHang()"> <i
 									class="fa fa-shopping-cart" aria-hidden="true"></i> <span
-									id="checkout_items" class="checkout_items">2</span>
+									id="checkout_items" class="checkout_items">0</span>
 							</a></li>
 						</ul>
 						<div class="hamburger_container">
@@ -141,7 +143,7 @@
 				</div>
 
 				<div class="modal-body modal_body_card" id="cardProducts">
-					<c:forEach var="item" items="${dsSanPhamTrongGioHang}">
+					<!-- <c:forEach var="item" items="${dsSanPhamTrongGioHang}">
 
 						<%-- <div class="card_product">
                                         <div class="check_item">
@@ -154,7 +156,7 @@
                                         <div class="card_item_info">
                                             <div class="card_item_info_name break_text">
                                                 ${item.chiTietSanPham.sanPham.tenSanPham}</div>
-                                            <!-- <div class="card_item_info_quatity">1</div> -->
+                                            
                                             <div class="quantity">
 
                                                 <button class="btn ml-2 " onclick='quantityPrivate(this)'> <i
@@ -180,7 +182,7 @@
                                         </button>
                             </div> --%>
 
-					</c:forEach>
+					</c:forEach> -->
 
 
 				</div>
@@ -254,7 +256,7 @@
 						<h5 class="modal-title" id="exampleModalLabel">ĐĂNG KÝ TÀI
 							KHOẢN</h5>
 					</div>
-					<button type="button" class="close" data-dismiss="modal"
+					<button type="button" class="close" id="closeModal" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>

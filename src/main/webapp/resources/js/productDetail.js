@@ -1,7 +1,6 @@
 // check size 'khac' and auto select in size index= 1
 (() => {
   var item = document.querySelector(".sizes .size");
-
   item.classList.add("active");
   if (item.innerText == "Khac" || item.innerText == "Khác") {
     document.querySelector(".sizes").parentElement.classList.add("d-none");
@@ -102,6 +101,27 @@ $(document).ready(function () {
   });
 });
 
+function hiddenPrice() {
+  console.log("hiddenPrice");
+  var percent = document.getElementsByClassName("percent");
+  for (var i = 0; i < percent.length; i++) {
+    console.log(percent[i].innerText);
+    if (percent[i].innerText === "0 %") {
+      console.log(percent[i].parentElement);
+      var priceOld =
+        percent[
+          i
+        ].parentElement.parentElement.parentElement.getElementsByClassName(
+          "price_old"
+        )[0];
+      priceOld.style.visibility = "hidden";
+      priceOld.style.width = "0px";
+      percent[i].parentElement.style.visibility = "hidden";
+      // percent[i].parentElement.style.display = "none !important";
+    }
+  }
+}
+
 function showDialogSuccessStatus() {
   $("#myModalDialogSuccess").addClass("show");
   setTimeout(function () {
@@ -144,6 +164,7 @@ function addToCard() {
       // $("#myModalDialogSuccess").addClass("show");
       // alert("ssss");
       console.log("--------" + 2);
+      loadSoLuongSanPhamGioHang();
     },
   });
 }

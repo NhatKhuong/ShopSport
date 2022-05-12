@@ -58,7 +58,8 @@ public class BaoCaoDoanhThuController {
 		model.addAttribute("listDonHangBan", listDonHangBan);
 		List<?> listsanPhamHetHang = thongKeDonHangService.listSanPhamHetHang();
 		model.addAttribute("listsanPhamHetHang", listsanPhamHetHang);
-
+		List<?> listThongKe = thongKeDonHangService.listThongKe();
+		model.addAttribute("listThongKe", listThongKe);
 		return "admin/baoCaoDoanhThu";
 	}
 

@@ -18,6 +18,30 @@ if (myParam == 1) {
     var inputGiay = document.getElementById("LSP00004");
     console.log(inputGiay);
     inputGiay.checked = true;
+} else if (myParam == 4) {
+    var inputGiay = document.getElementById("MTT00001");
+    console.log(inputGiay);
+    inputGiay.checked = true;
+} else if (myParam == 5) {
+    var inputGiay = document.getElementById("MTT00002");
+    console.log(inputGiay);
+    inputGiay.checked = true;
+} else if (myParam == 6) {
+    var inputGiay = document.getElementById("MTT00003");
+    console.log(inputGiay);
+    inputGiay.checked = true;
+} else if (myParam == 7) {
+    var inputGiay = document.getElementById("MTT00004");
+    console.log(inputGiay);
+    inputGiay.checked = true;
+} else if (myParam == 8) {
+    var inputGiay = document.getElementById("MTT00006");
+    console.log(inputGiay);
+    inputGiay.checked = true;
+} else if (myParam == 9) {
+    var inputGiay = document.getElementById("MTT00007");
+    console.log(inputGiay);
+    inputGiay.checked = true;
 }
 
 getProducRank();
@@ -122,15 +146,19 @@ function initPriceSlider() {
         max: maxPrice,
         values: [0, Math.floor(maxPrice / 4)],
         slide: function (event, ui) {
-            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            $("#amount").val(
+                formatCurrency(ui.values[0]) +
+                    " - " +
+                    formatCurrency(ui.values[1])
+            );
+            // $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
         },
     });
 
     $("#amount").val(
-        "$" +
-            $("#slider-range").slider("values", 0) +
-            " - $" +
-            $("#slider-range").slider("values", 1)
+        formatCurrency($("#slider-range").slider("values", 0)) +
+            " - " +
+            formatCurrency($("#slider-range").slider("values", 1))
     );
 }
 // });
@@ -194,8 +222,14 @@ function getPageActiveAndDisableOutButton(e) {
     // var price_from = 0;
 
     var priceRange = $("#amount").val();
-    var price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
-    var price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+    var price_from = parseFloat(
+        priceRange.split("-")[0].replaceAll(".", "").replace("₫", "")
+    );
+    // var price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+    var price_to = parseFloat(
+        priceRange.split("-")[1].replaceAll(".", "").replace("₫", "")
+    );
+
     console.log(priceRange, price_from, price_to);
 
     var elementsLoaiSanPham = document.getElementsByClassName(
@@ -458,8 +492,16 @@ async function searchFilterCheckbox() {
     var priceRange = $("#amount").val();
     if (priceRange != "") {
         console.log("vao");
-        price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
-        price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+        // price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
+        // price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+        // var priceRange = $("#amount").val();
+        var price_from = parseFloat(
+            priceRange.split("-")[0].replaceAll(".", "").replace("₫", "")
+        );
+        // var price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+        var price_to = parseFloat(
+            priceRange.split("-")[1].replaceAll(".", "").replace("₫", "")
+        );
     } else {
         price_from = 0;
         price_to = maxPrice;
@@ -511,8 +553,16 @@ async function searchbyPriceFilter() {
     var priceRange = $("#amount").val();
     if (priceRange != "") {
         console.log("vao by filter");
-        price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
-        price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+        // price_from = parseFloat(priceRange.split("-")[0].replace("$", ""));
+        // price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+        // var priceRange = $("#amount").val();
+        var price_from = parseFloat(
+            priceRange.split("-")[0].replaceAll(".", "").replace("₫", "")
+        );
+        // var price_to = parseFloat(priceRange.split("-")[1].replace("$", ""));
+        var price_to = parseFloat(
+            priceRange.split("-")[1].replaceAll(".", "").replace("₫", "")
+        );
     } else {
         price_from = 0;
         price_to = maxPrice;

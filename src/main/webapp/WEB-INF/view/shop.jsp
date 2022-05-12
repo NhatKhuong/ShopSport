@@ -64,8 +64,6 @@
                         <span>filter</span>
                     </div>
                 </div>
-					
-        
         <hr>
         
             <div class="display__item__filter__title">Danh mục</div>
@@ -193,8 +191,8 @@
 											<!-- <span class="num_sorting_text">6</span> -->
 											<!-- <i class="fa fa-angle-down"></i> -->
 											<select onchange="searchbyPriceFilter()"  class="sorting_num_re">
-												<option value="6" class="num_sorting_btn_re">6</option>
 												<option value="12" class="num_sorting_btn_re">12</option>
+												<option value="16" class="num_sorting_btn_re">16</option>
 												<option value="24" class="num_sorting_btn_re">24</option>
 											</select>
 										</li>
