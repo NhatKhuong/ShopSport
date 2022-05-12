@@ -271,7 +271,7 @@ public class QuanLySanPhamController {
 	public List<SanPham> locSanPhamTheoTen(HttpServletRequest request) {
 		int trangThai = Integer.parseInt(request.getParameter("trangThai"));
 		String loaiSanPham = request.getParameter("loaiSanPham");
-		String tenSanPham = request.getParameter("tenSanPham");
+		String tenSanPham = request.getParameter("tenSanPham").replace(' ', '%');
 		double giaTien = Double.parseDouble(request.getParameter("giaTien"));
 		double giaTienDen = Double.parseDouble(request.getParameter("giaTienDen"));
 
@@ -340,6 +340,18 @@ public class QuanLySanPhamController {
 	public SanPham laySanPhamTheoMa(HttpServletRequest request) {
 		String maSanPham = request.getParameter("maSanPham");
 		return sanPhamService.getById(maSanPham);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/quan-ly/quan-ly-san-pham-kiem-tra-so", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public boolean kiemTraSo(HttpServletRequest request) {
+		String so = request.getParameter("so");
+				try {
+					Integer.parseInt(so);
+					return true;
+				} catch (Exception e) {
+					return false;
+				}
 	}
 
 	@ResponseBody

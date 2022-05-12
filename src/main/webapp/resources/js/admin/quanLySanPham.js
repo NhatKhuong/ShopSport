@@ -14,6 +14,16 @@
 		}
 	});
 })();
+
+function formatCurrency(number) {
+	console.log(number);
+	// if (isNaN(number)) return number;
+	return new Intl.NumberFormat("vi-VN", {
+		style: "currency",
+		currency: "VND",
+	}).format(number);
+}
+
 var trangThaiTrang = 2;
 chuyenTrangThaiNhieu();
 async function chuyenTrangThaiNhieu() {
@@ -117,7 +127,7 @@ function getDanhSachSanPham() {
 	loaiSanPham = document.getElementById("selectLoaiSanPham").value;
 	trangThaiTrang = document.getElementById("mySelect").value;
 
-	if (giaTienDen == 0||giaTienDen <= giaTien)
+	if (giaTienDen == 0 || giaTienDen <= giaTien)
 		giaTienDen = 10000000000;
 	getDanhSachSanPhamTheoTen(tenSanPham, trangThai, giaTien, giaTienDen, loaiSanPham);
 }
@@ -219,8 +229,8 @@ function getDanhSachSanPhamTheoTen(
 							sl +
 							"</td>" +
 							"<td>" +
-							v.giaTien +
-							"đ</td>" +
+							formatCurrency(v.giaTien) +
+							"</td>" +
 							"<td>" +
 							v.loaiSanPham.tenLoaiSanPham +
 							"</td>" +
@@ -435,7 +445,7 @@ function loadModal(r) {
 	var tinhTrangSanPham =
 		document.getElementById("tableListSanPham").rows[i].cells[6].innerText;
 	var giaSanPham =
-		document.getElementById("tableListSanPham").rows[i].cells[4].innerHTML;
+		document.getElementById("tableListSanPham").rows[i].cells[4].innerHTML.replace("&nbsp;₫", "").replace(".", "");
 	jQuery("#modalMaSP").val(maSanPham);
 	jQuery("#modalTenSP").val(tenSanPham);
 	jQuery("#modalTrangThaiSP").val(
@@ -475,7 +485,7 @@ function updateRow(i) {
 				"Ngừng kinh doanh" +
 				"</span></td>";
 		document.getElementById("tableListSanPham").rows[i].cells[4].innerHTML =
-			jQuery("#modalGiaSP").val();
+			formatCurrency(jQuery("#modalGiaSP").val().replace("đ", ""));
 	}
 }
 
@@ -489,38 +499,50 @@ function updateSanPhamListener() {
 	});
 }
 capNhatSanPhamListener();
-function capNhatSanPhamListener() {
-	jQuery("#btnLuu").click(function() {
-		var listSoLuong = document.getElementsByClassName("soLuong");
-		var listKichThuoc = document.getElementsByClassName("selectKichThuoc");
-		var soLuong = [];
-		var tenKichThuoc = [];
-		for (var i = 0; i < listSoLuong.length; i++) {
-			soLuong.push(listSoLuong[i].value);
-		};
+ function capNhatSanPhamListener() {
+	jQuery("#btnLuu").click(async function() {
+		var kiemTra= await kiemTraSo(jQuery("#modalGiaSP").val());
+		console.log("Kiem tra số: "+kiemTra);
+		if (kiemTra ==='true') {
+			var listSoLuong = document.getElementsByClassName("soLuong");
+			var listKichThuoc = document.getElementsByClassName("selectKichThuoc");
+			var soLuong = [];
+			var tenKichThuoc = [];
 
-		for (var i = 0; i < listKichThuoc.length; i++) {
-			tenKichThuoc.push(listKichThuoc[i].value);
-		};
+			for (var i = 0; i < listSoLuong.length; i++) {
+				soLuong.push(listSoLuong[i].value);
+			};
 
-		capNhatSanPham(
-			jQuery("#modalMaSP").val(),
-			jQuery("#modalTenSP").val(),
+			for (var i = 0; i < listKichThuoc.length; i++) {
+				tenKichThuoc.push(listKichThuoc[i].value);
+			};
 
-			jQuery("#modalTrangThaiSP").val(),
-			jQuery("#modalGiaSP").val(),
-			soLuong,
-			tenKichThuoc,
-		);
-		updateRow(rowIndex);
-		Swal.fire({
-			title: "Cập nhật thành công!",
-			text: "Cảm ơn bạn",
-			icon: "success",
-			confirmButtonText: "Đồng ý",
-		});
-		jQuery("#hideModal").click();
-		soLuongKichThuoc = 1;
+			capNhatSanPham(
+				jQuery("#modalMaSP").val(),
+				jQuery("#modalTenSP").val(),
+
+				jQuery("#modalTrangThaiSP").val(),
+				jQuery("#modalGiaSP").val(),
+				soLuong,
+				tenKichThuoc,
+			);
+			updateRow(rowIndex);
+			Swal.fire({
+				title: "Cập nhật thành công!",
+				text: "Cảm ơn bạn",
+				icon: "success",
+				confirmButtonText: "Đồng ý",
+			});
+			jQuery("#hideModal").click();
+			soLuongKichThuoc = 1;
+		} else {
+			Swal.fire({
+				title: "Cập nhật thất bại!",
+				text: "Giá sản phẩm phải là số",
+				icon: "error",
+				confirmButtonText: "Đồng ý",
+			});
+		}
 	});
 }
 
@@ -633,6 +655,17 @@ function updateSoLuongChiTietSanPham(rowIn, maSanPham) {
 			console.log("ERROR: ", e);
 		},
 	});
+}
+
+async function kiemTraSo(so) {
+	var a = await fetch(
+		contextPath +
+		 `/quan-ly/quan-ly-san-pham-kiem-tra-so?`+
+		new URLSearchParams({
+			so: so,
+		})
+	);
+	return await a.text();
 }
 
 
@@ -761,7 +794,7 @@ function loadInputUpload(imageOldUrl) {
 		// deleteUrl: imagesOld.deleteUrl,
 		maxFilePreviewSize: 10240,
 		maxFileSize: 10 * 1024 * 1024,
-		maxFilesNum: 10,
+		maxFilesNum: 10-imagesOld.initialPreview.length,
 		fileActionSettings: {
 			showUpload: false,
 		},

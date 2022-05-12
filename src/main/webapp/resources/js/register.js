@@ -92,10 +92,14 @@ function changeRegexInputPassWord() {
 	//Thông Báo
 	var tbPassWordNguoiDung = document.getElementById('tbPassWord');
 	if (passWord == '' || passWord == null) {
-		tbPassWordNguoiDung.innerHTML = "Mật khẩu không được để trống";
+		tbPassWordNguoiDung.innerHTML = "Mật khẩu không được để trống và phải";
 	} else {
+		if(passWord.length<6){
+			tbPassWordNguoiDung.innerHTML = "Mật khẩu phải ít nhất 6 kí tự";
+		}else{
 		tbPassWordNguoiDung.innerHTML = ' ';
 		return passWord;
+		}
 	}
 }
 
