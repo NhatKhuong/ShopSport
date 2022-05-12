@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 ">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>iuh.fit.se</groupId>
 	<artifactId>ShopSport</artifactId>
@@ -196,6 +196,19 @@
         <artifactId>mail</artifactId>
         <version>1.4</version>
     </dependency> 
+    <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+<dependency>
+    <groupId>commons-codec</groupId>
+    <artifactId>commons-codec</artifactId>
+    <version>1.15</version>
+</dependency>
+<!-- https://mavenlibs.com/maven/dependency/org.apache.hbase/hbase-hadoop-compat -->
+  <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+
 	</dependencies>
 
 </project>
