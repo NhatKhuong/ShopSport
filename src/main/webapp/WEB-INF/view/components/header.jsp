@@ -141,7 +141,7 @@
 				</div>
 
 				<div class="modal-body modal_body_card" id="cardProducts">
-					<c:forEach var="item" items="${dsSanPhamTrongGioHang}">
+					<!-- <c:forEach var="item" items="${dsSanPhamTrongGioHang}">
 
 						<%-- <div class="card_product">
                                         <div class="check_item">
@@ -154,7 +154,7 @@
                                         <div class="card_item_info">
                                             <div class="card_item_info_name break_text">
                                                 ${item.chiTietSanPham.sanPham.tenSanPham}</div>
-                                            <!-- <div class="card_item_info_quatity">1</div> -->
+                                            
                                             <div class="quantity">
 
                                                 <button class="btn ml-2 " onclick='quantityPrivate(this)'> <i
@@ -180,7 +180,7 @@
                                         </button>
                             </div> --%>
 
-					</c:forEach>
+					</c:forEach> -->
 
 
 				</div>
