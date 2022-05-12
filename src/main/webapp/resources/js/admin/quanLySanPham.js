@@ -32,10 +32,12 @@ async function chuyenTrangThaiNhieu() {
 							deleteSanPhamDBIndex(i);
 						}
 					}
-					for (var item of listInputCheck) {
-						if (item.checked) {
-							var i = item.parentNode.parentNode.rowIndex;
+					for (var item = 0; item < listInputCheck.length; item++) {
+						if (listInputCheck[item].checked) {
+							var i = listInputCheck[item].parentNode.parentNode.rowIndex;
+							console.log(i);
 							deleteRowIndex(i);
+							item--;
 						}
 					}
 				} else {
@@ -107,12 +109,17 @@ function getDanhSachSanPham() {
 	var tenSanPham = "";
 	var trangThai = "0";
 	var giaTien = "0";
+	var giaTienDen = "0";
 	tenSanPham += document.getElementById("locTenSanPham").value;
 	giaTien = document.getElementById("giaTien").value;
+	giaTienDen = document.getElementById("giaTienDen").value;
 	trangThai = document.getElementById("mySelect").value;
 	loaiSanPham = document.getElementById("selectLoaiSanPham").value;
 	trangThaiTrang = document.getElementById("mySelect").value;
-	getDanhSachSanPhamTheoTen(tenSanPham, trangThai, giaTien, loaiSanPham);
+
+	if (giaTienDen == 0||giaTienDen <= giaTien)
+		giaTienDen = 10000000000;
+	getDanhSachSanPhamTheoTen(tenSanPham, trangThai, giaTien, giaTienDen, loaiSanPham);
 }
 
 async function loadSoLuong(maSanPham) {
@@ -153,6 +160,7 @@ function getDanhSachSanPhamTheoTen(
 	tenSanPham,
 	trangThai,
 	giaTien,
+	giaTienDen,
 	loaiSanPham
 ) {
 	jQuery.ajax({
@@ -163,6 +171,7 @@ function getDanhSachSanPhamTheoTen(
 			tenSanPham,
 			trangThai,
 			giaTien,
+			giaTienDen,
 			loaiSanPham,
 		},
 		dataType: "json",
@@ -517,19 +526,34 @@ function capNhatSanPhamListener() {
 
 var soLanThemCT = 0;
 var soLuongKichThuoc = 1;
+var trangThaiChonSize = 1;
 jQuery("#themChiTietSanPham").click(function() {
 	soLanThemCT = soLanThemCT + 1;
 	if (soLanThemCT <= soLuongKichThuoc) {
-		var temp = "<tr style='border: 0px solid black;'>" +
-			"	<td style='border: 0px solid black;'><div class='form-group col-12'>" +
-			"<label class='control-label '>Kích thước:</label> <select class='dashboard-filter form-control selectKichThuoc' id='selectKichThuoc'></select></div></td>" +
-			"	<td style='border: 0px solid black;'><div class='form-group col-12'>" +
-			"<label class='control-label '>Số lượng:</label> <input class='form-control soLuong' id='' type='text' required></div></td> " +
-			"<td style='border: 0px solid black;'><button type='button' class='close deleteRowCT' onclick='onClickDeleteRowCT(this);'><h2 aria-hidden='true' class='text-danger'>&times;</h2></button></td></tr >";
-		jQuery("#chiTietSanPham").append(temp);
-		loadKichThuocSanPham(document.getElementById("tableListSanPham").rows[rowIndex].cells[1].innerHTML);
+		if (trangThaiChonSize == 1) {
+			var temp = "<tr style='border: 0px solid black;'>" +
+				"	<td style='border: 0px solid black;'><div class='form-group col-12'>" +
+				"<label class='control-label '>Kích thước:</label> <select class='dashboard-filter form-control selectKichThuoc' id='selectKichThuoc' onchange='eventChangeChonSizeKichThuoc()'></select></div></td>" +
+				"	<td style='border: 0px solid black;'><div class='form-group col-12'>" +
+				"<label class='control-label '>Số lượng:</label> <input class='form-control soLuong' id='' type='number' step='1' min='0' max='10000' required></div></td> " +
+				"<td style='border: 0px solid black;'><button type='button' class='close deleteRowCT' onclick='onClickDeleteRowCT(this);'><h2 aria-hidden='true' class='text-danger'>&times;</h2></button></td></tr >";
+			jQuery("#chiTietSanPham").append(temp);
+			loadKichThuocSanPham(document.getElementById("tableListSanPham").rows[rowIndex].cells[1].innerHTML);
+			trangThaiChonSize = 0;
+		} else {
+			soLanThemCT = soLanThemCT - 1;
+			alert("Bạn cần chọn thông tin kích thước trước khi muốn thêm tiếp!! ");
+		}
 	}
 });
+
+function eventChangeChonSizeKichThuoc(r) {
+	if (this.value == '0')
+		trangThaiChonSize = 0;
+	else
+		trangThaiChonSize = 1;
+}
+
 function loadKichThuocSanPham2(maSanPham) {
 	jQuery.ajax({
 		type: "GET",
@@ -561,9 +585,18 @@ function loadKichThuocSanPham(maSanPham) {
 		dataType: "json",
 		timeout: 100000,
 		success: function(data) {
-			let temp = "<option value='Chọn size'>-- Chọn kích thước --</option>";
+			let temp = "<option value='0'>-- Chọn kích thước --</option>";
+			var it = document.getElementsByClassName("selectKichThuoc");
 			data.forEach((v) => {
-				temp += `<option value='${v.tenKichThuoc}'>${v.tenKichThuoc}</option>`;
+				var container = 0;
+				for (var item of it) {
+					if (v.tenKichThuoc == item.value) {
+						container++;
+					}
+				}
+				if (container == 0) {
+					temp += `<option value='${v.tenKichThuoc}'>${v.tenKichThuoc}</option>`;
+				}
 			});
 			//	document.getElementById("selectKichThuoc").innerHTML = temp;
 			document.getElementsByClassName("selectKichThuoc")[soLanThemCT - 1].innerHTML = temp;
@@ -620,7 +653,7 @@ function loadChiTietSanPhamModal(maSanPham) {
 					"	<td style='border: 0px solid black;'><div class='form-group col-12'>" +
 					"<label class='control-label '>Kích thước:</label> <input class='form-control ' disabled id='' type='text' required value='" + v.kichThuoc.tenKichThuoc + "' ></div></td>" +
 					"	<td style='border: 0px solid black;'><div class='form-group col-12'>" +
-					"<label class='control-label '>Số lượng:</label> <input class='form-control soLuong'  type='text' required value='" + v.soLuongTon + "'></div></td> </tr >";
+					"<label class='control-label '>Số lượng:</label> <input class='form-control soLuong'  type='number' step='1' min='0' max='10000' required value='" + v.soLuongTon + "'></div></td> </tr >";
 				//+"<td style='border: 0px solid black;'><button type='button' class='close deleteRowCT' onclick='onClickDeleteRowCT(this);'><h2 aria-hidden='true' class='text-danger'>&times;</h2></button></td></tr >";
 
 			});

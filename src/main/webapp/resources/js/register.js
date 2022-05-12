@@ -14,14 +14,13 @@ function createUser() {
 			if (status == 1) {
 				Swal.fire({
 					title: "Đăng kí thành công!",
-					text: "Cảm ơn bạn",
 					icon: "success",
 					confirmButtonText: "Đồng ý",
 				});
+				jQuery("#closeModal").click();
 			} else {
 				Swal.fire({
 					title: "Đăng kí không thành công!",
-					text: "Bạn đã đánh giá rồi",
 					icon: "error",
 					confirmButtonText: "Đồng ý",
 				});

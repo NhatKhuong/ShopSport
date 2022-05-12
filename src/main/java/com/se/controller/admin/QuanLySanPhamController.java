@@ -273,9 +273,9 @@ public class QuanLySanPhamController {
 		String loaiSanPham = request.getParameter("loaiSanPham");
 		String tenSanPham = request.getParameter("tenSanPham");
 		double giaTien = Double.parseDouble(request.getParameter("giaTien"));
+		double giaTienDen = Double.parseDouble(request.getParameter("giaTienDen"));
 
-		List<SanPham> listSanPham = sanPhamService.getByName_Status(tenSanPham, trangThai, giaTien, loaiSanPham);
-		System.out.println(listSanPham);
+		List<SanPham> listSanPham = sanPhamService.getByName_Status(tenSanPham, trangThai, giaTien,giaTienDen, loaiSanPham);
 		return listSanPham;
 	}
 

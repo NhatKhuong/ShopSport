@@ -97,9 +97,9 @@ public class SanPhamServiceImpl implements SanPhamService {
 	
 	@Override
 	@Transactional
-	public List<SanPham> getByName_Status(String tenSanPham, int trangThai, double giaTien,String loaiSanPham) {
+	public List<SanPham> getByName_Status(String tenSanPham, int trangThai, double giaTien,double giaTienDen,String loaiSanPham) {
 		// TODO Auto-generated method stub
-		return sanPhamDao.getByName_Status(tenSanPham, trangThai,giaTien,loaiSanPham);
+		return sanPhamDao.getByName_Status(tenSanPham, trangThai,giaTien,giaTienDen,loaiSanPham);
 	}
 
 	@Override
