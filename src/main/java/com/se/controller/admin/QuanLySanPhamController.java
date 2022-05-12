@@ -2,6 +2,8 @@ package com.se.controller.admin;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,11 +22,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.se.entity.ChiTietSanPham;
+import com.se.entity.KichThuoc;
 import com.se.entity.LoaiSanPham;
 import com.se.entity.MonTheThao;
 import com.se.entity.NhanHieu;
 import com.se.entity.SanPham;
 import com.se.service.ChiTietSanPhamService;
+import com.se.service.KichThuocService;
 import com.se.service.LoaiSanPhamService;
 import com.se.service.MonTheThaoService;
 import com.se.service.NhanHieuService;
@@ -44,32 +49,26 @@ public class QuanLySanPhamController {
 	private NhanHieuService nhanHieuService;
 	@Autowired
 	private Environment env;
+	@Autowired
 	private ChiTietSanPhamService chiTietSanPhamService;
+	@Autowired
+	private KichThuocService kichThuocService;
 
 	@RequestMapping("/quan-ly/quan-ly-san-pham")
 	public String quanLyDonHang(Model model) {
 		/*
-		 * List<?> list = sanPhamService.getDanhSachSanPham_SoLuong();
-		 * List<String> listMaSanPham = new ArrayList<String>();
-		 * for (Object ob : list) {
-		 * Object[] listO = (Object[]) ob;
-		 * // tá»«ng thuá»™c tÃ­nh vÃ´ nhÆ°
-		 * String stt = (String) listO[0];
-		 * String stt1 = (String) listO[1];
-		 * int stt2 = Integer.parseInt(listO[2].toString());
-		 * double stt3 = Double.parseDouble(listO[3].toString());
-		 * String stt4 = (String) listO[4];
-		 * boolean stt5 = (boolean) listO[5];
-		 * String stt6 = " ";
-		 * if (stt5)
-		 * stt6 += "Ä�ang kinh doanh";
-		 * else
-		 * stt6 += "Ngá»«ng kinh doanh";
-		 * // System.out.println(stt + "  " + stt1 + "  " + stt2 + "  " + stt3 + "  " +
+		 * List<?> list = sanPhamService.getDanhSachSanPham_SoLuong(); List<String>
+		 * listMaSanPham = new ArrayList<String>(); for (Object ob : list) { Object[]
+		 * listO = (Object[]) ob; // tá»«ng thuá»™c tÃ­nh vÃ´ nhÆ° String stt = (String)
+		 * listO[0]; String stt1 = (String) listO[1]; int stt2 =
+		 * Integer.parseInt(listO[2].toString()); double stt3 =
+		 * Double.parseDouble(listO[3].toString()); String stt4 = (String) listO[4];
+		 * boolean stt5 = (boolean) listO[5]; String stt6 = " "; if (stt5) stt6 +=
+		 * "Ä�ang kinh doanh"; else stt6 += "Ngá»«ng kinh doanh"; //
+		 * System.out.println(stt + "  " + stt1 + "  " + stt2 + "  " + stt3 + "  " +
 		 * stt4 + "  " + stt6);
 		 * 
-		 * listMaSanPham.add(stt);
-		 * }
+		 * listMaSanPham.add(stt); }
 		 * 
 		 * model.addAttribute("listMaSanPham",listMaSanPham);
 		 * System.out.println("aaaaaaaaaaaaaaaaaaaaa");
@@ -274,38 +273,58 @@ public class QuanLySanPhamController {
 		String loaiSanPham = request.getParameter("loaiSanPham");
 		String tenSanPham = request.getParameter("tenSanPham");
 		double giaTien = Double.parseDouble(request.getParameter("giaTien"));
-	
+
 		List<SanPham> listSanPham = sanPhamService.getByName_Status(tenSanPham, trangThai, giaTien, loaiSanPham);
 		System.out.println(listSanPham);
 		return listSanPham;
 	}
- 
+
 	@ResponseBody
 	@RequestMapping(value = "/quan-ly/quan-ly-san-pham-cap-nhat", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
-	public String capNhatSanPham(HttpServletRequest request) {
+	public void capNhatSanPham(HttpServletRequest request) {
 		String maSanPham = request.getParameter("maSanPham");
 		String tenSanPham = request.getParameter("tenSanPham");
 		int trangThai = Integer.parseInt(request.getParameter("trangThai"));
+		double giaTien = Double.parseDouble(request.getParameter("giaTien").split("đ")[0]);
+		sanPhamService.capNhatSanPham(maSanPham, tenSanPham, giaTien, trangThai);
+		List<String> soLuong = Arrays.asList(request.getParameter("soLuong").split(","));
+		List<String> tenKichThuoc = Arrays.asList(request.getParameter("tenKichThuoc").split(","));
 
-		double giaTien = Double.parseDouble(request.getParameter("giaTien").split("Ä‘")[0]);
-		return sanPhamService.capNhatSanPham(maSanPham, tenSanPham, giaTien, trangThai) ? "Cáº­p nháº­t thÃ nh cÃ´ng"
-				: "Cáº­p nháº­t tháº¥t báº¡i";
+		SanPham sp = sanPhamService.getById(maSanPham);
+
+		for (int i = 0; i < sp.getDanhSachChiTietSanPham().size(); i++) {
+			sp.getDanhSachChiTietSanPham().get(i).setSoLuongTon(Integer.parseInt(soLuong.get(i)));
+			chiTietSanPhamService.update(sp.getDanhSachChiTietSanPham().get(i));
+		}
+		if (sp.getDanhSachChiTietSanPham().size() <= soLuong.size()) {
+			int j = 0;
+			for (int i = sp.getDanhSachChiTietSanPham().size(); i < soLuong.size(); i++) {
+				SanPham spTemp = sanPhamService.getById(maSanPham);
+				KichThuoc kt = kichThuocService.getKichThuocTheoTenKichThuoc(tenKichThuoc.get(j));
+				ChiTietSanPham chiTietSanPhamTemp = new ChiTietSanPham();
+				chiTietSanPhamTemp.setSanPham(spTemp);
+				chiTietSanPhamTemp.setKichThuoc(kt);
+				chiTietSanPhamTemp.setSoLuongTon(Integer.parseInt(soLuong.get(i)));
+				chiTietSanPhamTemp.setMaChiTietSanPham(spTemp.getMaSanPham() + kt.getMaKichThuoc());
+				chiTietSanPhamService.add(chiTietSanPhamTemp);
+				j++;
+			}
+		}
+
 	}
-
 
 	@ResponseBody
 	@RequestMapping(value = "/quan-ly/quan-ly-san-pham-doi-trang-thai", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
 	public String xoaSanPhamTheoMa(HttpServletRequest request) {
 		String maSanPham = request.getParameter("maSanPham");
 		sanPhamService.delete(maSanPham);
-		return "XÃ³a thÃ nh cÃ´ng";
+		return "Xóa thành công";
 	}
-
 
 	@ResponseBody
 	@RequestMapping(value = "/quan-ly/quan-ly-san-pham-load-lsp", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
 	public List<LoaiSanPham> loadLoaiSanPham(HttpServletRequest request) {
-		
+
 //		System.err.println(loaiSanPhamService.getDanhSachTenLoaiSanPham().size());
 		return loaiSanPhamService.getDanhSachTenLoaiSanPham();
 	}
@@ -315,12 +334,58 @@ public class QuanLySanPhamController {
 	public int loadTongSoLuong(HttpServletRequest request) {
 		return sanPhamService.getSoLuongSanPhamTheoMa(request.getParameter("maSanPham"));
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/quan-ly/lay-pham-theo-ma", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
 	public SanPham laySanPhamTheoMa(HttpServletRequest request) {
-		String maSanPham  = request.getParameter("maSanPham");
+		String maSanPham = request.getParameter("maSanPham");
 		return sanPhamService.getById(maSanPham);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/quan-ly/quan-ly-san-pham-load-chi-tiet-san-pham-modal", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public List<ChiTietSanPham> getDanhSachChiTietSanPham(HttpServletRequest request) {
+		String maSanPham = request.getParameter("maSanPham");
+		return chiTietSanPhamService.getChiTietSanPhamTheoMa(maSanPham);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/quan-ly/quan-ly-san-pham-load-kich-thuoc-modal", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public List<KichThuoc> getDanhSachKichThuocSanPham(HttpServletRequest request) {
+		String maSanPham = request.getParameter("maSanPham");
+		List<ChiTietSanPham> chiTietSanPham = chiTietSanPhamService.getChiTietSanPhamTheoMa(maSanPham);
+
+		List<KichThuoc> kichThuocs = kichThuocService.getKichThuocTheoLoaiKichThuoc(
+				chiTietSanPham.get(0).getKichThuoc().getLoaiKichThuoc().getMaLoaiKichThuoc());
+		List<String> kichThuocCTs = new ArrayList<String>();
+
+		for (ChiTietSanPham ctsp : chiTietSanPham) {
+			kichThuocCTs.add(ctsp.getKichThuoc().getTenKichThuoc());
+		}
+
+		Iterator<KichThuoc> itr = kichThuocs.iterator();
+
+		while (itr.hasNext()) {
+			if (kichThuocCTs.contains(itr.next().getTenKichThuoc()))
+				itr.remove();
+		}
+		return kichThuocs;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/quan-ly/quan-ly-san-pham-update-so-luong-chi-tiet-san-pham", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public boolean updateSoLuongChiTietSanPham(HttpServletRequest request) {
+		int dong = Integer.parseInt(request.getParameter("rowIn"));
+		String maSanPham = request.getParameter("maSanPham");
+
+		SanPham sanPham = sanPhamService.getById(maSanPham);
+		if (dong < sanPham.getDanhSachChiTietSanPham().size()) {
+			sanPham.getDanhSachChiTietSanPham().get(dong).setSoLuongTon(0);
+			chiTietSanPhamService.update(sanPham.getDanhSachChiTietSanPham().get(dong));
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

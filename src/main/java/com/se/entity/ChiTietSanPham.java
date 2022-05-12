@@ -47,7 +47,14 @@ public class ChiTietSanPham implements Serializable {
 			this.maChiTietSanPham =sanPham.getMaSanPham()+kichThuoc.getMaKichThuoc();
 	}
 	
-
+	public ChiTietSanPham(SanPham sanPham, KichThuoc kichThuoc, int soLuongTon) {
+		super();
+	
+		this.kichThuoc = kichThuoc;
+		this.soLuongTon = soLuongTon;
+		if(sanPham != null && sanPham.getMaSanPham() != null && kichThuoc != null && kichThuoc.getMaKichThuoc() != null)
+			this.maChiTietSanPham =sanPham.getMaSanPham()+kichThuoc.getMaKichThuoc();
+	}
 	public ChiTietSanPham() {
 		super();
 		// TODO Auto-generated constructor stub

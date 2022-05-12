@@ -64,8 +64,6 @@
                         <span>filter</span>
                     </div>
                 </div>
-					
-        
         <hr>
         
             <div class="display__item__filter__title">Danh mục</div>

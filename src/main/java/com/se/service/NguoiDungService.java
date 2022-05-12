@@ -15,4 +15,5 @@ public interface NguoiDungService {
 	public void deletePerson(String theId);
 	public List<NguoiDung> getByName_Status(String hoTen, int trangThai);
 	boolean capNhatNguoiDung(String maNguoiDung, String hoTen, String diaChiChiTiet,int gioiTinh, int trangThai, String matKhau);
+	public String getMaNguoiDungCuoiCung();
 }
