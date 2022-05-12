@@ -117,27 +117,27 @@ public class NguoiDungDaoImpl implements NguoiDungDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public List<NguoiDung> getByName_Status(String hoTen, int trangThai) {
 		// TODO Auto-generated method stub
-		String sql="";		
-		if(trangThai==2) 
-			sql+="select * from NguoiDung where NguoiDung.hoTen like N'%"+hoTen+"%' ";
+		String sql = "";
+		if (trangThai == 2)
+			sql += "select * from NguoiDung where NguoiDung.hoTen like N'%" + hoTen + "%' ";
 		else
-			sql+="select * from NguoiDung where trangThai="+trangThai+"and hoTen like N'%"+hoTen+"%'";
+			sql += "select * from NguoiDung where trangThai=" + trangThai + "and hoTen like N'%" + hoTen + "%'";
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			List<NguoiDung> list = session.createNativeQuery(sql, NguoiDung.class).getResultList();
-			return list;			
+			return list;
 		} catch (Exception e) {
 			// TODO: handle exception
-			
+
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	@Override
 	public boolean capNhatNguoiDung(String maNguoiDung, String hoTen, String diaChiChiTiet, int gioiTinh, int trangThai,
 			String matKhau) {
@@ -145,13 +145,13 @@ public class NguoiDungDaoImpl implements NguoiDungDao {
 		try {
 			NguoiDung nguoiDung = session.find(NguoiDung.class, maNguoiDung);
 			nguoiDung.setHoTen(hoTen);
-			if(trangThai==1)
-			nguoiDung.setTrangThai(true);
+			if (trangThai == 1)
+				nguoiDung.setTrangThai(true);
 			else
 				nguoiDung.setTrangThai(false);
 			nguoiDung.setDiaChiChiTiet(diaChiChiTiet);
 			nguoiDung.setMatKhau(matKhau);
-			if(gioiTinh==1)
+			if (gioiTinh == 1)
 				nguoiDung.setGioiTinh(true);
 			else
 				nguoiDung.setGioiTinh(false);
@@ -162,6 +162,22 @@ public class NguoiDungDaoImpl implements NguoiDungDao {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	public String getMaNguoiDungCuoiCung() {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		String maNguoiDungCuoi;
+		try {
+			String sql = "select top 1 maNguoiDung from NguoiDung order by maNguoiDung desc";
+			maNguoiDungCuoi = (String) session.createNativeQuery(sql).getSingleResult();
+			return maNguoiDungCuoi;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

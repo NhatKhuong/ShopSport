@@ -236,7 +236,6 @@ public class SanPhamDaoImpl implements SanPhamDao {
 						+ "and  lsp.tenLoaiSanPham like N'%" + loaiSanPham + "%' " + "and giaTien>=" + giaTien;
 			}
 		}
-		System.out.println(sql);
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			List<SanPham> list = session.createNativeQuery(sql, SanPham.class).getResultList();
@@ -298,8 +297,6 @@ public class SanPhamDaoImpl implements SanPhamDao {
 			if(trangThai==0)
 				sanPham.setTrangThai(false);
 			session.update(sanPham);
-			
-			System.out.println(sanPham);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -322,8 +319,6 @@ public class SanPhamDaoImpl implements SanPhamDao {
 					+ "order by giaTien desc";
 			
 		double maxPrice = Double.parseDouble(session.createNativeQuery(sql).uniqueResult().toString());
-			
-		System.out.println(maxPrice);
 		return maxPrice;
 			
 		} catch (Exception e) {

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.se.dao.ChiTietSanPhamDao;
 import com.se.entity.ChiTietSanPham;
+import com.se.entity.SanPham;
 
 @Repository
 public class ChiTietSanPhamDaoImpl implements ChiTietSanPhamDao{
@@ -35,7 +36,6 @@ public class ChiTietSanPhamDaoImpl implements ChiTietSanPhamDao{
 	public List<ChiTietSanPham> getDanhSachChiTietSanPhamTheoMa(String ma) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			
 			String sql = "select * from ChiTietSanPham where maSanPham='"+ ma+"' ";
 			List<ChiTietSanPham> listSanPham = session.createNativeQuery(sql, ChiTietSanPham.class).getResultList();
 			return listSanPham;
@@ -45,4 +45,48 @@ public class ChiTietSanPhamDaoImpl implements ChiTietSanPhamDao{
 		}
 		return null;
 	}
+	
+	@Override
+	public void update(ChiTietSanPham chiTietSanPham) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.update(chiTietSanPham);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void add(ChiTietSanPham chiTietSanPham) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.save(chiTietSanPham);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public String getMaChiTietSanPhamCuoiCung() {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		String maNguoiDungCuoi;
+		try {
+			String sql = "select top 1 maChiTietSanPham from ChiTietSanPham order by maChiTietSanPham desc";
+		String	maChiTietSanPhamCuoi = (String) session.createNativeQuery(sql).getSingleResult();
+			return maChiTietSanPhamCuoi;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
 }

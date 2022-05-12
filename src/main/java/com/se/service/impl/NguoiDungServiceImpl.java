@@ -77,5 +77,15 @@ public class NguoiDungServiceImpl implements NguoiDungService{
 		// TODO Auto-generated method stub
 		return nguoiDungDao.capNhatNguoiDung(maNguoiDung, hoTen, diaChiChiTiet, gioiTinh, trangThai, matKhau);
 	}
+
+	@Override
+	@Transactional
+	public String getMaNguoiDungCuoiCung() {
+		// TODO Auto-generated method stub
+		return nguoiDungDao.getMaNguoiDungCuoiCung();
+	}
+	
+	
+	
 	
 }

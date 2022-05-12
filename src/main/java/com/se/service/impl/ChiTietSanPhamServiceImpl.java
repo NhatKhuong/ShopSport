@@ -11,7 +11,7 @@ import com.se.entity.ChiTietSanPham;
 import com.se.service.ChiTietSanPhamService;
 
 @Service
-public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService{
+public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
 	@Autowired
 	private ChiTietSanPhamDao chiTietSanPhamDao;
 
@@ -25,7 +25,26 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService{
 	@Override
 	@Transactional
 	public List<ChiTietSanPham> getChiTietSanPhamTheoMa(String ma) {
-		
+
 		return chiTietSanPhamDao.getDanhSachChiTietSanPhamTheoMa(ma);
+	}
+
+	@Override
+	@Transactional
+	public void update(ChiTietSanPham chiTietSanPham) {
+		chiTietSanPhamDao.update(chiTietSanPham);
+	}
+
+	@Override
+	@Transactional
+	public void add(ChiTietSanPham chiTietSanPham) {
+		chiTietSanPhamDao.add(chiTietSanPham);
+	}
+
+	@Override
+	@Transactional
+	public String getMaChiTietSanPhamCuoiCung() {
+		// TODO Auto-generated method stub
+		return chiTietSanPhamDao.getMaChiTietSanPhamCuoiCung();
 	}
 }

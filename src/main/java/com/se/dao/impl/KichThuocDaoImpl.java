@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.se.dao.KichThuocDao;
 import com.se.entity.KichThuoc;
+import com.se.entity.SanPham;
 
 @Repository
 public class KichThuocDaoImpl implements KichThuocDao{
@@ -45,5 +46,23 @@ public class KichThuocDaoImpl implements KichThuocDao{
 		}
 		return null;
 	}
+	@Override
+	public List<KichThuoc> getKichThuocTheoLoaiKichThuoc(String maLoaiKichThuoc) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			
+			String sql = "select * from KichThuoc where maLoaiKichThuoc ='"+maLoaiKichThuoc+"'";
+			List<KichThuoc>  dskichThuoc = session.createNativeQuery(sql, KichThuoc.class).getResultList();
+			return dskichThuoc;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	
 
 }
