@@ -210,12 +210,14 @@ public class QuanLySanPhamController {
 			int soLuongitem = Integer.parseInt(ab[1]);
 
 				ChiTietSanPham chiTietSanPham = new ChiTietSanPham(sanPhamMoi, kichThuoc, giaTien, chietKhau, soLuongitem);
+				System.out.println(chiTietSanPham.toString());
 if(chiTietSanPhamService.getChiTietTheoMa(chiTietSanPham.getMaChiTietSanPham())== null) {
 					chiTietSanPhamService.add(chiTietSanPham);
 				}
 				else {
 					ChiTietSanPham chiTietSanPhamItem = chiTietSanPhamService.getChiTietTheoMa(chiTietSanPham.getMaChiTietSanPham());
 					chiTietSanPhamItem.setSoLuongTon(chiTietSanPhamItem.getSoLuongTon()+soLuongitem);
+					System.out.println(chiTietSanPhamItem.toString());
 					chiTietSanPhamService.updateChiTietSanPham(chiTietSanPhamItem);			
 				}
 		}

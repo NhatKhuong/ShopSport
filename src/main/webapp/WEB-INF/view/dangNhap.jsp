@@ -44,10 +44,10 @@
 
 
                     <div class="form-check">
-                        <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input">
-                            <small>Remember Me</small>
-                        </label>
+                       
+                         
+                            <a href="${pageContext.request.contextPath}/quen-mat-khau">Quên mật khẩu?</a>
+                        
                         <button type="submit" class="btn btn-login float-right">Submit</button>
                     </div>
 

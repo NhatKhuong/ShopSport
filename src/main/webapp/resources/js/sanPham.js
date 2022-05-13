@@ -98,6 +98,14 @@ function addLoaiSanPham() {
 		},
 	});
 }
+function notifySuccess(mesage){
+	Swal.fire({
+			title: mesage,
+			text: "Cảm ơn bạn",
+			icon: "success",
+			confirmButtonText: "Đồng ý",
+		});
+}
 
 async function addSanPham() {
 	var maSanPham = document.getElementById("maSanPham").value;
@@ -158,13 +166,19 @@ async function addSanPham() {
 		method: "POST",
 		body: formData,
 	};
+	
 	const response = await fetch(
 		`${contextPath}/quan-ly/them-san-pham-moi`,
 		options
 	);
-	console.log(await response.json());
-/*	location.reload();*/
+	
+	alert("Thêm thành công")
+	location.reload();
 }
+
+
+
+
 function addDSChiTietSP() {
 	var kichThuoc = document.getElementById("cbKichThuoc").value;
 	var soLuong = document.getElementById("soLuong").value;

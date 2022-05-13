@@ -40,7 +40,7 @@ public class ChiTietSanPham implements Serializable {
 	public ChiTietSanPham(SanPham sanPham, KichThuoc kichThuoc, Double giaTien,
 			float chietKhau, int soLuongTon) {
 		super();
-	
+		this.sanPham = sanPham;
 		this.kichThuoc = kichThuoc;
 		this.soLuongTon = soLuongTon;
 		if(sanPham != null && sanPham.getMaSanPham() != null && kichThuoc != null && kichThuoc.getMaKichThuoc() != null)
@@ -54,6 +54,7 @@ public class ChiTietSanPham implements Serializable {
 		this.soLuongTon = soLuongTon;
 		if(sanPham != null && sanPham.getMaSanPham() != null && kichThuoc != null && kichThuoc.getMaKichThuoc() != null)
 			this.maChiTietSanPham =sanPham.getMaSanPham()+kichThuoc.getMaKichThuoc();
+			this.sanPham = sanPham;
 	}
 	public ChiTietSanPham() {
 		super();

@@ -219,7 +219,7 @@ async function loadDanhSachHoaDon(maTrangThai, maKhachHang, tenKhachHang) {
         <td class="maHoaDon">${e.maDonHang}</td>
         <td>${e.nguoiDung.maNguoiDung}</td>
         <td>${e.nguoiDung.hoTen}</td>
-        <td>${e.ngayTao}</td>
+        <td>${new Date(e.ngayTao).toGMTString()}</td>
         <td>${formatCurrency(tongTien)}</td>
         ${custom(e.trangThaiDonHang.maTrangThaiDonHang)}
         </tr>
