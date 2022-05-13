@@ -235,7 +235,7 @@ function getDanhSachSanPhamTheoTen(
 							v.loaiSanPham.tenLoaiSanPham +
 							"</td>" +
 							trangThai +
-							"<td><button class='btn btn-primary btn-sm trash' type='button' title='Xóa'><i class='fa fa-refresh' aria-hidden='true'></i></button>" +
+							"<td class='colChucNang'><button class='btn btn-primary btn-sm trash' type='button' title='Xóa'><i class='fa fa-refresh' aria-hidden='true'></i></button>" +
 							"<button class='btn btn-primary btn-sm edit' type='button'" +
 							"title='Sửa' id='show-emp' data-toggle='modal' data-target='#ModalUP'>" +
 							"<i class='fas fa-edit'></i> </button></td></tr>"
@@ -456,6 +456,15 @@ function loadModal(r) {
 	maSanPhamClickInEdit = maSanPham;
 }
 
+function regexSoLuongCTSP(i) {
+	var listSL = document.getElementsByClassName("soLuong");
+		for (var i = 0; i < listSL.length; i++) {
+				if(listSL[i].value=='')
+				return 'false';
+			};
+		return 'true';
+}
+
 function updateRow(i) {
 	if (trangThaiTrang != 2) {
 		if (trangThaiTrang == jQuery("#modalTrangThaiSP").val()) {
@@ -499,11 +508,12 @@ function updateSanPhamListener() {
 	});
 }
 capNhatSanPhamListener();
- function capNhatSanPhamListener() {
+function capNhatSanPhamListener() {
 	jQuery("#btnLuu").click(async function() {
-		var kiemTra= await kiemTraSo(jQuery("#modalGiaSP").val());
-		console.log("Kiem tra số: "+kiemTra);
-		if (kiemTra ==='true') {
+		var kiemTra = await kiemTraSo(jQuery("#modalGiaSP").val());
+		var regexNulTenSP = jQuery("#modalTenSP").val() == '' ? 'false' : 'true';
+		var regexGiaSP = jQuery("#modalGiaSP").val() == '' ? 'false' : 'true';
+		if (regexNulTenSP == 'true'&&regexGiaSP=='true'&&regexSoLuongCTSP()=='true') {
 			var listSoLuong = document.getElementsByClassName("soLuong");
 			var listKichThuoc = document.getElementsByClassName("selectKichThuoc");
 			var soLuong = [];
@@ -538,7 +548,7 @@ capNhatSanPhamListener();
 		} else {
 			Swal.fire({
 				title: "Cập nhật thất bại!",
-				text: "Giá sản phẩm phải là số",
+				text: "Thông tin sản phẩm không được để trống",
 				icon: "error",
 				confirmButtonText: "Đồng ý",
 			});
@@ -557,7 +567,7 @@ jQuery("#themChiTietSanPham").click(function() {
 				"	<td style='border: 0px solid black;'><div class='form-group col-12'>" +
 				"<label class='control-label '>Kích thước:</label> <select class='dashboard-filter form-control selectKichThuoc' id='selectKichThuoc' onchange='eventChangeChonSizeKichThuoc()'></select></div></td>" +
 				"	<td style='border: 0px solid black;'><div class='form-group col-12'>" +
-				"<label class='control-label '>Số lượng:</label> <input class='form-control soLuong' id='' type='number' step='1' min='0' max='10000' required></div></td> " +
+				"<label class='control-label '>Số lượng:</label> <input class='form-control soLuong' id='' type='number' step='1' min='0' max='10000' required onkeypress='return isNumberKey(event);'></div></td> " +
 				"<td style='border: 0px solid black;'><button type='button' class='close deleteRowCT' onclick='onClickDeleteRowCT(this);'><h2 aria-hidden='true' class='text-danger'>&times;</h2></button></td></tr >";
 			jQuery("#chiTietSanPham").append(temp);
 			loadKichThuocSanPham(document.getElementById("tableListSanPham").rows[rowIndex].cells[1].innerHTML);
@@ -569,7 +579,18 @@ jQuery("#themChiTietSanPham").click(function() {
 	}
 });
 
+function isNumberKey(evt) {
+	var charCode = (evt.which) ? evt.which : evt.keyCode
+	return !(charCode > 31 && (charCode < 48 || charCode > 57));
+}
+
 function eventChangeChonSizeKichThuoc(r) {
+	if (this.value == '0')
+		trangThaiChonSize = 0;
+	else
+		trangThaiChonSize = 1;
+}
+function kiemTraRegex() {
 	if (this.value == '0')
 		trangThaiChonSize = 0;
 	else
@@ -660,7 +681,7 @@ function updateSoLuongChiTietSanPham(rowIn, maSanPham) {
 async function kiemTraSo(so) {
 	var a = await fetch(
 		contextPath +
-		 `/quan-ly/quan-ly-san-pham-kiem-tra-so?`+
+		`/quan-ly/quan-ly-san-pham-kiem-tra-so?` +
 		new URLSearchParams({
 			so: so,
 		})
@@ -686,7 +707,7 @@ function loadChiTietSanPhamModal(maSanPham) {
 					"	<td style='border: 0px solid black;'><div class='form-group col-12'>" +
 					"<label class='control-label '>Kích thước:</label> <input class='form-control ' disabled id='' type='text' required value='" + v.kichThuoc.tenKichThuoc + "' ></div></td>" +
 					"	<td style='border: 0px solid black;'><div class='form-group col-12'>" +
-					"<label class='control-label '>Số lượng:</label> <input class='form-control soLuong'  type='number' step='1' min='0' max='10000' required value='" + v.soLuongTon + "'></div></td> </tr >";
+					"<label class='control-label '>Số lượng:</label> <input class='form-control soLuong'  type='number' step='1' min='0' max='10000' onkeypress='return isNumberKey(event);' required value='" + v.soLuongTon + "' ></div></td> </tr >";
 				//+"<td style='border: 0px solid black;'><button type='button' class='close deleteRowCT' onclick='onClickDeleteRowCT(this);'><h2 aria-hidden='true' class='text-danger'>&times;</h2></button></td></tr >";
 
 			});
@@ -794,7 +815,7 @@ function loadInputUpload(imageOldUrl) {
 		// deleteUrl: imagesOld.deleteUrl,
 		maxFilePreviewSize: 10240,
 		maxFileSize: 10 * 1024 * 1024,
-		maxFilesNum: 10-imagesOld.initialPreview.length,
+		maxFilesNum: 10 - imagesOld.initialPreview.length,
 		fileActionSettings: {
 			showUpload: false,
 		},

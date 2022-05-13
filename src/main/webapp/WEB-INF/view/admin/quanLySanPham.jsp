@@ -163,13 +163,13 @@
 				<div class="col-md-4">
 					<p>
 						Giá tiền từ: <input type="number" class="form-control" id="giaTien"
-							step="10000" min="0" max="1000000000" value="0">
+							step="10000" min="0" max="1000000000" value="0" onkeypress="return isNumberKey(event);">
 					</p>
 				</div>
 				<div class="col-md-4">
 					<p>
 						Giá tiền đến: <input type="number" class="form-control" id="giaTienDen"
-							step="10000" min="0" max="1000000000" value="0">
+							step="10000" min="0" max="1000000000" value="0" onkeypress="return isNumberKey(event);">
 					</p>
 				</div>
 				<div class="col-4">
@@ -214,12 +214,12 @@
 									<tr>
 										<th width="10"><input type="checkbox" id="all"></th>
 										<th width='120'>Mã sản phẩm</th>
-										<th width='550'>Tên sản phẩm</th>
+										<th width='540'>Tên sản phẩm</th>
 										<th width='70'>Số lượng</th>
 										<th width='120'>Giá tiền</th>
 										<th width='120'>Loại sản phẩm</th>
 										<th width='120'>Trạng Thái</th>
-										<th width='80'>Chức năng</th>
+										<th width='90'>Chức năng</th>
 									</tr>
 								</thead>
 								<tbody id="danhSachSanPham">
@@ -329,7 +329,7 @@
 								<div class="form-group col-6">
 									<label class="control-label">Giá bán</label> <input
 										class="form-control" id="modalGiaSP" type="text"
-										value="5.600.000">
+										value="5.600.000" onkeypress="return isNumberKey(event);">
 								</div>
 								<div class='row'>
 									<label class="control-label col-8">Thông tin chi tiết
@@ -428,6 +428,15 @@ MODAL
 			src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/js/locales/LANG.js"></script>
 
 		<script src="<c:url value='/resources/js/admin/quanLySanPham.js'/>"></script>
+		<script type="text/javascript">
+				function isNumberKey(evt) {
+					var charCode = (evt.which) ? evt.which : evt.keyCode
+					return !(charCode > 31 && (charCode < 48 || charCode > 57));
+				}
+			</script>
+
+	<script>
+		
 		<script type="text/javascript">
 			$('#sampleTable').DataTable();
 			//Thời Gian
