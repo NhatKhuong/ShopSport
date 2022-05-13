@@ -246,7 +246,7 @@
 										<th>Mã đơn hàng</th>
 										<th>Khách hàng</th>
 										<th>Ngày tạo đơn hàng</th>
-										<th>Số lượng mua</th>
+									
 										<th>Tổng tiền</th>
 									</tr>
 								</thead>
@@ -256,16 +256,23 @@
 											<td>${item[0]}</td>
 											<td>${item[1]}</td>
 											<td>${item[2]}</td>
-											<td>${item[3]}</td>
+											
 											<td>${Math.round(item[4])}đ</td>
 										</tr>
 									</c:forEach>
-									<!-- <tr>
-										<th colspan="4">Tổng cộng:</th>
-										<td>104.890.000 đ</td>
-									</tr> -->
+
 								</tbody>
 							</table>
+							<div class="row " id="soTrangtable">
+								<p style="text-align: center;" class="col-md-12">
+									<c:forEach var="item" items="${listSoTrang}">
+										&emsp;
+										<input type="button" id="btnLocPage"
+											onclick="LocPage(${item})" class="btn btn-primary btn-sm"
+											value=${item}>
+									</c:forEach>
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -289,8 +296,8 @@
 										<th>Loại sản phẩm</th>
 									</tr>
 								</thead>
-								<tbody>
-									<c:forEach var="item" items="${listsanPhamHetHang}">
+								<tbody id="sanPhamHetHangTable">
+									<%-- <c:forEach var="item" items="${listsanPhamHetHang}">
 										<tr>
 											<td>${item[0]}</td>
 											<td>${item[1]}</td>
@@ -300,18 +307,45 @@
 											<td>${item[4]}</td>
 											<td>${item[5]}</td>
 										</tr>
-									</c:forEach>
-								</tbody>
+									</c:forEach> --%>
+								</tbody >
 							</table>
+							<div class="row " id="soTrangtableSP">
+								<p style="text-align: center;" class="col-md-12">
+									<c:forEach var="item" items="${listSoTrangSPHH}">
+										&emsp;
+										<input type="button" id="btnLocPageSP"
+											onclick="LocPageSP(${item})" class="btn btn-primary btn-sm"
+											value=${item}>
+									</c:forEach>
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row">
+				<div class="col-md-3 ">
+					<label for="exampleSelect1" class="control-label1">Năm
+						thống kê</label> <select class="form-control" id="cbNamThongKe">
+						<c:forEach var="item" items="${listNamThongKe}">
+							<option>${item}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="col-md-3 ">
+					<br> <br> <input type="button" id="btnThongKeTheoNam"
+						onclick="ThongKeTheoNam()" class="btn btn-primary btn-sm"
+						value="Thống kê">
+				</div>
+			</div>
+			<br>
+			<div class="row">
 				<div class="col-md-12">
 					<div class="tile">
 						<div>
-							<h3 class="tile-title" id="hetHang">TỔNG DOANH THU THEO THÁNG CỦA NĂM</h3>
+							<h3 class="tile-title" id="hetHang">TỔNG DOANH THU THEO
+								THÁNG CỦA NĂM</h3>
 						</div>
 						<div class="tile-body">
 							<table class="table table-hover table-bordered" id="sampleTable">
@@ -323,10 +357,11 @@
 									</tr>
 								</thead>
 								<tbody id="listDoanhThuThang">
+
 									<c:forEach var="item" items="${listThongKe}">
 										<tr>
 											<td>${item[0]}</td>
-											<td>${Math.round(item[1])}</td>
+											<td>${Math.round(item[1])}đ</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -335,10 +370,13 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="row">
+
 				<div class="col-md-6">
 					<div class="tile">
-						<h3 class="tile-title">DỮ LIỆU HÀNG THÁNG</h3>
+						<h3 class="tile-title">DỮ LIỆU DOANH THU THEO NĂM BIỂU ĐỒ
+							ĐƯỜNG</h3>
 						<div class="embed-responsive embed-responsive-16by9">
 							<canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
 						</div>
@@ -346,7 +384,7 @@
 				</div>
 				<div class="col-md-6">
 					<div class="tile">
-						<h3 class="tile-title">THỐNG KÊ DOANH SỐ</h3>
+						<h3 class="tile-title">DỮ LIỆU DOANH THU THEO NĂM BIỂU CỘT</h3>
 						<div class="embed-responsive embed-responsive-16by9">
 							<canvas class="embed-responsive-item" id="barChartDemo"></canvas>
 						</div>
@@ -373,84 +411,83 @@
 		src="${pageContext.request.contextPath}/resources/js/admin/chart.js"></script>
 	<!--===============================================================================================-->
 	<script type="text/javascript">
-		
-		var doanhthuthang1,doanhthuthang2,doanhthuthang3,doanhthuthang4,doanhthuthang5,doanhthuthang6,doanhthuthang7,doanhthuthang8,
-			doanhthuthang9,doanhthuthang10,doanhthuthang11,doanhthuthang12;
-		let e = document.getElementById("listDoanhThuThang").getElementsByTagName("tr");
+		var doanhthuthang1, doanhthuthang2, doanhthuthang3, doanhthuthang4, doanhthuthang5, doanhthuthang6, doanhthuthang7, doanhthuthang8, doanhthuthang9, doanhthuthang10, doanhthuthang11, doanhthuthang12;
+		let e = document.getElementById("listDoanhThuThang")
+				.getElementsByTagName("tr");
 		for (i = 0; i < e.length; i++) {
-		    var value = e[i].getElementsByTagName("td")[0].innerText
-		    if(value === '1'){
-		    	doanhthuthang1 = e[i].getElementsByTagName("td")[1].innerText
-		    }
-		    if(value === '2'){
-		    	doanhthuthang2 = e[i].getElementsByTagName("td")[1].innerText
-		    }
-		    if(value === '3'){
-		    	doanhthuthang3 = e[i].getElementsByTagName("td")[1].innerText
-		    }
-		    if(value === '4'){
-		    	doanhthuthang4 = e[i].getElementsByTagName("td")[1].innerText
-		    }
-		    if(value === '5'){
-		    	doanhthuthang5 = e[i].getElementsByTagName("td")[1].innerText
-		    }
-		    if(value === '6'){
-		    	doanhthuthang6 = e[i].getElementsByTagName("td")[1].innerText
-		    }
-		    if(value === '7'){
-		    	doanhthuthang7 = e[i].getElementsByTagName("td")[1].innerText
-		    }
-		    if(value === '8'){
-		    	doanhthuthang8 = e[i].getElementsByTagName("td")[1].innerText
-		    }
-		    if(value === '9'){
-		    	doanhthuthang9 = e[i].getElementsByTagName("td")[1].innerText
-		    }
-		    if(value === '10'){
-		    	doanhthuthang10 = e[i].getElementsByTagName("td")[1].innerText
-		    }
-		    if(value === '11'){
-		    	doanhthuthang11 = e[i].getElementsByTagName("td")[1].innerText
-		    }
-		    if(value === '12'){
-		    	doanhthuthang12 = e[i].getElementsByTagName("td")[1].innerText
-		    }
-		    if(doanhthuthang1 == null){
-	    		doanhthuthang1 = '0'
-	    	}
-		    if(doanhthuthang2 == null){
-	    		doanhthuthang2 = '0'
-	    	}
-		    if(doanhthuthang3 == null){
-	    		doanhthuthang3 = '0'
-	    	}
-		    if(doanhthuthang4 == null){
-	    		doanhthuthang4 = '0'
-	    	}
-		    if(doanhthuthang5 == null){
-	    		doanhthuthang5 = '0'
-	    	}
-		    if(doanhthuthang6 == null){
-	    		doanhthuthang6 = '0'
-	    	}
-		    if(doanhthuthang7 == null){
-	    		doanhthuthang7 = '0'
-	    	}
-		    if(doanhthuthang8 == null){
-	    		doanhthuthang8 = '0'
-	    	}
-		    if(doanhthuthang9 == null){
-	    		doanhthuthang9 = '0'
-	    	}
-		    if(doanhthuthang10 == null){
-	    		doanhthuthang10 = '0'
-	    	}
-		    if(doanhthuthang11 == null){
-	    		doanhthuthang11 = '0'
-	    	}
-		    if(doanhthuthang12 == null){
-	    		doanhthuthang12 = '0'
-	    	}
+			var value = e[i].getElementsByTagName("td")[0].innerText
+			if (value === '1') {
+				doanhthuthang1 = e[i].getElementsByTagName("td")[1].innerText
+			}
+			if (value === '2') {
+				doanhthuthang2 = e[i].getElementsByTagName("td")[1].innerText
+			}
+			if (value === '3') {
+				doanhthuthang3 = e[i].getElementsByTagName("td")[1].innerText
+			}
+			if (value === '4') {
+				doanhthuthang4 = e[i].getElementsByTagName("td")[1].innerText
+			}
+			if (value === '5') {
+				doanhthuthang5 = e[i].getElementsByTagName("td")[1].innerText
+			}
+			if (value === '6') {
+				doanhthuthang6 = e[i].getElementsByTagName("td")[1].innerText
+			}
+			if (value === '7') {
+				doanhthuthang7 = e[i].getElementsByTagName("td")[1].innerText
+			}
+			if (value === '8') {
+				doanhthuthang8 = e[i].getElementsByTagName("td")[1].innerText
+			}
+			if (value === '9') {
+				doanhthuthang9 = e[i].getElementsByTagName("td")[1].innerText
+			}
+			if (value === '10') {
+				doanhthuthang10 = e[i].getElementsByTagName("td")[1].innerText
+			}
+			if (value === '11') {
+				doanhthuthang11 = e[i].getElementsByTagName("td")[1].innerText
+			}
+			if (value === '12') {
+				doanhthuthang12 = e[i].getElementsByTagName("td")[1].innerText
+			}
+			if (doanhthuthang1 == null) {
+				doanhthuthang1 = '0'
+			}
+			if (doanhthuthang2 == null) {
+				doanhthuthang2 = '0'
+			}
+			if (doanhthuthang3 == null) {
+				doanhthuthang3 = '0'
+			}
+			if (doanhthuthang4 == null) {
+				doanhthuthang4 = '0'
+			}
+			if (doanhthuthang5 == null) {
+				doanhthuthang5 = '0'
+			}
+			if (doanhthuthang6 == null) {
+				doanhthuthang6 = '0'
+			}
+			if (doanhthuthang7 == null) {
+				doanhthuthang7 = '0'
+			}
+			if (doanhthuthang8 == null) {
+				doanhthuthang8 = '0'
+			}
+			if (doanhthuthang9 == null) {
+				doanhthuthang9 = '0'
+			}
+			if (doanhthuthang10 == null) {
+				doanhthuthang10 = '0'
+			}
+			if (doanhthuthang11 == null) {
+				doanhthuthang11 = '0'
+			}
+			if (doanhthuthang12 == null) {
+				doanhthuthang12 = '0'
+			}
 		}
 		var data = {
 			labels : [ "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5",
@@ -464,8 +501,13 @@
 				pointStrokeColor : "rgb(255, 212, 59)",
 				pointHighlightFill : "rgb(255, 212, 59)",
 				pointHighlightStroke : "rgb(255, 212, 59)",
-				data : [ parseInt(doanhthuthang1),parseInt(doanhthuthang2),parseInt(doanhthuthang3), parseInt(doanhthuthang4), parseInt(doanhthuthang5),parseInt(doanhthuthang6),parseInt(doanhthuthang7),parseInt(doanhthuthang8),parseInt(doanhthuthang9),parseInt(doanhthuthang10),parseInt(doanhthuthang11),parseInt(doanhthuthang12)]
-			}]
+				data : [ parseInt(doanhthuthang1), parseInt(doanhthuthang2),
+						parseInt(doanhthuthang3), parseInt(doanhthuthang4),
+						parseInt(doanhthuthang5), parseInt(doanhthuthang6),
+						parseInt(doanhthuthang7), parseInt(doanhthuthang8),
+						parseInt(doanhthuthang9), parseInt(doanhthuthang10),
+						parseInt(doanhthuthang11), parseInt(doanhthuthang12) ]
+			} ]
 		};
 		var ctxl = $("#lineChartDemo").get(0).getContext("2d");
 		var lineChart = new Chart(ctxl).Line(data);

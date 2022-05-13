@@ -48,8 +48,8 @@
                   </div>
                 </div> -->
                 <div class="sidebar_section">
-                    <div class="sidebar_title">
-                        <h5>Filter by Price</h5>
+                    <div class="sidebar_title mt-4">
+                        <h5 style="font-weight: bold;">Lọc theo giá</h5>
                     </div>
                     <p>
                         <input
@@ -61,7 +61,7 @@
                     </p>
                     <div id="slider-range"></div>
                     <div onclick="searchbyPriceFilter()" class="filter_button">
-                        <span>filter</span>
+                        <span>Lọc</span>
                     </div>
                 </div>
         <hr>
@@ -127,7 +127,7 @@
             <hr>
 
             <div class="products_featured">
-                <div class="products_featured__title">Featured Products</div>
+                <div class="products_featured__title">Sản phẩm bán chạy</div>
                 <ul class="products_featured_nav" id="products_featured_nav_container">
                     <!-- <li class="products_featured_item">
                         <div class="rank"># 1</div>
@@ -197,7 +197,7 @@
 											</select>
 										</li>
 									</ul>
-									<div class="pages d-flex flex-row align-items-center pagination">
+									<!-- <div class="pages d-flex flex-row align-items-center pagination">
 										<div id="next_page" class="page_next page_next_left"><a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
 										<div class="page_current">
 											<span>1</span>
@@ -210,7 +210,7 @@
 	
 										<div class="page_total"><span>of</span> 3</div>
 										<div id="next_page" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
-									</div>
+									</div> -->
 
 								</div>
             </div>

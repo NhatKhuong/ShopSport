@@ -51,12 +51,17 @@ public class GioHangController {
 		System.out.println("lay so luong");
 		
 		NguoiDung nguoiDung = nguoiDungService.getByEmail(User.getEmailNguoiDung());
-		if(nguoiDung.equals(null)) {
+		System.out.println(nguoiDung);
+		if(nguoiDung == null) {
+			
 			return "{\"soLuong\": \"" + 0 + "\"}";
+			
+		} else {
+			
+			List<SanPhamTrongGioHang> list = sanPhamTrongGioHangService.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
+			System.out.println("so Luong:"+list.size());
+			return "{\"soLuong\": \"" + list.size() + "\"}";
 		}
-		List<SanPhamTrongGioHang> list = sanPhamTrongGioHangService.getDSSanPhamTrongGioHangTheoMaNguoiDung(nguoiDung.getMaNguoiDung());
-		System.out.println("so Luong:"+list.size());
-		return "{\"soLuong\": \"" + list.size() + "\"}";
 	}
 	
 	@RequestMapping(value = "/gio-hang/them", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")

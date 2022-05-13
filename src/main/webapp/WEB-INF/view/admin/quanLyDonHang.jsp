@@ -159,7 +159,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                             nhiều
                                         </a>
                                     </div>
-                                    <div class="col-sm-2">
+                                    <!-- <div class="col-sm-2">
                                         <a
                                             class="btn btn-delete btn-sm pdf-file"
                                             type="button"
@@ -178,7 +178,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                             ><i class="fas fa-trash-alt"></i>
                                             Xóa tất cả
                                         </a>
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <table

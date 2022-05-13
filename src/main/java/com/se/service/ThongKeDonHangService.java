@@ -15,7 +15,9 @@ public interface ThongKeDonHangService {
 	public int CountDonHangHuy(String ngayBatDau,String ngayKetThuc);
 	public int CountNguoiDungBiChan();
 	public List<SanPham> listSanPhamBanChay(String ngayBatDau, String ngayKetThuc);
-	public List<?> listHoaDonBan(String ngayBatDau,String ngayKetThuc);
-	public List<?> listSanPhamHetHang();
-	public List<?> listThongKe() ;
+	public List<?> listSanPhamHetHang(int page, int instance);
+	public List<?> listThongKe(String nam) ;
+	public List<?> listHoaDonBan(String ngayBatDau, String ngayKetThuc,int page, int instance);
+	//thêm
+	public List<String> getNamThongKe();
 }

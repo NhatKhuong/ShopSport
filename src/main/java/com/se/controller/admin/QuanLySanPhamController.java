@@ -437,5 +437,45 @@ if(chiTietSanPhamService.getChiTietTheoMa(chiTietSanPham.getMaChiTietSanPham())=
 		}
 		return listTenKichThuoc;
 	}
+	
+	
+	@JsonIgnore
+	@JsonManagedReference
+	@JsonBackReference
+	@ResponseBody
+	@RequestMapping(value = "/quan-ly/load-lai-ma-loai-san-pham", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public String loadLaiMaLoaiSP(HttpServletRequest request) {
+		String maLoaiSPCuoi = loaiSanPhamService.getMaLoaiSanPhamCuoiCung().substring(3);
+		int soMaLoaiSPCuoi = Integer.parseInt(maLoaiSPCuoi);
+		soMaLoaiSPCuoi++;
+		String maLoaiSP = String.format("LSP%05d", soMaLoaiSPCuoi);
+		System.out.println(maLoaiSP);
+		return "{\"maLoaiSP\": \"" + maLoaiSP + "\"}";
+	}
+	@JsonIgnore
+	@JsonManagedReference
+	@JsonBackReference
+	@ResponseBody
+	@RequestMapping(value = "/quan-ly/load-lai-ma-nhan-hieu", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public String loadLaiMaNhanHieu(HttpServletRequest request) {
+		String maNhanHieuCuoi = nhanHieuService.getMaCuoiNhanHieu().substring(2);
+		int soMaNhanHieuCuoi = Integer.parseInt(maNhanHieuCuoi);
+		soMaNhanHieuCuoi++;
+		String maNhanHieu = String.format("NH%05d", soMaNhanHieuCuoi);
+		return "{\"maNhanHieu\": \"" + maNhanHieu + "\"}";
+	}
+	@JsonIgnore
+	@JsonManagedReference
+	@JsonBackReference
+	@ResponseBody
+	@RequestMapping(value = "/quan-ly/load-lai-ma-mon-the-thao", method = RequestMethod.GET, produces = "application/vnd.baeldung.api.v1+json")
+	public String loadLaiMaMonTheThao(HttpServletRequest request) {
+		String maMTTCuoi = monTheThaoService.getMaMTTCuoi().substring(3);
+		int soMaMTTCuoi = Integer.parseInt(maMTTCuoi);
+		soMaMTTCuoi++;
+		String maMTT = String.format("MTT%05d", soMaMTTCuoi);
+		return "{\"maMTT\": \"" + maMTT + "\"}";
+	}
+
 
 }

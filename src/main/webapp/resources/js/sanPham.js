@@ -23,8 +23,10 @@ function addTaoMonTheThao() {
 					"\n\t\t\t\t\t\t\t\t\t<option>" +
 					tenMonTheThao +
 					"</option>\n\t\t\t\t\t\t\t\t";
-				$("#addMonTheThao").modal("hide");
+				$("#Closemodal4").click();
 				alert("Thêm thành công");
+				
+				loadLaiMaMonTheThao();
 			}
 
 			console.log(e);
@@ -58,8 +60,9 @@ function addNhanHieu() {
 					"\n\t\t\t\t\t\t\t\t\t<option>" +
 					tenNhanHieu +
 					"</option>\n\t\t\t\t\t\t\t\t";
-				$("#addNhanHieu").modal("hide");
+				$("#Closemodal3").click();
 				alert("Thêm thành công");
+				loadLaiMaNhanHieu();
 			}
 			console.log(e);
 		},
@@ -91,8 +94,9 @@ function addLoaiSanPham() {
 					"\n\t\t\t\t\t\t\t\t\t<option>" +
 					tenLoaiSanPham +
 					"</option>\n\t\t\t\t\t\t\t\t";
-				$("#addLoaiSanPham").modal("hide");
+				$("#Closemodal2").click();
 				alert("Thêm thành công");
+				loadLaiMaLoaiSP();
 			}
 			console.log(e);
 		},
@@ -189,7 +193,7 @@ function addDSChiTietSP() {
 		return;
 	}
 	table.innerHTML += "</th>\n\t\t\t\t\t\t\t\t\t\t\t<th style='text-align: center;' class = 'kichThuoc'>" + kichThuoc + "</th>\n\t\t\t\t\t\t\t\t\t\t\t<th style='text-align: center;' class = 'soLuong'>" + soLuong + "</th>\n\t\t\t\t\t\t\t\t\t\t\t<th style='text-align: center;'><a href='#' onclick='XoaItem(this)'>Xóa</a></th>\n\t\t\t\t\t\t\t\t\t\t\t</tr>";
-	$("#Closemodal").click();
+	$("#Closemodal1").click();
 	document.getElementById("cbKichThuoc").selectedIndex = 0;
 	document.getElementById("soLuong").value = 1
 
@@ -235,4 +239,34 @@ async function loadKichThuoc() {
 
 		},
 	});
+}
+
+async function loadLaiMaLoaiSP() {
+	 var a = await fetch(
+        contextPath +
+            `/quan-ly/load-lai-ma-loai-san-pham`
+    );
+    var result = await a.json();
+	document.getElementById("maLoaiSanPham").value = result.maLoaiSP
+	document.getElementById("tenLoaiSanPham").value = '';
+}
+
+async function loadLaiMaNhanHieu() {
+	 var a = await fetch(
+        contextPath +
+            `/quan-ly/load-lai-ma-nhan-hieu`
+    );
+    var result = await a.json();
+	document.getElementById("maNhanHieu").value = result.maNhanHieu
+	document.getElementById("tenNhanHieu").value = '';
+}
+
+async function loadLaiMaMonTheThao() {
+	 var a = await fetch(
+        contextPath +
+            `/quan-ly/load-lai-ma-mon-the-thao`
+    );
+    var result = await a.json();
+	document.getElementById("maMonTheThao").value = result.maMTT
+	document.getElementById("tenMonTheThao").value = '';
 }

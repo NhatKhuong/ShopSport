@@ -37,7 +37,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="top_nav_left">free shipping on all u.s orders
-						over $50</div>
+						</div>
 				</div>
 				<div class="col-md-6 text-right">
 					<div class="top_nav_right">
@@ -45,7 +45,7 @@
 
 							<!-- Currency / Language / My Account -->
 
-							<li class="currency"><a href="#"> usd <i
+							<!-- <li class="currency"><a href="#"> usd <i
 									class="fa fa-angle-down"></i>
 							</a>
 								<ul class="currency_selection">
@@ -62,7 +62,7 @@
 									<li><a href="#">Italian</a></li>
 									<li><a href="#">German</a></li>
 									<li><a href="#">Spanish</a></li>
-								</ul></li>
+								</ul></li> -->
 							<li class="account"><a href="#"> My Account <i
 									class="fa fa-angle-down"></i>
 							</a>

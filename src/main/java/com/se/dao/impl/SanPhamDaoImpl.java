@@ -352,7 +352,13 @@ public class SanPhamDaoImpl implements SanPhamDao {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 
-			String sql = "select top 10 * from SanPham";
+//			String sql = "select top 10 * from SanPham";
+			String sql = "SELECT TOP 10       SanPham.*\r\n" + "FROM            SanPham INNER JOIN\r\n"
+					+ "                         ChiTietSanPham ON SanPham.maSanPham = ChiTietSanPham.maSanPham INNER JOIN\r\n"
+					+ "                         ChiTietDonHang ON ChiTietSanPham.maChiTietSanPham = ChiTietDonHang.maChiTietSanPham INNER JOIN\r\n"
+					+ "                         DonHang ON ChiTietDonHang.maDonHang = DonHang.maDonHang\r\n"
+					+ "				GROUP BY SanPham.maSanPham,SanPham.chietKhau,SanPham.giaTien,SanPham.mieuTa,SanPham.tenSanPham,SanPham.maLoaiSanPham,SanPham.maMonTheThao,SanPham.maNhanHieu,SanPham.trangThai\r\n"
+					+ "				ORDER BY COUNT(*) DESC";
 			List<SanPham> list = session.createNativeQuery(sql, SanPham.class).getResultList();
 			return list;
 

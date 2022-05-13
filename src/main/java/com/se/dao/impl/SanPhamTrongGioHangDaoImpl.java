@@ -68,7 +68,7 @@ public class SanPhamTrongGioHangDaoImpl implements SanPhamTrongGioHangDao {
 
 		} catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		return null;
 	}

@@ -78,7 +78,7 @@ function custom(maDonHang) {
         result = `<td>${e.trangThaiDonHang.tenTrangThaiDonHang}</td>`;
     } else if (maDonHang === "TTDH00001" || maDonHang === "TTDH00002") {
         result = `
-        <td><button class="btn btn-primary btn-sm trash accept" type="button" title="Xóa" onclick="chuyenTrangThai(this)">
+        <td><button class="btn btn-add btn-sm trash accept" type="button" title="Xóa" onclick="chuyenTrangThai(this)">
         Xác nhận
       </button>
       <button class="btn btn-primary btn-sm edit fail" type="button" title="Sửa" onclick="huyTrangThai(this)">
@@ -88,7 +88,7 @@ function custom(maDonHang) {
         `;
     } else if (maDonHang === "TTDH00003") {
         result = `
-        <td><button class="btn btn-primary btn-sm trash accept" type="button" title="Xóa" onclick="chuyenTrangThai(this)">
+        <td><button class="btn btn-add btn-sm trash accept" type="button" title="Xóa" onclick="chuyenTrangThai(this)">
         Giao thành công
       </button>
       <button class="btn btn-primary btn-sm edit fail" type="button" title="Sửa" onclick="huyTrangThai(this)">
@@ -107,7 +107,7 @@ function custom(maDonHang) {
         <td><div>
         Giao thất bại
       </div>
-      <button class="btn btn-primary btn-sm edit accept" type="button" title="Sửa" onclick="chuyenTrangThai(this)">
+      <button class="btn btn-add btn-sm edit accept" type="button" title="Sửa" onclick="chuyenTrangThai(this)">
         Giao lại
         </i></button>
     </td>

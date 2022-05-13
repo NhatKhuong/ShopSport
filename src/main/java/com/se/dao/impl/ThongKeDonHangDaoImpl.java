@@ -106,7 +106,7 @@ public class ThongKeDonHangDaoImpl implements ThongKeDonHangDao {
 
 			String sql = "SELECT        COUNT(*)\r\n" + "FROM            SanPham INNER JOIN\r\n"
 					+ "                         ChiTietSanPham ON SanPham.maSanPham = ChiTietSanPham.maSanPham\r\n"
-					+ "						 WHERE soLuongTon = 0";
+					+ "						 WHERE soLuongTon < 10";
 			String so = session.createNativeQuery(sql).uniqueResult().toString();
 			int count = Integer.parseInt(so);
 			return count;
@@ -189,16 +189,18 @@ public class ThongKeDonHangDaoImpl implements ThongKeDonHangDao {
 	}
 
 	@Override
-	public List<?> listHoaDonBan(String ngayBatDau, String ngayKetThuc) {
+	public List<?> listHoaDonBan(String ngayBatDau, String ngayKetThuc, int page, int instance) {
+		int offset = page * instance;
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			String sql = "SELECT       DonHang.maDonHang, NguoiDung.hoTen,DonHang.ngayTao , SUM(ChiTietDonHang.soLuongMua) AS [Số lượng sản phẩm mua], SUM(ChiTietDonHang.giaMua * ChiTietDonHang.soLuongMua) AS [Tổng tiền]\r\n"
-					+ "FROM            DonHang INNER JOIN\r\n"
-					+ "                         ChiTietDonHang ON DonHang.maDonHang = ChiTietDonHang.maDonHang INNER JOIN\r\n"
-					+ "                         ChiTietSanPham ON ChiTietDonHang.maChiTietSanPham = ChiTietSanPham.maChiTietSanPham INNER JOIN\r\n"
-					+ "                         NguoiDung ON DonHang.maNguoiDung = NguoiDung.maNguoiDung\r\n"
-					+ "WHERE        (DonHang.ngayTao BETWEEN CAST('" + ngayBatDau + "' AS DATE) AND CAST('"
-					+ ngayKetThuc + "' AS DATE))\r\n" + "GROUP BY DonHang.maDonHang, NguoiDung.hoTen, ngayTao\r\n" + "";
+			String sql = "   SELECT       DonHang.maDonHang, NguoiDung.hoTen,DonHang.ngayTao , SUM(ChiTietDonHang.soLuongMua) AS [Số lượng sản phẩm mua], SUM(ChiTietDonHang.giaMua * ChiTietDonHang.soLuongMua) AS [Tổng tiền]   \r\n"
+					+ "					   FROM            DonHang INNER JOIN   \r\n"
+					+ "					                            ChiTietDonHang ON DonHang.maDonHang = ChiTietDonHang.maDonHang INNER JOIN   \r\n"
+					+ "					                            ChiTietSanPham ON ChiTietDonHang.maChiTietSanPham = ChiTietSanPham.maChiTietSanPham INNER JOIN   \r\n"
+					+ "					                            NguoiDung ON DonHang.maNguoiDung = NguoiDung.maNguoiDung   \r\n"
+					+ "					   WHERE        (DonHang.ngayTao BETWEEN CAST('"+ngayBatDau+"' AS DATE) AND CAST('"+ngayKetThuc+"' AS DATE)) \r\n"
+					+ "					   GROUP BY DonHang.maDonHang, NguoiDung.hoTen, ngayTao        \r\n"
+					+ "					   ORDER BY maDonHang desc offset   "+offset+"   rows fetch next   "+instance+"   rows only";
 			List<?> list = session.createNativeQuery(sql).getResultList();
 			return list;
 		} catch (Exception e) {
@@ -209,16 +211,18 @@ public class ThongKeDonHangDaoImpl implements ThongKeDonHangDao {
 	}
 
 	@Override
-	public List<?> listSanPhamHetHang() {
+	public List<?> listSanPhamHetHang(int page, int instance) {
+		int offset = page * instance;
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			String sql = "SELECT        SanPham.maSanPham, SanPham.tenSanPham, KichThuoc.tenKichThuoc, ChiTietSanPham.soLuongTon, SanPham.giaTien,tenLoaiSanPham\r\n"
-					+ "FROM            SanPham INNER JOIN\r\n"
-					+ "                         ChiTietSanPham ON SanPham.maSanPham = ChiTietSanPham.maSanPham INNER JOIN\r\n"
-					+ "                         KichThuoc ON ChiTietSanPham.maKichThuoc = KichThuoc.maKichThuoc INNER JOIN\r\n"
-					+ "                         LoaiSanPham ON SanPham.maLoaiSanPham = LoaiSanPham.maLoaiSanPham\r\n"
-					+ "WHERE        (ChiTietSanPham.soLuongTon = 0)";
+			String sql = "SELECT        SanPham.maSanPham, SanPham.tenSanPham, KichThuoc.tenKichThuoc, ChiTietSanPham.soLuongTon, SanPham.giaTien,tenLoaiSanPham  \r\n"
+					+ "					   FROM            SanPham INNER JOIN  \r\n"
+					+ "					                            ChiTietSanPham ON SanPham.maSanPham = ChiTietSanPham.maSanPham INNER JOIN  \r\n"
+					+ "					                            KichThuoc ON ChiTietSanPham.maKichThuoc = KichThuoc.maKichThuoc INNER JOIN  \r\n"
+					+ "					                            LoaiSanPham ON SanPham.maLoaiSanPham = LoaiSanPham.maLoaiSanPham  \r\n"
+					+ "					   WHERE        (ChiTietSanPham.soLuongTon < 10)\r\n"
+					+ "					   ORDER BY maSanPham offset "+offset+" rows fetch next "+instance+" rows only";
 
 			List<?> listSP = session.createNativeQuery(sql).getResultList();
 			return listSP;
@@ -230,16 +234,33 @@ public class ThongKeDonHangDaoImpl implements ThongKeDonHangDao {
 	}
 
 	@Override
-	public List<?> listThongKe() {
+	public List<?> listThongKe(String nam) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			String sql = "SELECT       MONTH(ngayTao)AS [Tháng],SUM(giaMua*soLuongMua)AS[Tổng doanh thu]\r\n"
 					+ "FROM            DonHang INNER JOIN\r\n"
 					+ "                         ChiTietDonHang ON DonHang.maDonHang = ChiTietDonHang.maDonHang\r\n"
-					+ "WHERE ChiTietDonHang.maDonHang = DonHang.maDonHang AND YEAR(ngayTao) = YEAR(GETDATE())\r\n"
+					+ "WHERE ChiTietDonHang.maDonHang = DonHang.maDonHang AND YEAR(ngayTao) = " + nam + "\r\n"
 					+ "GROUP BY  MONTH(ngayTao)";
 			List<?> listThongKe = session.createNativeQuery(sql).getResultList();
 			return listThongKe;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<String> getNamThongKe() {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		try {
+
+			String sql = "select YEAR(ngayTao) from DonHang\r\n" + "group by YEAR(ngayTao)\r\n"
+					+ "order by YEAR(ngayTao)";
+			List<String> list = session.createNativeQuery(sql).getResultList();
+			return list;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

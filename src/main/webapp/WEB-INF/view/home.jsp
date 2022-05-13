@@ -38,11 +38,11 @@
                             <div class="slider owl-carousel  owl-theme">
                                 <div class="item" >
                                     <img 
-                                        src='${pageContext.request.contextPath}/resources/imgSlider/slider_pic2.jpg'>                                       
+                                        src='${pageContext.request.contextPath}/resources/imgSlider/slider1new.jpg'>                                       
                                 </div>
                                   <div class="item">
                                     <img
-                                        src='${pageContext.request.contextPath}/resources/imgSlider/slider1_pic.jpg'>
+                                        src='${pageContext.request.contextPath}/resources/imgSlider/slider2new.jpg'>
                       
                                 </div>
                             </div>

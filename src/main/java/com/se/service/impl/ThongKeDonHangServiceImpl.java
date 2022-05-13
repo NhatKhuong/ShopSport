@@ -89,22 +89,29 @@ public class ThongKeDonHangServiceImpl implements ThongKeDonHangService {
 
 	@Override
 	@Transactional
-	public List<?> listHoaDonBan(String ngayBatDau, String ngayKetThuc) {
+	public List<?> listHoaDonBan(String ngayBatDau, String ngayKetThuc,int page, int instance)  {
 		// TODO Auto-generated method stub
-		return donHangDao.listHoaDonBan(ngayBatDau, ngayKetThuc);
+		return donHangDao.listHoaDonBan(ngayBatDau, ngayKetThuc,page,instance);
 	}
 
 	@Override
 	@Transactional
-	public List<?> listSanPhamHetHang() {
+	public List<?> listSanPhamHetHang(int page, int instance)  {
 		// TODO Auto-generated method stub
-		return donHangDao.listSanPhamHetHang();
+		return donHangDao.listSanPhamHetHang(page,instance);
 	}
 
 	@Override
 	@Transactional
-	public List<?> listThongKe() {
+	public List<?> listThongKe(String nam) {
 		// TODO Auto-generated method stub
-		return donHangDao.listThongKe();
+		return donHangDao.listThongKe(nam);
+	}
+
+	@Override
+	@Transactional
+	public List<String> getNamThongKe() {
+		// TODO Auto-generated method stub
+		return donHangDao.getNamThongKe();
 	}
 }
