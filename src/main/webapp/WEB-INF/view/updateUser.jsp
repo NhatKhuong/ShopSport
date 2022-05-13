@@ -42,7 +42,7 @@
                                     <span>Thông tin người dùng</span>
                                 </div>
                                 <div class="component pt-3 mb-4 pb-2">
-                                    <form:form modelAttribute="nguoiDung"
+                                    <form:form modelAttribute="nguoiDung" id='form-update'
                                         action='${pageContext.request.contextPath}/nguoi-dung/update' method="GET">
 
                                         <div class="row">
@@ -112,7 +112,7 @@
                                                 </div>
 
                                                 <!--    <button>Khôi phục</button> -->
-                                                <button onclick="notifySuccess()" type="submit">Lưu</button>
+                                                <button type="submit">Lưu</button>
 
                                             </div>
                                         </div>
@@ -149,6 +149,21 @@
                         document.getElementById('quanHuyen').value = quanHuyen
                         await loadDataPhuongXa();
                         document.getElementById('phuongXa').value = phuongXa
+                    })();
+                    (async () => {
+                        document.getElementById('form-update').addEventListener('submit', (e) => {
+					
+                        	  if ( !/(84|0[3|5|7|8|9])+([0-9]{8})\b/.test(document.getElementById('soDienThoai').value.trim())) {
+                                      e.preventDefault();
+                                      alert('Số điện thoại không đúng định dạng')
+                                      return;
+                                  }
+
+
+
+                            notifySuccess();
+                        })
+
                     })();
                 </script>
             </body>
